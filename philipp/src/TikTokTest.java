@@ -22,9 +22,9 @@ class TikTokTest {
 
     @Test
     void exceptionTesting() {
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-            throw new IllegalArgumentException("Zahl kleiner 0");
+        Throwable exception = assertThrows(TikTakKleinerNullException.class, () -> {
+            throw new TikTakKleinerNullException();
         });
-        assertEquals("Zahl kleiner 0", exception.getMessage());
+        assertEquals("Die Zahl ist kleiner als Null", exception.getMessage());
     }
 }
