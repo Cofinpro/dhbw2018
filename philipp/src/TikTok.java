@@ -1,19 +1,16 @@
 // Objekt
 public class TikTok {
 
-    private int i;
-
-    public TikTok(int i){
-        this.i = i;
-    }
-    public String toString(){
-        if(i%15 == 0)
+    public String checkNumber(int number){
+        if(number < 0)
+            throw new TikTakKleinerNullException();
+        if(number%15 == 0)
             return "tiktok";
-        if(i%5 == 0)
+        if(number%5 == 0)
             return "tok";
-        if(i%3 == 0)
+        if(number%3 == 0)
             return "tik";
         else
-            return "" + i;
+            return "" + number;
     }
 }
