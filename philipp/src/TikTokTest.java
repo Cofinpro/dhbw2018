@@ -1,23 +1,30 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TikTokTest {
-        @Test
-        public void testTikTok(){
-            //arrange
-            TikTok tt1 = new TikTok(3);
-            TikTok tt2 = new TikTok(5);
-            TikTok tt3 = new TikTok(15);
+    @Test
+    public void testTikTok(){
+        //arrange
+        TikTok tikTok = new TikTok();
 
-            //act
-            String erg1 = tt1.toString(); // act koennte man auch in assert implementieren
-            String erg2 = tt2.toString();
-            String erg3 = tt3.toString();
+        //act
+        String erg1 = tikTok.checkNumber(3); // act koennte man auch in assert implementieren
+        String erg2 = tikTok.checkNumber(5);
+        String erg3 = tikTok.checkNumber(15);
 
-            //assert
-            assertEquals("tik", erg1, "TikTok ist fehlerhaft");
-            assertEquals("tok", erg2, "TikTok ist fehlerhaft");
-            assertEquals("tiktok", erg3, "TikTok ist fehlerhaft");
-        }
+        //assert
+        assertEquals("tik", erg1, "TikTok ist fehlerhaft");
+        assertEquals("tok", erg2, "TikTok ist fehlerhaft");
+        assertEquals("tiktok", erg3, "TikTok ist fehlerhaft");
+    }
+
+    @Test
+    void exceptionTesting() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            throw new IllegalArgumentException("Zahl kleiner 0");
+        });
+        assertEquals("Zahl kleiner 0", exception.getMessage());
+    }
 }
