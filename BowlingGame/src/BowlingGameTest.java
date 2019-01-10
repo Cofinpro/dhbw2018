@@ -26,7 +26,7 @@ class BowlingGameTest {
     void reset() {
         //arrange
         BowlingGame bowlingGame = new BowlingGame(3);
-        bowlingGame.knockDownAllPins();
+        bowlingGame.rollBall(100);
         bowlingGame.reset();
 
         //act
@@ -47,7 +47,7 @@ class BowlingGameTest {
     void countStandingPins() {
         BowlingGame bowlingGame = new BowlingGame(10);
         String amountPinsUp = bowlingGame.countStandingPins();
-        bowlingGame.knockDownAllPins();
+        bowlingGame.rollBall(100);
         String amountPinsUp2 = bowlingGame.countStandingPins();
 
         assertEquals(amountPinsUp, "10 pin/s are still standing", "countStandingPins not working properly");
@@ -60,7 +60,4 @@ class BowlingGameTest {
         // hard to write a test method for the visualization
     }
 
-    @Test
-    void main() {
-    }
 }

@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -38,16 +39,29 @@ public class BowlingGame {
      * knocks out a random number of pins
      * @return number of knocked out pins
      */
-    public String rollBall(){
+    public String rollBall(int probabilityForKnockOut){
         int knockedOutPinsByCurrentBall = 0;
         for(int count=0; count<pinArray.length; count++) {
-            int knockDownPin = (int)(Math.random()*2);
-            if (knockDownPin == 1 && pinArray[count].pinState == PinState.STANDING) {
+            if ((knockDownPin(probabilityForKnockOut)) && pinArray[count].pinState == PinState.STANDING) {
                 pinArray[count].knockOut();
                 knockedOutPinsByCurrentBall++;
             }
         }
         return "" + knockedOutPinsByCurrentBall + " pin/s were knocked out by the current ball";
+    }
+
+    /**
+     * Calculates weather a pin will be knocked down dependent on the probability
+     * @param probabilityForKnockOut the given probability for a knockout
+     * @return boolean weather the pin will be knocked down
+     */
+    public boolean knockDownPin(int probabilityForKnockOut){
+        double random = Math.random();
+        double probability = probabilityForKnockOut/100.0;
+        if(random<probability)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -89,9 +103,21 @@ public class BowlingGame {
             System.out.println();
         }
     }
-    public void knockDownAllPins(){ // this method mainly exists for testing purposes
-        for(int count=0; count<pinArray.length; count++)
-            pinArray[count].knockOut();
+
+    /**
+     * Knocks down specific pin
+     * @param pinNumber defines the number of the pin that will be knocked
+     */
+    public void knockDownSpecificPin(int pinNumber){
+        pinArray[pinNumber-1].knockOut(); // -1 because PC counts from 0 and user from 1
+    }
+
+    /**
+     * puts up specific pin
+     * @param pinNumber defines the number of the pin that will be put up
+     */
+    public void getUpSpecificPin(int pinNumber){
+        pinArray[pinNumber-1].putPinBackUp();
     }
 
 
@@ -100,6 +126,10 @@ public class BowlingGame {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the number of pins you want: ");
         int amountPins = scanner.nextInt();
+        System.out.println("Now enter the probability for knocking down a pin (in %): ");
+        int probabilityForKnockOut = scanner.nextInt();
+        System.out.println("Start normal game (y) / knock down specific pin (s) / get up specific pin (u) / end game (n)?: ");
+        char playAgain = scanner.next().charAt(0);
 
         if(amountPins<1 || amountPins>99)
             throw new IllegalArgumentException("Amount of pins must be between 1 and 99");
@@ -108,20 +138,34 @@ public class BowlingGame {
 
         bowlingGame.reset();
         int countRounds = 0;
-        char playAgain = 'y';
 
         do{
             countRounds++;
 
             System.out.println("_______________________________________________");
             System.out.println("Round: " + countRounds);
-            System.out.println(bowlingGame.rollBall());
-            System.out.println(bowlingGame.countStandingPins());
+            if(playAgain == 'y') {
+                System.out.println(bowlingGame.rollBall(probabilityForKnockOut));
+                System.out.println(bowlingGame.countStandingPins());
+            }
+            if(playAgain == 's') {
+                System.out.println("Which pin do you want to knock down? (number): ");
+                int knockDownPinNumber = scanner.nextInt();
+                // you could test whether the pin exists / is already knocked down
+                bowlingGame.knockDownSpecificPin(knockDownPinNumber);
+            }
+            if(playAgain == 'u') {
+                System.out.println("Which pin do you want to put back up? (number): ");
+                int getUpPinNumber = scanner.nextInt();
+                // you could test whether the pin exists / is already standing
+                bowlingGame.getUpSpecificPin(getUpPinNumber);
+            }
+
             bowlingGame.visualizeStandingPins(amountPins);
 
-            System.out.println("Do you want to throw the ball again? (y/n) ");
+            System.out.println("Throw ball (y) | knock specific (s) | get up specific (u) | end game (n)? ");
             playAgain = scanner.next().charAt(0);
         }
-        while (playAgain == 'y');
+        while (playAgain == 'y' || playAgain == 's' || playAgain == 'u');
     }
 }
