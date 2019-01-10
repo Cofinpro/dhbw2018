@@ -5,23 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BowlingGameTest {
 
-  /**  int testPinsAmount = 10;
-    int testPinsAmount1 = 50;
-    int testPinsAmount2 = -1;
-    int testPinsamount3 = 100;
-    private Pin[] pinArray;
-
-    @BeforeEach
-    void setUp() {
-        //arrange
-
-        BowlingGame bowlingGame = new BowlingGame(testPinsAmount);
-        BowlingGame bowlingGame1 = new BowlingGame(testPinsAmount1);
-        BowlingGame bowlingGame2 = new BowlingGame(testPinsAmount2);
-        BowlingGame bowlingGame3 = new BowlingGame(testPinsamount3);
-**/
-
-
     @Test
     void reset() {
         //arrange
