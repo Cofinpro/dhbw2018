@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Represents a bowling game
  * @author Team DevMatch - Cofinpro AG
@@ -87,24 +89,39 @@ public class BowlingGame {
             System.out.println();
         }
     }
+    public void knockDownAllPins(){ // this method mainly exists for testing purposes
+        for(int count=0; count<pinArray.length; count++)
+            pinArray[count].knockOut();
+    }
 
 
     public static void main(String[] args) {
-        int amountBowlingBalls = 3;
-        int amountPins =11;
+        //
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the number of pins you want: ");
+        int amountPins = scanner.nextInt();
+
         if(amountPins<1 || amountPins>99)
             throw new IllegalArgumentException("Amount of pins must be between 1 and 99");
 
         BowlingGame bowlingGame = new BowlingGame(amountPins);
 
         bowlingGame.reset();
+        int countRounds = 0;
+        char playAgain = 'y';
 
-        for(int count = 0; count<amountBowlingBalls; count++){
+        do{
+            countRounds++;
+
             System.out.println("_______________________________________________");
-            System.out.println("Round: " + (count+1));
+            System.out.println("Round: " + countRounds);
             System.out.println(bowlingGame.rollBall());
             System.out.println(bowlingGame.countStandingPins());
             bowlingGame.visualizeStandingPins(amountPins);
+
+            System.out.println("Do you want to throw the ball again? (y/n) ");
+            playAgain = scanner.next().charAt(0);
         }
+        while (playAgain == 'y');
     }
 }
