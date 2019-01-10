@@ -167,5 +167,6 @@ public class BowlingGame {
             playAgain = scanner.next().charAt(0);
         }
         while (playAgain == 'y' || playAgain == 's' || playAgain == 'u');
+        scanner.close();
     }
 }
