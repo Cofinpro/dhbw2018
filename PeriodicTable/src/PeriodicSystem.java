@@ -48,6 +48,9 @@ public class PeriodicSystem {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            System.out.println("The csv contains a chemical element with an unacceptable group or period");
         } finally {
             if (br != null) {
                 try {
@@ -66,7 +69,11 @@ public class PeriodicSystem {
         if (group < 1 || group > 18) {
             throw new IllegalArgumentException("The group should be between 1 and 18 but is " + group);
         }
-        return chemicalElements[period-1][group-1];
+        try {
+            return chemicalElements[period-1][group-1];
+        } catch (IndexOutOfBoundsException e){
+            throw new RuntimeException("There should be a chemical element with the requested parameters but there isn't. This periodic system is incomplete.");
+        }
     }
 
     private static class SingletonHelper {

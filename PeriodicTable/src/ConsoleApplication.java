@@ -12,7 +12,6 @@ public class ConsoleApplication {
             System.out.println("Your options");
             System.out.println("1) Show all elements");
             System.out.println("2) Inspect a specific element");
-            System.out.println("3) Add a new element");
             System.out.println("x) end");
             String input = SCANNER.nextLine();
             System.out.println("***************************");
@@ -23,9 +22,6 @@ public class ConsoleApplication {
                 case "2":
                     inspectSpecificElement();
                     break;
-                case "3":
-                    addNewElement();
-                    break;
                 case "x":
                     running = false;
                     break;
@@ -35,10 +31,6 @@ public class ConsoleApplication {
             }
         }
         System.out.println("Goodbye!");
-    }
-
-    private static void addNewElement() {
-        System.out.println("This feature is not yet implemented :(");
     }
 
     /**
