@@ -1,4 +1,5 @@
-import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -7,31 +8,96 @@ import java.util.Scanner;
  */
 public class BowlingGame {
 
-    private Pin[] pinArray;
+    private final double PROBABILY_OF_KNOCKING_OUT_A_PIN;
+    private ArrayList<Pin> pins;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to a new Bowling Game");
+        BowlingGame bg = null;
+        //while bg isn't set up, try setting it up
+        while (bg == null) {
+            System.out.println("*****************************");
+            try {
+                System.out.print("With how many pins do you want to play? (range 1-100, if instead, you want to provide the number of rows, write for example r6 for six rows): ");
+                String input = scanner.nextLine();
+                int pinCount;
+                if (input.startsWith("r")) {
+                    input = input.substring(1, input.length());
+                    int inputNumber = Integer.parseInt(input);
+                    pinCount = BowlingGame.getPinCountByRowCount(inputNumber);
+                    System.out.println(inputNumber + " filled rows consist of " + pinCount + " pins.");
+                } else {
+                    pinCount = Integer.parseInt(input);
+                }
+                System.out.print("How high should the change of knocking out a pin be? (e.g. 0.5): ");
+                input = scanner.nextLine();
+                double inputProbability = Double.parseDouble(input);
+                bg = new BowlingGame(pinCount, inputProbability);
+            } catch (NumberFormatException nfe) {
+                System.out.println("Your input is not in the right format. Numbers should be something like \"1234\" and probabilities should be something like \"0.5\".");
+            } catch (IllegalArgumentException iae) {
+                System.out.println(iae.getMessage() + " Try again.");
+            }
+        }
+        // play as long as there are standing pins
+        boolean gameRunning = true;
+        while (gameRunning) {
+            bg.visualizeStandingPins();
+            System.out.print("If you want to throw a ball, just press enter. If you want to end the game press x and then enter.");
+            String input = scanner.nextLine();
+            System.out.println("*****************************");
+            if (input.equals("")) {
+                System.out.println(bg.rollBall() + " pins knocked out by rolling one ball.");
+                int standingPins = bg.countStandingPins();
+                if (standingPins > 1) {
+                    System.out.println("There are still " + standingPins + " pins standing.");
+                } else if (standingPins == 1) {
+                    System.out.println("There is still one pin standing. You are almost done.");
+                } else {
+                    System.out.println("All pins have been knocked out. You finished the game");
+                    gameRunning = false;
+                }
+            } else if (input.equalsIgnoreCase("x")) {
+                gameRunning = false;
+            } else {
+                System.out.println("Unrecogniseable input. Try again.");
+            }
+        }
+        System.out.println("Good bye. Come back soon.");
+    }
     /**
      * Constucts a BowlingGame with 10 pins
      */
-    public BowlingGame(){
-        this(10);
+    public BowlingGame() {
+        this(10, 0.5);
     }
 
     /**
-     *Constucts a BowlingGame with a custom amount of pins
-     * @param count defines the amount of pins
+     *Constucts a BowlingGame with a custom amount of pins and custom probability of knocking out a pin
+     * @param count defines the amount of pins (range 1 - 100)
+     * @param probabiltyOfKnockingOutAPin the probability of a standing pin being knocked out by rolling a ball
      */
-    public BowlingGame(int count){
-        pinArray = new Pin[count];
-        for(int amount=0; amount<count; amount++) {
-            pinArray[amount] = new Pin();
+    public BowlingGame(int count, double probabiltyOfKnockingOutAPin) {
+        if (count < 1 || count > 100) {
+            throw new IllegalArgumentException("The number of pins should be between 1 and 100 but is " + count);
         }
+        if (probabiltyOfKnockingOutAPin < 0 || probabiltyOfKnockingOutAPin > 1) {
+            throw new IllegalArgumentException("The probability of knocking out a pin should be between 0.0 and 1.0 but is " + probabiltyOfKnockingOutAPin);
+        }
+        pins = new ArrayList<>(count);
+        for(int i = 0; i < count; i++) {
+            pins.add(new Pin());
+        }
+        PROBABILY_OF_KNOCKING_OUT_A_PIN = probabiltyOfKnockingOutAPin;
     }
 
     /**
      *resets the game by putting all pins back up
      */
-    public void reset(){
-        for(int count=0; count<pinArray.length; count++){
-            pinArray[count].putPinBackUp();
+    public void reset() {
+        for(int i = 0; i < pins.size(); i++) {
+            pins.get(i).putPinBackUp();
         }
     }
 
@@ -39,134 +105,87 @@ public class BowlingGame {
      * knocks out a random number of pins
      * @return number of knocked out pins
      */
-    public String rollBall(int probabilityForKnockOut){
-        int knockedOutPinsByCurrentBall = 0;
-        for(int count=0; count<pinArray.length; count++) {
-            if ((knockDownPin(probabilityForKnockOut)) && pinArray[count].pinState == PinState.STANDING) {
-                pinArray[count].knockOut();
-                knockedOutPinsByCurrentBall++;
+    public int rollBall() {
+        int knockedOutBallCount = 0;
+        Random r = new Random();
+        for(int i = 0; i < pins.size(); i++) {
+            if (pins.get(i).getPinState() == PinState.KNOCKEDOUT) {
+                continue;
+            }
+            double randomValue = r.nextDouble();
+            if (randomValue <= PROBABILY_OF_KNOCKING_OUT_A_PIN) {
+                pins.get(i).knockOut();
+                knockedOutBallCount++;
             }
         }
-        return "" + knockedOutPinsByCurrentBall + " pin/s were knocked out by the current ball";
-    }
-
-    /**
-     * Calculates weather a pin will be knocked down dependent on the probability
-     * @param probabilityForKnockOut the given probability for a knockout
-     * @return boolean weather the pin will be knocked down
-     */
-    public boolean knockDownPin(int probabilityForKnockOut){
-        double random = Math.random();
-        double probability = probabilityForKnockOut/100.0;
-        if(random<probability)
-            return true;
-        else
-            return false;
+        return knockedOutBallCount;
     }
 
     /**
      * counts standing pins
      * @return amount of standing pins
      */
-
-    public String countStandingPins(){
-        int standingPins = 0;
-        for(int count=0; count<pinArray.length; count++){
-            if(pinArray[count].getPinState() == PinState.STANDING)
-                standingPins++;
+    public int countStandingPins() {
+        int count = 0;
+        for(int i = 0; i < pins.size(); i++) {
+            if (pins.get(i).getPinState() == PinState.STANDING) {
+                count++;
+            }
         }
-        return "" + standingPins + " pin/s are still standing";
+        return count;
     }
 
     /**
      * prints out a visualization of the BowlingGame
      */
-    public void visualizeStandingPins(int amountPins){
-        int tableRows = (int) (-1/2 + Math.sqrt(1/4 + 2*amountPins));//pq to calculate the tableRows (visualization)
-        if((-1/2 + Math.sqrt(1/4 + 2*amountPins)%1.0 != 0)) // round up if result is double (eg. result: 1.2 would be rounded to 1
-            tableRows++;                                    // now a special row is added for the pins that dont fill the entire last row
-        int pinCount = 0;
-
-        System.out.println("View on pins from top");
-        for(int countRow=0; countRow<tableRows; countRow++){
-            for(int countSpaces=0; countSpaces<(tableRows - countRow); countSpaces++)
+    public void visualizeStandingPins() {
+        int pinIndex = 0;
+        int currentRow = 1;
+        int pinsDisplayedInCurrentRow = 0;
+        int fullRowCount = getRowCount();
+        while (pinIndex < pins.size()) {
+            for(int i = currentRow; i < fullRowCount; i++) {
                 System.out.print(" ");
-            for(int countColumn=1; countColumn<=countRow+1; countColumn++){
-                if(pinCount>=amountPins)
-                    break;
-                if(pinArray[pinCount].getPinState() == PinState.STANDING)
-                    System.out.print("o ");
-                if(pinArray[pinCount].getPinState() == PinState.KNOCKEDOUT)
-                    System.out.print("8 ");
-                pinCount++;
+            }
+            while (pinsDisplayedInCurrentRow < currentRow && pins.size() > pinIndex) {
+                display(pins.get(pinIndex));
+                pinsDisplayedInCurrentRow++;
+                pinIndex++;
             }
             System.out.println();
+            currentRow++;
+            pinsDisplayedInCurrentRow = 0;
+        }
+    }
+
+    private void display(Pin pin) {
+        if (pin.getPinState() == PinState.STANDING) {
+            System.out.print("0 ");
+        } else {
+            System.out.print("8 ");
         }
     }
 
     /**
-     * Knocks down specific pin
-     * @param pinNumber defines the number of the pin that will be knocked
+     *
+     * Calculates the number of rows that used to display all pins
+     * @return the number of rows
      */
-    public void knockDownSpecificPin(int pinNumber){
-        pinArray[pinNumber-1].knockOut(); // -1 because PC counts from 0 and user from 1
+    public int getRowCount() {
+        int rowCount = 0;
+        for (int i = 0; i < pins.size(); ) {
+            rowCount++;
+            i += rowCount;
+        }
+        return rowCount;
     }
 
     /**
-     * puts up specific pin
-     * @param pinNumber defines the number of the pin that will be put up
+     * Calcultes the number of pins that fit into a certein amount of rows that are build in the typical bowling structure
+     * @param rowCount the number of rows
+     * @return the number of pins that fit into the given rows
      */
-    public void getUpSpecificPin(int pinNumber){
-        pinArray[pinNumber-1].putPinBackUp();
-    }
-
-
-    public static void main(String[] args) {
-        //
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the number of pins you want: ");
-        int amountPins = scanner.nextInt();
-        System.out.println("Now enter the probability for knocking down a pin (in %): ");
-        int probabilityForKnockOut = scanner.nextInt();
-        System.out.println("Start normal game (y) / knock down specific pin (s) / get up specific pin (u) / end game (n)?: ");
-        char playAgain = scanner.next().charAt(0);
-
-        if(amountPins<1 || amountPins>99)
-            throw new IllegalArgumentException("Amount of pins must be between 1 and 99");
-
-        BowlingGame bowlingGame = new BowlingGame(amountPins);
-
-        bowlingGame.reset();
-        int countRounds = 0;
-
-        do{
-            countRounds++;
-
-            System.out.println("_______________________________________________");
-            System.out.println("Round: " + countRounds);
-            if(playAgain == 'y') {
-                System.out.println(bowlingGame.rollBall(probabilityForKnockOut));
-                System.out.println(bowlingGame.countStandingPins());
-            }
-            if(playAgain == 's') {
-                System.out.println("Which pin do you want to knock down? (number): ");
-                int knockDownPinNumber = scanner.nextInt();
-                // you could test whether the pin exists / is already knocked down
-                bowlingGame.knockDownSpecificPin(knockDownPinNumber);
-            }
-            if(playAgain == 'u') {
-                System.out.println("Which pin do you want to put back up? (number): ");
-                int getUpPinNumber = scanner.nextInt();
-                // you could test whether the pin exists / is already standing
-                bowlingGame.getUpSpecificPin(getUpPinNumber);
-            }
-
-            bowlingGame.visualizeStandingPins(amountPins);
-
-            System.out.println("Throw ball (y) | knock specific (s) | get up specific (u) | end game (n)? ");
-            playAgain = scanner.next().charAt(0);
-        }
-        while (playAgain == 'y' || playAgain == 's' || playAgain == 'u');
-        scanner.close();
+    public static int getPinCountByRowCount(int rowCount) {
+        return (rowCount * (rowCount +1))/2;
     }
 }
