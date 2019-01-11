@@ -12,7 +12,7 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
         this.symbol = symbol;
         this.period = period;
         this.group = group;
-        metalloid = new boolean[117];
+        metalloid = new boolean[119];
         for (int i = 0; i < metalloid.length; i++) {
             metalloid[i] = false;
         }
@@ -34,11 +34,24 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
     }
 
     public boolean isMetalloid() {
-        return metalloid[atomicNumber-1];
+        return metalloid[atomicNumber];
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public int getGroup() {
+        return group;
     }
 
     @Override
     public int compareTo(ChemicalElement o) {
         return atomicNumber - o.atomicNumber;
+    }
+
+    @Override
+    public String toString() {
+        return name + " has the symbol " + symbol + " and has " + atomicNumber + " protons.";
     }
 }
