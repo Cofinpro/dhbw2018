@@ -20,7 +20,11 @@ public class PeriodicSystem {
         SortedSet<ChemicalElement> result = new TreeSet();
         for (int i = 0; i < chemicalElements.length; i++) {
             for (int j = 0; j < chemicalElements[i].length; j++) {
-                result.add(chemicalElements[i][j]);
+                //if it is not null the element with period i and group j actually exists
+                if (chemicalElements[i][j] != null) {
+                    result.add(chemicalElements[i][j]);
+                }
+
             }
         }
         return result;
@@ -69,11 +73,10 @@ public class PeriodicSystem {
         if (group < 1 || group > 18) {
             throw new IllegalArgumentException("The group should be between 1 and 18 but is " + group);
         }
-        try {
-            return chemicalElements[period-1][group-1];
-        } catch (IndexOutOfBoundsException e){
-            throw new RuntimeException("There should be a chemical element with the requested parameters but there isn't. This periodic system is incomplete.");
+        if (chemicalElements[period-1][period-1] == null) {
+            throw new IllegalArgumentException("There is no element in group " + group + " and period " + period);
         }
+        return chemicalElements[period-1][group-1];
     }
 
     private static class SingletonHelper {
