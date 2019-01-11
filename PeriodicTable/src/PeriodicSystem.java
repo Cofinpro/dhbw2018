@@ -4,10 +4,11 @@ import java.io.*;
 import java.util.*;
 
 public class PeriodicSystem {
-    private SortedSet<ChemicalElement> chemicalElements;
+    //period first then group
+    private ChemicalElement[][] chemicalElements;
 
     private PeriodicSystem() {
-        chemicalElements = new TreeSet<>();
+        chemicalElements = new ChemicalElement[7][18];
         readInElements();
     }
 
@@ -15,9 +16,16 @@ public class PeriodicSystem {
         return SingletonHelper.INSTANCE;
     }
 
-    public SortedSet<ChemicalElement> getChemicalElementsCopy() {
-        return new TreeSet<>(chemicalElements);
+    public SortedSet<ChemicalElement> getChemicalElementsAsSortedSet() {
+        SortedSet<ChemicalElement> result = new TreeSet();
+        for (int i = 0; i < chemicalElements.length; i++) {
+            for (int j = 0; j < chemicalElements[i].length; j++) {
+                result.add(chemicalElements[i][j]);
+            }
+        }
+        return result;
     }
+
     private void readInElements() {
         String path = "C:\\Users\\SLammes\\IdeaProjects\\dhbw2018\\PeriodicTable\\src\\ps.csv";
         BufferedReader br = null;
@@ -34,7 +42,7 @@ public class PeriodicSystem {
                 int group = Integer.parseInt(parts[3]);
                 int period = Integer.parseInt(parts[4]);
                 ChemicalElement chemicalElement = new ChemicalElement(atomicNumber, name, symbol, period, group);
-                chemicalElements.add(chemicalElement);
+                chemicalElements[period-1][group-1] = chemicalElement;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -58,12 +66,7 @@ public class PeriodicSystem {
         if (group < 1 || group > 18) {
             throw new IllegalArgumentException("The group should be between 1 and 18 but is " + group);
         }
-        for (ChemicalElement current : chemicalElements) {
-            if (current.getGroup() == group && current.getPeriod() == period) {
-                return current;
-            }
-        }
-        throw new NotImplementedException();
+        return chemicalElements[period-1][group-1];
     }
 
     private static class SingletonHelper {

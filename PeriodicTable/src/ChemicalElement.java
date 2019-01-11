@@ -29,6 +29,10 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
         }
     }
 
+    public int getAtomicNumber() {
+        return atomicNumber;
+    }
+
     public boolean isAlkali() {
         return (group == 1) && (atomicNumber != 1);
     }
@@ -45,6 +49,10 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
         return group;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
     @Override
     public int compareTo(ChemicalElement o) {
         return atomicNumber - o.atomicNumber;
@@ -52,6 +60,6 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
 
     @Override
     public String toString() {
-        return name + " has the symbol " + symbol + " and has " + atomicNumber + " protons.";
+        return name;
     }
 }

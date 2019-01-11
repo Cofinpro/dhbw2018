@@ -41,6 +41,9 @@ public class ConsoleApplication {
         System.out.println("This feature is not yet implemented :(");
     }
 
+    /**
+     * lets the user choose a specific element in order to then inspect it
+     */
     private static void inspectSpecificElement() {
         PeriodicSystem periodicSystem = PeriodicSystem.getInstance();
         System.out.println("Choose the element:");
@@ -60,13 +63,24 @@ public class ConsoleApplication {
         }
     }
 
+    /**
+     * lets the user inspect an element
+     * @param chemicalElement the element inspected
+     */
     private static void inspectSpecificElement(ChemicalElement chemicalElement) {
-        System.out.println(chemicalElement);
+        System.out.println("Name: " + chemicalElement);
+        System.out.println("Symbol: " + chemicalElement.getSymbol());
+        System.out.println("Atomic Number: " + chemicalElement.getAtomicNumber());
+        System.out.println("Group: " + chemicalElement.getGroup());
+        System.out.println("Period: " + chemicalElement.getPeriod());
+        System.out.println("Alkali: " + chemicalElement.isAlkali());
+        System.out.println("Fluid: " + chemicalElement.isFluid());
+        System.out.println("Metalloid: " + chemicalElement.isMetalloid());
     }
 
     private static void showAllElements() {
         PeriodicSystem periodicSystem = PeriodicSystem.getInstance();
-        SortedSet<ChemicalElement> chemicalElements = periodicSystem.getChemicalElementsCopy();
+        SortedSet<ChemicalElement> chemicalElements = periodicSystem.getChemicalElementsAsSortedSet();
         for (ChemicalElement ce : chemicalElements) {
             System.out.println(ce);
         }
