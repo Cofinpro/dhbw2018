@@ -1,9 +1,9 @@
-public class ChemicalElement{
+public class ChemicalElement implements Comparable<ChemicalElement>{
 
     int atomicNumber;
     String symbol;
     String name;
-    int[][] position = new int[7][18]; //[periods/rows][groups/columns]
+    ChemicalElement[][] position = new ChemicalElement[7][18]; //[periods/rows][groups/columns]
     int period;
     int group;
 
@@ -16,6 +16,9 @@ public class ChemicalElement{
        this.group = group;
        this.symbol = symbol;
        this.name = name;
+    }
+    public ChemicalElement[][] getPosition(){
+        return position;
     }
 
     public boolean isAlkali(int atomicNumber){
@@ -53,6 +56,18 @@ public class ChemicalElement{
             default:
                 return false;
         }
+    }
 
+    @Override
+    public int compareTo(ChemicalElement chemicalElement){
+        if(this.atomicNumber == chemicalElement.atomicNumber)
+            return 0;
+        if(this.atomicNumber < chemicalElement.atomicNumber)
+            return -1;
+        return 1;
+    }
+
+    public String toString(){
+        return "" + name;
     }
 }
