@@ -12,6 +12,7 @@ public class ConsoleApplication {
             System.out.println("Your options");
             System.out.println("1) Show all elements");
             System.out.println("2) Inspect a specific element");
+            System.out.println("3) Show elements with specific characteristics");
             System.out.println("x) end");
             String input = SCANNER.nextLine();
             System.out.println("***************************");
@@ -22,6 +23,9 @@ public class ConsoleApplication {
                 case "2":
                     inspectSpecificElement();
                     break;
+                case "3":
+                    showElementsWithSpecificCharacteristics();
+                    break;
                 case "x":
                     running = false;
                     break;
@@ -31,6 +35,26 @@ public class ConsoleApplication {
             }
         }
         System.out.println("Goodbye!");
+    }
+
+    private static void showElementsWithSpecificCharacteristics() {
+        System.out.println("For elements with which characteristics are you looking?");
+        System.out.println("1) Metalloid");
+        String inputLine = SCANNER.nextLine();
+        switch (inputLine) {
+            case "1":
+                showAllMetalloids();
+                break;
+            default:
+                System.out.println("Unknown input. Abort.");
+                break;
+        }
+    }
+
+    private static void showAllMetalloids() {
+        for (ChemicalElement current : PeriodicSystem.getInstance().getAllMetalloids()) {
+            System.out.print(current);
+        }
     }
 
     /**
@@ -72,9 +96,6 @@ public class ConsoleApplication {
 
     private static void showAllElements() {
         PeriodicSystem periodicSystem = PeriodicSystem.getInstance();
-        SortedSet<ChemicalElement> chemicalElements = periodicSystem.getChemicalElementsAsSortedSet();
-        for (ChemicalElement ce : chemicalElements) {
-            System.out.println(ce);
-        }
+        System.out.println(periodicSystem);
     }
 }

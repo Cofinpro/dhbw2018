@@ -1,3 +1,6 @@
+import java.util.Set;
+import java.util.TreeSet;
+
 public class ChemicalElement implements Comparable<ChemicalElement> {
     private int atomicNumber;
     private String name;
@@ -5,6 +8,13 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
     private int period;
     private int group;
     private static boolean[] metalloid;
+    static {
+        metalloid = new boolean[119];
+        for (int i = 0; i < metalloid.length; i++) {
+            metalloid[i] = false;
+        }
+        metalloid[5] = metalloid[14] = metalloid[32] = metalloid[33] = metalloid[51] = metalloid[52] = metalloid[84] = metalloid[85] = true;
+    }
 
     public ChemicalElement(int atomicNumber, String name, String symbol, int period, int group) {
         this.atomicNumber = atomicNumber;
@@ -12,11 +22,6 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
         this.symbol = symbol;
         this.period = period;
         this.group = group;
-        metalloid = new boolean[119];
-        for (int i = 0; i < metalloid.length; i++) {
-            metalloid[i] = false;
-        }
-        metalloid[5] = metalloid[14] = metalloid[32] = metalloid[33] = metalloid[51] = metalloid[52] = metalloid[84] = metalloid[85] = true;
     }
 
     public boolean isFluid() {
@@ -60,6 +65,17 @@ public class ChemicalElement implements Comparable<ChemicalElement> {
 
     @Override
     public String toString() {
-        return name;
+        String representation = "Name: " + name;
+        representation += "\nSymbol: " + getSymbol();
+        representation += "\nAtomic Number: " + getAtomicNumber();
+        representation += "\nGroup: " + getGroup();
+        representation += "\nPeriod: " + getPeriod();
+        representation += "\nAlkali: " + isAlkali();
+        representation += "\nFluid: " + isFluid();
+        representation += "\nMetalloid: " + isMetalloid();
+        representation += "\n**************************\n";
+        return representation;
     }
 }
+
+

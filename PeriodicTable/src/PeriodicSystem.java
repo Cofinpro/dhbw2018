@@ -16,20 +16,6 @@ public class PeriodicSystem {
         return SingletonHelper.INSTANCE;
     }
 
-    public SortedSet<ChemicalElement> getChemicalElementsAsSortedSet() {
-        SortedSet<ChemicalElement> result = new TreeSet();
-        for (int i = 0; i < chemicalElements.length; i++) {
-            for (int j = 0; j < chemicalElements[i].length; j++) {
-                //if it is not null the element with period i and group j actually exists
-                if (chemicalElements[i][j] != null) {
-                    result.add(chemicalElements[i][j]);
-                }
-
-            }
-        }
-        return result;
-    }
-
     private void readInElements() {
         String path = "C:\\Users\\SLammes\\IdeaProjects\\dhbw2018\\PeriodicTable\\src\\ps.csv";
         BufferedReader br = null;
@@ -77,6 +63,31 @@ public class PeriodicSystem {
             throw new IllegalArgumentException("There is no element in group " + group + " and period " + period);
         }
         return chemicalElements[period-1][group-1];
+    }
+
+    @Override
+    public String toString() {
+        String representation = "";
+        for (int i = 0; i < chemicalElements.length; i++) {
+            for (int j = 0; j < chemicalElements[i].length; j++) {
+                if (chemicalElements[i][j] != null) {
+                    representation += chemicalElements[i][j];
+                }
+            }
+        }
+        return  representation;
+    }
+
+    public Set<ChemicalElement> getAllMetalloids() {
+        Set<ChemicalElement> result = new TreeSet<>();
+        for (int i = 0; i < chemicalElements.length; i++) {
+            for (int j = 0; j < chemicalElements[i].length; j++) {
+                if (chemicalElements[i][j] != null && chemicalElements[i][j].isMetalloid()) {
+                    result.add((chemicalElements[i][j]));
+                }
+            }
+        }
+        return result;
     }
 
     private static class SingletonHelper {
