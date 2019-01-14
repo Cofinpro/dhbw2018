@@ -17,9 +17,7 @@ public class ChemicalElement implements Comparable<ChemicalElement>{
        this.symbol = symbol;
        this.name = name;
     }
-    public ChemicalElement[][] getPosition(){
-        return position;
-    }
+
 
     public boolean isAlkali(int atomicNumber){
         boolean[] alkaliArray = new boolean[119];

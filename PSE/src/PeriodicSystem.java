@@ -36,7 +36,7 @@ public final class PeriodicSystem {
             File csvElements = new File("C://Users/phmayer/IdeaProjects/dhbw2018/PSE/elements.csv");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(csvElements));
 
-            String line = "";
+            String line;
             bufferedReader.readLine();
 
             while (null != (line = bufferedReader.readLine())) {
