@@ -3,7 +3,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 // Diese Klasse existert nur zu herumexperimentieren mit Canvas
@@ -15,6 +14,7 @@ public class Graphics2d extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         Canvas canvas = new Canvas(600, 600); // canvas ist ein Node zum Zeichnen
+        stage.setTitle("Visuelle Ausgabe");
         graphicsContext = canvas.getGraphicsContext2D();//das, worauf man zeichnen kann
         //graphicsContext.drawImage(); //Bilder malen
         //graphicsContext.fillRect(); //zum Formen zeichnen (verschiedene fillBlas)
