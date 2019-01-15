@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
-import static org.hamcrest.CoreMatchers.*;
+
+import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 
 
 public class PinTest {
@@ -8,14 +9,14 @@ public class PinTest {
     @Test
     public void pin() {
         Pin pin = new Pin();
-        Assert.assertThat(pin.getPinState(), is(PinState.STANDING));
+        Assert.assertEquals(pin.getPinState(), is(PinState.STANDING));
     }
 
     @Test
     public void knockOut() {
         Pin pin = new Pin();
         pin.knockOut();
-        Assert.assertThat(pin.getPinState(), is(PinState.KNOCKEDOUT));
+        Assert.assertEquals(pin.getPinState(), is(PinState.KNOCKEDOUT));
     }
 
     @Test
@@ -23,6 +24,6 @@ public class PinTest {
         Pin pin = new Pin();
         pin.knockOut();
         pin.putPinBackUp();
-        Assert.assertThat(pin.getPinState(), is(PinState.STANDING));
+        Assert.assertEquals(pin.getPinState(), is(PinState.STANDING));
     }
 }
