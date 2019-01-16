@@ -15,22 +15,47 @@ public class CoordinateSystem extends Application {
     String labelX;
     String labelY;
 
-    static ArrayList<CoordinatePoint> pointsArrayList = new ArrayList<CoordinatePoint>();
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<CoordinatePoint> pointsArrayList = new ArrayList<CoordinatePoint>();
 
-    public CoordinateSystem(){
-        maxX = 400;
-        maxY = 400;
-        labelX = "X-axis";
-        labelY = "Y-axis";
+    public void createSystem() {
+
+        System.out.print("Please enter the maximum x-value: ");
+        maxX = scanner.nextDouble();
+        System.out.print("Please enter the maximum y-value: ");
+        maxY = scanner.nextDouble();
     }
+
+    public void readPoints() {
+
+        char readNewPoint;
+        double xCoord;
+        double yCoord;
+
+        do {
+            System.out.print("please enter the coordinates of your point\nX= ");
+            xCoord = scanner.nextDouble();
+            System.out.print("Y= ");
+            yCoord = scanner.nextDouble();
+            pointsArrayList.add(new CoordinatePoint(xCoord,yCoord));
+
+            System.out.println("Do you want to add a new point? (y/n): ");
+            readNewPoint = scanner.next().charAt(0);
+        }
+        while (readNewPoint == 'y');
+    }
+
 
     @Override
     public void start(Stage stage) {
-        CoordinateSystem coordinateSystem = new CoordinateSystem();
+
+        createSystem();
+        readPoints();
+
         stage.setTitle("visual output");
         Canvas canvas = new Canvas();
-        canvas.setWidth(coordinateSystem.maxX*2);
-        canvas.setHeight(coordinateSystem.maxY*2);
+        canvas.setWidth(maxX*2);
+        canvas.setHeight(maxY*2);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //prints the x and y axis
@@ -52,7 +77,7 @@ public class CoordinateSystem extends Application {
 
         //prints the axis labels with ~5% offset
         gc.strokeText(labelX,maxX*1.85,maxY*0.95);
-        gc.strokeText(labelY,maxX*1.05,maxY*0.05);
+        gc.strokeText(labelY, maxX*1.05,maxY*0.05);
 
         //prints the points from the pointsArrayList
         gc.setFill(Color.RED);
@@ -70,24 +95,6 @@ public class CoordinateSystem extends Application {
     }
 
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        char readNewPoint;
-        double xCoord;
-        double yCoord;
-
-        do {
-            System.out.print("please enter the coordinates of your point\nX= ");
-            xCoord = scanner.nextDouble();
-            System.out.print("Y= ");
-            yCoord = scanner.nextDouble();
-            pointsArrayList.add(new CoordinatePoint(xCoord,yCoord));
-
-            System.out.println("Do you want to add a new point? (y/n): ");
-            readNewPoint = scanner.next().charAt(0);
-        }
-        while (readNewPoint == 'y');
-
         launch(args);
     }
 }
