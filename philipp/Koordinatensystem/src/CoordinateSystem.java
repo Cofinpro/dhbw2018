@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class CoordinateSystem extends Application {
     double maxX;
     double maxY;
-    String labelX;
-    String labelY;
+    String labelX = "x-axis";
+    String labelY = "y-axis";
 
     Scanner scanner = new Scanner(System.in);
     ArrayList<CoordinatePoint> pointsArrayList = new ArrayList<CoordinatePoint>();
