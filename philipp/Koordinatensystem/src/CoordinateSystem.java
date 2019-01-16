@@ -1,9 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -18,7 +15,36 @@ public class CoordinateSystem extends Application {
     Scanner scanner = new Scanner(System.in);
     ArrayList<CoordinatePoint> pointsArrayList = new ArrayList<CoordinatePoint>();
 
-    public void createSystem() {
+    @Override
+    public void start(Stage stage) {
+        //reads in the values given by user
+        readMax();
+        readPoints();
+        //window settings
+        stage.setTitle("visual output");
+        stage.setMinWidth(100);
+        stage.setMinHeight(100);
+        stage.setResizable(true);
+        stage.sizeToScene();
+
+        ResizeableCanvas canvas = new ResizeableCanvas(this);
+        Pane pane = new Pane();
+
+        canvas.widthProperty().bind(pane.widthProperty());
+        canvas.heightProperty().bind(pane.heightProperty());
+
+        pane.getChildren().add(canvas);
+        Scene scene = new Scene(pane);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public void readMax() {
 
         System.out.print("Please enter the maximum x-value: ");
         maxX = scanner.nextDouble();
@@ -36,75 +62,28 @@ public class CoordinateSystem extends Application {
 
         if(randomOrSelf == 'e') {
             do {
-                System.out.print("please enter the coordinates of your point\nX= ");
+                System.out.println("please enter the coordinates of your point");
+                System.out.print("X= ");
                 xCoord = scanner.nextDouble();
                 System.out.print("Y= ");
                 yCoord = scanner.nextDouble();
                 pointsArrayList.add(new CoordinatePoint(xCoord, yCoord));
 
-                System.out.println("Do you want to add a new point? (y/n): ");
+                System.out.println("Do you want to add a new point? (y): ");
                 readNewPoint = scanner.next().charAt(0);
             }
             while (readNewPoint == 'y');
         }
-        if(randomOrSelf == 'r'){
+        if(randomOrSelf == 'r') {
             System.out.println("How many points would you like to be generated? ");
             int numberOfPoints = scanner.nextInt();
-            for(int count = 0; count<numberOfPoints; count++)
-            pointsArrayList.add(new CoordinatePoint(((Math.random()*maxX*2)-maxX),((Math.random()*maxY*2)-maxY)));
+
+            for (int count = 0; count < numberOfPoints; count++) {
+                double randX = Math.round(100.0*(Math.random()*maxX*2-maxX))/100.0;
+                double randY = Math.round(100.0*(Math.random()*maxY*2-maxY))/100.0;
+                pointsArrayList.add(new CoordinatePoint(randX, randY));
+            }
         }
-    }
-
-
-    @Override
-    public void start(Stage stage) {
-
-        createSystem();
-        readPoints();
-
-        stage.setTitle("visual output");
-        Canvas canvas = new Canvas();
-        canvas.setWidth(maxX*2);
-        canvas.setHeight(maxY*2);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        //prints the x and y axis
-        gc.strokeLine(0,maxY,maxX*2,maxY);
-        gc.strokeLine(maxX,maxY*2,maxX,0);
-
-        //calculates the necessary distance between two markers
-        double markerSpaceX = maxX/5;
-        double markerSpaceY = maxY/5;
-
-        //prints the markers
-        for(double countX = 0; countX<maxX*2; countX += markerSpaceX) { //prints left markers first
-            gc.strokeLine(countX, maxY + markerSpaceY / 10, countX, maxY - markerSpaceY / 10);
-        }
-
-        for(double countY = maxY*2; countY>0; countY -= markerSpaceY) { //prints lower markers first
-            gc.strokeLine(maxX + markerSpaceX / 10, countY, maxX - markerSpaceX / 10, countY);
-        }
-
-        //prints the axis labels with ~5% offset
-        gc.strokeText(labelX,maxX*1.85,maxY*0.95);
-        gc.strokeText(labelY, maxX*1.05,maxY*0.05);
-
-        //prints the points from the pointsArrayList
-        gc.setFill(Color.RED);
-        for (int pointCount=0; pointCount<pointsArrayList.size(); pointCount++){
-            double xTemp = pointsArrayList.get(pointCount).xValue+maxX;
-            double yTemp = maxY-pointsArrayList.get(pointCount).yValue;
-            gc.fillOval(xTemp, yTemp,maxX*0.02, maxY*0.02);
-            gc.strokeText("P1: (" + pointsArrayList.get(pointCount).xValue + " | "+
-                    pointsArrayList.get(pointCount).yValue + ")",
-                    xTemp + markerSpaceX/10,yTemp - markerSpaceY/10);
-        }
-
-        stage.setScene(new Scene(new Pane(canvas)));
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
+
