@@ -31,18 +31,28 @@ public class CoordinateSystem extends Application {
         char readNewPoint;
         double xCoord;
         double yCoord;
+        System.out.println("Do you want to create random points (r) or enter them yourself (e)? ");
+        char randomOrSelf = scanner.next().charAt(0);
 
-        do {
-            System.out.print("please enter the coordinates of your point\nX= ");
-            xCoord = scanner.nextDouble();
-            System.out.print("Y= ");
-            yCoord = scanner.nextDouble();
-            pointsArrayList.add(new CoordinatePoint(xCoord,yCoord));
+        if(randomOrSelf == 'e') {
+            do {
+                System.out.print("please enter the coordinates of your point\nX= ");
+                xCoord = scanner.nextDouble();
+                System.out.print("Y= ");
+                yCoord = scanner.nextDouble();
+                pointsArrayList.add(new CoordinatePoint(xCoord, yCoord));
 
-            System.out.println("Do you want to add a new point? (y/n): ");
-            readNewPoint = scanner.next().charAt(0);
+                System.out.println("Do you want to add a new point? (y/n): ");
+                readNewPoint = scanner.next().charAt(0);
+            }
+            while (readNewPoint == 'y');
         }
-        while (readNewPoint == 'y');
+        if(randomOrSelf == 'r'){
+            System.out.println("How many points would you like to be generated? ");
+            int numberOfPoints = scanner.nextInt();
+            for(int count = 0; count<numberOfPoints; count++)
+            pointsArrayList.add(new CoordinatePoint(((Math.random()*maxX*2)-maxX),((Math.random()*maxY*2)-maxY)));
+        }
     }
 
 
