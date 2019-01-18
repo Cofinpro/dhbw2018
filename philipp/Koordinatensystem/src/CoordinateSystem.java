@@ -57,13 +57,13 @@ public class CoordinateSystem extends Application {
 
     public void readPoints() {
 
-        char readNewPoint;
         double xCoord;
         double yCoord;
         System.out.println("Do you want to create random points (r) or enter them yourself (e)? ");
         char randomOrSelf = scanner.next().charAt(0);
 
         if(randomOrSelf == 'e') {
+            char readNewPoint;
             do {
                 System.out.println("please enter the coordinates of your point");
                 System.out.print("X= ");
@@ -82,9 +82,9 @@ public class CoordinateSystem extends Application {
             int numberOfPoints = scanner.nextInt();
 
             for (int count = 0; count < numberOfPoints; count++) {
-                double randX = Math.round(100.0*(Math.random()*maxX*2-maxX))/100.0;
-                double randY = Math.round(100.0*(Math.random()*maxY*2-maxY))/100.0;
-                pointsArrayList.add(new CoordinatePoint(randX, randY));
+                xCoord = Math.round(100.0*(Math.random()*maxX*2-maxX))/100.0;
+                yCoord = Math.round(100.0*(Math.random()*maxY*2-maxY))/100.0;
+                pointsArrayList.add(new CoordinatePoint(xCoord, yCoord));
             }
         }
     }
