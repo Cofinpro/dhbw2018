@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -22,6 +23,8 @@ public class CoordinateSystem extends Application {
         readPoints();
         //window settings
         stage.setTitle("visual output");
+        Image icon = new Image("icon.png");
+        stage.getIcons().add(icon);
         stage.setMinWidth(100);
         stage.setMinHeight(100);
         stage.setResizable(true);

@@ -8,7 +8,7 @@ b)	Legt eine Klasse CoordinateSystem an. Ein Koordinatensystem besitzt eine Maxi
 
 c)	Legt eine neue Klasse CoordinatePoint an, die als Attribute einen xValue und yValue besitzt. Euer Koordinatensystem soll eine Liste von diesen Punkten erhalten und es soll möglich sein, einem Koordinatensystem Punkte hinzuzufügen. Diese Punkte sollen ebenfalls auf der Canvas visualisiert werden. 
 
-d)	… 
+d) [selbst ergänzt] Passt euren Code so an, dass die Fenstergröße die Größe eures Koordinatensystems bestimmt und jederzeit geändert werden kann. Dazu soll bei jeder Größenänderung das Koordinatenystem neu gezeichnet werden. 
 
 Die weitere Teilaufgaben folgen im Laufe des Tages 😊 
 
