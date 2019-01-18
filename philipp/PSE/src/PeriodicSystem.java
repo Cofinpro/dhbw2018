@@ -1,5 +1,7 @@
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public final class PeriodicSystem {
 
@@ -33,7 +35,7 @@ public final class PeriodicSystem {
 
     private void readCSV() {
         try {
-            File csvElements = new File("C://Users/phmayer/IdeaProjects/dhbw2018/PSE/elements.csv");
+            File csvElements = new File("C://Users/phmayer/IdeaProjects/dhbw2018/philipp/PSE/elements.csv");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(csvElements));
 
             String line;
