@@ -10,6 +10,36 @@ public class GameOfLifeView extends Canvas {
     public GameOfLifeView() {
         widthProperty().addListener(e -> display());
         heightProperty().addListener(e -> display());
+        setOnMouseClicked(e -> {
+            double x = e.getX();
+            double y = e.getY();
+            GameOfLifeCell cell = getCell(x, y);
+            if (cell == null) {
+                return;
+            }
+            if (cell.isAlive()) {
+                cell.die();
+            } else {
+                cell.incarnate();
+            }
+            display();
+        });
+    }
+
+    private GameOfLifeCell getCell(double x, double y) {
+        GameSituation gameSituation = GameOfLife.getInstance().getCurrentGameSituation();
+        int rows = gameSituation.getRows();
+        int columns = gameSituation.getColumns();
+        double rowHeight = getHeight()/rows;
+        double columnWidth = getWidth()/columns;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (x > columnWidth * j && y > rowHeight * i && x < columnWidth * (j+1) && y < rowHeight * (i+1)) {
+                    return GameOfLife.getInstance().getCurrentGameSituation().getCell(i, j);
+                }
+            }
+        }
+        return null;
     }
 
     public void display() {

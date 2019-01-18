@@ -79,4 +79,8 @@ public class GameSituation {
     public GameOfLifeCell[][] getCells() {
         return cells;
     }
+
+    public GameOfLifeCell getCell(int row, int width) {
+        return cells[row][width];
+    }
 }
