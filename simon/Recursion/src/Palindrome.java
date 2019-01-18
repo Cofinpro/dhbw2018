@@ -1,4 +1,11 @@
 public class Palindrome {
+
+    public static void main(String[] args) {
+        String erster = "1";
+        isPalindrome(erster);
+        System.out.println(erster);
+    }
+
     public static boolean isPalindrome(String input) {
         input = input.toLowerCase();
         for (int i = 0; i < input.length()/2; i++) {

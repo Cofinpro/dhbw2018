@@ -19,4 +19,11 @@ public class PointTest {
         Assert.assertTrue(point3.compareTo(point2) > 0);
         Assert.assertEquals(point3, point4);
     }
+
+    @Test
+    public void getDistanceTo() {
+        Point point1 = new Point(100, 100);
+        Point point2 = new Point(-100, -150);
+        Assert.assertEquals(320.1562119, point1.getDistanceTo(point2), 1);
+    }
 }

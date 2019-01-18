@@ -1,4 +1,13 @@
 public class Adder {
+
+    public static void main(String[] args) {
+        int a = 0;
+        int b = Integer.MAX_VALUE;
+        System.out.println(b);
+        System.out.println(Integer.MIN_VALUE);
+        //int c = addRecursive(a,b);
+    }
+
     public static int add(int a, int b) {
         return a + b;
     }
