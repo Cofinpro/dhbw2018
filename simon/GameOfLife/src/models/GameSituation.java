@@ -80,7 +80,7 @@ public class GameSituation {
         return cells;
     }
 
-    private void switchCell(int row, int width) {
+    void switchCell(int row, int width) {
         cells[row][width].switchCell();
     }
 

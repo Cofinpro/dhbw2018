@@ -6,7 +6,7 @@ import models.GameSituation;
 
 public class GameOfLifeView extends Canvas {
 
-    private GameOfLifeView() {
+    public GameOfLifeView() {
         widthProperty().addListener(e -> display());
         heightProperty().addListener(e -> display());
         setOnMouseClicked(e -> {
