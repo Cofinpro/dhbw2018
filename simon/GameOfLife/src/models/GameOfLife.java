@@ -50,4 +50,9 @@ public class GameOfLife {
     private static class SingletonHelper {
         public static GameOfLife INSTANCE = new GameOfLife();
     }
+
+    public void switchCell(int row, int column) {
+        GameSituation currentSituation = getCurrentGameSituation();
+        situationList.clear();
+    }
 }

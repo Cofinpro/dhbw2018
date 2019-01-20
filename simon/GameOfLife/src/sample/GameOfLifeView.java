@@ -33,9 +33,11 @@ public class GameOfLifeView extends Canvas {
         double rowHeight = getHeight()/rows;
         double columnWidth = getWidth()/columns;
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (x > columnWidth * j && y > rowHeight * i && x < columnWidth * (j+1) && y < rowHeight * (i+1)) {
-                    return GameOfLife.getInstance().getCurrentGameSituation().getCell(i, j);
+            if (y > rowHeight * i && y < rowHeight * (i+1)) {
+                for (int j = 0; j < columns; j++) {
+                    if (x > columnWidth * j && x < columnWidth * (j+1)) {
+                        return GameOfLife.getInstance().getCurrentGameSituation().getCell(i, j);
+                    }
                 }
             }
         }
