@@ -53,6 +53,6 @@ public class GameOfLife {
 
     public void switchCell(int row, int column) {
         GameSituation currentSituation = getCurrentGameSituation();
-        situationList.clear();
+        currentSituation.switchCell(row, column);
     }
 }

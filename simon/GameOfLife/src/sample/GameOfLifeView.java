@@ -2,31 +2,22 @@ package sample;
 
 import javafx.scene.canvas.Canvas;
 import models.GameOfLife;
-import models.GameOfLifeCell;
 import models.GameSituation;
 
 public class GameOfLifeView extends Canvas {
 
-    public GameOfLifeView() {
+    private GameOfLifeView() {
         widthProperty().addListener(e -> display());
         heightProperty().addListener(e -> display());
         setOnMouseClicked(e -> {
             double x = e.getX();
             double y = e.getY();
-            GameOfLifeCell cell = getCell(x, y);
-            if (cell == null) {
-                return;
-            }
-            if (cell.isAlive()) {
-                cell.die();
-            } else {
-                cell.incarnate();
-            }
+            switchCell(x, y);
             display();
         });
     }
 
-    private GameOfLifeCell getCell(double x, double y) {
+    private void switchCell(double x, double y) {
         GameSituation gameSituation = GameOfLife.getInstance().getCurrentGameSituation();
         int rows = gameSituation.getRows();
         int columns = gameSituation.getColumns();
@@ -36,12 +27,11 @@ public class GameOfLifeView extends Canvas {
             if (y > rowHeight * i && y < rowHeight * (i+1)) {
                 for (int j = 0; j < columns; j++) {
                     if (x > columnWidth * j && x < columnWidth * (j+1)) {
-                        return GameOfLife.getInstance().getCurrentGameSituation().getCell(i, j);
+                        GameOfLife.getInstance().switchCell(i, j);
                     }
                 }
             }
         }
-        return null;
     }
 
     public void display() {
@@ -62,7 +52,7 @@ public class GameOfLifeView extends Canvas {
     }
 
     private void drawCells(GameSituation gameSituation, double rowHeight, double columnWidth) {
-        GameOfLifeCell[][] cells = gameSituation.getCells();
+        GameSituation.GameOfLifeCell[][] cells = gameSituation.getCells();
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].isAlive()) {

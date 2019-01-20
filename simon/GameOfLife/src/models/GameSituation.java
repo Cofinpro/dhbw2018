@@ -20,7 +20,7 @@ public class GameSituation {
         cells[7][6].incarnate();
     }
 
-    public GameSituation(GameOfLifeCell[][] cells) {
+    private GameSituation(GameOfLifeCell[][] cells) {
         this.cells = new GameOfLifeCell[cells.length][cells[0].length];
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -29,7 +29,7 @@ public class GameSituation {
         }
     }
 
-    public GameSituation next() {
+    private GameSituation next() {
         GameSituation newSituation = new GameSituation(cells);
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -80,7 +80,60 @@ public class GameSituation {
         return cells;
     }
 
-    public GameOfLifeCell getCell(int row, int width) {
-        return cells[row][width];
+    private void switchCell(int row, int width) {
+        cells[row][width].switchCell();
+    }
+
+    public class GameOfLifeCell {
+        private boolean alive;
+
+        private GameOfLifeCell(boolean alive) {
+            this.alive = alive;
+        }
+
+        public boolean isAlive() {
+            return alive;
+        }
+
+        private void die() {
+            alive = false;
+        }
+
+        private void incarnate() {
+            alive = true;
+        }
+
+        private void update(Iterable<GameOfLifeCell> surroundingCells) {
+            //this cell is surrounded by how many living cells?
+            int surroundingAliveCells = 0;
+            for (GameOfLifeCell surroundingCell : surroundingCells) {
+                if (surroundingCell.isAlive()) {
+                    surroundingAliveCells++;
+                }
+            }
+            //depending on how many living cells surround this cell, something happens to this cell
+            switch (surroundingAliveCells) {
+                case 0:
+                case 1:
+                    this.die();
+                    break;
+                case 2:
+                    //nothing happens
+                    break;
+                case 3:
+                    this.incarnate();
+                    break;
+                default:
+                    this.die();
+            }
+        }
+
+        private void switchCell() {
+            if (isAlive()) {
+                die();
+            } else {
+                incarnate();
+            }
+        }
     }
 }
