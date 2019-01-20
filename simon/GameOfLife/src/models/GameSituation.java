@@ -29,7 +29,7 @@ public class GameSituation {
         }
     }
 
-    private GameSituation next() {
+    public GameSituation next() {
         GameSituation newSituation = new GameSituation(cells);
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
