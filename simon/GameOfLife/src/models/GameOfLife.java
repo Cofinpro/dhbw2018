@@ -58,4 +58,18 @@ public class GameOfLife {
         situationList.clear();
         situationList.add(currentSituation);
     }
+
+    public void toConsole() {
+        GameSituation currentSituation = getCurrentGameSituation();
+        for (int row = 0; row < currentSituation.getRows(); row++) {
+            for (int column = 0; column < currentSituation.getColumns(); column++) {
+                if (currentSituation.isCellAlive(row, column)) {
+                    System.out.print("x");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }

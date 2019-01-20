@@ -80,8 +80,12 @@ public class GameSituation {
         return cells;
     }
 
-    void switchCell(int row, int width) {
-        cells[row][width].switchCell();
+    void switchCell(int row, int column) {
+        cells[row][column].switchCell();
+    }
+
+    public boolean isCellAlive(int row, int column) {
+        return cells[row][column].isAlive();
     }
 
     public class GameOfLifeCell {
