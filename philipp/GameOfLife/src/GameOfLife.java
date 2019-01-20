@@ -1,31 +1,41 @@
 import java.util.Scanner;
 
+
 public final class GameOfLife {
 
     private static GameOfLife instance;
-    GameOfLifeCell[][] gameField = new GameOfLifeCell[15][15];
+    private static GameOfLifeCell[][] gameField;
+    static Scanner scanner = new Scanner(System.in);
 
     private GameOfLife(){ //singleton --> private constructor
 
     }
 
     public static void main(String[] args) {
-        getInstance().initialize();
-        getInstance().printGame();
+        System.out.println("************************");
+        System.out.println("Welcome to Game of Life!");
+        System.out.println("************************");
+        System.out.println("Press w to play in window mode");
+        char window = scanner.next().charAt(0);
 
-        Scanner scanner = new Scanner(System.in);
-        char triggerNextIteration = 'y';
-        while(triggerNextIteration == 'y'){
-            System.out.println("_______________________________");
-            getInstance().nextIteration();
-            getInstance().printGame();
-
-            System.out.print("Next Iteration? (y): ");
-            triggerNextIteration = scanner.next().charAt(0);
+        if(window == 'w'){
+            LaunchGOL.main(args);
+        }
+        else {
+            getInstance().initializeConsole();
+            getInstance().playOnConsole();
         }
     }
+    public void setGameField(int width, int length){
+        this.gameField = new GameOfLifeCell[width][length];
+    }
+    public static GameOfLifeCell[][] getGameField() {
+        return gameField;
+    }
 
-    public void initialize(){
+    private void initializeConsole(){
+        gameField = new GameOfLifeCell[15][15];
+
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++) {
                 gameField[row][column] = new GameOfLifeCell(row, column);
@@ -41,7 +51,7 @@ public final class GameOfLife {
         gameField[14][14].alive = true;
     }
 
-    public void nextIteration(){
+    private void nextIteration(){
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++)
                 gameField[row][column].countLivingNeighbors();
@@ -52,7 +62,21 @@ public final class GameOfLife {
         }
     }
 
-    public void printGame(){
+    private void playOnConsole(){
+        getInstance().printGame();
+
+        char triggerNextIteration = 'y';
+        while(triggerNextIteration == 'y'){
+            System.out.println("_______________________________");
+            getInstance().nextIteration();
+            getInstance().printGame();
+
+            System.out.print("Next Iteration? (y): ");
+            triggerNextIteration = scanner.next().charAt(0);
+        }
+    }
+
+    private void printGame(){
         for (int row = 0; row < gameField.length; row++){
             for (int column = 0; column < gameField[row].length; column++){
                 if (gameField[row][column].alive)

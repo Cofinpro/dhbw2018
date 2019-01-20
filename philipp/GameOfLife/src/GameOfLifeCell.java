@@ -27,8 +27,7 @@ public class GameOfLifeCell {
     public void countLivingNeighbors(){
         int livingNeighbors = 0;
 
-        GameOfLifeCell[][] gF = GameOfLife.getInstance().gameField;
-
+        GameOfLifeCell[][] gF = GameOfLife.getGameField();
         if(x>0 && y>0 && gF[x-1][y-1].alive)
             livingNeighbors++;
         if(x>0 && gF[x-1][y].alive)
