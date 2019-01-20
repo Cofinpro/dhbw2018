@@ -54,5 +54,8 @@ public class GameOfLife {
     public void switchCell(int row, int column) {
         GameSituation currentSituation = getCurrentGameSituation();
         currentSituation.switchCell(row, column);
+        //now the previous situations did not cause this situation because the user made manipulations, we have to delete them
+        situationList.clear();
+        situationList.add(currentSituation);
     }
 }
