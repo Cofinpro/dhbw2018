@@ -6,18 +6,13 @@ public class GameSituation {
 
     private GameOfLifeCell[][] cells;
 
-    public GameSituation() {
-        cells = new GameOfLifeCell[15][15];
+    public GameSituation(int rows, int columns) {
+        cells = new GameOfLifeCell[rows][columns];
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 cells[i][j] = new GameOfLifeCell(false);
             }
         }
-        cells[6][8].incarnate();
-        cells[5][8].incarnate();
-        cells[4][8].incarnate();
-        cells[7][9].incarnate();
-        cells[7][6].incarnate();
     }
 
     private GameSituation(GameOfLifeCell[][] cells) {
@@ -88,7 +83,45 @@ public class GameSituation {
         return cells[row][column].isAlive();
     }
 
-    public class GameOfLifeCell {
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("");
+        for (int row = 0; row < getRows(); row++) {
+            for (int column = 0; column < getColumns(); column++) {
+                if (isCellAlive(row, column)) {
+                    result.append("x");
+                } else {
+                    result.append(" ");
+                }
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != this.getClass()) {
+            return super.equals(obj);
+        }
+        GameSituation other = (GameSituation) obj;
+        if (getRows() != other.getRows()) {
+            return false;
+        }
+        if (getColumns() != other.getColumns()) {
+            return false;
+        }
+        for (int row  = 0; row < getRows(); row++) {
+            for (int column = 0; column < getColumns(); column++) {
+                if (isCellAlive(row, column) != other.isCellAlive(row, column)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private class GameOfLifeCell {
         private boolean alive;
 
         private GameOfLifeCell(boolean alive) {

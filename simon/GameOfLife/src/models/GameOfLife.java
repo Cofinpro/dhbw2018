@@ -15,7 +15,7 @@ public class GameOfLife {
 
     private GameOfLife() {
         situationList = new ArrayList<GameSituation>();
-        situationList.add(new GameSituation());
+        situationList.add(new GameSituation(15,15));
     }
 
     public void setGameOfLifeView(GameOfLifeView gameOfLifeView) {
@@ -60,16 +60,6 @@ public class GameOfLife {
     }
 
     public void toConsole() {
-        GameSituation currentSituation = getCurrentGameSituation();
-        for (int row = 0; row < currentSituation.getRows(); row++) {
-            for (int column = 0; column < currentSituation.getColumns(); column++) {
-                if (currentSituation.isCellAlive(row, column)) {
-                    System.out.print("x");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println();
-        }
+        System.out.println(getCurrentGameSituation());
     }
 }

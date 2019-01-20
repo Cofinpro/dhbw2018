@@ -52,11 +52,10 @@ public class GameOfLifeView extends Canvas {
     }
 
     private void drawCells(GameSituation gameSituation, double rowHeight, double columnWidth) {
-        GameSituation.GameOfLifeCell[][] cells = gameSituation.getCells();
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].isAlive()) {
-                    getGraphicsContext2D().fillRect(j * columnWidth, i * rowHeight, columnWidth, rowHeight);
+        for (int row = 0; row < gameSituation.getRows(); row++) {
+            for (int column = 0; column < gameSituation.getColumns(); column++) {
+                if (gameSituation.isCellAlive(row, column)) {
+                    getGraphicsContext2D().fillRect(column * columnWidth, row * rowHeight, columnWidth, rowHeight);
                 }
             }
         }
