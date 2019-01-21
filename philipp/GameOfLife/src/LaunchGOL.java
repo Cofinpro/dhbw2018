@@ -47,20 +47,20 @@ public class LaunchGOL extends Application {
     private void initializeWindowGame(){
         TextInputDialog userInputX = new TextInputDialog();
         userInputX.setTitle("User Input");
-        userInputX.setHeaderText("Please enter the width of the field");
-        userInputX.setContentText("width:");
+        userInputX.setHeaderText("Please enter the amount of rows of the field");
+        userInputX.setContentText("rows:");
         Optional<String> x = userInputX.showAndWait();
 
         TextInputDialog userInputY = new TextInputDialog();
         userInputY.setTitle("User Input");
-        userInputY.setHeaderText("Please enter the length of the field");
-        userInputY.setContentText("length:");
+        userInputY.setHeaderText("Please enter the amount of columns of the field");
+        userInputY.setContentText("columns:");
         Optional<String> y = userInputY.showAndWait();
 
         if(x.isPresent() && y.isPresent()) {
-            int width = Integer.parseInt(x.get());
-            int length = Integer.parseInt(y.get());
-            GameOfLife.getInstance().setGameField(width, length);
+            int rows = Integer.parseInt(x.get());
+            int columns = Integer.parseInt(y.get());
+            GameOfLife.getInstance().setGameField(rows, columns);
             GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
             for (int row = 0; row < gf.length; row++) {
                 for (int column = 0; column < gf[row].length; column++) {
@@ -70,8 +70,8 @@ public class LaunchGOL extends Application {
             }
             Alert confirmValues = new Alert(Alert.AlertType.INFORMATION);
             confirmValues.setTitle("Success");
-            confirmValues.setHeaderText("Values for width and length successfully entered");
-            confirmValues.setContentText("width: " + width + ", length: " + length);
+            confirmValues.setHeaderText("amounts of rows and columns successfully entered");
+            confirmValues.setContentText("rows: " + rows + ", columns: " + columns);
             confirmValues.showAndWait();
         }
         else {
