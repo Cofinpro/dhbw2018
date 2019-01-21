@@ -51,7 +51,7 @@ public final class GameOfLife {
         gameField[14][14].alive = true;
     }
 
-    private void nextIteration(){
+    public void nextIteration(){
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++)
                 gameField[row][column].countLivingNeighbors();

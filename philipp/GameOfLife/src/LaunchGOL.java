@@ -1,12 +1,8 @@
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -29,6 +25,15 @@ public class LaunchGOL extends Application {
 
         pane.getChildren().add(canvas);
         Scene scene = new Scene(pane);
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()){
+                case RIGHT:
+                    GameOfLife.getInstance().nextIteration();
+                    canvas.drawLivingCells();
+                    canvas.drawGrid();
+                    break;
+            }
+        });
 
         stage.setScene(scene);
         stage.show();
@@ -56,33 +61,22 @@ public class LaunchGOL extends Application {
             int width = Integer.parseInt(x.get());
             int length = Integer.parseInt(y.get());
             GameOfLife.getInstance().setGameField(width, length);
+            GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
+            for (int row = 0; row < gf.length; row++) {
+                for (int column = 0; column < gf[row].length; column++) {
+                    gf[row][column] = new GameOfLifeCell(row, column);
+                    gf[row][column].alive = false;
+                }
+            }
             Alert confirmValues = new Alert(Alert.AlertType.INFORMATION);
             confirmValues.setTitle("Success");
             confirmValues.setHeaderText("Values for width and length successfully entered");
             confirmValues.setContentText("width: " + width + ", length: " + length);
-            confirmValues.show();
+            confirmValues.showAndWait();
         }
         else {
             Alert noValueEntered = new Alert(Alert.AlertType.ERROR, "At least one of the values had not been entered!");
             noValueEntered.show();
         }
-    }
-    public void drawGameGrid(){
-        GameOfLifeCell[][] gF = GameOfLife.getInstance().getGameField();
-        int gfRows = gF.length;
-        int gfColumns = gF[0].length;
-
-        Group rowLines = new Group();
-       /* for(int countRow = 0; countRow<gfRows; countRow++) {
-            Line line = new Line(0, height/gfRows, width, height/gfRows); //ok to name lines the same?, add methods to ckeck window height and width see CoordinateSystem
-            line.setStroke(Color.GRAY);
-            line.setStrokeWidth(height*0.005);
-            rowLines.getChildren().add(line);
-        } */
-
-        Group root = new Group();
-        root.getChildren().addAll(rowLines);
-
-        Scene scene = new Scene(root);
     }
 }
