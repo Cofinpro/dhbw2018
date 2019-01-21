@@ -38,7 +38,7 @@ public class GameOfLifeCell {
             livingNeighbors++;
         if(y<gF[x].length-1 && gF[x][y+1].alive)
             livingNeighbors++;
-        if(x<gF.length-1 && y<0 && gF[x+1][y-1].alive)
+        if(x<gF.length-1 && y>0 && gF[x+1][y-1].alive)
             livingNeighbors++;
         if(x<gF.length-1 && gF[x+1][y].alive)
             livingNeighbors++;
