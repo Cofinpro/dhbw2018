@@ -53,12 +53,18 @@ public class GameOfLifeCell {
             nearbyLiving++;
         }
         //above or below cell in no specific corner
-        if (yPos < cell.length-1 && cell[xPos][yPos+1].isAlive() || yPos >0 && cell[xPos][yPos-1].isAlive()){
+        if (yPos < cell.length-1 && cell[xPos][yPos+1].isAlive()){
+            nearbyLiving++;
+        }
+        if (yPos >0&&cell[xPos+1][yPos-1].isAlive()){
             nearbyLiving++;
         }
 
         //right or left besides cell in no specific corner
-        if (xPos >0 && cell[xPos-1][yPos].isAlive() || xPos < cell.length-1 && cell[xPos+1][yPos].isAlive()){
+        if (xPos >0 && cell[xPos+1][yPos-1].isAlive() ){
+            nearbyLiving++;
+        }
+        if (xPos < cell.length-1 && cell[xPos+1][yPos].isAlive()){
             nearbyLiving++;
         }
 

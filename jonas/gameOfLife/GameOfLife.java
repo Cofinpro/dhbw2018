@@ -10,7 +10,9 @@ public class GameOfLife {
         this.gameField = new GameOfLifeCell[x][y];
     }
 
-
+    public void setGameOfLife(GameOfLifeCell[][] help){
+        gameField = help;
+    }
 
     public static GameOfLifeCell[][] getGameField() {
         return getInstance().gameField;

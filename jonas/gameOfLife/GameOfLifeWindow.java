@@ -24,7 +24,7 @@ public class GameOfLifeWindow extends Application {
             for (int column = 0; column < help[row].length; column++) {
                 help[row][column] = new GameOfLifeCell(row, column, false);
                 double temp = Math.random() * 1;
-                if (temp <= 0.2){
+                if (temp <= 0.1){
                     help[row][column].alive = true;
                 }
                 else{

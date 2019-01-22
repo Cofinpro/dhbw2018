@@ -1,5 +1,6 @@
 package gameOfLife;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,6 +11,12 @@ public class GameOfLifeCellTest {
     GameOfLifeCell testCellTwo = new GameOfLifeCell(2,2,false);
 
     GameOfLifeCell[][] game = new GameOfLifeCell[15][15];
+    GameOfLife gameOfLife = GameOfLife.getInstance();
+
+    @Before
+    public void setUp() throws Exception {
+        gameOfLife.setGameOfLife(game);
+    }
 
     @Test
     public void isAlive() {
@@ -32,7 +39,9 @@ public class GameOfLifeCellTest {
         game[3][4].alive = true;
         game[2][3].alive = true;
         game[2][5].alive = true;
+        game[2][4].getNearbyLiving();
         game[2][4].getState();
+
         assertEquals(game[2][4].isAlive(),false);
 
         //test for loneliness
@@ -41,8 +50,9 @@ public class GameOfLifeCellTest {
         game[3][4].alive = false;
         game[2][3].alive = false;
         game[2][5].alive = false;
-
+        game[2][4].getNearbyLiving();
         game[2][4].getState();
+
         assertEquals(game[2][4].isAlive(),false);
 
         // test for surviving 3 neighbours
@@ -51,7 +61,9 @@ public class GameOfLifeCellTest {
         game[3][4].alive = true;
         game[2][3].alive = true;
         game[2][5].alive = false;
+        game[2][4].getNearbyLiving();
         game[2][4].getState();
+
         assertEquals(game[2][4].isAlive(),true);
 
         //test fpr surviving 2 neighbours
@@ -60,7 +72,9 @@ public class GameOfLifeCellTest {
         game[3][4].alive = true;
         game[2][3].alive = true;
         game[2][5].alive = false;
+        game[2][4].getNearbyLiving();
         game[2][4].getState();
+
         assertEquals(game[2][4].isAlive(),true);
 
         // test for resurrection
@@ -69,7 +83,9 @@ public class GameOfLifeCellTest {
         game[3][4].alive = true;
         game[2][3].alive = true;
         game[2][5].alive = false;
+        game[2][4].getNearbyLiving();
         game[2][4].getState();
+
         assertEquals(game[2][4].isAlive(),true);
 
 
