@@ -9,6 +9,13 @@ public class GameOfLifeCell {
         this.y = y;
     }
 
+    public GameOfLifeCell(int x, int y, int livingNeighbors, boolean alive){
+        this.x = x;
+        this.y = y;
+        this.livingNeighbors = livingNeighbors;
+        this.alive = alive;
+    }
+
     public void checkAlive(){
         if (this.alive){
             if (livingNeighbors < 2)

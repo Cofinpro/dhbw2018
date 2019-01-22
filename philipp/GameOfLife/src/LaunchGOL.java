@@ -1,8 +1,12 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -18,17 +22,43 @@ public class LaunchGOL extends Application {
         stage.sizeToScene();
 
         OmnisizeableCanvas canvas = new OmnisizeableCanvas();
-        Pane pane = new Pane();
+        VBox vBox = new VBox();
+        HBox buttonHbox = new HBox();
 
-        canvas.widthProperty().bind(pane.widthProperty());
-        canvas.heightProperty().bind(pane.heightProperty());
+        Button buttonPrevious = new Button();
+        buttonPrevious.setText("previous iteration");
+        buttonPrevious.setOnAction(event -> {
+            GameOfLife.getInstance().previousIteration();
+            canvas.drawLivingCells();
+            canvas.drawGrid();
+        });
 
-        pane.getChildren().add(canvas);
-        Scene scene = new Scene(pane);
+        Button buttonNext = new Button();
+        buttonNext.setText("next iteration");
+        buttonNext.setOnAction(event -> {
+            GameOfLife.getInstance().nextIteration();
+            canvas.drawLivingCells();
+            canvas.drawGrid();
+        });
+
+        buttonHbox.getChildren().addAll(buttonPrevious, buttonNext);
+        vBox.getChildren().add(canvas); //verticalBox displays canvas above buttonHorizontalBox
+        vBox.getChildren().add(buttonHbox);
+
+        canvas.widthProperty().bind(vBox.widthProperty());
+        canvas.heightProperty().bind(vBox.heightProperty().subtract(buttonNext.heightProperty()));
+
+        Scene scene = new Scene(vBox);
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()){
                 case RIGHT:
                     GameOfLife.getInstance().nextIteration();
+                    canvas.drawLivingCells();
+                    canvas.drawGrid();
+                    break;
+                case LEFT:
+                    GameOfLife.getInstance().previousIteration();
                     canvas.drawLivingCells();
                     canvas.drawGrid();
                     break;
