@@ -29,6 +29,11 @@ f)	(optional) Fügt eurem Frontend einen Button hinzu, um mit einem Klick zur vo
 
 Ein Beispiel für das Game of Life findet ihr hier: https://playgameoflife.com/
 
+Zusatz nach Fertigstellung: 
+Code Refactoring
+- keine Duplikate
+- speaking methods
+- Kapselung (private bei Objekten)
 
 Viel Spaß,
 Michi
