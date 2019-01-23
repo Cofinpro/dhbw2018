@@ -3,9 +3,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,6 +15,7 @@ public class LaunchGOL extends Application {
         initializeWindowGame();
 
         stage.setTitle("Game Of Life [window mode]");
+        stage.getIcons().add(new Image("icon.png"));
         stage.setMinHeight(200);
         stage.setMinWidth(300);
         stage.setResizable(true);
