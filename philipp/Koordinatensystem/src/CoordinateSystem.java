@@ -23,7 +23,7 @@ public class CoordinateSystem extends Application {
         readPoints();
         //window settings
         stage.setTitle("visual output");
-        Image icon = new Image("icon.png");
+        Image icon = new Image("philipp/Koordinatensystem/resources/icon.png");
         stage.getIcons().add(icon);
         stage.setMinWidth(100);
         stage.setMinHeight(100);
