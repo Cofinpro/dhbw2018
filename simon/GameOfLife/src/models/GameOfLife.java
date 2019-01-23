@@ -15,7 +15,7 @@ public class GameOfLife {
 
     private GameOfLife() {
         situationList = new ArrayList<GameSituation>();
-        situationList.add(new GameSituation());
+        situationList.add(new GameSituation(15,15));
     }
 
     public void setGameOfLifeView(GameOfLifeView gameOfLifeView) {
@@ -49,5 +49,17 @@ public class GameOfLife {
 
     private static class SingletonHelper {
         public static GameOfLife INSTANCE = new GameOfLife();
+    }
+
+    public void switchCell(int row, int column) {
+        GameSituation currentSituation = getCurrentGameSituation();
+        currentSituation.switchCell(row, column);
+        //now the previous situations did not cause this situation because the user made manipulations, we have to delete them
+        situationList.clear();
+        situationList.add(currentSituation);
+    }
+
+    public void toConsole() {
+        System.out.println(getCurrentGameSituation());
     }
 }

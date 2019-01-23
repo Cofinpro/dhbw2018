@@ -2,7 +2,6 @@ package sample;
 
 import javafx.scene.canvas.Canvas;
 import models.GameOfLife;
-import models.GameOfLifeCell;
 import models.GameSituation;
 
 public class GameOfLifeView extends Canvas {
@@ -10,6 +9,29 @@ public class GameOfLifeView extends Canvas {
     public GameOfLifeView() {
         widthProperty().addListener(e -> display());
         heightProperty().addListener(e -> display());
+        setOnMouseClicked(e -> {
+            double x = e.getX();
+            double y = e.getY();
+            switchCell(x, y);
+            display();
+        });
+    }
+
+    private void switchCell(double x, double y) {
+        GameSituation gameSituation = GameOfLife.getInstance().getCurrentGameSituation();
+        int rows = gameSituation.getRows();
+        int columns = gameSituation.getColumns();
+        double rowHeight = getHeight()/rows;
+        double columnWidth = getWidth()/columns;
+        for (int i = 0; i < rows; i++) {
+            if (y > rowHeight * i && y < rowHeight * (i+1)) {
+                for (int j = 0; j < columns; j++) {
+                    if (x > columnWidth * j && x < columnWidth * (j+1)) {
+                        GameOfLife.getInstance().switchCell(i, j);
+                    }
+                }
+            }
+        }
     }
 
     public void display() {
@@ -30,11 +52,10 @@ public class GameOfLifeView extends Canvas {
     }
 
     private void drawCells(GameSituation gameSituation, double rowHeight, double columnWidth) {
-        GameOfLifeCell[][] cells = gameSituation.getCells();
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].isAlive()) {
-                    getGraphicsContext2D().fillRect(j * columnWidth, i * rowHeight, columnWidth, rowHeight);
+        for (int row = 0; row < gameSituation.getRows(); row++) {
+            for (int column = 0; column < gameSituation.getColumns(); column++) {
+                if (gameSituation.isCellAlive(row, column)) {
+                    getGraphicsContext2D().fillRect(column * columnWidth, row * rowHeight, columnWidth, rowHeight);
                 }
             }
         }
