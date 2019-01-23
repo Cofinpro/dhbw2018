@@ -34,27 +34,20 @@ public class GameOfLifeCellTest {
                 game[i][j] = new GameOfLifeCell(i,j,false);
             }
         }
-        game[1][1].alive = true;
-        game[2][1].alive = true;
-        game[3][1].alive = true;
-        game[1][2].alive = true;
-        game[2][2].alive = true;
-        game[3][2].alive = true;
-        game[1][3].alive = true;
-        game[2][3].alive = true;
-        game[3][3].alive = true;
+        for (int i = 1; i <4;i++){
+            for (int j = 1; j < 4;j++){
+                game[i][j].alive = true;
+            }
+        }
         assertEquals(game[2][2].getNearbyLiving(),8);
 
+        for (int i = 1; i <4;i++){
+            for (int j = 1; j < 4;j++){
+                game[i][j].alive = false;
+            }
+        }
 
-        game[1][1].alive = false;
-        game[2][1].alive = false;
-        game[3][1].alive = false;
-        game[1][2].alive = false;
         game[2][2].alive = true;
-        game[3][2].alive = false;
-        game[1][3].alive = false;
-        game[2][3].alive = false;
-        game[3][3].alive = false;
         assertEquals(game[2][2].getNearbyLiving(), 0);
     }
 
@@ -74,7 +67,7 @@ public class GameOfLifeCellTest {
         game[2][3].alive = true;
         game[2][5].alive = true;
         game[2][4].getNearbyLiving();
-        game[2][4].getState();
+        game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),false);
 
@@ -85,7 +78,7 @@ public class GameOfLifeCellTest {
         game[2][3].alive = false;
         game[2][5].alive = false;
         game[2][4].getNearbyLiving();
-        game[2][4].getState();
+        game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),false);
 
@@ -96,7 +89,7 @@ public class GameOfLifeCellTest {
         game[2][3].alive = true;
         game[2][5].alive = false;
         game[2][4].getNearbyLiving();
-        game[2][4].getState();
+        game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),true);
 
@@ -107,7 +100,7 @@ public class GameOfLifeCellTest {
         game[2][3].alive = true;
         game[2][5].alive = false;
         game[2][4].getNearbyLiving();
-        game[2][4].getState();
+        game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),true);
 
@@ -118,7 +111,7 @@ public class GameOfLifeCellTest {
         game[2][3].alive = true;
         game[2][5].alive = false;
         game[2][4].getNearbyLiving();
-        game[2][4].getState();
+        game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),true);
     }
