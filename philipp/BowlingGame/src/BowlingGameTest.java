@@ -1,34 +1,63 @@
-import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.CoreMatchers.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class BowlingGameTest {
 
+    /**  int testPinsAmount = 10;
+     int testPinsAmount1 = 50;
+     int testPinsAmount2 = -1;
+     int testPinsamount3 = 100;
+     private Pin[] pinArray;
+
+     @BeforeEach
+     void setUp() {
+     //arrange
+
+     BowlingGame bowlingGame = new BowlingGame(testPinsAmount);
+     BowlingGame bowlingGame1 = new BowlingGame(testPinsAmount1);
+     BowlingGame bowlingGame2 = new BowlingGame(testPinsAmount2);
+     BowlingGame bowlingGame3 = new BowlingGame(testPinsamount3);
+     **/
+
+
     @Test
     void reset() {
-        int pinCount = 33;
-        BowlingGame bg = new BowlingGame(pinCount, 1.0);
-        bg.rollBall();
-        Assert.assertThat(bg.countStandingPins(), is(0));
-        bg.reset();
-        Assert.assertThat(bg.countStandingPins(), is(pinCount));
+        //arrange
+        BowlingGame bowlingGame = new BowlingGame(3);
+        bowlingGame.rollBall(100);
+        bowlingGame.reset();
+
+        //act
+        String amountPutUpPins = bowlingGame.countStandingPins();
+
+        //assert
+        assertEquals(amountPutUpPins, "3 pin/s are still standing", "Not all pins are standing");
     }
 
     @Test
-    void getRowCount() {
-        BowlingGame bg = new BowlingGame(10,1);
-        int expectedRowCount = 4;
-        int actualRowCount = bg.getRowCount();
-        Assert.assertThat(actualRowCount, is(expectedRowCount));
-
-        bg = new BowlingGame(11, 1);
-        expectedRowCount = 5;
-        actualRowCount = bg.getRowCount();
-        Assert.assertThat(actualRowCount, is(expectedRowCount));
-
-        bg = new BowlingGame(15, 1);
-        expectedRowCount = 5;
-        actualRowCount = bg.getRowCount();
-        Assert.assertThat(actualRowCount, is(expectedRowCount));
+    void rollBall() {
+        // this method knocks down a random amount of pins
+        // you cant expect a certan number to be returned
+        // therefore there is no right or wrong for this method
     }
+
+    @Test
+    void countStandingPins() {
+        BowlingGame bowlingGame = new BowlingGame(10);
+        String amountPinsUp = bowlingGame.countStandingPins();
+        bowlingGame.rollBall(100);
+        String amountPinsUp2 = bowlingGame.countStandingPins();
+
+        assertEquals(amountPinsUp, "10 pin/s are still standing", "countStandingPins not working properly");
+        assertEquals(amountPinsUp2, "0 pin/s are still standing", "countStandingPins not working properly");
+
+    }
+
+    @Test
+    void visualizeStandingPins() {
+        // hard to write a test method for the visualization
+    }
+
 }

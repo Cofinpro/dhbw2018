@@ -3,12 +3,12 @@
  * @author Team DevMatch - Cofinpro AG
  */
 public class Pin {
-    private PinState pinState;
+    PinState pinState = PinState.STANDING;
     /**
      * creates a standing pin
      */
     public Pin(){
-        pinState = PinState.STANDING;
+
     }
 
     /**
@@ -25,7 +25,12 @@ public class Pin {
         pinState = PinState.STANDING;
     }
 
-    public PinState getPinState() {
-        return pinState;
+    /**
+     * returns wheather pin is STANDING or KNOCKEDOUT
+     * @return current state of pin
+     */
+    public PinState getPinState(){
+        return this.pinState;
+
     }
 }
