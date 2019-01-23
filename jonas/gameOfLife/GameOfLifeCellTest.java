@@ -18,6 +18,7 @@ public class GameOfLifeCellTest {
         gameOfLife.setGameOfLife(game);
     }
 
+    //tests if the isAlive method returns alive cells as alive and dead cells as dead
     @Test
     public void isAlive() {
         assertEquals(testCellOne.isAlive(),true);
@@ -25,6 +26,39 @@ public class GameOfLifeCellTest {
 
     }
 
+    //tests if the getNearbyLiving method returns the right amount of living cells
+    @Test
+    public void getNearbyLiving(){
+        for (int i = 0; i < game.length;i++){
+            for (int j = 0; j < game[0].length;j++){
+                game[i][j] = new GameOfLifeCell(i,j,false);
+            }
+        }
+        game[1][1].alive = true;
+        game[2][1].alive = true;
+        game[3][1].alive = true;
+        game[1][2].alive = true;
+        game[2][2].alive = true;
+        game[3][2].alive = true;
+        game[1][3].alive = true;
+        game[2][3].alive = true;
+        game[3][3].alive = true;
+        assertEquals(game[2][2].getNearbyLiving(),8);
+
+
+        game[1][1].alive = false;
+        game[2][1].alive = false;
+        game[3][1].alive = false;
+        game[1][2].alive = false;
+        game[2][2].alive = true;
+        game[3][2].alive = false;
+        game[1][3].alive = false;
+        game[2][3].alive = false;
+        game[3][3].alive = false;
+        assertEquals(game[2][2].getNearbyLiving(), 0);
+    }
+
+    //tests if the getState Method follows the rules of the GameOfLife Game
     @Test
     public void getState() {
         for (int i = 0; i < game.length;i++){
@@ -55,7 +89,7 @@ public class GameOfLifeCellTest {
 
         assertEquals(game[2][4].isAlive(),false);
 
-        // test for surviving 3 neighbours
+        // test for surviving with 3 neighbours
         game[2][4].alive = true;
         game[1][4].alive = true;
         game[3][4].alive = true;
@@ -66,7 +100,7 @@ public class GameOfLifeCellTest {
 
         assertEquals(game[2][4].isAlive(),true);
 
-        //test fpr surviving 2 neighbours
+        //test for surviving with 2 neighbours
         game[2][4].alive = true;
         game[1][4].alive = true;
         game[3][4].alive = true;
@@ -87,8 +121,6 @@ public class GameOfLifeCellTest {
         game[2][4].getState();
 
         assertEquals(game[2][4].isAlive(),true);
-
-
-
     }
+
 }
