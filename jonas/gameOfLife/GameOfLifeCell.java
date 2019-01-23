@@ -16,6 +16,7 @@ public class GameOfLifeCell {
         return alive;
     }
 
+    //upates the cell depending on surrounding alive/dead cells
     public void getState(){
         if (this.alive){
             if (nearbyLiving < 2){
@@ -35,40 +36,52 @@ public class GameOfLifeCell {
         }
     }
 
-    public void getNearbyLiving(){
+    //counts nearby living cells
+    public int getNearbyLiving(){
         int nearbyLiving = 0;
 
         GameOfLifeCell[][] cell = GameOfLife.getInstance().getGameField();
-        //diagonal besdies cell
+        //diagonal left above cell
         if (xPos > 0 && yPos > 0 && cell[xPos-1][yPos-1].alive){
             nearbyLiving++;
         }
-        if (xPos > 0 && cell[xPos-1][yPos].alive){
-            nearbyLiving++;
-        }
-        if (xPos > 0 && yPos < cell.length-1&& cell[xPos-1][yPos+1].alive){
-            nearbyLiving++;
-        }
-        if (yPos > 0 && cell[xPos][yPos-1].alive){
-            nearbyLiving++;
-        }
-        //above or below cell in no specific corner
-        if (yPos < cell.length-1 && cell[xPos][yPos+1].isAlive()){
-            nearbyLiving++;
-        }
-        if (yPos >0&&cell[xPos+1][yPos-1].isAlive()){
+
+        //diagonal right above cell
+        if(xPos<cell.length-1 && yPos<cell[xPos].length-1 && cell[xPos+1][yPos+1].alive){
             nearbyLiving++;
         }
 
-        //right or left besides cell in no specific corner
-        if (xPos >0 && cell[xPos+1][yPos-1].isAlive() ){
+        //diagonal left below cell
+        if (xPos > 0 && yPos < cell[xPos].length-1&& cell[xPos-1][yPos+1].alive){
             nearbyLiving++;
         }
-        if (xPos < cell.length-1 && cell[xPos+1][yPos].isAlive()){
+
+        //diagonal right below cell
+        if(xPos<cell.length-1 && yPos>0 && cell[xPos+1][yPos-1].alive){
+            nearbyLiving++;
+        }
+
+        //above cell
+        if (yPos > 0 && cell[xPos][yPos-1].alive){
+            nearbyLiving++;
+        }
+
+        //beneath cell
+        if (yPos < cell[xPos].length-1 && cell[xPos][yPos+1].isAlive()){
+            nearbyLiving++;
+        }
+
+        //left besides cell
+        if (xPos > 0 && cell[xPos-1][yPos].alive){
+            nearbyLiving++;
+        }
+
+        //right besides cell
+        if(xPos<cell.length-1 && cell[xPos+1][yPos].alive){
             nearbyLiving++;
         }
 
         this.nearbyLiving = nearbyLiving;
-
+        return nearbyLiving;
     }
 }

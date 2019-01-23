@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 public class ResizableCanvas extends Canvas {
     GraphicsContext gc = getGraphicsContext2D();
 
+    // resizes the canvas depending on current scene width and recognizes mouse clicks
     public ResizableCanvas() {
         widthProperty().addListener(e -> draw());
         heightProperty().addListener(e -> draw());
@@ -18,10 +19,6 @@ public class ResizableCanvas extends Canvas {
                 double y = event.getY();
                 mouse(x, y);
             }
-        });
-        setOnKeyPressed(event -> {
-
-
         });
     }
 
@@ -40,6 +37,7 @@ public class ResizableCanvas extends Canvas {
         return getHeight();
     }
 
+    // clears the complete canvas
     public void draw() {
         double w = getWidth();
         double h = getHeight();
@@ -51,6 +49,7 @@ public class ResizableCanvas extends Canvas {
         drawLines();
     }
 
+    // draws the lines to create rows and columns
     public void drawLines() {
 
         GameOfLifeCell[][] cells = GameOfLife.getInstance().getGameField();
@@ -65,6 +64,7 @@ public class ResizableCanvas extends Canvas {
         }
     }
 
+    //depending on the x and y gets the field the user clicked to and changes its state
     public void mouse(double x, double y) {
         GameOfLifeCell[][] cells = GameOfLife.getInstance().getGameField();
 
@@ -88,6 +88,7 @@ public class ResizableCanvas extends Canvas {
         drawLines();
     }
 
+    // changes the color of clicked rectangle depending on original state
     public void colorChange() {
         GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
         double columnWidth = getWidth() / 15;

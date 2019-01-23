@@ -1,8 +1,5 @@
 package gameOfLife;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class GameOfLife {
     private static GameOfLifeCell[][] gameField;
 
@@ -18,6 +15,7 @@ public class GameOfLife {
         return getInstance().gameField;
     }
 
+    //Singelton - Pattern
     private static GameOfLife instance;
 
     private GameOfLife() {
@@ -29,13 +27,13 @@ public class GameOfLife {
         }
         return instance;
     }
-    public void consoleSetup() {
+   /* public void consoleSetup() {
         gameField = new GameOfLifeCell[15][15];
         Random random = new Random();
 
 
 
-        for (int row = 0; row < gameField.length; row++) {
+       for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++) {
                 gameField[row][column] = new GameOfLifeCell(row, column, false);
                 double temp = Math.random() * 1;
@@ -64,7 +62,9 @@ public class GameOfLife {
             System.out.println();
         }
     }
+    */
 
+   //updates the cells depending on their state and neighbours
     public void nextIteration() {
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column <gameField[row].length; column++) {
@@ -77,7 +77,7 @@ public class GameOfLife {
             }
         }
     }
-    public void play(){
+   /* public void play(){
         getInstance().print();
         Scanner scanner = new Scanner(System.in);
         String help;
@@ -107,5 +107,5 @@ public class GameOfLife {
     }
 
 
-
+*/
 }
