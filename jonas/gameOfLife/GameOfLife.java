@@ -1,7 +1,7 @@
 package gameOfLife;
 
 public class GameOfLife {
-    private static GameOfLifeCell[][] gameField;
+    private GameOfLifeCell[][] gameField;
 
     public void setGameField(int x, int y) {
         this.gameField = new GameOfLifeCell[x][y];
@@ -11,7 +11,7 @@ public class GameOfLife {
         gameField = help;
     }
 
-    public static GameOfLifeCell[][] getGameField() {
+    public GameOfLifeCell[][] getGameField() {
         return getInstance().gameField;
     }
 
@@ -73,7 +73,7 @@ public class GameOfLife {
         }
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++) {
-                gameField[row][column].getState();
+                gameField[row][column].updateState();
             }
         }
     }

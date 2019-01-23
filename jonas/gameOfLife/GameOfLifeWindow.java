@@ -20,10 +20,10 @@ public class GameOfLifeWindow extends Application {
                 help[row][column] = new GameOfLifeCell(row, column, false);
                 double temp = Math.random() * 1;
                 if (temp <= 0.1){
-                    help[row][column].alive = true;
+                    help[row][column].setAlive(true);
                 }
                 else{
-                    help[row][column].alive = false;
+                    help[row][column].setAlive(false);
                 }
             }
         }
@@ -44,13 +44,12 @@ public class GameOfLifeWindow extends Application {
         canvas.widthProperty().bind(pane.widthProperty());
         canvas.heightProperty().bind(pane.heightProperty());
 
-
         pane.getChildren().add(canvas);
 
         Scene scene = new Scene(pane);
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()){
-                case RIGHT:
+                case ENTER:
                     GameOfLife.getInstance().nextIteration();
                     canvas.colorChange();
                     canvas.drawLines();

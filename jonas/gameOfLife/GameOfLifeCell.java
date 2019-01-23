@@ -16,8 +16,12 @@ public class GameOfLifeCell {
         return alive;
     }
 
+    public void  setAlive(boolean alive){
+        this.alive = alive;
+    }
+
     //upates the cell depending on surrounding alive/dead cells
-    public void getState(){
+    public void updateState(){
         if (this.alive){
             if (nearbyLiving < 2){
                 this.alive = false;
@@ -62,7 +66,7 @@ public class GameOfLifeCell {
         }
 
         //above cell
-        if (yPos > 0 && cell[xPos][yPos-1].alive){
+        if (isAboveCellAlive(yPos, xPos, yPos - 1, cell)){
             nearbyLiving++;
         }
 
@@ -72,7 +76,7 @@ public class GameOfLifeCell {
         }
 
         //left besides cell
-        if (xPos > 0 && cell[xPos-1][yPos].alive){
+        if (isAboveCellAlive(xPos, xPos-1, yPos, cell)){
             nearbyLiving++;
         }
 
@@ -83,5 +87,9 @@ public class GameOfLifeCell {
 
         this.nearbyLiving = nearbyLiving;
         return nearbyLiving;
+    }
+
+    private boolean isAboveCellAlive(int yPos, int xPos, int i, GameOfLifeCell[][] cell) {
+        return yPos > 0 && cell[xPos][i].alive;
     }
 }

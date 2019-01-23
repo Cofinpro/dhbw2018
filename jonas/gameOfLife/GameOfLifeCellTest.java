@@ -53,7 +53,7 @@ public class GameOfLifeCellTest {
 
     //tests if the getState Method follows the rules of the GameOfLife Game
     @Test
-    public void getState() {
+    public void updateState() {
         for (int i = 0; i < game.length;i++){
             for (int j = 0; j < game[0].length;j++){
                 game[i][j] = new GameOfLifeCell(i,j,false);
