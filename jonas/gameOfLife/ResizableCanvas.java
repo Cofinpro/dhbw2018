@@ -6,9 +6,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class ResizableCanvas extends Canvas {
+        public static final int MAX_ROW_HEIGHT = 15;
+    public static final int MAX_COLUMN_WIDTH = 15;
     GraphicsContext gc = getGraphicsContext2D();
 
-    // resizes the canvas depending on current scene width and recognizes mouse clicks
+    // resizes the canvas depending on current scene width and recognizes handleCellOnMouseClick clicks
     public ResizableCanvas() {
         widthProperty().addListener(e -> draw());
         heightProperty().addListener(e -> draw());
@@ -17,14 +19,9 @@ public class ResizableCanvas extends Canvas {
             public void handle(MouseEvent event) {
                 double x = event.getX();
                 double y = event.getY();
-                mouse(x, y);
+                handleCellOnMouseClick(x, y);
             }
         });
-    }
-
-    @Override
-    public boolean isResizable() {
-        return true;
     }
 
     @Override
@@ -57,28 +54,28 @@ public class ResizableCanvas extends Canvas {
 
         gc.setStroke(Color.BLACK);
         for (int i = 0; i < cells.length; i++) {
-            gc.strokeLine(0, (getHeight() / 15) * (i + 1), getWidth(), (getHeight() / 15) * (i + 1));
+            gc.strokeLine(0, (getHeight() / MAX_ROW_HEIGHT) * (i + 1), getWidth(), (getHeight() / MAX_ROW_HEIGHT) * (i + 1));
         }
         for (int j = 0; j < cells.length; j++) {
-            gc.strokeLine((getWidth() / 15) * (j + 1), 0, (getWidth() / 15) * (j + 1), getWidth());
+            gc.strokeLine((getWidth() / MAX_COLUMN_WIDTH) * (j + 1), 0, (getWidth() / MAX_COLUMN_WIDTH) * (j + 1), getWidth());
         }
     }
 
     //depending on the x and y gets the field the user clicked to and changes its state
-    public void mouse(double x, double y) {
+    public void handleCellOnMouseClick(double x, double y) {
         GameOfLifeCell[][] cells = GameOfLife.getInstance().getGameField();
 
-        int getRowHeight = (int) (getHeight() / 15);
-        int getColumnWidth = (int) (getWidth() / 15);
+        int getRowHeight = (int) (getHeight() / MAX_ROW_HEIGHT);
+        int getColumnWidth = (int) (getWidth() / MAX_COLUMN_WIDTH);
 
-        for (int i = 0; i < cells.length; i++) {
-            if (i * getColumnWidth < x && (i + 1) * getColumnWidth > x) {
-                for (int j = 0; j < GameOfLife.getInstance().getGameField().length; j++) {
-                    if (j * getRowHeight < y && (j + 1) * getRowHeight > y) {
-                        if (GameOfLife.getInstance().getGameField()[j][i].alive == true) {
-                            GameOfLife.getInstance().getGameField()[j][i].alive = false;
+        for (int column = 0; column < cells.length; column++) {
+            if (column * getColumnWidth < x && (column + 1) * getColumnWidth > x) {
+                for (int row = 0; row < GameOfLife.getInstance().getGameField().length; row++) {
+                    if (row * getRowHeight < y && (row + 1) * getRowHeight > y) {
+                        if (GameOfLife.getInstance().getGameField()[row][column].isAlive()) {
+                            GameOfLife.getInstance().getGameField()[row][column].setAlive(false);
                         } else {
-                            GameOfLife.getInstance().getGameField()[j][i].alive = true;
+                            GameOfLife.getInstance().getGameField()[row][column].setAlive(true);
                         }
                     }
                 }
@@ -93,14 +90,14 @@ public class ResizableCanvas extends Canvas {
         GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
         double columnWidth = getWidth() / 15;
         double rowHeight = getHeight() / 15;
-        for (int i = 0; i < gf.length; i++) {
-            for (int j = 0; j < gf[i].length; j++) {
-                if (gf[i][j].alive) {
+        for (int row = 0; row < gf.length; row++) {
+            for (int column = 0; column < gf[row].length; column++) {
+                if (gf[row][column].isAlive()) {
                     gc.setFill(Color.RED);
-                    gc.fillRect(j * columnWidth, i * rowHeight, columnWidth, rowHeight);
+                    gc.fillRect(column * columnWidth, row * rowHeight, columnWidth, rowHeight);
                 } else {
                     gc.setFill(Color.WHITE);
-                    gc.fillRect(j * columnWidth, i * rowHeight, columnWidth, rowHeight);
+                    gc.fillRect(column * columnWidth, row * rowHeight, columnWidth, rowHeight);
                 }
             }
         }

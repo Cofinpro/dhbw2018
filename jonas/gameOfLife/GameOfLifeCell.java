@@ -16,8 +16,12 @@ public class GameOfLifeCell {
         return alive;
     }
 
+    public void  setAlive(boolean alive){
+        this.alive = alive;
+    }
+
     //upates the cell depending on surrounding alive/dead cells
-    public void getState(){
+    public void updateState(){
         if (this.alive){
             if (nearbyLiving < 2){
                 this.alive = false;
@@ -42,46 +46,76 @@ public class GameOfLifeCell {
 
         GameOfLifeCell[][] cell = GameOfLife.getInstance().getGameField();
         //diagonal left above cell
-        if (xPos > 0 && yPos > 0 && cell[xPos-1][yPos-1].alive){
+        if (isDiagonalLeftAboveAlive(xPos > 0, xPos - 1, cell)){
             nearbyLiving++;
         }
 
         //diagonal right above cell
-        if(xPos<cell.length-1 && yPos<cell[xPos].length-1 && cell[xPos+1][yPos+1].alive){
+        if(isDiagonalRightAboveAlive(cell, xPos < cell.length - 1, xPos + 1)){
             nearbyLiving++;
         }
 
         //diagonal left below cell
-        if (xPos > 0 && yPos < cell[xPos].length-1&& cell[xPos-1][yPos+1].alive){
+        if (isDiagonalLeftBelowAlive(cell, xPos > 0, xPos - 1)){
             nearbyLiving++;
         }
 
         //diagonal right below cell
-        if(xPos<cell.length-1 && yPos>0 && cell[xPos+1][yPos-1].alive){
+        if(isDiagonalRightBelowAlive(cell, xPos < cell.length - 1, xPos + 1)){
             nearbyLiving++;
         }
 
         //above cell
-        if (yPos > 0 && cell[xPos][yPos-1].alive){
+        if (isAboveCellAlive(yPos, xPos, yPos - 1, cell)){
             nearbyLiving++;
         }
 
         //beneath cell
-        if (yPos < cell[xPos].length-1 && cell[xPos][yPos+1].isAlive()){
+        if (isBeneathCellAlive(cell[xPos])){
             nearbyLiving++;
         }
 
         //left besides cell
-        if (xPos > 0 && cell[xPos-1][yPos].alive){
+        if (isAboveCellAlive(xPos, xPos-1, yPos, cell)){
             nearbyLiving++;
         }
 
         //right besides cell
-        if(xPos<cell.length-1 && cell[xPos+1][yPos].alive){
+        if(isRightBesidesCellAlive(cell, xPos < cell.length - 1, xPos + 1, yPos)){
             nearbyLiving++;
         }
 
         this.nearbyLiving = nearbyLiving;
         return nearbyLiving;
     }
+
+    private boolean isRightBesidesCellAlive(GameOfLifeCell[][] cell, boolean b, int i, int yPos) {
+        return b && cell[i][yPos].alive;
+    }
+
+
+    private boolean isBeneathCellAlive(GameOfLifeCell[] gameOfLifeCells) {
+        return yPos < gameOfLifeCells.length-1 && gameOfLifeCells[yPos+1].isAlive();
+    }
+
+    private boolean isDiagonalRightBelowAlive(GameOfLifeCell[][] cell, boolean b, int i) {
+        return b && yPos > 0 && cell[i][yPos - 1].alive;
+    }
+
+    private boolean isDiagonalLeftBelowAlive(GameOfLifeCell[][] cell, boolean b, int i) {
+        return b && yPos < cell[xPos].length - 1 && cell[i][yPos + 1].alive;
+    }
+
+    private boolean isDiagonalRightAboveAlive(GameOfLifeCell[][] cell, boolean b, int i) {
+        return b && yPos < cell[xPos].length - 1 && cell[i][yPos + 1].alive;
+    }
+
+    private boolean isDiagonalLeftAboveAlive(boolean b, int i, GameOfLifeCell[][] cell) {
+        return b && yPos > 0 && cell[i][yPos - 1].alive;
+    }
+
+    private boolean isAboveCellAlive(int yPos, int xPos, int i, GameOfLifeCell[][] cell) {
+        return yPos > 0 && cell[xPos][i].alive;
+    }
+
 }
