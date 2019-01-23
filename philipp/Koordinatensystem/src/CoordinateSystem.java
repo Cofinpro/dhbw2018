@@ -4,6 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,8 +28,7 @@ public class CoordinateSystem extends Application {
         readPoints();
         //window settings
         stage.setTitle("visual output");
-        Image icon = new Image("philipp/Koordinatensystem/resources/icon.png");
-        stage.getIcons().add(icon);
+        stage.getIcons().add(new Image("icon.png"));
         stage.setMinWidth(100);
         stage.setMinHeight(100);
         stage.setResizable(true);
