@@ -30,6 +30,12 @@ public final class GameOfLife {
             getInstance().playOnConsole();
         }
     }
+
+  /*  @Override
+    public GameOfLife clone(){
+
+        return null;
+    } */
     public void setGameField(int width, int length){
         gameField = new GameOfLifeCell[width][length];
     }

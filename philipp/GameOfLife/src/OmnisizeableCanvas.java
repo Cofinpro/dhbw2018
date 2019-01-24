@@ -39,7 +39,6 @@ public class OmnisizeableCanvas extends Canvas {
         height = getHeight();
 
         gc.setFill(Color.LIGHTGRAY);
-        gc.clearRect(0,0,width,height);
         gc.fillRect(0,0,width,height);
 
         drawLivingCells();
@@ -61,7 +60,7 @@ public class OmnisizeableCanvas extends Canvas {
             }
         }
         drawLivingCells();
-        drawGrid();
+        //drawGrid();
     }
     private void switchCellAlive(int row, int column){
         if(GameOfLife.getGameField()[row][column].isAlive())
@@ -93,11 +92,11 @@ public class OmnisizeableCanvas extends Canvas {
             for (int column = 0; column < gf[row].length; column++){
                 if (gf[row][column].isAlive()) {
                     gc.setFill(Color.GREEN);
-                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth, gfRowHeight);
+                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth-1, gfRowHeight-1);
                 }
                 else {
                     gc.setFill(Color.DARKGRAY);
-                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth, gfRowHeight);
+                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth-1, gfRowHeight-1);
                 }
             }
         }
