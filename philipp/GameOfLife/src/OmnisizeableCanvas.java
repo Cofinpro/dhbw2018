@@ -64,10 +64,10 @@ public class OmnisizeableCanvas extends Canvas {
         drawGrid();
     }
     private void switchCellAlive(int row, int column){
-        if(GameOfLife.getGameField()[row][column].alive)
-            GameOfLife.getGameField()[row][column].alive = false;
+        if(GameOfLife.getGameField()[row][column].isAlive())
+            GameOfLife.getGameField()[row][column].setAlive(false);
         else
-            GameOfLife.getGameField()[row][column].alive = true;
+            GameOfLife.getGameField()[row][column].setAlive(true);
     }
 
     public void drawGrid(){
@@ -91,7 +91,7 @@ public class OmnisizeableCanvas extends Canvas {
         double gfRowHeight = height/gf.length;
         for (int row = 0; row < gf.length; row++){
             for (int column = 0; column < gf[row].length; column++){
-                if (gf[row][column].alive) {
+                if (gf[row][column].isAlive()) {
                     gc.setFill(Color.GREEN);
                     gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth, gfRowHeight);
                 }

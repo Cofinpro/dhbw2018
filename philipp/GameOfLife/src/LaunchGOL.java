@@ -95,7 +95,7 @@ public class LaunchGOL extends Application {
             for (int row = 0; row < gf.length; row++) {
                 for (int column = 0; column < gf[row].length; column++) {
                     gf[row][column] = new GameOfLifeCell(row, column);
-                    gf[row][column].alive = false;
+                    gf[row][column].setAlive(false);
                 }
             }
             Alert confirmValues = new Alert(Alert.AlertType.INFORMATION);
