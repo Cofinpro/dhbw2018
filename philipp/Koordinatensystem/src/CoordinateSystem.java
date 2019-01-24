@@ -3,12 +3,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
