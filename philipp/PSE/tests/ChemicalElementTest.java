@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 class ChemicalElementTest {
 
     //arrange
@@ -42,3 +42,4 @@ class ChemicalElementTest {
         assertEquals(0, K.compareTo(K), "Compared AtomicNumber wrong");
     }
 }
+*/
