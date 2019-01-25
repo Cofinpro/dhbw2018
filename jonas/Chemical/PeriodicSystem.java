@@ -1,54 +1,55 @@
 package Chemical;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PeriodicSystem{
+public class PeriodicSystem {
+    public static final int MAX_ROW = 7;
+    public static final int MAX_COLUMN = 18;
+
 
     private static PeriodicSystem instance;
 
-    private PeriodicSystem(){}
+    private PeriodicSystem() {
+    }
 
-    public static PeriodicSystem getInstance(){
-        if (instance == null){
+    public static PeriodicSystem getInstance() {
+        if (instance == null) {
             instance = new PeriodicSystem();
         }
         return instance;
     }
-
     private static ArrayList<ChemicalElement> chemicalElementArrayList;
 
 
-    public ChemicalElement getChemicalElement(int row, int column) {
+    public static ChemicalElement getChemicalElement(int row, int column) {
 
-        if(row > 7){
+        if(row > PeriodicSystem.MAX_ROW){
             throw new IllegalArgumentException();
         }
-        if (column > 18){
+        if (column > PeriodicSystem.MAX_COLUMN){
             throw new IllegalArgumentException();
         }
-        for (int i = 0; i < chemicalElementArrayList.size();i++){
-            if (chemicalElementArrayList.get(i).row == row && chemicalElementArrayList.get(i).column == column){
+        for (int i = 0; i <chemicalElementArrayList.size();i++){
+            if (chemicalElementArrayList.get(i).row == row &&chemicalElementArrayList.get(i).column == column){
 
-                System.out.println(chemicalElementArrayList.get(i));
-                System.out.println();
+               /* System.out.println(chemicalElementArrayList.get(i));
+                System.out.println();*/
                 return chemicalElementArrayList.get(i);
             }
         }
         throw new NotImplementedException();
     }
-
-    public void printChemicalElement(ChemicalElement e ){
-        System.out.println(e);
+    public static ChemicalElement getChemicalElement(int atomicnumber){
+        return chemicalElementArrayList.get(atomicnumber-1);
     }
-    public static ChemicalElement addChemicalElement(String [] metadata){
+
+    public static ChemicalElement setChemicalElement(String[] metadata) {
         String atomicnumber = metadata[0];
         String name = metadata[1];
         String symbol = metadata[2];
@@ -58,9 +59,9 @@ public class PeriodicSystem{
         int rowNumberInt = Integer.parseInt(row);
         int columnNumberInt = Integer.parseInt(column);
 
-        return new ChemicalElement(atomicNumberInt,name,symbol,rowNumberInt,columnNumberInt);
+        return new ChemicalElement(atomicNumberInt, name, symbol, rowNumberInt, columnNumberInt);
     }
-    private static ArrayList<ChemicalElement> readChemicalElementsFromCSV(String ps){
+    public static ArrayList<ChemicalElement> getElementsInPeriodicSystem(){
         chemicalElementArrayList = new ArrayList<>();
         String path = "C:\\Users\\JTrautmann\\chemischElemente.csv";
 
@@ -70,7 +71,7 @@ public class PeriodicSystem{
 
             while (line != null){
                 String[] attributes = line.split(",");
-                ChemicalElement element = addChemicalElement(attributes);
+                ChemicalElement element = setChemicalElement(attributes);
 
                 chemicalElementArrayList.add(element);
                 line = br.readLine();
@@ -81,23 +82,25 @@ public class PeriodicSystem{
         return chemicalElementArrayList;
     }
 
+    public static void printChemicalElement(ChemicalElement e ){
+        System.out.println(e);
+
+    }
     public static void main(String[] args) {
-        PeriodicSystem system = new PeriodicSystem();
-        ArrayList<ChemicalElement> chemicalElementArrayList = readChemicalElementsFromCSV("ps.cvs");
+
+        ArrayList<ChemicalElement> chemicalElementArrayList =getElementsInPeriodicSystem();
         Scanner reader = new Scanner(System.in);
         System.out.println("Bitte Reihe eingeben: ");
-        int n = reader.nextInt();
+        int userInputRow = reader.nextInt();
         System.out.println("Bitte Spalte eingeben: ");
-        int m = reader.nextInt();
-
-
-        system.getChemicalElement(n,m);
-
+        int userInputColumn = reader.nextInt();
+        getChemicalElement(userInputRow,userInputColumn);
 
         System.out.println("Ordnungszahl, Name, Symbol, Reihe, Spalte");
         for (ChemicalElement e : chemicalElementArrayList){
-            system.printChemicalElement(e);
+            printChemicalElement(e);
 
         }
     }
+
 }

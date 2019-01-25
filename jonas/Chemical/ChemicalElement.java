@@ -16,6 +16,32 @@ public class ChemicalElement implements Comparable<ChemicalElement>{
 
 
     }
+    public ChemicalElement(){
+
+    }
+    public ChemicalElement(int atomicnumber){
+        this.atomicnumber = atomicnumber;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getAtomicnumber() {
+        return atomicnumber;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {
