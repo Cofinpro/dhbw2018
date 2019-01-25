@@ -1,11 +1,10 @@
 package models;
 
-public class GiroAccount extends BankAccount {
+public class BankBook extends BankAccount {
 
-    private static final double monthlyInterest = 0.0; //in decimal
+    private static final double monthlyInterest = 0.01; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
-    private static final double monthlyFeesAbsolute = 5.0; //in €
-
+    private static final double monthlyFees = 0.0; //in €
 
     @Override
     public double getMonthlyInterest() {

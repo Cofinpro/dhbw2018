@@ -1,21 +1,42 @@
 package models;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public abstract class BankAccount implements Comparable<BankAccount> {
 
-    protected String bankAccountNumber;
-    protected double balance; //de: Kontostand
+    private String bankAccountNumber;
+    private double balance; //de: Kontostand
 
-    public void deposit(){
+    public void deposit(double depositAmount){
+        this.balance += depositAmount;
+    }
+    public void disburse(double disburseAmount){
+        this.balance -= disburseAmount;
+    }
+
+    public void processMonthlyInterest(){
 
     }
-    public void disburse(){
+    public void processMonthlyFees(){
 
     }
-    public abstract void processMonthlyInterest();
-    public abstract void processMonthlyFees();
-    public abstract String getBankAccountNumber();
+    public String getBankAccountNumber(){
+        return this.bankAccountNumber;
+    }
+
+    /**
+     * gets monthly interest of the account type
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyInterest();
+    /**
+     * gets monthly fees of the account type expressed as a percentage
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyFeesPercentage();
+    /**
+     * gets monthly interest of the account type
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyFeesAbsolute();
 
     @Override
     public int compareTo(BankAccount otherBankAccount) {
@@ -33,6 +54,6 @@ public abstract class BankAccount implements Comparable<BankAccount> {
                     return -1;
             }
         }
-        throw new NotImplementedException();
+        return 0;
     }
 }

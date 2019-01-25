@@ -28,7 +28,7 @@ public class UserDao {
 
     public User getUserByUserName(String userName) {
         for (User user : users) {
-            if (user.equals(userName)) {
+            if (user.getUserName().equals(userName)) {
                 return user;
             }
         }
