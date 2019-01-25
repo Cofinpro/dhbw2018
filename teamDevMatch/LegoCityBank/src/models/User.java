@@ -1,6 +1,6 @@
 package models;
 
-public class User {
+public class User implements Comparable<User> {
     private String userName;
     private String password;
     private String firstName;
@@ -24,5 +24,10 @@ public class User {
     public boolean tryLogIn(String inputPassword) {
 
         return false;
+    }
+
+    @Override
+    public int compareTo(User otherUser) {
+        return this.userName.compareTo(otherUser.userName);
     }
 }
