@@ -1,5 +1,7 @@
 package models;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public abstract class BankAccount implements Comparable<BankAccount> {
 
     protected String bankAccountNumber;
@@ -31,5 +33,6 @@ public abstract class BankAccount implements Comparable<BankAccount> {
                     return -1;
             }
         }
+        throw new NotImplementedException();
     }
 }

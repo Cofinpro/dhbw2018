@@ -28,7 +28,7 @@ public class UserDao {
 
     public User getUserByUserName(String userName) {
         for (User user : users) {
-            if (user.getFirstName().equals(userName)) {
+            if (user.equals(userName)) {
                 return user;
             }
         }
@@ -45,15 +45,14 @@ public class UserDao {
         try {
             br = new BufferedReader(new FileReader(path));
             String line = null;
-            //the first line just contains the headings so we don't need it
-            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 String username = parts[0];
                 String firstName = parts[1];
                 String lastName = parts[2];
                 String password = parts[3];
-                User user = new Customer();
+                String customerNumber = parts[4];
+                User user = new Customer(username, password, firstName, lastName, customerNumber);
                 users.add(user);
             }
         } catch (FileNotFoundException e) {
