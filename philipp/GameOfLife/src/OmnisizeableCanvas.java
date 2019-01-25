@@ -1,15 +1,12 @@
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 
 public class OmnisizeableCanvas extends Canvas {
 
-    static double width;
-    static double height;
-    GraphicsContext gc = getGraphicsContext2D();
+    private double width;
+    private double height;
+    private GraphicsContext gc = getGraphicsContext2D();
 
 
     public OmnisizeableCanvas() {
@@ -42,7 +39,6 @@ public class OmnisizeableCanvas extends Canvas {
         height = getHeight();
 
         gc.setFill(Color.LIGHTGRAY);
-        gc.clearRect(0,0,width,height);
         gc.fillRect(0,0,width,height);
 
         drawLivingCells();
@@ -50,8 +46,8 @@ public class OmnisizeableCanvas extends Canvas {
     }
 
     private void triggeredByClick(double xClick, double yClick){
-        int gfRows = GameOfLife.getInstance().getGameField().length;
-        int gfColumns = GameOfLife.getInstance().getGameField()[0].length;
+        int gfRows = GameOfLife.getGameField().length;
+        int gfColumns = GameOfLife.getGameField()[0].length;
         double gfRowHeight = height/gfRows;
         double gfColumnWidth = width/gfColumns;
         for(int countColumn = 0; countColumn<gfColumns; countColumn++){ //go through columns
@@ -64,17 +60,17 @@ public class OmnisizeableCanvas extends Canvas {
             }
         }
         drawLivingCells();
-        drawGrid();
+        //drawGrid();
     }
     private void switchCellAlive(int row, int column){
-        if(GameOfLife.getInstance().getGameField()[row][column].alive)
-            GameOfLife.getInstance().getGameField()[row][column].alive = false;
+        if(GameOfLife.getGameField()[row][column].isAlive())
+            GameOfLife.getGameField()[row][column].setAlive(false);
         else
-            GameOfLife.getInstance().getGameField()[row][column].alive = true;
+            GameOfLife.getGameField()[row][column].setAlive(true);
     }
 
     public void drawGrid(){
-        GameOfLifeCell[][] gF = GameOfLife.getInstance().getGameField();
+        GameOfLifeCell[][] gF = GameOfLife.getGameField();
         int gfRows = gF.length;
         double gfRowHeight = height/gfRows;
         int gfColumns = gF[0].length;
@@ -89,18 +85,18 @@ public class OmnisizeableCanvas extends Canvas {
     }
 
     public void drawLivingCells(){
-        GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
+        GameOfLifeCell[][] gf = GameOfLife.getGameField();
         double gfColumnWidth = width/gf[0].length;
         double gfRowHeight = height/gf.length;
         for (int row = 0; row < gf.length; row++){
             for (int column = 0; column < gf[row].length; column++){
-                if (gf[row][column].alive) {
+                if (gf[row][column].isAlive()) {
                     gc.setFill(Color.GREEN);
-                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth, gfRowHeight);
+                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth-1, gfRowHeight-1);
                 }
                 else {
                     gc.setFill(Color.DARKGRAY);
-                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth, gfRowHeight);
+                    gc.fillRect(column*gfColumnWidth, row*gfRowHeight, gfColumnWidth-1, gfRowHeight-1);
                 }
             }
         }

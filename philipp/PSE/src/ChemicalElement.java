@@ -1,11 +1,10 @@
 public class ChemicalElement implements Comparable<ChemicalElement>{
 
-    int atomicNumber;
-    String symbol;
-    String name;
-    ChemicalElement[][] position = new ChemicalElement[7][18]; //[periods/rows][groups/columns]
-    int period;
-    int group;
+    private int atomicNumber;
+    private String symbol;
+    private String name;
+    private int period;
+    private int group;
 
     /**
      * Constructor for an element
@@ -18,6 +17,9 @@ public class ChemicalElement implements Comparable<ChemicalElement>{
        this.name = name;
     }
 
+    public int getAtomicNumber() {
+        return atomicNumber;
+    }
 
     public boolean isAlkali(int atomicNumber){
         boolean[] alkaliArray = new boolean[119];

@@ -7,9 +7,9 @@ import java.util.Scanner;
 public final class GameOfLife {
 
     private static GameOfLife instance;
-    private static GameOfLifeCell[][] gameField;
-    static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<GameOfLifeCell[][]> iterationList = new ArrayList<>();
+    private GameOfLifeCell[][] gameField;
+    private static Scanner scanner = new Scanner(System.in);
+    private ArrayList<GameOfLifeCell[][]> iterationList = new ArrayList<>();
 
     private GameOfLife(){ //singleton --> private constructor
 
@@ -30,11 +30,17 @@ public final class GameOfLife {
             getInstance().playOnConsole();
         }
     }
+
+  /*  @Override
+    public GameOfLife clone(){
+
+        return null;
+    } */
     public void setGameField(int width, int length){
         gameField = new GameOfLifeCell[width][length];
     }
     public static GameOfLifeCell[][] getGameField() {
-        return gameField;
+        return getInstance().gameField;
     }
 
     private void initializeConsole(){
@@ -43,16 +49,16 @@ public final class GameOfLife {
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++) {
                 gameField[row][column] = new GameOfLifeCell(row, column);
-                gameField[row][column].alive = false;
+                gameField[row][column].setAlive(false);
             }
         }
-        gameField[3][4].alive = true;
-        gameField[3][5].alive = true;
-        gameField[3][6].alive = true;
-        gameField[4][6].alive = true;
-        gameField[4][3].alive = true;
-        gameField[8][8].alive = true;
-        gameField[14][14].alive = true;
+        gameField[3][4].setAlive(true);
+        gameField[3][5].setAlive(true);
+        gameField[3][6].setAlive(true);
+        gameField[4][6].setAlive(true);
+        gameField[4][3].setAlive(true);
+        gameField[8][8].setAlive(true);
+        gameField[14][14].setAlive(true);
     }
 
     public void nextIteration(){
@@ -60,14 +66,14 @@ public final class GameOfLife {
         for (int row = 0; row < gameField.length; row++) {
             for (int column = 0; column < gameField[row].length; column++) {
                 gameField[row][column].countLivingNeighbors();
-                gfIteration[row][column] = new GameOfLifeCell(row, column, gameField[row][column].livingNeighbors, gameField[row][column].alive);
+                gfIteration[row][column] = new GameOfLifeCell(row, column, gameField[row][column].getLivingNeighbors(), gameField[row][column].isAlive());
             }
         }
         iterationList.add(gfIteration); //gfIteration is copy of gameField (copy in for loop --> not the same references)
 
-        for (int row = 0; row < gameField.length; row++) {
-            for (int column = 0; column < gameField[row].length; column++) {
-                gameField[row][column].checkAlive();
+        for (GameOfLifeCell[] gameOfLifeCells : gameField) {
+            for (GameOfLifeCell gameOfLifeCell : gameOfLifeCells) {
+                gameOfLifeCell.checkAlive();
             }
         }
     }
@@ -102,9 +108,9 @@ public final class GameOfLife {
     }
 
     private void printGame(){
-        for (int row = 0; row < gameField.length; row++){
-            for (int column = 0; column < gameField[row].length; column++){
-                if (gameField[row][column].alive)
+        for (GameOfLifeCell[] gameOfLifeCells : gameField) {
+            for (GameOfLifeCell gameOfLifeCell : gameOfLifeCells) {
+                if (gameOfLifeCell.isAlive())
                     System.out.print("\u2665 ");
                 else
                     System.out.print("\u2620 ");

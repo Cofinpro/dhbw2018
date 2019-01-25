@@ -36,18 +36,18 @@ public class GameOfLifeCellTest {
         }
         for (int i = 1; i <4;i++){
             for (int j = 1; j < 4;j++){
-                game[i][j].alive = true;
+                game[i][j].setAlive(true);
             }
         }
         assertEquals(game[2][2].getNearbyLiving(),8);
 
         for (int i = 1; i <4;i++){
             for (int j = 1; j < 4;j++){
-                game[i][j].alive = false;
+                game[i][j].setAlive(false);
             }
         }
 
-        game[2][2].alive = true;
+        game[2][2].setAlive(true);
         assertEquals(game[2][2].getNearbyLiving(), 0);
     }
 
@@ -61,55 +61,55 @@ public class GameOfLifeCellTest {
         }
 
         // test for overpopulation
-        game[2][4].alive = true;
-        game[1][4].alive = true;
-        game[3][4].alive = true;
-        game[2][3].alive = true;
-        game[2][5].alive = true;
+        game[2][4].setAlive(true);
+        game[1][4].setAlive(true);
+        game[3][4].setAlive(true);
+        game[2][3].setAlive(true);
+        game[2][5].setAlive(true);
         game[2][4].getNearbyLiving();
         game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),false);
 
         //test for loneliness
-        game[2][4].alive = true;
-        game[1][4].alive = false;
-        game[3][4].alive = false;
-        game[2][3].alive = false;
-        game[2][5].alive = false;
+        game[2][4].setAlive(true);
+        game[1][4].setAlive(false);
+        game[3][4].setAlive(false);
+        game[2][3].setAlive(false);
+        game[2][5].setAlive(false);
         game[2][4].getNearbyLiving();
         game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),false);
 
         // test for surviving with 3 neighbours
-        game[2][4].alive = true;
-        game[1][4].alive = true;
-        game[3][4].alive = true;
-        game[2][3].alive = true;
-        game[2][5].alive = false;
+        game[2][4].setAlive(true);
+        game[1][4].setAlive(true);
+        game[3][4].setAlive(true);
+        game[2][3].setAlive(true);
+        game[2][5].setAlive(false);
         game[2][4].getNearbyLiving();
         game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),true);
 
         //test for surviving with 2 neighbours
-        game[2][4].alive = true;
-        game[1][4].alive = true;
-        game[3][4].alive = true;
-        game[2][3].alive = true;
-        game[2][5].alive = false;
+        game[2][4].setAlive(true);
+        game[1][4].setAlive(true);
+        game[3][4].setAlive(true);
+        game[2][3].setAlive(false);
+        game[2][5].setAlive(false);
         game[2][4].getNearbyLiving();
         game[2][4].updateState();
 
         assertEquals(game[2][4].isAlive(),true);
 
         // test for resurrection
-        game[2][4].alive = false;
-        game[1][4].alive = true;
-        game[3][4].alive = true;
-        game[2][3].alive = true;
-        game[2][5].alive = false;
+        game[2][4].setAlive(false);
+        game[1][4].setAlive(true);
+        game[3][4].setAlive(true);
+        game[2][3].setAlive(true);
+        game[2][5].setAlive(false);
         game[2][4].getNearbyLiving();
         game[2][4].updateState();
 

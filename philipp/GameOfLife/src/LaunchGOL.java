@@ -55,12 +55,12 @@ public class LaunchGOL extends Application {
                 case RIGHT:
                     GameOfLife.getInstance().nextIteration();
                     canvas.drawLivingCells();
-                    canvas.drawGrid();
+                   // canvas.drawGrid();
                     break;
                 case LEFT:
                     GameOfLife.getInstance().previousIteration();
                     canvas.drawLivingCells();
-                    canvas.drawGrid();
+                  //  canvas.drawGrid();
                     break;
             }
         });
@@ -91,11 +91,10 @@ public class LaunchGOL extends Application {
             int rows = Integer.parseInt(x.get());
             int columns = Integer.parseInt(y.get());
             GameOfLife.getInstance().setGameField(rows, columns);
-            GameOfLifeCell[][] gf = GameOfLife.getInstance().getGameField();
+            GameOfLifeCell[][] gf = GameOfLife.getGameField();
             for (int row = 0; row < gf.length; row++) {
                 for (int column = 0; column < gf[row].length; column++) {
                     gf[row][column] = new GameOfLifeCell(row, column);
-                    gf[row][column].alive = false;
                 }
             }
             Alert confirmValues = new Alert(Alert.AlertType.INFORMATION);

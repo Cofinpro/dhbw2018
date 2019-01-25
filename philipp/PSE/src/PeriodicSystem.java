@@ -5,19 +5,16 @@ import java.io.IOException;
 
 public final class PeriodicSystem {
 
-    private static PeriodicSystem instance = new PeriodicSystem();
+    private static PeriodicSystem instance;
 
     private ChemicalElement[][] pse = new ChemicalElement[7][18];
+    private ChemicalElement[] pseNr = new ChemicalElement[120];
 
     private PeriodicSystem() {
         readCSV();
     }
 
-    private void readInElements(ChemicalElement chemicalElement) {
-        pse[chemicalElement.period][chemicalElement.group] = chemicalElement;
-    }
-
-    private ChemicalElement getElementByPosition(int period, int group) {
+    public ChemicalElement getElementByPosition(int period, int group) {
         if (period < 1 || period > 7 || group < 1 || group > 18)
             throw new IndexOutOfBoundsException();
         ChemicalElement pickedElement = pse[period][group];
@@ -26,16 +23,18 @@ public final class PeriodicSystem {
         return pickedElement;
     }
 
-    private void printAll(PeriodicSystem periodicSystem) {
-        for (int countPeriod = 0; countPeriod < pse.length; countPeriod++) {
-            for (int countGroup = 0; countGroup < pse[countPeriod].length; countGroup++)
-                System.out.print(pse[countPeriod][countGroup]);
-        }
+    public ChemicalElement getElementByAtomicNumber(int atomicNumber){
+        if (atomicNumber < 1 || atomicNumber > pseNr.length)
+            throw new IndexOutOfBoundsException();
+        ChemicalElement pickedElement = pseNr[atomicNumber];
+        if (pickedElement == null)
+            throw new IllegalArgumentException("This element doesn't exist");
+        return pickedElement;
     }
 
     private void readCSV() {
         try {
-            File csvElements = new File("C://Users/phmayer/IdeaProjects/dhbw2018/philipp/PSE/elements.csv");
+            File csvElements = new File("philipp\\PSE\\res\\elements.csv");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(csvElements));
 
             String line;
@@ -51,10 +50,9 @@ public final class PeriodicSystem {
 
                 ChemicalElement chemicalElement = new ChemicalElement(atomicNumber, period, group, symbol, name);
                 pse[period - 1][group - 1] = chemicalElement;
+                pseNr[atomicNumber] = chemicalElement;
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -73,6 +71,8 @@ public final class PeriodicSystem {
     }
 
     public static PeriodicSystem getInstance() {
+        if(instance == null)
+            instance = new PeriodicSystem();
         return instance;
     }
 
