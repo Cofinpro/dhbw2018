@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -14,13 +15,14 @@
         <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/userIcon.png" />
       </image>
     </ImageView>
-    <TextField fx:id="usernameTextField" disable="true" layoutX="117.0" layoutY="15.0" prefHeight="43.0" prefWidth="159.0" />
-    <TextField fx:id="fullnameTextField" disable="true" layoutX="117.0" layoutY="60.0" prefHeight="43.0" prefWidth="160.0" />
-    <ImageView disable="true" fitHeight="89.34999989340383" fitWidth="170.1904754638672" layoutX="631.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+    <TextField id="usernameTextField" fx:id="fullnameTextField" disable="true" layoutX="164.0" layoutY="15.0" prefHeight="43.0" prefWidth="160.0" />
+    <TextField id="fullnameTextField" fx:id="usernameTextField" disable="true" layoutX="164.0" layoutY="60.0" prefHeight="43.0" prefWidth="160.0" />
+    <TextField id="balanceTextField" fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" layoutX="408.0" layoutY="15.0" prefHeight="90.0" prefWidth="303.5" />
+    <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="711.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/euroIcon.png" />
       </image>
     </ImageView>
-    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="342.0" layoutY="15.0" prefHeight="89.35000610351562" prefWidth="289.0" />
+    <PieChart id="PieChart" layoutX="555.0" layoutY="118.0" prefHeight="216.0" prefWidth="246.0" />
   </children>
 </AnchorPane>
