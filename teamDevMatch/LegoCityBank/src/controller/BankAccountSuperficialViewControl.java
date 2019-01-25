@@ -9,4 +9,6 @@ public class BankAccountSuperficialViewControl {
     @FXML private TextField accountNumberTextField;
     @FXML private TextField accountTypeTextField;
 
+    @FXML
+
 }
