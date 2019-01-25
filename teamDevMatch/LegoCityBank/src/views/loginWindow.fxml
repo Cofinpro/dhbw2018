@@ -11,7 +11,11 @@
   <children>
     <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" layoutX="200.0" layoutY="112.0" prefHeight="62.0" prefWidth="200.0" promptText="username" text="" />
     <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="174.0" prefHeight="62.0" prefWidth="200.0" promptText="password" />
-    <Button fx:id="loginButton" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Sign in" textFill="#330000" textOverrun="ELLIPSIS" />
-    <ImageView fitHeight="118.5" fitWidth="158.0" layoutX="13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="loginButton" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Sign in" textFill="#330000" textOverrun="ELLIPSIS" />
+    <ImageView fitHeight="118.5" fitWidth="158.0" layoutX="13.0" layoutY="7.0" onMouseClicked="#onLoginRequested" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/loginPicture.png" />
+      </image>
+    </ImageView>
   </children>
 </AnchorPane>
