@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import controls.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ChemicalElementController">
+   <children>
+      <TextArea fx:id="outputTextView" editable="false" focusTraversable="false" prefHeight="429.0" prefWidth="793.0" text="Laden....&#10;" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <PeriodPicker fx:id="periodPicker" prefHeight="100" prefWidth="9999" />
+            <GroupPicker fx:id="groupPicker" prefHeight="100" prefWidth="9999" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
