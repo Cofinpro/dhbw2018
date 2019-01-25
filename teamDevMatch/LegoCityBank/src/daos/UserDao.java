@@ -37,6 +37,10 @@ public class UserDao {
         throw new UserNotFoundException(userName);
     }
 
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
     public void logUserIn(User user) {
         if (!users.contains(user)) {
             throw new IllegalArgumentException();
