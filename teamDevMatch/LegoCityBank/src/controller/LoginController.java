@@ -12,6 +12,7 @@ public class LoginController {
 
     private UserDao userDao;
     @FXML private TextField userNameTextField;
+    @FXML private TextField passwordTextField;
 
     @FXML
     public void initialize() {
@@ -20,6 +21,13 @@ public class LoginController {
 
 
     public void onLoginRequested(ActionEvent actionEvent) {
-        User user = UserDao.getUserByUserName(userNameTextField.getText());
+        User user = userDao.getUserByUserName(userNameTextField.getText());
+        String enteredPassword = passwordTextField.getText();
+        boolean isLoginSuccessful = user.tryLogIn(enteredPassword);
+        if (isLoginSuccessful) {
+
+        } else {
+
+        }
     }
 }

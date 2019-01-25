@@ -1,5 +1,6 @@
 package daos;
 
+import exceptions.UserNotFoundException;
 import models.Customer;
 import models.User;
 
@@ -7,7 +8,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class UserDao {
     private static UserDao ourInstance = new UserDao();
@@ -15,9 +19,10 @@ public class UserDao {
         return ourInstance;
     }
 
-    private Set<User> users;
+    private List<User> users;
 
     private UserDao() {
+        users = new ArrayList<>();
         readUsersFromCSV();
     }
 
@@ -27,7 +32,7 @@ public class UserDao {
                 return user;
             }
         }
-        throw new
+        throw new UserNotFoundException(userName);
     }
 
     private void readUsersFromCSV() {
