@@ -11,7 +11,7 @@
   <children>
     <ImageView disable="true" fitHeight="103.0" fitWidth="137.33333333333331" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/userIcon.png" />
+        <Image url="@images/userIcon.png" />
       </image>
     </ImageView>
     <TextField id="usernameTextField" fx:id="fullnameTextField" alignment="CENTER" disable="true" layoutX="164.0" layoutY="15.0" opacity="1.0" prefHeight="43.0" prefWidth="160.0" text="voller name" />
