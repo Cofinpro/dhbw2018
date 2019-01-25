@@ -11,7 +11,7 @@
   <children>
     <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="607.0" layoutY="461.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/trashCanIcon.png" />
+        <Image url="@images/trashCanIcon.png" />
       </image>
     </ImageView>
     <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="137.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" />
