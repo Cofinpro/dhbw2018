@@ -2,7 +2,6 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -12,17 +11,16 @@
   <children>
     <ImageView disable="true" fitHeight="103.0" fitWidth="137.33333333333331" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/userIcon.png" />
+        <Image url="@images/userIcon.png" />
       </image>
     </ImageView>
-    <TextField id="usernameTextField" fx:id="fullnameTextField" disable="true" layoutX="164.0" layoutY="15.0" prefHeight="43.0" prefWidth="160.0" />
-    <TextField id="fullnameTextField" fx:id="usernameTextField" disable="true" layoutX="164.0" layoutY="60.0" prefHeight="43.0" prefWidth="160.0" />
-    <TextField id="balanceTextField" fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" layoutX="408.0" layoutY="15.0" prefHeight="90.0" prefWidth="303.5" />
+    <TextField id="usernameTextField" fx:id="fullnameTextField" alignment="CENTER" disable="true" layoutX="164.0" layoutY="15.0" opacity="1.0" prefHeight="43.0" prefWidth="160.0" text="voller name" />
+    <TextField id="fullnameTextField" fx:id="usernameTextField" alignment="CENTER" disable="true" layoutX="164.0" layoutY="60.0" opacity="1.0" prefHeight="43.0" prefWidth="160.0" text="benutzername" />
+    <TextField id="balanceTextField" fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" layoutX="408.0" layoutY="15.0" opacity="1.0" prefHeight="90.0" prefWidth="303.5" />
     <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="711.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/euroIcon.png" />
       </image>
     </ImageView>
-    <PieChart id="PieChart" layoutX="555.0" layoutY="118.0" prefHeight="216.0" prefWidth="246.0" />
   </children>
 </AnchorPane>

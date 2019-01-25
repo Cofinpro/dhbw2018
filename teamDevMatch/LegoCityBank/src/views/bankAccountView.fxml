@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="696.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="607.0" layoutY="461.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/trashCanIcon.png" />
+      </image>
+    </ImageView>
+    <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="137.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" />
+    <TextField id="amountInvestment" fx:id="amountInvestmentTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="234.0" prefHeight="82.0" prefWidth="311.0" text="summe">
+      <contextMenu>
+        <ContextMenu>
+          <items>
+            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+          </items>
+        </ContextMenu>
+      </contextMenu>
+    </TextField>
+    <TextField fx:id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="34.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" />
+    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="34.0" prefHeight="82.0" prefWidth="311.0" text="nummer" />
+    <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="234.0" prefHeight="82.0" prefWidth="311.0" text="Einzahlbetrag" />
+    <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="137.0" prefHeight="82.0" prefWidth="311.0" text="datum" />
+    <TextField alignment="CENTER" layoutX="14.0" layoutY="346.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" />
+    <TextField alignment="CENTER" layoutX="371.0" layoutY="346.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
+  </children>
+</AnchorPane>
