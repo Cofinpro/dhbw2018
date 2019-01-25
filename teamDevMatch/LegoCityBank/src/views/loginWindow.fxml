@@ -7,15 +7,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" layoutX="200.0" layoutY="112.0" prefHeight="62.0" prefWidth="200.0" promptText="username" text="" />
     <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="174.0" prefHeight="62.0" prefWidth="200.0" promptText="password" />
-    <Button fx:id="loginButton" onMouseClicked="#onLoginRequested" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Sign in" textFill="#330000" textOverrun="ELLIPSIS" />
-    <ImageView disable="true" fitHeight="118.5" fitWidth="158.0" layoutX="13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+    <Button fx:id="loginButton" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" />
+    <ImageView disable="true" fitHeight="151.60000092346795" fitWidth="137.4018096923828" layoutX="13.0" layoutY="7.0" onMouseClicked="#onLoginRequested" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/loginIcon.png" />
       </image>
     </ImageView>
+    <Button layoutX="200.0" layoutY="318.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" />
   </children>
 </AnchorPane>
