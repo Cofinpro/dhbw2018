@@ -6,6 +6,10 @@ public class PremiumAccount extends BankAccount {
     private static final double monthlyFeesPercentage = 0.005; //in decimal
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
+    public PremiumAccount(String bankAccountNumber) {
+        super(bankAccountNumber);
+    }
+
 
     @Override
     public double getMonthlyInterest() {

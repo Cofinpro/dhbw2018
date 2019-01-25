@@ -21,7 +21,6 @@ public class Customer extends User {
         return bankAccountSet;
     }
 
-
     public void addBankAccount(BankAccount newBankAccount) {
         bankAccountSet.add(newBankAccount);
     }

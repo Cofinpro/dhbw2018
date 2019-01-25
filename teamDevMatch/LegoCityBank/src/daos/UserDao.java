@@ -1,17 +1,17 @@
 package daos;
 
 import exceptions.UserNotFoundException;
+import helper.CSVHelper;
 import models.Customer;
+import models.GiroAccount;
 import models.User;
+import views.CustomMain;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class UserDao {
     private static UserDao ourInstance = new UserDao();
@@ -26,6 +26,27 @@ public class UserDao {
     private UserDao() {
         users = new ArrayList<>();
         readUsersFromCSV();
+        readBankAccountsFromCSV();
+    }
+
+    private void readBankAccountsFromCSV() {
+        readGiroAccountsFromCSV();
+    }
+
+    private void readGiroAccountsFromCSV() {
+        CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
+        Collection<String[]> giroAccountRepresentations = helper.readCSV();
+        for (String[] giroAccountRepresentation : giroAccountRepresentations) {
+            String userName = giroAccountRepresentation[0];
+            String accountNumber = giroAccountRepresentation[1];
+            User user = getUserByUserName(userName);
+            GiroAccount giroAccount = new GiroAccount(accountNumber);
+            Customer customer = (Customer) user;
+            if (customer == null) {
+                throw new IllegalArgumentException("The csv is wrong. It accounts an account to an user who isn't a customer");
+            }
+            customer.addBankAccount(giroAccount);
+        }
     }
 
     public User getUserByUserName(String userName) {
@@ -53,33 +74,16 @@ public class UserDao {
     }
 
     private void readCustomersFromCSV() {
-        String path = "resources\\customers.csv";
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(path));
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                String username = parts[0];
-                String firstName = parts[1];
-                String lastName = parts[2];
-                String password = parts[3];
-                String customerNumber = parts[4];
-                User user = new Customer(username, password, firstName, lastName, customerNumber);
-                users.add(user);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        CSVHelper helper = new CSVHelper("resources\\customers.csv");
+        Collection<String[]> customerRepresentations = helper.readCSV();
+        for (String[] customerRepresentation : customerRepresentations) {
+            String username = customerRepresentation[0];
+            String firstName = customerRepresentation[1];
+            String lastName = customerRepresentation[2];
+            String password = customerRepresentation[3];
+            String customerNumber = customerRepresentation[4];
+            User user = new Customer(username, password, firstName, lastName, customerNumber);
+            users.add(user);
         }
     }
 }

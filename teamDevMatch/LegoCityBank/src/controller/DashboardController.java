@@ -10,6 +10,7 @@ public class DashboardController {
 
     @FXML private TextField usernameTextField;
     @FXML private TextField fullnameTextField;
+    @FXML private TextField totalBalanceTextField;
 
     private UserDao userDao;
     private User loggedInUser;
@@ -20,7 +21,7 @@ public class DashboardController {
         loggedInUser = userDao.getLoggedInUser();
         usernameTextField.setText(loggedInUser.getUserName());
         fullnameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
-
+        totalBalanceTextField.setText("0.00");
     }
 
 }

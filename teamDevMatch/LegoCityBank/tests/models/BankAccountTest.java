@@ -1,16 +1,14 @@
 package models;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 class BankAccountTest {
 
     Customer customer = new Customer("Phape", "12345678", "Philipp",
             "Mayer", "7");
-    GiroAccount account = new GiroAccount();
+    GiroAccount account = new GiroAccount("1043141");
 
     void setUp() {
         customer.addBankAccount(account);

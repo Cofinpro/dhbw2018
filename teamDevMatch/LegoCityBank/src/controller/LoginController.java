@@ -32,7 +32,6 @@ public class LoginController {
 
     @FXML
     public void onLoginRequested(Event Event) throws IOException {
-
         String userName = usernameTextField.getText();
         try {
             User user = userDao.getUserByUserName(userName);
