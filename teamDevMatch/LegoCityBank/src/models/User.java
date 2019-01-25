@@ -1,17 +1,28 @@
 package models;
 
 public class User {
+    private String userName;
+    private String password;
+    private String firstName;
+    private String lastName;
 
+    public User(String userName, String password, String firstName, String lastName) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     public boolean tryLogIn(String inputPassword) {
-        return  false;
+
+        return false;
     }
 }
