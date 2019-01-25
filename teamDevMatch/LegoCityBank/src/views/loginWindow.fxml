@@ -14,7 +14,7 @@
     <Button fx:id="loginButton" layoutX="200.0" layoutY="254.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Sign in" textFill="#330000" textOverrun="ELLIPSIS" />
     <ImageView fitHeight="118.5" fitWidth="158.0" layoutX="13.0" layoutY="7.0" onMouseClicked="#onLoginRequested" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@images/loginPicture.png" />
+        <Image url="@images/loginIcon.png" />
       </image>
     </ImageView>
   </children>
