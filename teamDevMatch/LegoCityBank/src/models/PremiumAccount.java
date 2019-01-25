@@ -1,7 +1,6 @@
 package models;
 
-public class GiroAccount extends BankAccount {
-
+public class PremiumAccount extends BankAccount {
     @Override
     public void processMonthlyInterest() {
 
@@ -16,5 +15,4 @@ public class GiroAccount extends BankAccount {
     public String getBankAccountNumber() {
         return null;
     }
-
 }

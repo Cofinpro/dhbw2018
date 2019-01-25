@@ -2,16 +2,19 @@ package models;
 
 public abstract class BankAccount implements Comparable<BankAccount> {
 
-    protected String bankAccountNumber;
-    protected double balance; //de: Kontostand
+    private String bankAccountNumber;
+    private double balance; //de: Kontostand
 
-    public void deposit(){
+    public void deposit(double depositAmount){
+        this.balance += depositAmount;
+    }
+    public void disburse(double disburseAmount){
+        this.balance -= disburseAmount;
+    }
+
+    public void processMonthlyInterest(){
 
     }
-    public void disburse(){
-
-    }
-    public abstract void processMonthlyInterest();
     public abstract void processMonthlyFees();
     public abstract String getBankAccountNumber();
 
@@ -31,5 +34,6 @@ public abstract class BankAccount implements Comparable<BankAccount> {
                     return -1;
             }
         }
+        return 0;
     }
 }
