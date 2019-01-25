@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PSViewController">
+   <children>
+      <VBox layoutY="27.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <TextField fx:id="field" alignment="CENTER" editable="false" onAction="#handleTextOut" prefHeight="153.0" prefWidth="500.0" />
+            <HBox alignment="BOTTOM_CENTER" layoutX="-3.0" layoutY="269.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button fx:id="prevElement" layoutX="56.0" layoutY="283.0" mnemonicParsing="false" onAction="#handlePrev" text="previous Chemical Element" />
+                  <Button fx:id="nextElement" layoutX="282.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleNext" text="next Chemical Element" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
