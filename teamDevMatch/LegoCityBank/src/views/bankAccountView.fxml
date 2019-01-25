@@ -30,5 +30,7 @@
     <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="137.0" prefHeight="82.0" prefWidth="311.0" text="datum" />
     <TextField alignment="CENTER" layoutX="14.0" layoutY="346.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" />
     <TextField alignment="CENTER" layoutX="371.0" layoutY="346.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
+    <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
+    <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
   </children>
 </AnchorPane>
