@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="815.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <ImageView disable="true" fitHeight="103.0" fitWidth="137.33333333333331" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="file:/C:/Users/JTrautmann/IdeaProjects/dhbw2018/teamDevMatch/LegoCityBank/src/views/images/userIcon.png" />
+      </image>
+    </ImageView>
+    <TextField fx:id="usernameTextField" disable="true" layoutX="117.0" layoutY="15.0" prefHeight="43.0" prefWidth="159.0" />
+    <TextField fx:id="fullnameTextField" disable="true" layoutX="117.0" layoutY="60.0" prefHeight="43.0" prefWidth="160.0" />
+    <ImageView disable="true" fitHeight="89.34999989340383" fitWidth="170.1904754638672" layoutX="631.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/euroIcon.png" />
+      </image>
+    </ImageView>
+    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="342.0" layoutY="15.0" prefHeight="89.35000610351562" prefWidth="289.0" />
+  </children>
+</AnchorPane>
