@@ -13,6 +13,9 @@ public class User implements Comparable<User> {
         this.lastName = lastName;
     }
 
+    public String getUserName(){
+        return userName;
+    }
     public String getFirstName() {
         return firstName;
     }

@@ -1,18 +1,23 @@
 package models;
 
 public class BankBook extends BankAccount {
-    @Override
-    public void processMonthlyInterest() {
 
+    private static final double monthlyInterest = 0.01; //in decimal
+    private static final double monthlyFeesPercentage = 0.0; //in decimal
+    private static final double monthlyFees = 0.0; //in €
+
+    @Override
+    public double getMonthlyInterest() {
+        return 0;
     }
 
     @Override
-    public void processMonthlyFees() {
-
+    public double getMonthlyFeesPercentage() {
+        return 0;
     }
 
     @Override
-    public String getBankAccountNumber() {
-        return null;
+    public double getMonthlyFeesAbsolute() {
+        return 0;
     }
 }

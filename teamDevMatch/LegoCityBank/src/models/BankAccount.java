@@ -15,8 +15,28 @@ public abstract class BankAccount implements Comparable<BankAccount> {
     public void processMonthlyInterest(){
 
     }
-    public abstract void processMonthlyFees();
-    public abstract String getBankAccountNumber();
+    public void processMonthlyFees(){
+
+    }
+    public String getBankAccountNumber(){
+        return this.bankAccountNumber;
+    }
+
+    /**
+     * gets monthly interest of the account type
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyInterest();
+    /**
+     * gets monthly fees of the account type expressed as a percentage
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyFeesPercentage();
+    /**
+     * gets monthly interest of the account type
+     * @return monthly interest as decimal [double]
+     */
+    public abstract double getMonthlyFeesAbsolute();
 
     @Override
     public int compareTo(BankAccount otherBankAccount) {
