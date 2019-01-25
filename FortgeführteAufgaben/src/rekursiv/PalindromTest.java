@@ -12,6 +12,9 @@ public class PalindromTest {
         String palindromString = "OTTo";
         assertEquals(Palindrom.palindromLoop(palindromString.toLowerCase()),true);
 
+        String leererString = "";
+        assertEquals(Palindrom.palindromLoop(leererString.toLowerCase()),true);
+
         String nonPalindrom = "dsofhgdsfg";
         assertEquals(Palindrom.palindromLoop(nonPalindrom.toLowerCase()),false);
 

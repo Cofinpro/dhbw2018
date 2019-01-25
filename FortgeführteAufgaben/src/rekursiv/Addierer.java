@@ -13,12 +13,12 @@ public class Addierer {
             return null;
         }
         if (y == null && x != null){
-            return x;
+            return x.doubleValue();
         }
         if (y != null && x ==null){
-            return y;
+            return y.doubleValue();
         }
-        return x+y;
+        return x.doubleValue()+y.doubleValue();
     }
     public static double addRekursiv(double x, double y){
         if (y == 0){
