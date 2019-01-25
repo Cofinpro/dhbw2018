@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="686.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <TextField alignment="CENTER" disable="true" layoutX="199.0" layoutY="15.0" prefHeight="87.0" prefWidth="473.0" promptText="Vollständiger Name" />
+    <TextField disable="true" layoutX="199.0" layoutY="115.0" prefHeight="98.0" prefWidth="473.0" promptText="Nutzername" />
+    <TextField disable="true" layoutX="199.0" layoutY="226.0" prefHeight="98.0" prefWidth="473.0" promptText="Passwort" />
+    <TextField disable="true" layoutX="199.0" layoutY="345.0" prefHeight="98.0" prefWidth="473.0" promptText="Passwort bestätigen" />
+    <ImageView fitHeight="114.99998474121094" fitWidth="219.74520226393193" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/registerIcon.jpg" />
+      </image>
+    </ImageView>
+  </children>
+</AnchorPane>
