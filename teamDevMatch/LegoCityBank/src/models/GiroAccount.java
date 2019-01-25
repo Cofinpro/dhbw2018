@@ -6,6 +6,10 @@ public class GiroAccount extends BankAccount {
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 5.0; //in €
 
+    public GiroAccount(String bankAccountNumber) {
+        super(bankAccountNumber);
+    }
+
 
     @Override
     public double getMonthlyInterest() {
