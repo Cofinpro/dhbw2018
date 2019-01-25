@@ -12,6 +12,10 @@ public abstract class BankAccount implements Comparable<BankAccount> {
         this.balance -= disburseAmount;
     }
 
+    public BankAccount(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
+    }
+
     public void processMonthlyInterest(int months){
         for (int m = 0; m < months; m++){
             balance += balance*this.getMonthlyInterest();

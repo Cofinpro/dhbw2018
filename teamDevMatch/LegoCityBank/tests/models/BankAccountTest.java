@@ -26,11 +26,12 @@ class BankAccountTest {
     void testDisburse() {
         account.disburse(250.0);
 
-        assertEquals(250.0, account.getBalance());
+        assertEquals(-250.0, account.getBalance());
     }
 
     @Test
     void testProcessMonthlyInterest() {
+
     }
 
     @Test
