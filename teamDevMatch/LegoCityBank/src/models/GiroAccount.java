@@ -9,16 +9,16 @@ public class GiroAccount extends BankAccount {
 
     @Override
     public double getMonthlyInterest() {
-        return 0;
+        return monthlyInterest;
     }
 
     @Override
     public double getMonthlyFeesPercentage() {
-        return 0;
+        return monthlyFeesPercentage;
     }
 
     @Override
     public double getMonthlyFeesAbsolute() {
-        return 0;
+        return monthlyFeesAbsolute;
     }
 }

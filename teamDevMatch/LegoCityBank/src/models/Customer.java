@@ -23,8 +23,10 @@ public class Customer extends User {
 
 
     public void addBankAccount(BankAccount newBankAccount) {
-
+        bankAccountSet.add(newBankAccount);
     }
 
-    public void deleteBankAccount(BankAccount bankAccount) {}
+    public void deleteBankAccount(BankAccount bankAccount) {
+        bankAccountSet.remove(bankAccount);
+    }
 }

@@ -4,20 +4,20 @@ public class BankBook extends BankAccount {
 
     private static final double monthlyInterest = 0.01; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
-    private static final double monthlyFees = 0.0; //in €
+    private static final double monthlyFeesAbsolute = 0.0; //in €
 
     @Override
     public double getMonthlyInterest() {
-        return 0;
+        return monthlyInterest;
     }
 
     @Override
     public double getMonthlyFeesPercentage() {
-        return 0;
+        return monthlyFeesPercentage;
     }
 
     @Override
     public double getMonthlyFeesAbsolute() {
-        return 0;
+        return monthlyFeesAbsolute;
     }
 }
