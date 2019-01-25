@@ -15,11 +15,13 @@ import java.util.TreeSet;
 
 public class UserDao {
     private static UserDao ourInstance = new UserDao();
+
     public static UserDao getInstance() {
         return ourInstance;
     }
 
     private List<User> users;
+    private User loggedInUser;
 
     private UserDao() {
         users = new ArrayList<>();
@@ -33,6 +35,13 @@ public class UserDao {
             }
         }
         throw new UserNotFoundException(userName);
+    }
+
+    public void logUserIn(User user) {
+        if (!users.contains(user)) {
+            throw new IllegalArgumentException();
+        }
+        loggedInUser = user;
     }
 
     private void readUsersFromCSV() {

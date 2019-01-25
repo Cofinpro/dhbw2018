@@ -16,6 +16,7 @@ public class User implements Comparable<User> {
     public String getUserName(){
         return userName;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -25,8 +26,7 @@ public class User implements Comparable<User> {
     }
 
     public boolean tryLogIn(String inputPassword) {
-
-        return false;
+        return inputPassword.equals(this.password);
     }
 
     @Override
