@@ -15,6 +15,10 @@ public class GameSituation {
         }
     }
 
+    /**
+     * creates a whole copy
+     * @param cells the cells that will be copied
+     */
     private GameSituation(GameOfLifeCell[][] cells) {
         this.cells = new GameOfLifeCell[cells.length][cells[0].length];
         for (int i = 0; i < cells.length; i++) {
@@ -24,41 +28,61 @@ public class GameSituation {
         }
     }
 
-    public GameSituation next() {
+    /**
+     * creates a whole copy
+     * @param gameSituationToCopy the copied Game Situation
+     */
+    private GameSituation(GameSituation gameSituationToCopy) {
+        GameOfLifeCell[][] cells = gameSituationToCopy.getCells();
+        this.cells = new GameOfLifeCell[cells.length][cells[0].length];
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                this.cells[i][j] = new GameOfLifeCell(cells[i][j].isAlive());
+            }
+        }
+    }
+
+    public GameSituation getNextGameSituation() {
         GameSituation newSituation = new GameSituation(cells);
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                newSituation.cells[i][j].update(getSurroundingCells(i,j));
+                newSituation.cells[i][j].liveOrDie(getSurroundingCells(i,j));
             }
         }
         return newSituation;
     }
 
-    private Iterable<GameOfLifeCell> getSurroundingCells(int i, int j) {
+    /**
+     * Gets all cells that surround a cell with a specific row and column
+     * @param row row of the surrounded cell
+     * @param column column of the surrounded cell
+     * @return all cells surrounding the specific cell, no matter alive or dead
+     */
+    private Iterable<GameOfLifeCell> getSurroundingCells(int row, int column) {
         ArrayList<GameOfLifeCell> surroundingCells = new ArrayList<>();
-        if ((i > 0) && (j > 0)) {
-            surroundingCells.add(cells[i-1][j-1]);
+        if ((row > 0) && (column > 0)) {
+            surroundingCells.add(cells[row-1][column-1]);
         }
-        if (j > 0) {
-            surroundingCells.add(cells[i][j-1]);
+        if (column > 0) {
+            surroundingCells.add(cells[row][column-1]);
         }
-        if ((i < cells.length-1) && (j > 0)) {
-            surroundingCells.add(cells[i+1][j-1]);
+        if ((row < cells.length-1) && (column > 0)) {
+            surroundingCells.add(cells[row+1][column-1]);
         }
-        if ((i < cells.length-1)) {
-            surroundingCells.add(cells[i+1][j]);
+        if ((row < cells.length-1)) {
+            surroundingCells.add(cells[row+1][column]);
         }
-        if ((i < cells.length-1) && (j < cells[i].length-1)) {
-            surroundingCells.add(cells[i+1][j+1]);
+        if ((row < cells.length-1) && (column < cells[row].length-1)) {
+            surroundingCells.add(cells[row+1][column+1]);
         }
-        if ((j < cells[i].length-1)) {
-            surroundingCells.add(cells[i][j+1]);
+        if ((column < cells[row].length-1)) {
+            surroundingCells.add(cells[row][column+1]);
         }
-        if ((j < cells[i].length-1) && (i > 0)) {
-            surroundingCells.add(cells[i-1][j+1]);
+        if ((column < cells[row].length-1) && (row > 0)) {
+            surroundingCells.add(cells[row-1][column+1]);
         }
-        if ((i > 0)) {
-            surroundingCells.add(cells[i-1][j]);
+        if ((row > 0)) {
+            surroundingCells.add(cells[row-1][column]);
         }
         return  surroundingCells;
     }
@@ -75,11 +99,11 @@ public class GameSituation {
         return cells;
     }
 
-    void switchCell(int row, int column) {
+    public void switchCell(int row, int column) {
         cells[row][column].switchCell();
     }
 
-    public boolean isCellAlive(int row, int column) {
+    public boolean isCellAliveAt(int row, int column) {
         return cells[row][column].isAlive();
     }
 
@@ -88,7 +112,7 @@ public class GameSituation {
         StringBuilder result = new StringBuilder("");
         for (int row = 0; row < getRows(); row++) {
             for (int column = 0; column < getColumns(); column++) {
-                if (isCellAlive(row, column)) {
+                if (isCellAliveAt(row, column)) {
                     result.append("x");
                 } else {
                     result.append(" ");
@@ -105,15 +129,12 @@ public class GameSituation {
             return super.equals(obj);
         }
         GameSituation other = (GameSituation) obj;
-        if (getRows() != other.getRows()) {
-            return false;
-        }
-        if (getColumns() != other.getColumns()) {
+        if (getRows() != other.getRows() || getColumns() != other.getColumns()) {
             return false;
         }
         for (int row  = 0; row < getRows(); row++) {
             for (int column = 0; column < getColumns(); column++) {
-                if (isCellAlive(row, column) != other.isCellAlive(row, column)) {
+                if (isCellAliveAt(row, column) != other.isCellAliveAt(row, column)) {
                     return false;
                 }
             }
@@ -128,7 +149,7 @@ public class GameSituation {
             this.alive = alive;
         }
 
-        public boolean isAlive() {
+        private boolean isAlive() {
             return alive;
         }
 
@@ -140,7 +161,7 @@ public class GameSituation {
             alive = true;
         }
 
-        private void update(Iterable<GameOfLifeCell> surroundingCells) {
+        private void liveOrDie(Iterable<GameOfLifeCell> surroundingCells) {
             //this cell is surrounded by how many living cells?
             int surroundingAliveCells = 0;
             for (GameOfLifeCell surroundingCell : surroundingCells) {

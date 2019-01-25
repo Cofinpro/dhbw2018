@@ -1,7 +1,9 @@
 package models;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class GameSituationTest {
 
@@ -19,7 +21,6 @@ class GameSituationTest {
         gameSituation.switchCell(8,6);
         gameSituation.switchCell(8,8);
         gameSituation.switchCell(9,7);
-
         GameSituation expected = new GameSituation(15, 15);
         expected.switchCell(1,7);
         expected.switchCell(2,6);
@@ -48,38 +49,38 @@ class GameSituationTest {
 
         //16 Schritte
         for (int i = 0; i < 16; i++) {
-            gameSituation = gameSituation.next();
+            gameSituation = gameSituation.getNextGameSituation();
         }
         assertEquals(expected, gameSituation);
     }
 
     @Test
     void equals() {
-        GameSituation one = new GameSituation(15, 15);
-        one.switchCell(7,7);
-        one.switchCell(9,10);
+        GameSituation original = new GameSituation(15, 15);
+        original.switchCell(7,7);
+        original.switchCell(9,10);
 
-        GameSituation other = new GameSituation(15, 15);
-        other.switchCell(7, 7);
-        other.switchCell(9, 10);
-        assertEquals(one, other);
+        GameSituation same = new GameSituation(15, 15);
+        same.switchCell(7, 7);
+        same.switchCell(9, 10);
+        assertEquals(original, same);
 
-        Object obj = other;
-        assertEquals(one, obj);
+        Object sameAsObject = same;
+        assertEquals(original, sameAsObject); //same as object is still the same
 
-        other = new GameSituation(16, 15);
-        other.switchCell(7, 7);
-        other.switchCell(9, 10);
-        assertNotEquals(one, other);
-        other = new GameSituation(15, 16);
-        other.switchCell(7, 7);
-        other.switchCell(9, 10);
-        assertNotEquals(one, other);
+        GameSituation slightlyDifferent = new GameSituation(16, 15);
+        slightlyDifferent.switchCell(7, 7);
+        slightlyDifferent.switchCell(9, 10);
+        assertNotEquals(original, slightlyDifferent);
+        slightlyDifferent = new GameSituation(15, 16);
+        slightlyDifferent.switchCell(7, 7);
+        slightlyDifferent.switchCell(9, 10);
+        assertNotEquals(original, slightlyDifferent);
 
-        other = new GameSituation(15, 15);
-        other.switchCell(7, 7);
-        other.switchCell(9, 10);
-        other.switchCell(14,14);
-        assertNotEquals(one, other);
+        slightlyDifferent = new GameSituation(15, 15);
+        slightlyDifferent.switchCell(7, 7);
+        slightlyDifferent.switchCell(9, 10);
+        slightlyDifferent.switchCell(14,14);
+        assertNotEquals(original, slightlyDifferent);
     }
 }

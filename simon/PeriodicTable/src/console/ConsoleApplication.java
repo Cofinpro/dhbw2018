@@ -1,5 +1,9 @@
+package console;
+
+import models.ChemicalElement;
+import models.PeriodicSystem;
+
 import java.util.Scanner;
-import java.util.SortedSet;
 
 public class ConsoleApplication {
     private static Scanner SCANNER = new Scanner(System.in);

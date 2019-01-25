@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseButton;
 import models.GameOfLife;
 import models.GameSituation;
 
@@ -9,34 +10,55 @@ public class GameOfLifeView extends Canvas {
     public GameOfLifeView() {
         widthProperty().addListener(e -> display());
         heightProperty().addListener(e -> display());
-        setOnMouseClicked(e -> {
+        setOnMousePressed(e -> {
             double x = e.getX();
             double y = e.getY();
-            switchCell(x, y);
+            int row = getRow(y);
+            int column = getColumn(x);
+            if (row >= 0 && column >= 0) {
+                GameOfLife.getInstance().switchCellAndDeletePreviousSituations(row, column);
+            }
             display();
+        });
+        setOnMouseDragged(e -> {
+            if (e.getButton() == MouseButton.PRIMARY) {
+                return; //left button not activated
+            }
+            int row = getRow(e.getY());
+            int column = getColumn(e.getX());
+            if (row >= 0 && column >= 0 && !GameOfLife.getInstance().isCellAliveAt(row, column)) {
+                GameOfLife.getInstance().switchCellAndDeletePreviousSituations(row, column);
+                display();
+            }
         });
     }
 
-    private void switchCell(double x, double y) {
+    private int getRow(double y) {
         GameSituation gameSituation = GameOfLife.getInstance().getCurrentGameSituation();
         int rows = gameSituation.getRows();
-        int columns = gameSituation.getColumns();
         double rowHeight = getHeight()/rows;
-        double columnWidth = getWidth()/columns;
-        for (int i = 0; i < rows; i++) {
-            if (y > rowHeight * i && y < rowHeight * (i+1)) {
-                for (int j = 0; j < columns; j++) {
-                    if (x > columnWidth * j && x < columnWidth * (j+1)) {
-                        GameOfLife.getInstance().switchCell(i, j);
-                    }
-                }
+        for (int row = 0; row < rows; row++) {
+            if (y > rowHeight * row && y < rowHeight * (row+1)) {
+                return row;
             }
         }
+        return -1; //row not found
+    }
+
+    private int getColumn(double x) {
+        GameSituation gameSituation = GameOfLife.getInstance().getCurrentGameSituation();
+        int columns = gameSituation.getColumns();
+        double columnWidth = getWidth()/columns;
+        for (int column = 0; column < columns; column++) {
+            if (x > columnWidth * column && x < columnWidth * (column + 1)) {
+                return column;
+            }
+        }
+        return -1; //column not found
     }
 
     public void display() {
         GameOfLife gameOfLife = GameOfLife.getInstance();
-        gameOfLife.setGameOfLifeView(this);
         GameSituation gameSituation = gameOfLife.getCurrentGameSituation();
         getGraphicsContext2D().clearRect(0,0, getWidth(), getHeight());
         display(gameSituation);
@@ -54,7 +76,7 @@ public class GameOfLifeView extends Canvas {
     private void drawCells(GameSituation gameSituation, double rowHeight, double columnWidth) {
         for (int row = 0; row < gameSituation.getRows(); row++) {
             for (int column = 0; column < gameSituation.getColumns(); column++) {
-                if (gameSituation.isCellAlive(row, column)) {
+                if (gameSituation.isCellAliveAt(row, column)) {
                     getGraphicsContext2D().fillRect(column * columnWidth, row * rowHeight, columnWidth, rowHeight);
                 }
             }

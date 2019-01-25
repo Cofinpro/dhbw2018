@@ -1,4 +1,8 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+package models;
+
+import exceptions.ChemicalElementNotFoundException;
+import exceptions.NotExistingGroupException;
+import exceptions.NotExistingPeriodException;
 
 import java.io.*;
 import java.util.*;
@@ -17,7 +21,7 @@ public class PeriodicSystem {
     }
 
     private void readInElements() {
-        String path = "C:\\Users\\SLammes\\IdeaProjects\\dhbw2018\\PeriodicTable\\src\\ps.csv";
+        String path = "resources\\ps.csv";
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(path));
@@ -52,15 +56,38 @@ public class PeriodicSystem {
         }
     }
 
+    public ChemicalElement getFirstChemicalElement() {
+        return chemicalElements[0][0];
+    }
+
+    public ChemicalElement getNextChemicalElement(ChemicalElement current) {
+        ChemicalElement next = null;
+        int group = current.getGroup();
+        int period = current.getPeriod();
+        while (period < 8 && group < 19) {
+            if (group < 18) {
+                group++;
+            } else if (period < 7) {
+                period++;
+                group = 1;
+            }
+            next = chemicalElements[period-1][group-1];
+            if (next != null) {
+                break;
+            }
+        }
+        return next;
+    }
+
     public ChemicalElement getChemicalElement(int period, int group) {
         if (period < 1 || period > 7) {
-            throw new IllegalArgumentException("The period should be between 1 and 7 but is " + period);
+            throw new NotExistingPeriodException(period);
         }
         if (group < 1 || group > 18) {
-            throw new IllegalArgumentException("The group should be between 1 and 18 but is " + group);
+            throw new NotExistingGroupException(group);
         }
-        if (chemicalElements[period-1][period-1] == null) {
-            throw new IllegalArgumentException("There is no element in group " + group + " and period " + period);
+        if (chemicalElements[period-1][group-1] == null) {
+            throw new ChemicalElementNotFoundException(period, group);
         }
         return chemicalElements[period-1][group-1];
     }

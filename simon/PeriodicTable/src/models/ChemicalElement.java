@@ -1,7 +1,8 @@
-import java.util.Set;
-import java.util.TreeSet;
+package models;
 
 public class ChemicalElement implements Comparable<ChemicalElement> {
+    public static final int MAX_PERIOD = 7;
+    public static final int MAX_GROUP = 18;
     private int atomicNumber;
     private String name;
     private String symbol;
