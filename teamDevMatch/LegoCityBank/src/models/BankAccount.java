@@ -27,6 +27,10 @@ public abstract class BankAccount implements Comparable<BankAccount> {
         return this.bankAccountNumber;
     }
 
+    public double getBalance() {
+        return this.balance;
+    }
+
     /**
      * gets monthly interest of the account type
      * @return monthly interest as decimal [double]
