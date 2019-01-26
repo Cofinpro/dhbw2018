@@ -1,8 +1,11 @@
+//##################################################################################
+//Please note that this is a Junit 5 Jupiter test. Please add Junit 5.3 to classpath
+//##################################################################################
 package models;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BankAccountTest {
 

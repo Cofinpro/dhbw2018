@@ -2,6 +2,7 @@ package models;
 
 public class GiroAccount extends BankAccount {
 
+    private static final String accountType = "GiroAccount";
     private static final double monthlyInterest = 0.0; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 5.0; //in €
@@ -10,6 +11,9 @@ public class GiroAccount extends BankAccount {
         super(bankAccountNumber);
     }
 
+    public String getAccountType() {
+        return accountType;
+    }
 
     @Override
     public double getMonthlyInterest() {
