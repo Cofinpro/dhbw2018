@@ -7,9 +7,12 @@ public class PremiumAccount extends BankAccount {
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
     public PremiumAccount(String bankAccountNumber) {
-        super(bankAccountNumber, "PremiumAccount");
+        super(bankAccountNumber);
     }
 
+    public static String getAccountType() {
+        return "PremiumAccount";
+    }
 
     @Override
     public double getMonthlyInterest() {

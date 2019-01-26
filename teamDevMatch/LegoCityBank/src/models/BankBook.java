@@ -7,8 +7,12 @@ public class BankBook extends BankAccount {
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
     public BankBook(String bankAccountNumber) {
-        super(bankAccountNumber, "BankBook");
+        super(bankAccountNumber);
     }
+    public static String getAccountType() {
+        return "BankBook";
+    }
+
 
     @Override
     public double getMonthlyInterest() {

@@ -6,7 +6,11 @@ public class MetalAccount extends BankAccount{
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
     public MetalAccount(String bankAccountNumber) {
-        super(bankAccountNumber, "MetalAccount");
+        super(bankAccountNumber);
+    }
+
+    public static String getAccountType() {
+        return "MetalAccount";
     }
 
     @Override
