@@ -4,6 +4,7 @@ public abstract class BankAccount implements Comparable<BankAccount> {
 
     private String bankAccountNumber;
     private double balance; //de: Kontostand
+    private String accountType;
 
     public void deposit(double depositAmount){
         this.balance += depositAmount;
@@ -12,8 +13,9 @@ public abstract class BankAccount implements Comparable<BankAccount> {
         this.balance -= disburseAmount;
     }
 
-    public BankAccount(String bankAccountNumber) {
+    public BankAccount(String bankAccountNumber, String accountType) {
         this.bankAccountNumber = bankAccountNumber;
+        this.accountType = accountType;
     }
 
     public void processMonthlyInterest(int months){
@@ -29,6 +31,10 @@ public abstract class BankAccount implements Comparable<BankAccount> {
     }
     public String getBankAccountNumber(){
         return this.bankAccountNumber;
+    }
+
+    public String getAccountType() {
+        return this.accountType;
     }
 
     public double getBalance() {

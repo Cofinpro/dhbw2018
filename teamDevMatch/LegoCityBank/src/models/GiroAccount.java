@@ -7,7 +7,7 @@ public class GiroAccount extends BankAccount {
     private static final double monthlyFeesAbsolute = 5.0; //in €
 
     public GiroAccount(String bankAccountNumber) {
-        super(bankAccountNumber);
+        super(bankAccountNumber, "GiroAccount");
     }
 
 
