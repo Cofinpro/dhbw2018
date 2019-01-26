@@ -2,10 +2,13 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.BankAccount;
 import views.CustomMain;
+import views.Main;
 
 import java.io.IOException;
 
@@ -16,6 +19,11 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
     @FXML private TextField accountTypeTextField;
 
     private BankAccount bankAccount;
+
+    @FXML
+    public void initialize() {
+
+    }
 
     public BankAccountSuperficialViewControl(BankAccount bankAccount) {
         FXMLLoader loader = new FXMLLoader(new CustomMain().getClass().getResource("bankAccountSuperficialView.fxml"));
@@ -29,6 +37,16 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
         }
         this.bankAccount = bankAccount;
         updateView();
+
+        setOnMouseClicked(e -> {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(new CustomMain().getClass().getResource("bankAccountView.fxml"));
+                Main.PRIMARY_STAGE.setScene(new Scene(root, 1000, 1000));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
     private void updateView() {
