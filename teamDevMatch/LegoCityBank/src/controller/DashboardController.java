@@ -9,6 +9,8 @@ import models.Customer;
 import models.GiroAccount;
 import models.User;
 
+import java.text.DecimalFormat;
+
 public class DashboardController {
 
     @FXML private TextField usernameTextField;
@@ -25,7 +27,11 @@ public class DashboardController {
         loggedInUser = userDao.getLoggedInUser();
         usernameTextField.setText(loggedInUser.getUserName());
         fullnameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
-        totalBalanceTextField.setText("0.00");
+        Customer loggedInCustomer = (Customer) loggedInUser;
+        if (loggedInCustomer != null) {
+            DecimalFormat df = new DecimalFormat("0.00");
+            totalBalanceTextField.setText(df.format(loggedInCustomer.getTotalBalance()));
+        }
         updateBankAccountViews();
     }
 
