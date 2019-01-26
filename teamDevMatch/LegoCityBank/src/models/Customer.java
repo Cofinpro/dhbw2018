@@ -21,6 +21,14 @@ public class Customer extends User {
         return bankAccountSet;
     }
 
+    public double getTotalBalance(){
+        double totalBalance = 0;
+        for (BankAccount bankAccount : bankAccountSet) {
+            totalBalance += bankAccount.getBalance();
+        }
+        return totalBalance;
+    }
+
     public void addBankAccount(BankAccount newBankAccount) {
         bankAccountSet.add(newBankAccount);
     }
