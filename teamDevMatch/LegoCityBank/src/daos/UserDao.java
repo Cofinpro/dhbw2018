@@ -2,6 +2,7 @@ package daos;
 
 import exceptions.UserNotFoundException;
 import helper.CSVHelper;
+import models.BankAccount;
 import models.Customer;
 import models.GiroAccount;
 import models.User;
@@ -15,6 +16,7 @@ import java.util.*;
 
 public class UserDao {
     private static UserDao ourInstance = new UserDao();
+    private BankAccount inspectedBankAccount;
 
     public static UserDao getInstance() {
         return ourInstance;
@@ -85,5 +87,13 @@ public class UserDao {
             User user = new Customer(username, password, firstName, lastName, customerNumber);
             users.add(user);
         }
+    }
+
+    public void setInspectedBankAccount(BankAccount bankAccount) {
+        this.inspectedBankAccount = bankAccount;
+    }
+
+    public BankAccount getInspectedBankAccount() {
+        return inspectedBankAccount;
     }
 }

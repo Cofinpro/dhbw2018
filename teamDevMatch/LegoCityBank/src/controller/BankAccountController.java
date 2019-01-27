@@ -1,8 +1,13 @@
 package controller;
 
+import daos.UserDao;
+import helper.OutputHelper;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import models.BankAccount;
+
+import java.text.DecimalFormat;
 
 public class BankAccountController {
 
@@ -15,12 +20,17 @@ public class BankAccountController {
     @FXML
     private TextField amountInvestmentTextField;
 
-    @FXML
-    private TextField accountNumberTextField;
+    private UserDao userDao;
+    private BankAccount bankAccount;
 
     @FXML
     public void initialize() {
-
+        userDao = UserDao.getInstance();
+        bankAccount = userDao.getInspectedBankAccount();
+        creationDateTextField.setText("3003");
+        DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
+        balanceTextField.setText(bankAccount.getBankAccountNumber());
+        amountInvestmentTextField.setText(df.format(bankAccount.getBalance()));
     }
 
     @FXML

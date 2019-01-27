@@ -1,6 +1,7 @@
 package controller;
 
 import daos.UserDao;
+import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,7 @@ public class DashboardController {
         fullnameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
         Customer loggedInCustomer = (Customer) loggedInUser;
         if (loggedInCustomer != null) {
-            DecimalFormat df = new DecimalFormat("0.00");
+            DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
             totalBalanceTextField.setText(df.format(loggedInCustomer.getTotalBalance()));
         }
         updateBankAccountViews();

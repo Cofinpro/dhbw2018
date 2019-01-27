@@ -1,5 +1,6 @@
 package controller;
 
+import daos.UserDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +20,11 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
     @FXML private TextField accountTypeTextField;
 
     private BankAccount bankAccount;
+    private UserDao userDao;
 
     @FXML
     public void initialize() {
-
+        userDao = UserDao.getInstance();
     }
 
     public BankAccountSuperficialViewControl(BankAccount bankAccount) {
@@ -40,6 +42,7 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
 
         setOnMouseClicked(e -> {
             Parent root = null;
+            userDao.setInspectedBankAccount(bankAccount);
             try {
                 root = FXMLLoader.load(new CustomMain().getClass().getResource("bankAccountView.fxml"));
                 Main.PRIMARY_STAGE.setScene(new Scene(root, 1000, 1000));
