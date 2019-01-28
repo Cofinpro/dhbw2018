@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import models.Customer;
 import persistance.UserDao;
 import exceptions.UserNotFoundException;
@@ -17,6 +18,7 @@ public class LoginController {
     @FXML private TextField usernameTextField;
     @FXML private TextField passwordTextField;
     @FXML private TextField wrongPasswordTextField;
+
     @FXML
     public void initialize() {
         userDao = UserDao.getInstance();
@@ -41,5 +43,9 @@ public class LoginController {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void register(ActionEvent actionEvent) throws IOException {
+        OutputHelper.setNextScene("registerWindow.fxml");
     }
 }

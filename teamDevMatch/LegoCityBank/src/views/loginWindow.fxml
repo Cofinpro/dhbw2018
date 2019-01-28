@@ -13,12 +13,12 @@
     <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="55.0" prefWidth="567.0" promptText="username" text="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
     <PasswordField id="passwordField" fx:id="passwordTextField" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" />
     <TextField fx:id="wrongPasswordTextField" blendMode="RED" editable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="193.0" text="falsches Passwort" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
       <GridPane.margin>
         <Insets left="140.0" />
       </GridPane.margin>
     </Button>
-    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+    <Button onAction="#register" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
       <GridPane.margin>
         <Insets right="140.0" />
       </GridPane.margin>
