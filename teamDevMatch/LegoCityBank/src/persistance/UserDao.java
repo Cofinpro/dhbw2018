@@ -17,11 +17,11 @@ public class UserDao {
         return ourInstance;
     }
 
-    private List<User> users;
-    private User loggedInUser;
+    private Set<Customer> customers;
+    private Customer loggedInCustomer;
 
     private UserDao() {
-        users = new ArrayList<>();
+        customers = new TreeSet<>();
         readUsersFromCSV();
         readBankAccountsFromCSV();
     }
@@ -36,9 +36,8 @@ public class UserDao {
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
             String userName = giroAccountRepresentation[0];
             String accountNumber = giroAccountRepresentation[1];
-            User user = getUserByUserName(userName);
+            Customer customer = getCustomerByUserName(userName);
             GiroAccount giroAccount = new GiroAccount(accountNumber);
-            Customer customer = (Customer) user;
             if (customer == null) {
                 throw new IllegalArgumentException("The csv is wrong. It accounts an account to an user who isn't a customer");
             }
@@ -46,24 +45,24 @@ public class UserDao {
         }
     }
 
-    public User getUserByUserName(String userName) {
-        for (User user : users) {
-            if (user.getUserName().equals(userName)) {
-                return user;
+    public Customer getCustomerByUserName(String userName) {
+        for (Customer customer : customers) {
+            if (customer.getUserName().equals(userName)) {
+                return customer;
             }
         }
         throw new UserNotFoundException(userName);
     }
 
     public User getLoggedInUser() {
-        return loggedInUser;
+        return loggedInCustomer;
     }
 
-    public void logUserIn(User user) {
-        if (!users.contains(user)) {
+    public void logUserIn(Customer customer) {
+        if (!customers.contains(customer)) {
             throw new IllegalArgumentException();
         }
-        loggedInUser = user;
+        loggedInCustomer = customer;
     }
 
     private void readUsersFromCSV() {
@@ -79,8 +78,8 @@ public class UserDao {
             String lastName = customerRepresentation[2];
             String password = customerRepresentation[3];
             String customerNumber = customerRepresentation[4];
-            User user = new Customer(username, password, firstName, lastName, customerNumber);
-            users.add(user);
+            Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
+            customers.add(customer);
         }
     }
 

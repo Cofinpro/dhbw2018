@@ -8,7 +8,7 @@ public class UserDaoTest {
     @Test
     public void getInstance() {
         UserDao userDao = UserDao.getInstance();
-        User user = userDao.getUserByUserName("elias-lammes");
+        User user = userDao.getCustomerByUserName("elias-lammes");
         System.out.println(user);
     }
 }

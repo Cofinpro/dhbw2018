@@ -1,5 +1,6 @@
 package controller;
 
+import models.Customer;
 import persistance.UserDao;
 import exceptions.UserNotFoundException;
 import helper.OutputHelper;
@@ -27,11 +28,11 @@ public class LoginController {
     public void onLoginRequested(Event Event) throws IOException {
         String userName = usernameTextField.getText();
         try {
-            User user = userDao.getUserByUserName(userName);
+            Customer customer = userDao.getCustomerByUserName(userName);
             String enteredPassword = passwordTextField.getText();
-            boolean isLoginSuccessful = user.tryLogIn(enteredPassword);
+            boolean isLoginSuccessful = customer.tryLogIn(enteredPassword);
             if (isLoginSuccessful) {
-                userDao.logUserIn(user);
+                userDao.logUserIn(customer);
                 OutputHelper.setNextScene("dashboardWindow.fxml");
             } else {
                 passwordTextField.setText("");

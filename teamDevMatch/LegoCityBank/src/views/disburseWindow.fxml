@@ -7,14 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <TextField alignment="CENTER_LEFT" disable="true" layoutX="112.0" layoutY="154.0" prefHeight="92.0" prefWidth="377.0" promptText="gewünschter Betrag" />
-    <Button layoutX="219.0" layoutY="275.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="142.0" text="Auszahlen" />
-    <ImageView fitHeight="92.0" fitWidth="122.66666666666666" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+    <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="142.0" text="Auszahlen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+    <TextField alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="92.0" prefWidth="300.0" promptText="gewünschter Betrag" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+    <ImageView fitHeight="92.0" fitWidth="122.66666666666666" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
     </ImageView>
   </children>
-</AnchorPane>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
