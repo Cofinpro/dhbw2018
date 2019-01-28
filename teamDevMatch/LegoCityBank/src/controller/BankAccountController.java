@@ -2,12 +2,15 @@ package controller;
 
 import daos.UserDao;
 import helper.OutputHelper;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import models.BankAccount;
 import models.Customer;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class BankAccountController {
@@ -34,10 +37,22 @@ public class BankAccountController {
     }
 
     @FXML
-    void deleteBankAccount(Event event) {
+    void deleteBankAccount(Event event) throws IOException {
         Customer customer = (Customer)userDao.getLoggedInUser();
         BankAccount bankAccount = userDao.getInspectedBankAccount();
         userDao.deleteBankAccount(customer, bankAccount);
+        goBack(event);
     }
 
+    public void deposit(ActionEvent actionEvent) throws IOException {
+        OutputHelper.setNextScene("depositWindow.fxml");
+    }
+
+    public void disburse(ActionEvent actionEvent) throws  IOException {
+        OutputHelper.setNextScene("disburseWindow.fxml");
+    }
+
+    public void goBack(Event event) throws IOException {
+            OutputHelper.setNextScene("dashboardWindow.fxml");
+    }
 }

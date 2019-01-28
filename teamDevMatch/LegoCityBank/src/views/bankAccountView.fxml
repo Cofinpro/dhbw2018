@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="696.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BankAccountController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BankAccountController">
   <children>
     <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="607.0" layoutY="461.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -19,9 +19,9 @@
     <TextField id="balanceTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="34.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" />
     <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="137.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" />
     <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="245.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
-    <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
-    <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
-    <ImageView fx:id="logOutButton" fitHeight="87.75" fitWidth="117.0" layoutX="460.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+    <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#deposit" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
+    <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" onAction="#disburse" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
+    <ImageView fitHeight="87.75" fitWidth="117.0" layoutX="460.0" layoutY="448.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
