@@ -9,13 +9,13 @@
 
 <fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <TextField id="accountTypeTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" editable="false" opacity="1.0" prefHeight="111.0" prefWidth="749.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <TextField fx:id="accountNumberTextField" alignment="CENTER" disable="true" editable="false" opacity="1.0" prefHeight="111.0" prefWidth="749.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.rowIndex="1">
       <GridPane.margin>
         <Insets left="20.0" right="20.0" fx:id="x1" />
       </GridPane.margin>
     </TextField>
     <TextField fx:id="bankBalanceTextField" alignment="CENTER" disable="true" editable="false" opacity="1.0" prefHeight="91.0" prefWidth="432.0" text="Kontostand" GridPane.columnIndex="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
-    <TextField id="t" fx:id="accountTypeTextField" alignment="CENTER" disable="true" editable="false" opacity="1.0" prefHeight="91.0" prefWidth="286.0" promptText="" text="Kontoart" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <TextField fx:id="accountTypeTextField" alignment="CENTER" disable="true" editable="false" opacity="1.0" prefHeight="91.0" prefWidth="286.0" promptText="" text="Kontoart" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="1" />
     <Separator prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="0" />
     <Separator prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
   </children>

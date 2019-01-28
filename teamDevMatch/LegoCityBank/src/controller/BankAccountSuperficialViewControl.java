@@ -1,5 +1,7 @@
 package controller;
 
+import models.CustomerManager;
+import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +23,11 @@ public class BankAccountSuperficialViewControl extends GridPane {
     @FXML private TextField accountTypeTextField;
 
     private BankAccount bankAccount;
-    private UserDao userDao;
+    private CustomerManager customerManager;
 
     @FXML
     public void initialize() {
-        userDao = UserDao.getInstance();
+        customerManager = CustomerManager.getInstance();
     }
 
     public BankAccountSuperficialViewControl(BankAccount bankAccount) {
@@ -43,7 +45,7 @@ public class BankAccountSuperficialViewControl extends GridPane {
 
         setOnMouseClicked(e -> {
             Parent root = null;
-            userDao.setInspectedBankAccount(bankAccount);
+            customerManager.setInspectedBankAccount(bankAccount);
             try {
                 OutputHelper.setNextScene("bankAccountView.fxml");
             } catch (IOException e1) {

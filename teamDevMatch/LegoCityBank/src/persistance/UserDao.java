@@ -2,41 +2,32 @@ package persistance;
 
 import exceptions.UserNotFoundException;
 import helper.CSVHelper;
-import models.BankAccount;
-import models.Customer;
-import models.GiroAccount;
-import models.User;
+import models.*;
 
 import java.util.*;
 
 public class UserDao {
-    private static UserDao ourInstance = new UserDao();
-    private BankAccount inspectedBankAccount;
+    private static UserDao instance;
 
     public static UserDao getInstance() {
-        return ourInstance;
+        if (instance == null)
+            instance = new UserDao();
+        return instance;
     }
 
-    private Set<Customer> customers;
-    private Customer loggedInCustomer;
+    private UserDao() {}
 
-    private UserDao() {
-        customers = new TreeSet<>();
-        readUsersFromCSV();
-        readBankAccountsFromCSV();
+    public void readBankAccountsFromCSV(Set<Customer> customers) {
+        readGiroAccountsFromCSV(customers);
     }
 
-    private void readBankAccountsFromCSV() {
-        readGiroAccountsFromCSV();
-    }
-
-    private void readGiroAccountsFromCSV() {
+    private void readGiroAccountsFromCSV(Set<Customer> customers) {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
             String userName = giroAccountRepresentation[0];
             String accountNumber = giroAccountRepresentation[1];
-            Customer customer = getCustomerByUserName(userName);
+            Customer customer = getCustomerByUserName(customers, userName);
             GiroAccount giroAccount = new GiroAccount(accountNumber);
             if (customer == null) {
                 throw new IllegalArgumentException("The csv is wrong. It accounts an account to an user who isn't a customer");
@@ -45,7 +36,7 @@ public class UserDao {
         }
     }
 
-    public Customer getCustomerByUserName(String userName) {
+    public Customer getCustomerByUserName(Set<Customer> customers, String userName) {
         for (Customer customer : customers) {
             if (customer.getUserName().equals(userName)) {
                 return customer;
@@ -54,22 +45,8 @@ public class UserDao {
         throw new UserNotFoundException(userName);
     }
 
-    public User getLoggedInUser() {
-        return loggedInCustomer;
-    }
-
-    public void logUserIn(Customer customer) {
-        if (!customers.contains(customer)) {
-            throw new IllegalArgumentException();
-        }
-        loggedInCustomer = customer;
-    }
-
-    private void readUsersFromCSV() {
-        readCustomersFromCSV();
-    }
-
-    private void readCustomersFromCSV() {
+    public Set<Customer> readCustomersFromCSV() {
+        Set<Customer> customers = new TreeSet<>();
         CSVHelper helper = new CSVHelper("resources\\customers.csv");
         Collection<String[]> customerRepresentations = helper.readCSV();
         for (String[] customerRepresentation : customerRepresentations) {
@@ -81,6 +58,7 @@ public class UserDao {
             Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
             customers.add(customer);
         }
+        return customers;
     }
 
     public void deleteBankAccount(Customer customer, BankAccount bankAccount) {
@@ -88,11 +66,5 @@ public class UserDao {
         usersBankAccounts.remove(bankAccount);
     }
 
-    public void setInspectedBankAccount(BankAccount bankAccount) {
-        this.inspectedBankAccount = bankAccount;
-    }
 
-    public BankAccount getInspectedBankAccount() {
-        return inspectedBankAccount;
-    }
 }

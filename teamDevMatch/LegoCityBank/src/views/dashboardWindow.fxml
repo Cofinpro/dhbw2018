@@ -10,12 +10,12 @@
 
 <GridPane prefHeight="563.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <TextField id="usernameTextField" fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
+    <TextField fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
       <GridPane.margin>
         <Insets left="10.0" top="10.0" />
       </GridPane.margin>
     </TextField>
-    <TextField id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+    <TextField id="fullnameTextField" fx:id="usernameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
       <GridPane.margin>
         <Insets bottom="10.0" left="10.0" />
       </GridPane.margin>
