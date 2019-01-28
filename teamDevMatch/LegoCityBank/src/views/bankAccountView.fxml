@@ -15,27 +15,17 @@
       </image>
     </ImageView>
     <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="137.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" />
-    <TextField id="amountInvestment" fx:id="amountInvestmentTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="234.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="summe">
-      <contextMenu>
-        <ContextMenu>
-          <items>
-            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-          </items>
-        </ContextMenu>
-      </contextMenu>
-    </TextField>
     <TextField id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="34.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" />
     <TextField id="balanceTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="34.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" />
-    <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="234.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Einzahlbetrag" />
     <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="137.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" />
-    <TextField alignment="CENTER" disable="true" layoutX="14.0" layoutY="346.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" />
-    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="346.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
+    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="245.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
     <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
     <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
-    <ImageView fx:id="goBackButton" fitHeight="91.5" fitWidth="122.0" layoutX="457.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="87.75" fitWidth="117.0" layoutX="460.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
     </ImageView>
+    <TextField alignment="CENTER" disable="true" layoutX="14.0" layoutY="241.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" />
   </children>
 </AnchorPane>
