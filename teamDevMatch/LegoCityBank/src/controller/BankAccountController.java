@@ -31,7 +31,7 @@ public class BankAccountController {
         userDao = UserDao.getInstance();
         bankAccount = userDao.getInspectedBankAccount();
         accountNumberTextField.setText(bankAccount.getBankAccountNumber());
-        creationDateTextField.setText("3003");
+        creationDateTextField.setText(bankAccount.getCreationDate());
         amountInvestmentTextField.setText("");
         DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
         balanceTextField.setText(df.format(bankAccount.getBalance()));
