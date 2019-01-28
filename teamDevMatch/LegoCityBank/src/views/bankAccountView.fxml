@@ -2,30 +2,47 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BankAccountController">
+<GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="607.0" layoutY="461.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@images/trashCanIcon.png" />
-      </image>
-    </ImageView>
-    <TextField id="creationDateTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="137.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" />
-    <TextField id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="14.0" layoutY="34.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" />
-    <TextField id="balanceTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="34.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" />
-    <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="137.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" />
-    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="245.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
-    <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#deposit" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
-    <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" onAction="#disburse" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
-    <ImageView fitHeight="87.75" fitWidth="117.0" layoutX="460.0" layoutY="448.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+    <TextField id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
+      <GridPane.margin>
+        <Insets left="20.0" right="20.0" fx:id="x1" />
+      </GridPane.margin>
+    </TextField>
+    <TextField id="creationDateTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+    <TextField alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+    <TextField id="balanceTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="2" />
+    <Button mnemonicParsing="false" onAction="#deposit" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+    <Button mnemonicParsing="false" onAction="#disburse" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+    <ImageView fitHeight="87.75" fitWidth="117.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
     </ImageView>
-    <TextField alignment="CENTER" disable="true" layoutX="14.0" layoutY="241.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" />
+    <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <image>
+        <Image url="@images/trashCanIcon.png" />
+      </image>
+    </ImageView>
   </children>
-</AnchorPane>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>

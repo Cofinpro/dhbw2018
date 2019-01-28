@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="526.9999000000025" prefWidth="638.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.LoginController">
   <children>
-    <ImageView disable="true" fitHeight="153.97999060990966" fitWidth="139.55889892578125" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="TOP">
+    <ImageView disable="true" fitHeight="${gridPane.height}" fitWidth="${gridPane.width}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
       <image>
         <Image url="@images/loginIcon.png" />
       </image>
