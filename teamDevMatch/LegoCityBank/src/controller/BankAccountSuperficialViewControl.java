@@ -1,14 +1,13 @@
 package controller;
 
 import daos.UserDao;
+import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.BankAccount;
-import views.CustomMain;
 import views.Main;
 
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
     }
 
     public BankAccountSuperficialViewControl(BankAccount bankAccount) {
-        FXMLLoader loader = new FXMLLoader(new CustomMain().getClass().getResource("bankAccountSuperficialView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("bankAccountSuperficialView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
@@ -44,8 +43,7 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
             Parent root = null;
             userDao.setInspectedBankAccount(bankAccount);
             try {
-                root = FXMLLoader.load(new CustomMain().getClass().getResource("bankAccountView.fxml"));
-                Main.PRIMARY_STAGE.setScene(new Scene(root, 1000, 1000));
+                OutputHelper.setNextScene("bankAccountView.fxml");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
