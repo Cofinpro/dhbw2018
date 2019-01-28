@@ -18,9 +18,6 @@ public class BankAccountController {
     @FXML
     private TextField balanceTextField;
 
-    @FXML
-    private TextField amountInvestmentTextField;
-
     @FXML TextField accountNumberTextField;
 
     private UserDao userDao;
@@ -32,7 +29,6 @@ public class BankAccountController {
         bankAccount = userDao.getInspectedBankAccount();
         accountNumberTextField.setText(bankAccount.getBankAccountNumber());
         creationDateTextField.setText(bankAccount.getCreationDate());
-        amountInvestmentTextField.setText("");
         DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
         balanceTextField.setText(df.format(bankAccount.getBalance()));
     }
