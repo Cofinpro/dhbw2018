@@ -1,5 +1,6 @@
 package controller;
 
+import models.CustomerManager;
 import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
@@ -19,11 +20,11 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
     @FXML private TextField accountTypeTextField;
 
     private BankAccount bankAccount;
-    private UserDao userDao;
+    private CustomerManager customerManager;
 
     @FXML
     public void initialize() {
-        userDao = UserDao.getInstance();
+        customerManager = CustomerManager.getInstance();
     }
 
     public BankAccountSuperficialViewControl(BankAccount bankAccount) {
@@ -41,7 +42,7 @@ public class BankAccountSuperficialViewControl extends AnchorPane {
 
         setOnMouseClicked(e -> {
             Parent root = null;
-            userDao.setInspectedBankAccount(bankAccount);
+            customerManager.setInspectedBankAccount(bankAccount);
             try {
                 OutputHelper.setNextScene("bankAccountView.fxml");
             } catch (IOException e1) {

@@ -1,6 +1,6 @@
 package controller;
 
-import persistance.UserDao;
+import models.CustomerManager;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,13 +18,13 @@ public class DashboardController {
     @FXML private TextField totalBalanceTextField;
     @FXML private VBox bankAccountsVBox;
 
-    private UserDao userDao;
+    private CustomerManager customerManager;
     private User loggedInUser;
 
     @FXML
     public void initialize() {
-        userDao = UserDao.getInstance();
-        loggedInUser = userDao.getLoggedInUser();
+        customerManager = CustomerManager.getInstance();
+        loggedInUser = customerManager.getLoggedInCustomer();
         usernameTextField.setText(loggedInUser.getUserName());
         fullnameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
         Customer loggedInCustomer = (Customer) loggedInUser;

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.BankAccount;
+import models.CustomerManager;
 import persistance.UserDao;
 
 import java.io.IOException;
@@ -27,8 +28,8 @@ public class DepositController {
 
     @FXML
     void deposit(ActionEvent event) throws IOException{
-        UserDao userDao = UserDao.getInstance();
-        BankAccount bankAccount = userDao.getInspectedBankAccount();
+        CustomerManager customerManager = CustomerManager.getInstance();
+        BankAccount bankAccount = customerManager.getInspectedBankAccount();
         try {
             double depositValue = Double.parseDouble(depositValueTextField.getText());
             bankAccount.deposit(depositValue);

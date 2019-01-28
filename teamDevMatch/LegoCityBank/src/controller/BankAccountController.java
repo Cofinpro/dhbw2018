@@ -1,6 +1,6 @@
 package controller;
 
-import persistance.UserDao;
+import models.CustomerManager;
 import helper.OutputHelper;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.BankAccount;
 import models.Customer;
+import persistance.UserDao;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -22,13 +23,14 @@ public class BankAccountController {
 
     @FXML TextField accountNumberTextField;
 
+    private CustomerManager customerManager;
     private UserDao userDao;
     private BankAccount bankAccount;
 
     @FXML
     public void initialize() {
-        userDao = UserDao.getInstance();
-        bankAccount = userDao.getInspectedBankAccount();
+        customerManager = CustomerManager.getInstance();
+        bankAccount = customerManager.getInspectedBankAccount();
         accountNumberTextField.setText(bankAccount.getBankAccountNumber());
         creationDateTextField.setText(bankAccount.getCreationDate());
         DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
@@ -37,8 +39,9 @@ public class BankAccountController {
 
     @FXML
     void deleteBankAccount(Event event) throws IOException {
-        Customer customer = (Customer)userDao.getLoggedInUser();
-        BankAccount bankAccount = userDao.getInspectedBankAccount();
+        userDao = UserDao.getInstance();
+        Customer customer = customerManager.getLoggedInCustomer();
+        BankAccount bankAccount = customerManager.getInspectedBankAccount();
         userDao.deleteBankAccount(customer, bankAccount);
         goBack(event);
     }
