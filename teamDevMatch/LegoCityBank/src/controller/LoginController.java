@@ -24,10 +24,12 @@ public class LoginController {
     private UserDao userDao;
     @FXML private TextField usernameTextField;
     @FXML private TextField passwordField;
-
+    @FXML private TextField wrongPasswordTextField;
     @FXML
     public void initialize() {
         userDao = UserDao.getInstance();
+        wrongPasswordTextField.setVisible(false);
+        passwordField.textProperty().addListener(e -> wrongPasswordTextField.setVisible(false));
     }
 
     @FXML
@@ -43,6 +45,7 @@ public class LoginController {
                 Main.PRIMARY_STAGE.setScene(new Scene(root, 1000, 1000));
             } else {
                 passwordField.setText("");
+                wrongPasswordTextField.setVisible(true);
             }
         } catch (UserNotFoundException e) {
             e.printStackTrace();

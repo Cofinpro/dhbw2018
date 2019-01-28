@@ -18,7 +18,7 @@
         <Image url="@images/registerIcon.jpg" />
       </image>
     </ImageView>
-    <ImageView fx:id="goBackButton" fitHeight="86.9998779296875" fitWidth="86.9998779296875" layoutX="38.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="102.0" fitWidth="102.0" layoutX="49.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
