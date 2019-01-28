@@ -1,20 +1,22 @@
 package controller;
 
-import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import models.BankAccount;
+import persistance.UserDao;
 import views.Main;
 
 import java.io.IOException;
 
-public class BankAccountSuperficialViewControl extends AnchorPane {
+public class BankAccountSuperficialViewControl extends GridPane {
 
-    @FXML private TextField bankBalanceTextField;
+    @FXML
+    private TextField bankBalanceTextField;
     @FXML private TextField accountNumberTextField;
     @FXML private TextField accountTypeTextField;
 
