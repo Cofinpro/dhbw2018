@@ -7,21 +7,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="686.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <TextField alignment="CENTER" disable="true" layoutX="199.0" layoutY="15.0" prefHeight="87.0" prefWidth="473.0" promptText="Vollständiger Name" />
-    <TextField disable="true" layoutX="199.0" layoutY="115.0" prefHeight="98.0" prefWidth="473.0" promptText="Nutzername" />
-    <TextField disable="true" layoutX="199.0" layoutY="226.0" prefHeight="98.0" prefWidth="473.0" promptText="Passwort" />
-    <TextField disable="true" layoutX="199.0" layoutY="345.0" prefHeight="98.0" prefWidth="473.0" promptText="Passwort bestätigen" />
-    <ImageView fitHeight="114.99998474121094" fitWidth="219.74520226393193" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@images/registerIcon.jpg" />
-      </image>
-    </ImageView>
-    <ImageView fitHeight="102.0" fitWidth="102.0" layoutX="49.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@images/arrowLeftIcon.png" />
-      </image>
-    </ImageView>
+    <GridPane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
+      <children>
+        <ImageView fitHeight="102.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+          <image>
+            <Image url="@images/arrowLeftIcon.png" />
+          </image>
+        </ImageView>
+        <TextField alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+        <TextField disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Nutzername" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <TextField disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Passwort" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+        <TextField disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Passwort bestätigen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <ImageView fitHeight="102.00003051757812" fitWidth="194.90451798353612" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="TOP">
+          <image>
+            <Image url="@images/registerIcon.jpg" />
+          </image>
+        </ImageView>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="209.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="391.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
 </AnchorPane>

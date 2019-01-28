@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="526.9999000000025" prefWidth="638.0000999999975" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.LoginController">
   <children>
-    <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="55.0" prefWidth="567.0" promptText="username" text="" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-    <PasswordField id="passwordField" fx:id="passwordTextField" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="200.0" promptText="password" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-    <TextField fx:id="wrongPasswordTextField" blendMode="RED" editable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="193.0" text="falsches Passwort" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-    <ImageView disable="true" fitHeight="106.0" fitWidth="124.0" pickOnBounds="true">
+    <ImageView disable="true" fitHeight="${gridPane.height}" fitWidth="${gridPane.width}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
       <image>
         <Image url="@images/loginIcon.png" />
       </image>
     </ImageView>
+    <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="55.0" prefWidth="567.0" promptText="username" text="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+    <PasswordField id="passwordField" fx:id="passwordTextField" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+    <TextField fx:id="wrongPasswordTextField" blendMode="RED" editable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="193.0" text="falsches Passwort" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,7 +26,6 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
