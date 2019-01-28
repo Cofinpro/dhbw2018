@@ -21,7 +21,7 @@ public class BankAccountController {
     @FXML
     private TextField balanceTextField;
 
-    @FXML TextField accountNumberTextField;
+    @FXML private TextField accountNumberTextField;
 
     private CustomerManager customerManager;
     private UserDao userDao;

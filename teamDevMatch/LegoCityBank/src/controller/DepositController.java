@@ -2,6 +2,7 @@ package controller;
 
 import helper.OutputHelper;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.BankAccount;
@@ -27,7 +28,7 @@ public class DepositController {
     }
 
     @FXML
-    void deposit(ActionEvent event) throws IOException{
+    void deposit(Event event) throws IOException{
         CustomerManager customerManager = CustomerManager.getInstance();
         BankAccount bankAccount = customerManager.getInspectedBankAccount();
         try {
@@ -40,7 +41,7 @@ public class DepositController {
     }
 
     @FXML
-    void goBack(ActionEvent event) throws IOException {
+    void goBack(Event event) throws IOException {
         OutputHelper.setNextScene("bankAccountView.fxml");
     }
 
