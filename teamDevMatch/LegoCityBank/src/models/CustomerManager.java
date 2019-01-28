@@ -21,6 +21,10 @@ public class CustomerManager {
         loggedInCustomer = customer;
     }
 
+    public void logUserOut() {
+        loggedInCustomer = null;
+    }
+
     public Customer getLoggedInCustomer() {
         return loggedInCustomer;
     }
