@@ -1,6 +1,6 @@
 package controller;
 
-import daos.UserDao;
+import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

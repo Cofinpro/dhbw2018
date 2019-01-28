@@ -1,6 +1,6 @@
 package controller;
 
-import daos.UserDao;
+import persistance.UserDao;
 import exceptions.UserNotFoundException;
 import helper.OutputHelper;
 import javafx.event.Event;

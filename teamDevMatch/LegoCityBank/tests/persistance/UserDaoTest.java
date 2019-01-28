@@ -1,4 +1,4 @@
-package daos;
+package persistance;
 
 import models.User;
 import org.junit.Test;

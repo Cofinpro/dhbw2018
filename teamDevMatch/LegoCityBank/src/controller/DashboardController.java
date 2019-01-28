@@ -1,13 +1,12 @@
 package controller;
 
-import daos.UserDao;
+import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import models.BankAccount;
 import models.Customer;
-import models.GiroAccount;
 import models.User;
 
 import java.text.DecimalFormat;
