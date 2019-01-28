@@ -37,10 +37,11 @@ public class BankAccountController {
     }
 
     @FXML
-    void deleteBankAccount(Event event) {
+    void deleteBankAccount(Event event) throws IOException {
         Customer customer = (Customer)userDao.getLoggedInUser();
         BankAccount bankAccount = userDao.getInspectedBankAccount();
         userDao.deleteBankAccount(customer, bankAccount);
+        goBack(event);
     }
 
     public void deposit(ActionEvent actionEvent) throws IOException {
@@ -51,7 +52,7 @@ public class BankAccountController {
         OutputHelper.setNextScene("disburseWindow.fxml");
     }
 
-    public void goBack(MouseEvent mouseEvent) throws IOException {
-        OutputHelper.setNextScene("dashboardWindow.fxml");
+    public void goBack(Event event) throws IOException {
+            OutputHelper.setNextScene("dashboardWindow.fxml");
     }
 }
