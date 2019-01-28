@@ -31,9 +31,6 @@ public class LoginController {
             Customer customer = userDao.getCustomerByUserName(userName);
             String enteredPassword = passwordTextField.getText();
             boolean isLoginSuccessful = customer.tryLogIn(enteredPassword);
-            User user = userDao.getUserByUserName(userName);
-            String enteredPassword = passwordTextField.getText();
-            boolean isLoginSuccessful = user.tryLogIn(enteredPassword);
             if (isLoginSuccessful) {
                 userDao.logUserIn(customer);
                 OutputHelper.setNextScene("dashboardWindow.fxml");
