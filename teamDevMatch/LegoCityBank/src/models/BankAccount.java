@@ -1,9 +1,19 @@
 package models;
 
+import java.util.Calendar;
+
 public abstract class BankAccount implements Comparable<BankAccount> {
 
     private String bankAccountNumber;
     private double balance; //de: Kontostand
+    private String creationDate;
+
+    public BankAccount(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
+        Calendar calendar = Calendar.getInstance();
+        this.creationDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH)+1) +
+                "." + calendar.get(Calendar.YEAR);
+    }
 
     public void deposit(double depositAmount){
         this.balance += depositAmount;
@@ -11,10 +21,6 @@ public abstract class BankAccount implements Comparable<BankAccount> {
 
     public void disburse(double disburseAmount){
         this.balance -= disburseAmount;
-    }
-
-    public BankAccount(String bankAccountNumber) {
-        this.bankAccountNumber = bankAccountNumber;
     }
 
     public void processMonthlyInterest(int months){
