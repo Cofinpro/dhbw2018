@@ -6,12 +6,7 @@ import models.BankAccount;
 import models.Customer;
 import models.GiroAccount;
 import models.User;
-import views.CustomMain;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
 public class UserDao {
