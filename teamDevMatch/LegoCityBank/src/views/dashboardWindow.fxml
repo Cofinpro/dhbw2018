@@ -10,26 +10,16 @@
 
 <GridPane prefHeight="563.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <ImageView fx:id="logOutButton" disable="true" fitHeight="103.0" fitWidth="137.33333333333331" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-      <image>
-        <Image url="@images/userIcon.png" />
-      </image>
-    </ImageView>
     <TextField id="usernameTextField" fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
       <GridPane.margin>
-        <Insets top="10.0" />
+        <Insets left="10.0" top="10.0" />
       </GridPane.margin>
     </TextField>
     <TextField id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
       <GridPane.margin>
-        <Insets bottom="10.0" />
+        <Insets bottom="10.0" left="10.0" />
       </GridPane.margin>
     </TextField>
-    <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0">
-      <image>
-        <Image url="@images/euroIcon.png" />
-      </image>
-    </ImageView>
     <TextField id="balanceTextField" fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" opacity="1.0" prefHeight="170.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
       <GridPane.margin>
         <Insets left="20.0" />
@@ -40,6 +30,24 @@
         <VBox depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>
     </ScrollPane>
+    <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <ImageView fx:id="logOutButton" fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/userIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane fx:id="helpPaneTopRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+      <children>
+        <ImageView fitHeight="${helpPaneTopRight.height}" fitWidth="${helpPaneTopRight.width}" layoutX="6.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/euroIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="161.0" />

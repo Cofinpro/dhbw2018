@@ -11,11 +11,15 @@
   <children>
     <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="142.0" text="Einzahlen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
     <TextField alignment="CENTER_LEFT" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="92.0" prefWidth="377.0" promptText="gewünschter Betrag" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-    <ImageView fitHeight="92.0" fitWidth="122.66666666666666" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0">
-      <image>
-        <Image url="@images/arrowLeftIcon.png" />
-      </image>
-    </ImageView>
+    <Pane fx:id="helpPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <ImageView fitHeight="${helpPane.height}" fitWidth="${helpPane.width}" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/arrowLeftIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
