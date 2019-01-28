@@ -10,12 +10,12 @@
 
 <GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BankAccountController">
   <children>
-    <TextField id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
+    <TextField fx:id="" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
       <GridPane.margin>
         <Insets left="20.0" right="20.0" fx:id="x1" />
       </GridPane.margin>
     </TextField>
-    <TextField id="creationDateTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+    <TextField alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     <TextField alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
     <TextField id="balanceTextField" fx:id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="0" />
     <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
