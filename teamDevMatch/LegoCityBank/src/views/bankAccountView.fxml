@@ -32,7 +32,7 @@
     <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" layoutX="371.0" layoutY="346.0" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" />
     <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" />
     <Button layoutX="218.0" layoutY="461.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" />
-    <ImageView fitHeight="91.5" fitWidth="122.0" layoutX="457.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fx:id="goBackButton" fitHeight="91.5" fitWidth="122.0" layoutX="457.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/arrowLeftIcon.png" />
       </image>
