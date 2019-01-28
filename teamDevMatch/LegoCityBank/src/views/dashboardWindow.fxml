@@ -22,6 +22,10 @@
         <Image url="@images/euroIcon.png" />
       </image>
     </ImageView>
-      <VBox fx:id="bankAccountsVBox" layoutX="6.0" layoutY="132.0" prefHeight="612.0" prefWidth="807.0" />
+      <ScrollPane layoutY="129.0" prefHeight="528.0" prefWidth="815.0">
+         <content>
+            <VBox fx:id="bankAccountsVBox" prefHeight="612.0" prefWidth="807.0" />
+         </content>
+      </ScrollPane>
   </children>
 </AnchorPane>
