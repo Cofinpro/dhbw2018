@@ -1,12 +1,11 @@
 package controller;
 
-import daos.UserDao;
+import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import models.BankAccount;
 import models.Customer;
 
