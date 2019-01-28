@@ -17,7 +17,6 @@ public abstract class BankAccount implements Comparable<BankAccount> {
 
     public BankAccount(String bankAccountNumber, String creationDate) {
         this.bankAccountNumber = bankAccountNumber;
-        Calendar calendar = Calendar.getInstance();
         this.creationDate = creationDate;
     }
 
