@@ -89,6 +89,11 @@ public class UserDao {
         }
     }
 
+    public void deleteBankAccount(Customer customer, BankAccount bankAccount) {
+        Set<BankAccount> usersBankAccounts = customer.getBankAccounts();
+        usersBankAccounts.remove(bankAccount);
+    }
+
     public void setInspectedBankAccount(BankAccount bankAccount) {
         this.inspectedBankAccount = bankAccount;
     }
