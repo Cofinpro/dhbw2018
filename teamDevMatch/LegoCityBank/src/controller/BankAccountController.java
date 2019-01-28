@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.BankAccount;
+import models.Customer;
 
 import java.text.DecimalFormat;
 
@@ -35,7 +36,9 @@ public class BankAccountController {
 
     @FXML
     void deleteBankAccount(Event event) {
-
+        Customer customer = (Customer)userDao.getLoggedInUser();
+        BankAccount bankAccount = userDao.getInspectedBankAccount();
+        userDao.deleteBankAccount(customer, bankAccount);
     }
 
 }
