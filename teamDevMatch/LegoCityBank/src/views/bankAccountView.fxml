@@ -22,16 +22,24 @@
     <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="2" />
     <Button mnemonicParsing="false" onAction="#deposit" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
     <Button mnemonicParsing="false" onAction="#disburse" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-    <ImageView fitHeight="87.75" fitWidth="117.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-      <image>
-        <Image url="@images/arrowLeftIcon.png" />
-      </image>
-    </ImageView>
-    <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#deleteBankAccount" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-      <image>
-        <Image url="@images/trashCanIcon.png" />
-      </image>
-    </ImageView>
+    <Pane fx:id="helpPaneLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <children>
+        <ImageView fitHeight="${helpPaneLeft.height}" fitWidth="${helpPaneLeft.width}" layoutX="49.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/arrowLeftIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane fx:id="helpPaneRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <children>
+        <ImageView fitHeight="${helpPaneRight.height}" fitWidth="${helpPaneRight.width}" layoutX="39.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/trashCanIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

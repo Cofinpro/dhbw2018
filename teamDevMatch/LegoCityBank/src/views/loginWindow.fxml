@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -9,16 +10,28 @@
 
 <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.LoginController">
   <children>
-    <ImageView disable="true" fitHeight="${gridPane.height}" fitWidth="${gridPane.width}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
-      <image>
-        <Image url="@images/loginIcon.png" />
-      </image>
-    </ImageView>
     <TextField fx:id="usernameTextField" alignment="CENTER_LEFT" disable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="55.0" prefWidth="567.0" promptText="username" text="" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
     <PasswordField id="passwordField" fx:id="passwordTextField" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" />
     <TextField fx:id="wrongPasswordTextField" blendMode="RED" editable="false" maxHeight="60.0" maxWidth="560.0" prefHeight="62.0" prefWidth="193.0" text="falsches Passwort" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <Button fx:id="loginButton" maxHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#onLoginRequested" prefHeight="47.0" prefWidth="200.0" text="Login" textFill="#330000" textOverrun="ELLIPSIS" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <GridPane.margin>
+        <Insets left="140.0" />
+      </GridPane.margin>
+    </Button>
+    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <GridPane.margin>
+        <Insets right="140.0" />
+      </GridPane.margin>
+    </Button>
+    <Pane fx:id="helpPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <ImageView fitHeight="${helpPane.height}" fitWidth="${helpPane.width}" layoutX="61.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/loginIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
