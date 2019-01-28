@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="563.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane prefHeight="563.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
   <children>
     <ImageView fx:id="logOutButton" disable="true" fitHeight="103.0" fitWidth="137.33333333333331" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
       <image>
         <Image url="@images/userIcon.png" />
       </image>
     </ImageView>
-    <TextField id="usernameTextField" fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
+    <TextField fx:id="usernameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
       <GridPane.margin>
         <Insets top="10.0" />
       </GridPane.margin>
     </TextField>
-    <TextField id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+    <TextField fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
       <GridPane.margin>
         <Insets bottom="10.0" />
       </GridPane.margin>
@@ -30,14 +30,14 @@
         <Image url="@images/euroIcon.png" />
       </image>
     </ImageView>
-    <TextField id="balanceTextField" fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" opacity="1.0" prefHeight="170.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+    <TextField fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" opacity="1.0" prefHeight="170.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
       <GridPane.margin>
         <Insets left="20.0" />
       </GridPane.margin>
     </TextField>
     <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
       <content>
-        <VBox depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
+        <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>
     </ScrollPane>
   </children>

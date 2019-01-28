@@ -20,7 +20,7 @@ public class BankAccountController {
     @FXML
     private TextField balanceTextField;
 
-    @FXML TextField accountNumberTextField;
+    @FXML private TextField accountNumberTextField;
 
     private UserDao userDao;
     private BankAccount bankAccount;

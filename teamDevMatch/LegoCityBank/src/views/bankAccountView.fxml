@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BankAccountController">
   <children>
     <TextField id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
       <GridPane.margin>
