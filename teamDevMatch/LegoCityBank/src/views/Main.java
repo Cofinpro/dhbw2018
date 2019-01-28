@@ -21,6 +21,12 @@ public class Main extends Application {
         PRIMARY_STAGE = primaryStage;
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        //TODO
+        //saveEverything();
+    }
 
     public static void main(String[] args) {
         launch(args);
