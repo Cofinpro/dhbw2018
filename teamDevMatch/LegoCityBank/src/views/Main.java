@@ -13,8 +13,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("loginWindow.fxml"));
-        primaryStage.setTitle("Login-Window");
-        primaryStage.setScene(new Scene(root, 600,400));
+        primaryStage.setTitle("Lego City Bank");
+        primaryStage.setScene(new Scene(root, 900,600));
         primaryStage.show();
         PRIMARY_STAGE = primaryStage;
     }
