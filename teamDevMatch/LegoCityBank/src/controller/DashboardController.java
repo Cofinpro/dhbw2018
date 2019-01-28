@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.input.MouseEvent;
 import models.CustomerManager;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
@@ -46,4 +47,7 @@ public class DashboardController {
         }
     }
 
+    public void logOut(MouseEvent mouseEvent) {
+
+    }
 }
