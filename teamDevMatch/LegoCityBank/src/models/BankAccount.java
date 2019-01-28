@@ -46,6 +46,10 @@ public abstract class BankAccount implements Comparable<BankAccount> {
         return this.balance;
     }
 
+    public String getCreationDate() {
+        return this.creationDate;
+    }
+
     /**
      * gets monthly interest of the account type
      * @return monthly interest as decimal [double]
