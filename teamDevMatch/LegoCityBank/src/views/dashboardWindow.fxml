@@ -10,12 +10,17 @@
 
 <GridPane prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
   <children>
-    <TextField fx:id="usernameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+    <TextField fx:id="fullNameTextField" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+      <GridPane.margin>
+        <Insets bottom="10.0" left="10.0" top="50.0" />
+      </GridPane.margin>
+    </TextField>
+    <TextField fx:id="usernameTextField" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
       <GridPane.margin>
         <Insets bottom="10.0" left="10.0" />
       </GridPane.margin>
     </TextField>
-    <TextField fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" opacity="1.0" prefHeight="170.0" prefWidth="-1.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+    <TextField fx:id="totalBalanceTextField" alignment="CENTER_RIGHT" disable="true" opacity="1.0" prefHeight="170.0" prefWidth="225.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
       <GridPane.margin>
         <Insets left="20.0" />
       </GridPane.margin>
@@ -43,11 +48,6 @@
         </ImageView>
       </children>
     </Pane>
-    <TextField fx:id="fullNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
-      <GridPane.margin>
-        <Insets bottom="10.0" left="10.0" top="50.0" />
-      </GridPane.margin>
-    </TextField>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="161.0" />
