@@ -53,7 +53,10 @@ public class CustomerManager {
      * Writes Customers AND their Accounts to the corresponding CSV
      */
     public void saveCustomersToCSV() {
-        UserDao.getInstance().writeCustomersToCSV(customers);
+        UserDao userDao = UserDao.getInstance();
+
+        userDao.writeCustomersToCSV(customers);
+        userDao.writeBankAccountsToCSV(customers);
     }
 
     public static CustomerManager getInstance() {
