@@ -9,24 +9,27 @@ import helper.OutputHelper;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import models.User;
 
 import java.io.IOException;
 
 public class LoginController {
 
+    private static final String WRONG_PASSWORD_MESSAGE = "falsches Passwort";
+    private static final String USER_NOT_FOUND_MESSAGE = "dieser Benutzer existiert nicht";
+
     private UserDao userDao;
     private CustomerManager customerManager;
     @FXML private TextField usernameTextField;
     @FXML private TextField passwordTextField;
-    @FXML private TextField wrongPasswordTextField;
+    @FXML private TextField errorTextField;
 
     @FXML
     public void initialize() {
         userDao = UserDao.getInstance();
         customerManager = CustomerManager.getInstance();
-        wrongPasswordTextField.setVisible(false);
-        passwordTextField.textProperty().addListener(e -> wrongPasswordTextField.setVisible(false));
+        errorTextField.setVisible(false);
+        passwordTextField.textProperty().addListener(e -> errorTextField.setVisible(false));
+        usernameTextField.textProperty().addListener(e -> errorTextField.setVisible(false));
     }
 
     @FXML
@@ -41,10 +44,12 @@ public class LoginController {
                 OutputHelper.setNextScene("dashboardWindow.fxml");
             } else {
                 passwordTextField.setText("");
-                wrongPasswordTextField.setVisible(true);
+                errorTextField.setText(WRONG_PASSWORD_MESSAGE);
+                errorTextField.setVisible(true);
             }
         } catch (UserNotFoundException e) {
-            e.printStackTrace();
+            errorTextField.setText(USER_NOT_FOUND_MESSAGE);
+            errorTextField.setVisible(true);
         }
     }
 

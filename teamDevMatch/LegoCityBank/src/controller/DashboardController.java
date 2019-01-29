@@ -10,6 +10,7 @@ import models.BankAccount;
 import models.Customer;
 import models.User;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class DashboardController {
@@ -47,7 +48,8 @@ public class DashboardController {
         }
     }
 
-    public void logOut(MouseEvent mouseEvent) {
-
+    public void logOut(MouseEvent mouseEvent) throws IOException {
+        customerManager.logUserOut();
+        OutputHelper.setNextScene("loginWindow.fxml");
     }
 }
