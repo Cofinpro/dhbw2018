@@ -1,6 +1,6 @@
 package models;
 
-public class User implements Comparable<User> {
+public class User implements Comparable<User>, csvModel {
     private String userName;
     private String password;
     private String firstName;
@@ -35,7 +35,7 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public String toString() {
+    public String csvString() {
         return userName+","+password+","+firstName+","+lastName;
     }
 }

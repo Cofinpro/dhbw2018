@@ -2,7 +2,7 @@ package models;
 
 import java.util.Calendar;
 
-public abstract class BankAccount implements Comparable<BankAccount> {
+public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
 
     private String bankAccountNumber;
     private double balance; //de: Kontostand
