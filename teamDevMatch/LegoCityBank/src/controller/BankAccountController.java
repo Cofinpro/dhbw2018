@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import models.CustomerManager;
 import helper.OutputHelper;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import persistance.UserDao;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Optional;
 
 public class BankAccountController {
 
@@ -38,12 +41,27 @@ public class BankAccountController {
     }
 
     @FXML
-    void deleteBankAccount(Event event) throws IOException {
+    void onRequstDeleteBankAccount(Event event) throws IOException {
         userDao = UserDao.getInstance();
         Customer customer = customerManager.getLoggedInCustomer();
         BankAccount bankAccount = customerManager.getInspectedBankAccount();
-        userDao.deleteBankAccount(customer, bankAccount);
-        goBack(event);
+        if (bankAccount.isDeletable()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(bankAccount + " löschen");
+            alert.setHeaderText(bankAccount + " löschen?");
+            alert.setContentText("Es gibt dann kein zurück mehr.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get().equals(ButtonType.OK)) {
+                userDao.deleteBankAccount(customer, bankAccount);
+                goBack(event);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(bankAccount + " nicht löschbar");
+            alert.setHeaderText(bankAccount + " kann nicht gelöscht werden");
+            alert.setContentText("Bank Accounts können erst gelöscht werden, wenn ihr Kontostand 0 ist. Sie müssen dafür noch Geld ein- oder auszahlen.");
+            alert.showAndWait();
+        }
     }
 
     public void deposit(ActionEvent actionEvent) throws IOException {

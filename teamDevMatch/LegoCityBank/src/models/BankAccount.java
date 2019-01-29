@@ -89,4 +89,9 @@ public abstract class BankAccount implements Comparable<BankAccount> {
         }
         return 0;
     }
+
+    public boolean isDeletable() {
+        return (Math.random() < 0.5);
+        //todo
+    }
 }

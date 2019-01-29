@@ -33,7 +33,7 @@
     </Pane>
     <Pane fx:id="helpPaneRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
       <children>
-        <ImageView onMouseClicked="#deleteBankAccount" fitHeight="${helpPaneRight.height}" fitWidth="${helpPaneRight.width}" layoutX="39.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView onMouseClicked="#onRequstDeleteBankAccount" fitHeight="${helpPaneRight.height}" fitWidth="${helpPaneRight.width}" layoutX="39.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/trashCanIcon.png" />
           </image>
