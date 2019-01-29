@@ -28,7 +28,7 @@ public class DepositController {
 
     private void validateTextInput() {
         String input = depositValueTextField.getText();
-        String validInput = input.replaceAll("[^1-9]", "");
+        String validInput = input.replaceAll("[^0-9]", "");
         if (!validInput.equals(input)) {
             depositValueTextField.setText(validInput);
             errorTextField.setText("Bitte tippe nur Ziffern ein.");
