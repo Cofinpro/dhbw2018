@@ -15,8 +15,8 @@ import java.text.DecimalFormat;
 public class DashboardController {
 
     @FXML private TextField usernameTextField;
-    @FXML private TextField fullnameTextField;
     @FXML private TextField totalBalanceTextField;
+    @FXML private TextField fullNameTextField;
     @FXML private VBox bankAccountsVBox;
 
     private CustomerManager customerManager;
@@ -27,7 +27,7 @@ public class DashboardController {
         customerManager = CustomerManager.getInstance();
         loggedInCustomer = customerManager.getLoggedInCustomer();
         usernameTextField.setText(loggedInCustomer.getUserName());
-        fullnameTextField.setText(loggedInCustomer.getFirstName() + " " + loggedInCustomer.getLastName());
+        fullNameTextField.setText(loggedInCustomer.getUserName());
         Customer loggedInCustomer = (Customer) this.loggedInCustomer;
         if (loggedInCustomer != null) {
             DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
