@@ -22,7 +22,6 @@ public class CustomerManager {
         customers.remove(customer);
     }
 
-
     public void logUserIn(Customer customer) {
         if (!customers.contains(customer)) {
             throw new IllegalArgumentException();

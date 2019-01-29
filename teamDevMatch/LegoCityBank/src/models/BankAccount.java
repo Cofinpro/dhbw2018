@@ -8,6 +8,10 @@ public abstract class BankAccount implements Comparable<BankAccount> {
     private double balance; //de: Kontostand
     private String creationDate;
 
+    /**
+     * Use when user creates a new BankAccount
+     * @param bankAccountNumber Number of the BankAccount (every type of BA has one)
+     */
     public BankAccount(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
         Calendar calendar = Calendar.getInstance();
@@ -15,6 +19,11 @@ public abstract class BankAccount implements Comparable<BankAccount> {
                 "." + calendar.get(Calendar.YEAR);
     }
 
+    /**
+     * Use to construct an already existing BA (eg. when reading from CSV)
+     * @param bankAccountNumber Number of the BankAccount
+     * @param creationDate date of initial creation
+     */
     public BankAccount(String bankAccountNumber, String creationDate) {
         this.bankAccountNumber = bankAccountNumber;
         this.creationDate = creationDate;

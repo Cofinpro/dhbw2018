@@ -71,11 +71,4 @@ public class UserDao {
         }
         helper.writeCustomersToCSV(csvToStrings);
     }
-
-    public void deleteBankAccount(Customer customer, BankAccount bankAccount) {
-        Set<BankAccount> usersBankAccounts = customer.getBankAccounts();
-        usersBankAccounts.remove(bankAccount);
-    }
-
-
 }
