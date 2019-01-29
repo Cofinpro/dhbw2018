@@ -14,8 +14,8 @@ public class CustomerManager {
         UserDao.getInstance().readBankAccountsFromCSV(customers);
     }
 
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
+    public boolean addCustomer(Customer customer) {
+       return customers.add(customer);
     }
 
     public void removeCustomer(Customer customer) {
@@ -49,6 +49,9 @@ public class CustomerManager {
         return UserDao.getInstance().getCustomerByUserName(customers, userName);
     }
 
+    /**
+     * Writes Customers AND their Accounts to the corresponding CSV
+     */
     public void saveCustomersToCSV() {
         UserDao.getInstance().writeCustomersToCSV(customers);
     }
