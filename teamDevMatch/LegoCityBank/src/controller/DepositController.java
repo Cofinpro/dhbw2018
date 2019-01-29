@@ -21,6 +21,7 @@ public class DepositController {
 
     @FXML
     public void initialize() {
+        errorTextField.setVisible(false);
         depositValueTextField.textProperty().addListener(e -> {
             validateTextInput();
         });
