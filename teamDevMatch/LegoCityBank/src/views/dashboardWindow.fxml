@@ -25,7 +25,7 @@
         <Insets left="20.0" />
       </GridPane.margin>
     </TextField>
-    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="3">
       <content>
         <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>
@@ -48,6 +48,15 @@
         </ImageView>
       </children>
     </Pane>
+    <Pane fx:id="helpPaneBottom" prefHeight="160.0" prefWidth="567.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+      <children>
+        <ImageView fitHeight="${helpPaneBottom.height}" fitWidth="${helpPaneBottom.width}" layoutX="199.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/plusIcon.jpg" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="161.0" />
@@ -58,6 +67,8 @@
   <rowConstraints>
     <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
   </rowConstraints>
 </GridPane>
