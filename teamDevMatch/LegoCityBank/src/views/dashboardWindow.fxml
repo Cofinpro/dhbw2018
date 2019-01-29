@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="563.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
+<GridPane prefHeight="800" prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
   <children>
     <TextField fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
       <GridPane.margin>
