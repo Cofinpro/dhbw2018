@@ -43,7 +43,7 @@
         </ImageView>
       </children>
     </Pane>
-    <TextField id="firstNameTextField" fx:id="fullNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+    <TextField fx:id="fullNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
       <GridPane.margin>
         <Insets bottom="10.0" left="10.0" top="50.0" />
       </GridPane.margin>
