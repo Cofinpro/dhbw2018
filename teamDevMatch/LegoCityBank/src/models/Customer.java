@@ -38,6 +38,6 @@ public class Customer extends User implements csvModel{
 
     @Override
     public String csvString() {
-        return super.toString()+","+customerNumber;
+        return super.csvString()+","+customerNumber;
     }
 }

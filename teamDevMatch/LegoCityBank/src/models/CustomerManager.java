@@ -41,6 +41,10 @@ public class CustomerManager {
         return UserDao.getInstance().getCustomerByUserName(customers, userName);
     }
 
+    public void saveCustomersToCSV() {
+        UserDao.getInstance().writeCustomersToCSV(customers);
+    }
+
     public static CustomerManager getInstance() {
         if(instance == null)
             instance = new CustomerManager();
