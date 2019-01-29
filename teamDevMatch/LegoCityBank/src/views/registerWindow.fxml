@@ -15,7 +15,7 @@
         <Insets right="45.0" />
       </GridPane.margin>
     </TextField>
-    <TextField id="fullNameTextField" fx:id="firstNameTextField" alignment="CENTER_LEFT" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" promptText="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+    <TextField fx:id="firstNameTextField" alignment="CENTER_LEFT" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" promptText="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <TextField fx:id="userNameTextField" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Nutzername" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>

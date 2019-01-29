@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class RegisterController {
 
-    @FXML private TextField fullNameTextField;
+    @FXML private TextField firstNameTextField;
+    @FXML private TextField lastNameTextField;
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordTextField;
     @FXML private TextField passwordConfirmTextField;
@@ -33,9 +34,10 @@ public class RegisterController {
         String password = passwordTextField.getText();
         String passwordConfirmation = passwordConfirmTextField.getText();
         if (password.equals(passwordConfirmation)) {
-            String fullName = fullNameTextField.getText();
+            String firstName = firstNameTextField.getText();
+            String lastName = lastNameTextField.getText();
             String userName = userNameTextField.getText();
-            Customer customer = new Customer(userName, password, "Max", "Mustermann", "209u49");
+            Customer customer = new Customer(userName, password, firstName, lastName, "209u49");
             if(CustomerManager.getInstance().addCustomer(customer)) {
                 goBack(mouseEvent);
             } else {
