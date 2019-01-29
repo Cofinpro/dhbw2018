@@ -14,6 +14,15 @@ public class CustomerManager {
         UserDao.getInstance().readBankAccountsFromCSV(customers);
     }
 
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
+    public void removeCustomer(Customer customer) {
+        customers.remove(customer);
+    }
+
+
     public void logUserIn(Customer customer) {
         if (!customers.contains(customer)) {
             throw new IllegalArgumentException();

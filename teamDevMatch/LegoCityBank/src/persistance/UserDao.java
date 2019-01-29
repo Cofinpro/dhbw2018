@@ -51,9 +51,9 @@ public class UserDao {
         Collection<String[]> customerRepresentations = helper.readCSV();
         for (String[] customerRepresentation : customerRepresentations) {
             String username = customerRepresentation[0];
-            String firstName = customerRepresentation[1];
-            String lastName = customerRepresentation[2];
-            String password = customerRepresentation[3];
+            String password = customerRepresentation[1];
+            String firstName = customerRepresentation[2];
+            String lastName = customerRepresentation[3];
             String customerNumber = customerRepresentation[4];
             Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
             customers.add(customer);
@@ -62,7 +62,7 @@ public class UserDao {
     }
 
     public void writeCustomersToCSV(Set<Customer> customers) {
-        CSVHelper helper = new CSVHelper("resources\\example.csv");
+        CSVHelper helper = new CSVHelper("resources\\customers.csv");
         String[] csvToStrings = new String[customers.size()];
         int i = 0;
         for (Customer customer : customers) {
