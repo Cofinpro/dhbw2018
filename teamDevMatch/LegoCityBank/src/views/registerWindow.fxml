@@ -13,7 +13,7 @@
     <TextField fx:id="userNameTextField" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Nutzername" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <ImageView fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="5.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView onMouseClicked="#register" fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="5.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/registerIcon.jpg" />
           </image>
