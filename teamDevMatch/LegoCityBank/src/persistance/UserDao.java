@@ -62,7 +62,7 @@ public class UserDao {
     }
 
     public void writeCustomersToCSV(Set<Customer> customers) {
-        CSVHelper helper = new CSVHelper("resources\\example.csv");
+        CSVHelper helper = new CSVHelper("resources\\customers.csv");
         String[] csvToStrings = new String[customers.size()];
         int i = 0;
         for (Customer customer : customers) {
