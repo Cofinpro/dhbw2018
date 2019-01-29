@@ -8,13 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane prefHeight="800" prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
+<GridPane prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
   <children>
-    <TextField fx:id="fullnameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="voller name" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BASELINE">
-      <GridPane.margin>
-        <Insets left="10.0" top="10.0" />
-      </GridPane.margin>
-    </TextField>
     <TextField fx:id="usernameTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="benutzername" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
       <GridPane.margin>
         <Insets bottom="10.0" left="10.0" />
@@ -25,14 +20,14 @@
         <Insets left="20.0" />
       </GridPane.margin>
     </TextField>
-    <ScrollPane  hbarPolicy="NEVER" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
       <content>
         <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>
     </ScrollPane>
     <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <ImageView onMouseClicked="#logOut" fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="45.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/userIcon.png" />
           </image>
@@ -48,6 +43,16 @@
         </ImageView>
       </children>
     </Pane>
+    <TextField fx:id="firstNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" text="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+      <GridPane.margin>
+        <Insets left="10.0" top="50.0" />
+      </GridPane.margin>
+    </TextField>
+    <TextField fx:id="lastNameTextField" alignment="CENTER" disable="true" maxHeight="-1.0" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="140.0" text="Nachname" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+      <GridPane.margin>
+        <Insets top="50.0" />
+      </GridPane.margin>
+    </TextField>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="161.0" />
