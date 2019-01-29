@@ -51,9 +51,9 @@ public class UserDao {
         Collection<String[]> customerRepresentations = helper.readCSV();
         for (String[] customerRepresentation : customerRepresentations) {
             String username = customerRepresentation[0];
-            String firstName = customerRepresentation[1];
-            String lastName = customerRepresentation[2];
-            String password = customerRepresentation[3];
+            String password = customerRepresentation[1];
+            String firstName = customerRepresentation[2];
+            String lastName = customerRepresentation[3];
             String customerNumber = customerRepresentation[4];
             Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
             customers.add(customer);
