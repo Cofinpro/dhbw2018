@@ -42,7 +42,6 @@ public class BankAccountController {
 
     @FXML
     void onRequstDeleteBankAccount(Event event) throws IOException {
-        userDao = UserDao.getInstance();
         Customer customer = customerManager.getLoggedInCustomer();
         BankAccount bankAccount = customerManager.getInspectedBankAccount();
         if (bankAccount.isDeletable()) {
@@ -52,7 +51,7 @@ public class BankAccountController {
             alert.setContentText("Es gibt dann kein zurück mehr.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get().equals(ButtonType.OK)) {
-                userDao.deleteBankAccount(customer, bankAccount);
+                customer.deleteBankAccount(bankAccount);
                 goBack(event);
             }
         } else {
