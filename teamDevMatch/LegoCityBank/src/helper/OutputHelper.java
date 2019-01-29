@@ -1,8 +1,10 @@
 package helper;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import views.Main;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class OutputHelper {
 
     public static void setNextScene(String name) throws IOException {
         Parent root = FXMLLoader.load(Main.class.getResource(name));
-        Main.PRIMARY_STAGE.setScene(new Scene(root, 1000, 1000));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Main.PRIMARY_STAGE.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()));
     }
 }
