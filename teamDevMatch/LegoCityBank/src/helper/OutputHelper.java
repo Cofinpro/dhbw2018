@@ -18,6 +18,6 @@ public class OutputHelper {
     public static void setNextScene(String name) throws IOException {
         Parent root = FXMLLoader.load(Main.class.getResource(name));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        Main.PRIMARY_STAGE.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()));
+        Main.PRIMARY_STAGE.setScene(new Scene(root));
     }
 }

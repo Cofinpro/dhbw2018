@@ -19,8 +19,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("loginWindow.fxml"));
         primaryStage.setTitle("Lego City Bank");
         primaryStage.getIcons().addAll(new Image("images\\lego-logo.jpg"));
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        primaryStage.setScene(new Scene(root, screenBounds.getWidth(),screenBounds.getHeight()));
+        /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setScene(new Scene(root, screenBounds.getWidth(),screenBounds.getHeight()));*/
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
         PRIMARY_STAGE = primaryStage;
     }
