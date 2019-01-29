@@ -4,6 +4,7 @@ import helper.OutputHelper;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import models.BankAccount;
 import models.CustomerManager;
@@ -25,19 +26,17 @@ public class DepositController {
 
     private void validateTextInput() {
         String input = depositValueTextField.getText();
+        input = input.replace("[^1-9]", "");
+        depositValueTextField.setText(input);
     }
 
     @FXML
     void deposit(Event event) throws IOException{
         CustomerManager customerManager = CustomerManager.getInstance();
         BankAccount bankAccount = customerManager.getInspectedBankAccount();
-        try {
-            double depositValue = Double.parseDouble(depositValueTextField.getText());
-            bankAccount.deposit(depositValue);
-            goBack(event);
-        } catch (NumberFormatException e) {
-
-        }
+        double depositValue = Double.parseDouble(depositValueTextField.getText());
+        bankAccount.deposit(depositValue);
+        goBack(event);
     }
 
     @FXML
