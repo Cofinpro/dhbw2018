@@ -7,8 +7,12 @@ public class GiroAccount extends BankAccount {
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 5.0; //in €
 
-    public GiroAccount(String bankAccountNumber) {
-        super(bankAccountNumber);
+    public GiroAccount() {
+        super();
+    }
+
+    public GiroAccount(String bankAccountNumber, double balance, String creationDate) {
+        super (bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {
@@ -28,5 +32,10 @@ public class GiroAccount extends BankAccount {
     @Override
     public double getMonthlyFeesAbsolute() {
         return monthlyFeesAbsolute;
+    }
+
+    @Override
+    public String csvString() {
+        return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }
