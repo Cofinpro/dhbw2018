@@ -22,6 +22,8 @@ public class Main extends Application {
         /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         primaryStage.setScene(new Scene(root, screenBounds.getWidth(),screenBounds.getHeight()));*/
         primaryStage.setScene(new Scene(root));
+        primaryStage.setX(0);
+        primaryStage.setY(0);
         primaryStage.show();
         PRIMARY_STAGE = primaryStage;
     }

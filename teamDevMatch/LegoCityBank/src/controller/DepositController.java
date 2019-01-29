@@ -16,6 +16,8 @@ public class DepositController {
 
     @FXML
     private TextField depositValueTextField;
+    @FXML
+    private TextField errorTextField;
 
     @FXML
     public void initialize() {
@@ -26,17 +28,26 @@ public class DepositController {
 
     private void validateTextInput() {
         String input = depositValueTextField.getText();
-        input = input.replace("[^1-9]", "");
-        depositValueTextField.setText(input);
+        String validInput = input.replaceAll("[^1-9]", "");
+        if (!validInput.equals(input)) {
+            depositValueTextField.setText(validInput);
+            errorTextField.setText("Bitte tippe nur Ziffern ein.");
+        } else {
+            errorTextField.setText("");
+        }
     }
 
     @FXML
-    void deposit(Event event) throws IOException{
-        CustomerManager customerManager = CustomerManager.getInstance();
-        BankAccount bankAccount = customerManager.getInspectedBankAccount();
+    void deposit(Event event) throws IOException {
         double depositValue = Double.parseDouble(depositValueTextField.getText());
-        bankAccount.deposit(depositValue);
-        goBack(event);
+        if (depositValue%5 == 0) {
+            CustomerManager customerManager = CustomerManager.getInstance();
+            BankAccount bankAccount = customerManager.getInspectedBankAccount();
+            bankAccount.deposit(depositValue);
+            goBack(event);
+        } else {
+            errorTextField.setText("Du kannst nur Beträge einzahlen, die durch 5 teilbar sind.");
+        }
     }
 
     @FXML
