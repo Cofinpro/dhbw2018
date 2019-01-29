@@ -2,7 +2,7 @@ package models;
 
 import java.util.Calendar;
 
-public abstract class BankAccount implements Comparable<BankAccount> {
+public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
 
     private String bankAccountNumber;
     private double balance; //de: Kontostand
@@ -10,9 +10,9 @@ public abstract class BankAccount implements Comparable<BankAccount> {
 
     /**
      * Use when user creates a new BankAccount
-     * @param bankAccountNumber Number of the BankAccount (every type of BA has one)
      */
-    public BankAccount(String bankAccountNumber) {
+    public BankAccount() {
+        //todo: add random bankaccountNumber
         this.bankAccountNumber = bankAccountNumber;
         Calendar calendar = Calendar.getInstance();
         this.creationDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH)+1) +
@@ -24,8 +24,9 @@ public abstract class BankAccount implements Comparable<BankAccount> {
      * @param bankAccountNumber Number of the BankAccount
      * @param creationDate date of initial creation
      */
-    public BankAccount(String bankAccountNumber, String creationDate) {
+    public BankAccount(String bankAccountNumber, double balance, String creationDate) {
         this.bankAccountNumber = bankAccountNumber;
+        this.balance = balance;
         this.creationDate = creationDate;
     }
 

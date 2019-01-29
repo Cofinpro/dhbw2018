@@ -7,8 +7,12 @@ public class PremiumAccount extends BankAccount {
     private static final double monthlyFeesPercentage = 0.005; //in decimal
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
-    public PremiumAccount(String bankAccountNumber) {
-        super(bankAccountNumber);
+    public PremiumAccount() {
+        super();
+    }
+
+    public PremiumAccount(String bankAccountNumber, double balance, String creationDate) {
+        super (bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {
@@ -28,5 +32,10 @@ public class PremiumAccount extends BankAccount {
     @Override
     public double getMonthlyFeesAbsolute() {
         return monthlyFeesAbsolute;
+    }
+
+    @Override
+    public String csvString() {
+        return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }
