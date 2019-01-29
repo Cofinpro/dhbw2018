@@ -35,4 +35,9 @@ public class Customer extends User {
     public void deleteBankAccount(BankAccount bankAccount) {
         bankAccountSet.remove(bankAccount);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+","+customerNumber;
+    }
 }
