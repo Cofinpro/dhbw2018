@@ -2,7 +2,7 @@ package models;
 
 import java.util.*;
 
-public class Customer extends User {
+public class Customer extends User implements csvModel{
 
     private String customerNumber;
     private Set<BankAccount> bankAccountSet= new TreeSet<>();
@@ -37,7 +37,7 @@ public class Customer extends User {
     }
 
     @Override
-    public String toString() {
-        return super.toString()+","+customerNumber;
+    public String csvString() {
+        return super.csvString()+","+customerNumber;
     }
 }

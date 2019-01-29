@@ -61,6 +61,17 @@ public class UserDao {
         return customers;
     }
 
+    public void writeCustomersToCSV(Set<Customer> customers) {
+        CSVHelper helper = new CSVHelper("resources\\example.csv");
+        String[] csvToStrings = new String[customers.size()];
+        int i = 0;
+        for (Customer customer : customers) {
+            csvToStrings[i] = customer.csvString();
+            i++;
+        }
+        helper.writeCustomersToCSV(csvToStrings);
+    }
+
     public void deleteBankAccount(Customer customer, BankAccount bankAccount) {
         Set<BankAccount> usersBankAccounts = customer.getBankAccounts();
         usersBankAccounts.remove(bankAccount);

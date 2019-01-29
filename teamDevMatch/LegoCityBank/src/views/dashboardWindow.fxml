@@ -25,7 +25,7 @@
         <Insets left="20.0" />
       </GridPane.margin>
     </TextField>
-    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+    <ScrollPane  hbarPolicy="NEVER" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
       <content>
         <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>

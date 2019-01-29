@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import models.CustomerManager;
 
 public class Main extends Application {
 
@@ -28,8 +29,9 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
+        CustomerManager.getInstance().saveCustomersToCSV();
         //TODO
-        //saveEverything();
+        //save BankAccounts to CSV
     }
 
     public static void main(String[] args) {

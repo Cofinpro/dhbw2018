@@ -3,13 +3,11 @@ package helper;
 import models.Customer;
 import models.User;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class CSVHelper {
     private final String path;
@@ -42,5 +40,18 @@ public class CSVHelper {
             }
         }
         return result;
+    }
+
+    public void writeCustomersToCSV(String[] csvToStrings) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+
+            for (String line : csvToStrings) {
+                bw.write(line);
+                bw.newLine();
+            }
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
