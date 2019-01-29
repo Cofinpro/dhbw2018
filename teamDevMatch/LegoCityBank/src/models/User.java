@@ -33,4 +33,9 @@ public class User implements Comparable<User> {
     public int compareTo(User otherUser) {
         return this.userName.compareTo(otherUser.userName);
     }
+
+    @Override
+    public String toString() {
+        return userName+","+password+","+firstName+","+lastName;
+    }
 }
