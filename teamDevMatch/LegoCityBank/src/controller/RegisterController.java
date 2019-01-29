@@ -21,14 +21,15 @@ public class RegisterController {
         OutputHelper.setNextScene("loginWindow.fxml");
     }
 
-    public void register(MouseEvent mouseEvent) {
+    public void register(MouseEvent mouseEvent) throws IOException {
         String password = passwordTextField.getText();
         String passwordConfirmation = passwordConfirmTextField.getText();
         if (password.equals(passwordConfirmation)) {
             String fullName = fullNameTextField.getText();
             String userName = userNameTextField.getText();
             Customer customer = new Customer(userName, password, "Max", "Mustermann", "209u49");
-            //Todo we need to save this customer :)
+            CustomerManager.getInstance().addCustomer(customer);
+            goBack(mouseEvent);
         }
     }
 }
