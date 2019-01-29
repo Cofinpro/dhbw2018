@@ -43,14 +43,9 @@
         </ImageView>
       </children>
     </Pane>
-    <TextField fx:id="firstNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" text="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
+    <TextField id="firstNameTextField" fx:id="fullNameTextField" alignment="CENTER" disable="true" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="225.0" text="vollständiger Name" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
       <GridPane.margin>
-        <Insets left="10.0" top="50.0" />
-      </GridPane.margin>
-    </TextField>
-    <TextField fx:id="lastNameTextField" alignment="CENTER" disable="true" maxHeight="-1.0" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="140.0" text="Nachname" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="TOP">
-      <GridPane.margin>
-        <Insets top="50.0" />
+        <Insets bottom="10.0" left="10.0" top="50.0" />
       </GridPane.margin>
     </TextField>
   </children>
