@@ -48,11 +48,7 @@ public class BankAccountSuperficialViewControl extends GridPane {
             Parent root = null;
             customerManager.setInspectedBankAccount(bankAccount);
             try {
-                if (bankAccount.getClass() == MetalAccount.class) {
-                    OutputHelper.setNextScene("metalAccountView.fxml");
-                } else {
-                    OutputHelper.setNextScene("bankAccountView.fxml");
-                }
+                OutputHelper.setNextScene("bankAccountView.fxml");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
