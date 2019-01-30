@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<GridPane prefHeight="480.0" prefWidth="736.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <TextField id="" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+      <GridPane.margin>
+        <Insets left="20.0" right="20.0" fx:id="x1" />
+      </GridPane.margin>
+    </TextField>
+    <TextField alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Erstelldatum" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <TextField alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Momentane Summe" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="2" />
+    <Button mnemonicParsing="false" onAction="#deposit" prefHeight="61.0" prefWidth="172.0" text="Einzahlen" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+    <Button mnemonicParsing="false" onAction="#disburse" prefHeight="61.0" prefWidth="172.0" text="Auszahlen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+    <TextField id="" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Goldmenge (in Gramm)" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="3" />
+    <TextField fx:id="accountNumberTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="nummer" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <TextField fx:id="creationDateTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="datum" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <TextField fx:id="balanceTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="betrag" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="2" />
+    <TextField fx:id="goldAmountTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="menge" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="3" />
+    <Pane fx:id="helpPaneLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <children>
+        <ImageView fitHeight="${helpPaneLeft.height}" fitWidth="${helpPaneLeft.width}" layoutX="20.0" layoutY="-27.0" onKeyPressed="#goBack" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/arrowLeftIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane fx:id="helpPaneRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+      <children>
+        <ImageView fitHeight="${helpPaneRight.height}" fitWidth="${helpPaneRight.width}" layoutX="25.0" layoutY="-5.0" onMouseClicked="#onRequstDeleteBankAccount" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/trashCanIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>

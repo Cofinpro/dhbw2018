@@ -10,12 +10,12 @@
 
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.RegisterController">
   <children>
+    <TextField fx:id="firstNameTextField" alignment="CENTER_LEFT" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" promptText="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <TextField fx:id="lastNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="215.0" promptText="Nachname" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
       <GridPane.margin>
         <Insets right="45.0" />
       </GridPane.margin>
     </TextField>
-    <TextField fx:id="firstNameTextField" alignment="CENTER_LEFT" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" promptText="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <TextField fx:id="userNameTextField" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Nutzername" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
