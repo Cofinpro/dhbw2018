@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MetalAccount extends BankAccount{
@@ -13,7 +14,8 @@ public class MetalAccount extends BankAccount{
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 100.0; //in €
     private double balance;
-    private double goldAmount; //in gram
+    private double goldAmountInGram; //in gram
+    private double dollarPerGramOfGold;
 
     public MetalAccount() {
         super();
@@ -27,23 +29,41 @@ public class MetalAccount extends BankAccount{
         return accountType;
     }
 
-    private void calculateWorthOfGold() throws IOException {
-        URL url = new URL("https://s3.amazonaws.com/rawstore.datahub.io/51d15364c2414adf86794677d621c14b.csv");
-        InputStream iS = url.openStream();
-        BufferedReader bR = new BufferedReader(new InputStreamReader(iS)); //inputStreamReader --> bR can read the iS
+    public double getGoldAmountInGram() {
+        return goldAmountInGram;
+    }
 
-        String s = null;
-        String lastLine = "";
-
-        while((s = bR.readLine())!= null){
-           lastLine = s;
+    private void calculateWorthOfGold() {
+        try {
+            updateDollarPerGramOfGold();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
-        String[] parts = lastLine.split(",");
-        double dollarPerOunce = Double.parseDouble(parts[1]);
-        double dollarPerGram = dollarPerOunce/31.1034768;
-        balance = Math.round(goldAmount*dollarPerGram*100)/100.0;
+        balance = Math.round(goldAmountInGram * dollarPerGramOfGold*100)/100.0;
+    }
 
-        iS.close();
+    private void updateDollarPerGramOfGold() throws MalformedURLException {
+        URL url = new URL("https://s3.amazonaws.com/rawstore.datahub.io/51d15364c2414adf86794677d621c14b.csv");
+        InputStream iS = null;
+        try {
+            iS = url.openStream();
+            BufferedReader bR = new BufferedReader(new InputStreamReader(iS)); //inputStreamReader --> bR can read the iS
+
+            String s = null;
+            String lastLine = "";
+
+            while((s = bR.readLine())!= null){
+                lastLine = s;
+            }
+            String[] parts = lastLine.split(",");
+            double dollarPerOunce = Double.parseDouble(parts[1]);
+            dollarPerGramOfGold = dollarPerOunce/31.1034768;
+
+
+            iS.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -63,18 +83,21 @@ public class MetalAccount extends BankAccount{
 
     @Override
     public double getBalance() {
-        //balance is calculated (depends on goldAmount and gold price)
-        try {
-            calculateWorthOfGold();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //balance is calculated (depends on goldAmountInGram and gold price)
+        calculateWorthOfGold();
 
         return this.balance;
     }
 
-    public double getGoldAmount() {
-        return goldAmount;
+    @Override
+    public void deposit(double depositAmount){
+        this.goldAmountInGram += depositAmount/dollarPerGramOfGold;
+        calculateWorthOfGold();
+    }
+
+    @Override
+    public void disburse(double disburseAmount) {
+        this.goldAmountInGram -= disburseAmount/dollarPerGramOfGold;
     }
 
     @Override
