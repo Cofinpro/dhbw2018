@@ -21,8 +21,9 @@ public class MetalAccount extends BankAccount{
         super();
     }
 
-    public MetalAccount(String bankAccountNumber, double balance, String creationDate) {
-        super (bankAccountNumber, balance, creationDate);
+    public MetalAccount(String owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
+        super (owner, bankAccountNumber, creationDate);
+        this.goldAmountInGram = goldAmountInGram;
     }
 
     public String getAccountType() {
