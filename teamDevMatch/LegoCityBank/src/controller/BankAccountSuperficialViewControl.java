@@ -1,6 +1,7 @@
 package controller;
 
 import models.CustomerManager;
+import models.MetalAccount;
 import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
@@ -47,7 +48,11 @@ public class BankAccountSuperficialViewControl extends GridPane {
             Parent root = null;
             customerManager.setInspectedBankAccount(bankAccount);
             try {
-                OutputHelper.setNextScene("bankAccountView.fxml");
+                if (bankAccount.getClass() == MetalAccount.class) {
+                    OutputHelper.setNextScene("metalAccountView.fxml");
+                } else {
+                    OutputHelper.setNextScene("bankAccountView.fxml");
+                }
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
