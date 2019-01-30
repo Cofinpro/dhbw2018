@@ -73,6 +73,10 @@ public class MetalAccount extends BankAccount{
         return this.balance;
     }
 
+    public double getGoldAmount() {
+        return goldAmount;
+    }
+
     @Override
     public String csvString() {
         return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();

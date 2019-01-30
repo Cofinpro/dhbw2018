@@ -23,7 +23,7 @@
         <Insets left="140.0" />
       </GridPane.margin>
     </Button>
-    <Button mnemonicParsing="false" onAction="#register" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+    <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="47.0" prefWidth="200.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
       <GridPane.margin>
         <Insets right="140.0" />
       </GridPane.margin>
