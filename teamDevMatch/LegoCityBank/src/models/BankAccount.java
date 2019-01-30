@@ -100,6 +100,6 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
     }
 
     public boolean isDeletable() {
-        return balance == 0;
+        return balance < 0.01;
     }
 }

@@ -38,7 +38,7 @@ public class DashboardController {
     }
 
     private void updateBankAccountViews() {
-        Customer loggedInCustomer = (Customer) this.loggedInUser;
+        Customer loggedInCustomer = (Customer)this.loggedInUser;
         if (loggedInCustomer == null) {
             return;
         }

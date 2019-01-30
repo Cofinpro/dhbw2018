@@ -40,19 +40,6 @@ public class DepositController {
         });
     }
 
-    /*private void validateTextInput() {
-        String input = depositValueTextField.getText();
-        String validInput = input.replaceAll("[^0-9]", "");
-        if (!validInput.equals(input)) {
-            depositValueTextField.setText(validInput);
-            errorTextField.setText("Bitte tippe nur Ziffern ein.");
-            errorTextField.setVisible(true);
-        } else {
-            errorTextField.setText("");
-            errorTextField.setVisible(false);
-        }
-    }*/
-
     @FXML
     void deposit(Event event) {
         try {

@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class OutputHelper {
     public static DecimalFormat getDecimalFormatForFigures() {
-        return new DecimalFormat("0.00");
+        return new DecimalFormat("###,##0.00#############################");
     }
 
     public static void setNextScene(String name) throws IOException {
@@ -49,6 +49,12 @@ public class OutputHelper {
                 Platform.runLater(() -> {
                     textField.setText("");
                     errorTextField.setText("Es darf maximal ein Komma oder Punkt vorkommen");
+                    errorTextField.setVisible(true);
+                });
+            } else if (Pattern.compile("^[0-9]*[.|,][0-9]{3,}$").matcher(input).matches()) {
+                Platform.runLater(() -> {
+                    textField.setText(validInput.substring(0, validInput.length()-1));
+                    errorTextField.setText("Es sind maximal zwei Nachkommastellen erlaubt");
                     errorTextField.setVisible(true);
                 });
             } else {
