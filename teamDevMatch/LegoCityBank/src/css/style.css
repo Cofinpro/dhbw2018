@@ -1,3 +1,4 @@
 .warning{
     -fx-background-color: red;
+    -fx-font-weight: bolder;
 }
