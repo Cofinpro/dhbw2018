@@ -1,6 +1,7 @@
 package controller;
 
 import models.CustomerManager;
+import models.MetalAccount;
 import persistance.UserDao;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
