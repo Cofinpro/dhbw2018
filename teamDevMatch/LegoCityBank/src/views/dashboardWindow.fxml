@@ -29,7 +29,7 @@
     <TextField fx:id="totalBalanceTextField" disable="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="2" />
     <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
       <children>
-        <ImageView fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="14.0" layoutY="59.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="14.0" layoutY="14.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/userIcon.png" />
           </image>
@@ -38,7 +38,7 @@
     </Pane>
     <Pane fx:id="helpPaneTopRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
       <children>
-        <ImageView fitHeight="${helpPaneTopRight.height}" fitWidth="${helpPaneTopRight.width}" layoutX="0.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneTopRight.height}" fitWidth="${helpPaneTopRight.width}" layoutX="0.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/euroIcon.png" />
           </image>
