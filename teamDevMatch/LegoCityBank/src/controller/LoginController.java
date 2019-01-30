@@ -26,6 +26,7 @@ public class LoginController {
     @FXML private TextField passwordTextField;
     @FXML private TextField errorTextField;
     @FXML private Button loginButton;
+    @FXML private Button registerButton;
 
     @FXML
     public void initialize() {
@@ -37,6 +38,13 @@ public class LoginController {
         passwordTextField.setOnKeyPressed(event -> validateKeyPressed(event));
         usernameTextField.setOnKeyPressed(event -> validateKeyPressed(event));
         loginButton.setOnKeyPressed(event -> validateKeyPressed(event));
+        registerButton.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER:
+                    register(event);
+                    break;
+            }
+        });
     }
 
     private void validateKeyPressed(KeyEvent event) {
@@ -70,7 +78,11 @@ public class LoginController {
         }
     }
 
-    public void register(ActionEvent actionEvent) throws IOException {
-        OutputHelper.setNextScene("registerWindow.fxml");
+    public void register(Event event) {
+        try {
+            OutputHelper.setNextScene("registerWindow.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
