@@ -26,7 +26,7 @@
     <TextField fx:id="goldAmountTextField" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="menge" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.margin="$x1" GridPane.rowIndex="3" />
     <Pane fx:id="helpPaneLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
       <children>
-        <ImageView fitHeight="${helpPaneLeft.height}" fitWidth="${helpPaneLeft.width}" layoutX="20.0" layoutY="-27.0" onKeyPressed="#goBack" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneLeft.height}" fitWidth="${helpPaneLeft.width}" layoutX="20.0" layoutY="-10.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/arrowLeftIcon.png" />
           </image>
