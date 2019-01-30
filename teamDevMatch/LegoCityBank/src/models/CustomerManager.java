@@ -50,6 +50,17 @@ public class CustomerManager {
         return BankAccountDao.getInstance().getUserByUserName(users, userName);
     }
 
+    public Set<BankAccount> getAllBankAccounts() {
+        Set<BankAccount> allBankAccounts = null;
+        for (User user : users) {
+            if (user instanceof Customer && ((Customer) user).getBankAccounts() != null) {
+                allBankAccounts.addAll(((Customer)user).getBankAccounts());
+
+            }
+        }
+        return  allBankAccounts;
+    }
+
     public String getNextBankAccountNumber() {
         Customer customer;
         long highestBankAccountNumber = 0;
