@@ -102,6 +102,6 @@ public class MetalAccount extends BankAccount{
 
     @Override
     public String csvString() {
-        return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
+        return accountType+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
     }
 }
