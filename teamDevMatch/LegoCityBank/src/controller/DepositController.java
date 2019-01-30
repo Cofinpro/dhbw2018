@@ -26,7 +26,7 @@ public class DepositController {
     public void initialize() {
         errorTextField.setVisible(false);
         depositValueTextField.textProperty().addListener(e -> {
-            validateTextInput();
+            OutputHelper.validateMoneyValueInput(depositValueTextField, errorTextField);
         });
         depositValueTextField.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
@@ -40,7 +40,7 @@ public class DepositController {
         });
     }
 
-    private void validateTextInput() {
+    /*private void validateTextInput() {
         String input = depositValueTextField.getText();
         String validInput = input.replaceAll("[^0-9]", "");
         if (!validInput.equals(input)) {
@@ -51,21 +51,16 @@ public class DepositController {
             errorTextField.setText("");
             errorTextField.setVisible(false);
         }
-    }
+    }*/
 
     @FXML
     void deposit(Event event) {
         try {
             double depositValue = Double.parseDouble(depositValueTextField.getText());
-            if (depositValue%5 == 0) {
-                CustomerManager customerManager = CustomerManager.getInstance();
-                BankAccount bankAccount = customerManager.getInspectedBankAccount();
-                bankAccount.deposit(depositValue);
-                goBack(event);
-            } else {
-                errorTextField.setText("Du kannst nur Beträge einzahlen, die durch 5 teilbar sind.");
-                errorTextField.setVisible(true);
-            }
+            CustomerManager customerManager = CustomerManager.getInstance();
+            BankAccount bankAccount = customerManager.getInspectedBankAccount();
+            bankAccount.deposit(depositValue);
+            goBack(event);
         } catch (NumberFormatException e) {
             errorTextField.setText("Bitte Summe eingeben.");
             errorTextField.setVisible(true);

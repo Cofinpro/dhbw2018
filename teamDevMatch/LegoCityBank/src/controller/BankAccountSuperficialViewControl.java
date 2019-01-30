@@ -57,7 +57,7 @@ public class BankAccountSuperficialViewControl extends GridPane {
     private void updateView() {
         bankBalanceTextField.setText(String.valueOf(bankAccount.getBalance()));
         accountNumberTextField.setText(bankAccount.getBankAccountNumber());
-        accountTypeTextField.setText("Volksbank Girokonto");
+        accountTypeTextField.setText(bankAccount.getAccountType());
     }
 
 

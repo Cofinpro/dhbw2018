@@ -11,7 +11,7 @@
 
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DepositController">
   <children>
-    <TextField fx:id="errorTextField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="warning" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+    <TextField fx:id="errorTextField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="50.0" prefWidth="300.0" styleClass="warning" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
       <stylesheets>
         <URL value="@../css/style.css" />
       </stylesheets>
