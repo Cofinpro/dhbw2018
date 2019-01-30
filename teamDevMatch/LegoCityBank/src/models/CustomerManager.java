@@ -55,7 +55,7 @@ public class CustomerManager {
             for (BankAccount bankAccount : customer.getBankAccounts()) {
                 long banLong = Long.parseLong(bankAccount.getBankAccountNumber());
                 if (banLong > highestBankAccountNumber)
-                    banLong = highestBankAccountNumber;
+                    highestBankAccountNumber = banLong;
             }
         }
         return String.valueOf(highestBankAccountNumber+1);
@@ -66,7 +66,7 @@ public class CustomerManager {
         for (Customer customer : customers) {
             long cnLong = Long.parseLong(customer.getCustomerNumber());
             if (cnLong > highestCustomerNumber)
-                cnLong = highestCustomerNumber;
+                highestCustomerNumber = cnLong;
         }
         return String.valueOf(highestCustomerNumber+1);
     }
