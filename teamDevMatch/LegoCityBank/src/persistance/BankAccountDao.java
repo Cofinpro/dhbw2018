@@ -42,45 +42,39 @@ public class BankAccountDao {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
-            String userType = giroAccountRepresentation[0];
+            String userName = giroAccountRepresentation[0];
+            String accountType = giroAccountRepresentation[1];
+            String accountNumber = giroAccountRepresentation[2];
+            double balance = Double.parseDouble(giroAccountRepresentation[3]);
+            String creationDate = giroAccountRepresentation[4];
 
-            switch (userType) {
-                case "Admin":
+            Customer customer = (Customer)getUserByUserName(users, userName);
+
+            if (customer == null) {
+                throw new IllegalArgumentException();
+            }
+            switch (accountType) {
+                case "BankBook":
+                    BankBook bankBook = new BankBook(accountNumber, balance, creationDate);
+                    customer.addBankAccount(bankBook);
                     break;
-                case "Customer":
-                    String userName = giroAccountRepresentation[1];
-                    String accountType = giroAccountRepresentation[2];
-                    String accountNumber = giroAccountRepresentation[3];
-                    double balance = Double.parseDouble(giroAccountRepresentation[4]);
-                    String creationDate = giroAccountRepresentation[5];
-
-                    Customer customer = (Customer)getUserByUserName(users, userName);
-
-                    if (customer == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    switch (accountType) {
-                        case "BankBook":
-                            BankBook bankBook = new BankBook(accountNumber, balance, creationDate);
-                            customer.addBankAccount(bankBook);
-                            break;
-                        case "GiroAccount":
-                            GiroAccount giroAccount = new GiroAccount(accountNumber, balance, creationDate);
-                            customer.addBankAccount(giroAccount);
-                            break;
-                        case "PremiumAccount":
-                            PremiumAccount premiumAccount = new PremiumAccount(accountNumber, balance, creationDate);
-                            customer.addBankAccount(premiumAccount);
-                            break;
-                        case "MetalAccount":
-                            MetalAccount metalAccount = new MetalAccount(accountNumber, balance, creationDate);
-                            customer.addBankAccount(metalAccount);
-                            break;
-                        default:
-                            break;
-                    }
+                case "GiroAccount":
+                    GiroAccount giroAccount = new GiroAccount(accountNumber, balance, creationDate);
+                    customer.addBankAccount(giroAccount);
+                    break;
+                case "PremiumAccount":
+                    PremiumAccount premiumAccount = new PremiumAccount(accountNumber, balance, creationDate);
+                    customer.addBankAccount(premiumAccount);
+                    break;
+                case "MetalAccount":
+                    MetalAccount metalAccount = new MetalAccount(accountNumber, balance, creationDate);
+                    customer.addBankAccount(metalAccount);
+                    break;
+                default:
                     break;
             }
+            break;
+
         }
     }
 
