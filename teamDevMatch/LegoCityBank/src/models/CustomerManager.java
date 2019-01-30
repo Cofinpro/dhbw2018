@@ -5,6 +5,7 @@ import persistance.UserDao;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CustomerManager {
     private static CustomerManager instance;
@@ -53,11 +54,12 @@ public class CustomerManager {
     }
 
     public Set<BankAccount> getAllBankAccounts() {
-        Set<BankAccount> allBankAccounts = null;
+        Customer customer;
+        Set<BankAccount> allBankAccounts = new TreeSet<BankAccount>();
         for (User user : users) {
-            if (user instanceof Customer && ((Customer) user).getBankAccounts() != null) {
-                allBankAccounts.addAll(((Customer)user).getBankAccounts());
-
+            if (user instanceof Customer) {
+                customer = (Customer)user;
+                allBankAccounts.addAll(customer.getBankAccounts());
             }
         }
         return  allBankAccounts;
@@ -105,9 +107,5 @@ public class CustomerManager {
         if(instance == null)
             instance = new CustomerManager();
         return instance;
-    }
-
-    public Set<BankAccount> getAllBankAccounts() {
-        return new HashSet<>();
     }
 }
