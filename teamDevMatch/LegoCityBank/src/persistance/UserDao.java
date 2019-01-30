@@ -16,29 +16,39 @@ public class UserDao {
 
     private UserDao() {}
 
-    public Set<Customer> readCustomersFromCSV() {
-        Set<Customer> customers = new TreeSet<>();
-        CSVHelper helper = new CSVHelper("resources\\customers.csv");
+    public Set<User> readUsersFromCSV() {
+        Set<User> users = new TreeSet<>();
+        CSVHelper helper = new CSVHelper("resources\\users.csv");
         Collection<String[]> customerRepresentations = helper.readCSV();
 
         for (String[] customerRepresentation : customerRepresentations) {
-            String username = customerRepresentation[0];
-            String password = customerRepresentation[1];
-            String firstName = customerRepresentation[2];
-            String lastName = customerRepresentation[3];
-            String customerNumber = customerRepresentation[4];
-            Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
-            customers.add(customer);
+            String userType = customerRepresentation[0];
+            String username = customerRepresentation[1];
+            String password = customerRepresentation[2];
+            String firstName = customerRepresentation[3];
+            String lastName = customerRepresentation[4];
+
+            switch (userType) {
+                case "Admin":
+                    Admin admin = new Admin(username, password, firstName, lastName);
+                    users.add(admin);
+                    break;
+                case "Customer":
+                    String customerNumber = customerRepresentation[5];
+                    Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
+                    users.add(customer);
+                    break;
+            }
         }
-        return customers;
+        return users;
     }
 
-    public void writeCustomersToCSV(Set<Customer> customers) {
-        CSVHelper helper = new CSVHelper("resources\\customers.csv");
-        String[] csvToStrings = new String[customers.size()];
+    public void writeUsersToCSV(Set<User> users) {
+        CSVHelper helper = new CSVHelper("resources\\users.csv");
+        String[] csvToStrings = new String[users.size()];
         int i = 0;
-        for (Customer customer : customers) {
-            csvToStrings[i] = customer.csvString();
+        for (User user : users) {
+            csvToStrings[i] = user.csvString();
             i++;
         }
         helper.writeCSV(csvToStrings);

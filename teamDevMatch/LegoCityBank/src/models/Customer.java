@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Customer extends User implements csvModel{
 
+    private String userType = "Customer";
     private String customerNumber;
     private Set<BankAccount> bankAccountSet= new TreeSet<>();
 
@@ -43,6 +44,10 @@ public class Customer extends User implements csvModel{
 
     @Override
     public String csvString() {
-        return super.csvString()+","+customerNumber;
+        return userType+","+super.csvString()+","+customerNumber;
+    }
+
+    public String toString() {
+        return super.toString()+", customer number: "+customerNumber;
     }
 }

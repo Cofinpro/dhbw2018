@@ -4,7 +4,6 @@ import helper.OutputHelper;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
 import models.*;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ public class AccountCreationController {
 
     @FXML
     public void initialize() {
-        customer = CustomerManager.getInstance().getLoggedInCustomer();
+        customer = (Customer)CustomerManager.getInstance().getLoggedInUser();
     }
 
     @FXML

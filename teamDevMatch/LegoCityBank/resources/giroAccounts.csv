@@ -1,12 +1,1 @@
-Phape,GiroAccount,1,75.0,30.1.2019
-a,GiroAccount,2,200.0,1.1.2019
-a,MetalAccount,3,400.0,1.1.2019
-a,PremiumAccount,4,0.0,1.1.2019
-a,BankBook,5,0.42,1.1.2019
-elias-lammes,GiroAccount,6,40.0,20.1.2019
-nt,GiroAccount,9,0.0,30.1.2019
-nt,BankBook,10,0.0,30.1.2019
-nt,PremiumAccount,11,0.0,30.1.2019
-nt,MetalAccount,12,0.0,30.1.2019
-simon-lammes,BankBook,7,5765.43,1.1.1970
-simon-lammes,GiroAccount,8,50.0,1.1.2019
+phape,BankBook,1,50.0,30.1.2019

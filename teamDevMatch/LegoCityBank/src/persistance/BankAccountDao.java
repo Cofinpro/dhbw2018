@@ -19,13 +19,17 @@ public class BankAccountDao {
 
     private BankAccountDao() {}
 
-    public void writeBankAccountsToCSV(Set<Customer> customers) {
+    public void writeBankAccountsToCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         ArrayList<String> csvToStringsList = new ArrayList<>(); //ArrayList is used because its unclear how many BankAccounts exist in total
 
-        for (Customer customer : customers) {
-            for (BankAccount bankAccount : customer.getBankAccounts()) {
-                csvToStringsList.add(customer.getUserName()+","+bankAccount.csvString()); //todo
+        Customer customer;
+        for (User user : users) {
+            if (user instanceof Customer) {
+                customer = (Customer)user;
+                for (BankAccount bankAccount : customer.getBankAccounts()) {
+                    csvToStringsList.add(customer.getUserName()+","+bankAccount.csvString());
+                }
             }
         }
         String[] csvToStrings = new String[csvToStringsList.size()];
@@ -34,7 +38,7 @@ public class BankAccountDao {
         helper.writeCSV(csvToStrings);
     }
 
-    public void readBankAccountsFromCSV(Set<Customer> customers) {
+    public void readBankAccountsFromCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
@@ -43,7 +47,9 @@ public class BankAccountDao {
             String accountNumber = giroAccountRepresentation[2];
             double balance = Double.parseDouble(giroAccountRepresentation[3]);
             String creationDate = giroAccountRepresentation[4];
-            Customer customer = getCustomerByUserName(customers, userName);
+
+            Customer customer = (Customer)getUserByUserName(users, userName);
+
             if (customer == null) {
                 throw new IllegalArgumentException();
             }
@@ -67,13 +73,15 @@ public class BankAccountDao {
                 default:
                     break;
             }
+            break;
+
         }
     }
 
-    public Customer getCustomerByUserName(Set<Customer> customers, String userName) {
-        for (Customer customer : customers) {
-            if (customer.getUserName().equals(userName)) {
-                return customer;
+    public User getUserByUserName(Set<User> users, String userName) {
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                return user;
             }
         }
         throw new UserNotFoundException(userName);
