@@ -26,7 +26,7 @@ public class DisburseController {
     @FXML
     public void initialize() {
         errorTextField.setVisible(false);
-        disburseValueTextField.textProperty().addListener(e -> validateInput());
+        disburseValueTextField.textProperty().addListener(e -> OutputHelper.validateMoneyValueInput(disburseValueTextField, errorTextField));
         disburseValueTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 disburse(event);
@@ -49,31 +49,8 @@ public class DisburseController {
 
     }
 
-    private void validateInput() {
-        String input = disburseValueTextField.getText();
-        String validInput = input.replaceAll("[^0-9|.|,]", "");
-        if (!validInput.equals(input)) {
-            disburseValueTextField.setText(validInput);
-            errorTextField.setText("Bitte nur Ziffern eintragen.");
-            errorTextField.setVisible(true);
-        } else {
-            Pattern pattern = Pattern.compile("[.|,]");
-            Matcher matcher = pattern.matcher(validInput);
-            matcher.find(); //find the first . or ,
-            //if matcher finds a second . or , something is wrong
-            if (matcher.find()) {
-                Platform.runLater(() -> {
-                    disburseValueTextField.setText("");
-                    errorTextField.setText("Es darf maximal ein Komma oder Punkt vorkommen");
-                    errorTextField.setVisible(true);
-                });
-            } else {
-                errorTextField.setVisible(false);
-            }
-        }
-    }
-
     public void disburse(Event event) {
+        //make the input parseable to a double (the parser doesn't accept commas)
         String input = disburseValueTextField.getText().replace(',', '.');
         try {
             double value = Double.parseDouble(input);
