@@ -51,6 +51,12 @@ public class OutputHelper {
                     errorTextField.setText("Es darf maximal ein Komma oder Punkt vorkommen");
                     errorTextField.setVisible(true);
                 });
+            } else if (Pattern.compile("^[0-9]*[.|,][0-9]{3,}$").matcher(input).matches()) {
+                Platform.runLater(() -> {
+                    textField.setText(validInput.substring(0, validInput.length()-1));
+                    errorTextField.setText("Es sind maximal zwei Nachkommastellen erlaubt");
+                    errorTextField.setVisible(true);
+                });
             } else {
                 errorTextField.setVisible(false);
             }

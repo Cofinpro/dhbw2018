@@ -1,6 +1,6 @@
 Phape,GiroAccount,1,75.0,30.1.2019
-a,GiroAccount,2,7.758760076051719E12,1.1.2019
-a,MetalAccount,3,0.12,1.1.2019
+a,GiroAccount,2,0.018750000000000044,1.1.2019
+a,MetalAccount,3,0.0,1.1.2019
 a,PremiumAccount,4,42.42,1.1.2019
 a,BankBook,5,0.4200000000000017,1.1.2019
 elias-lammes,GiroAccount,6,40.0,20.1.2019
