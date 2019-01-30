@@ -33,8 +33,10 @@ public class DepositController {
         if (!validInput.equals(input)) {
             depositValueTextField.setText(validInput);
             errorTextField.setText("Bitte tippe nur Ziffern ein.");
+            errorTextField.setVisible(true);
         } else {
             errorTextField.setText("");
+            errorTextField.setVisible(false);
         }
     }
 
@@ -48,6 +50,7 @@ public class DepositController {
             goBack(event);
         } else {
             errorTextField.setText("Du kannst nur Beträge einzahlen, die durch 5 teilbar sind.");
+            errorTextField.setVisible(true);
         }
     }
 

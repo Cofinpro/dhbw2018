@@ -51,4 +51,8 @@ public class DashboardController {
         customerManager.logUserOut();
         OutputHelper.setNextScene("loginWindow.fxml");
     }
+
+    public void addBankAccount(MouseEvent mouseEvent) throws IOException {
+        OutputHelper.setNextScene("accountCreationView.fxml");
+    }
 }

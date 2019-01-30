@@ -68,7 +68,14 @@ public class BankAccountController {
     }
 
     public void disburse(ActionEvent actionEvent) throws  IOException {
-        OutputHelper.setNextScene("disburseWindow.fxml");
+        if (bankAccount.getBalance() > 0) {
+            OutputHelper.setNextScene("disburseWindow.fxml");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Kontostand zu niedrig");
+            alert.setContentText("Der Kontostand ist zu niedrig um Geld von ihm abheben zu können.");
+            alert.showAndWait();
+        }
     }
 
     public void goBack(Event event) throws IOException {
