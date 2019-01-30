@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import models.BankAccount;
 import models.Customer;
+import models.User;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -20,15 +21,15 @@ public class DashboardController {
     @FXML private VBox bankAccountsVBox;
 
     private CustomerManager customerManager;
-    private Customer loggedInCustomer;
+    private User loggedInUser;
 
     @FXML
     public void initialize() {
         customerManager = CustomerManager.getInstance();
-        loggedInCustomer = customerManager.getLoggedInCustomer();
-        usernameTextField.setText(loggedInCustomer.getUserName());
-        fullNameTextField.setText(loggedInCustomer.getFirstName() + " " + loggedInCustomer.getLastName());
-        Customer loggedInCustomer = (Customer) this.loggedInCustomer;
+        loggedInUser = customerManager.getLoggedInUser();
+        usernameTextField.setText(loggedInUser.getUserName());
+        fullNameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
+        Customer loggedInCustomer = (Customer) this.loggedInUser;
         if (loggedInCustomer != null) {
             DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
             totalBalanceTextField.setText(df.format(loggedInCustomer.getTotalBalance()));
@@ -37,7 +38,7 @@ public class DashboardController {
     }
 
     private void updateBankAccountViews() {
-        Customer loggedInCustomer = (Customer) this.loggedInCustomer;
+        Customer loggedInCustomer = (Customer) this.loggedInUser;
         if (loggedInCustomer == null) {
             return;
         }

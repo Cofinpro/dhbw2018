@@ -10,8 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.BankAccount;
 import models.Customer;
-import persistance.UserDao;
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Optional;
@@ -27,7 +25,6 @@ public class BankAccountController {
     @FXML private TextField accountNumberTextField;
 
     private CustomerManager customerManager;
-    private UserDao userDao;
     private BankAccount bankAccount;
 
     @FXML
@@ -42,7 +39,7 @@ public class BankAccountController {
 
     @FXML
     void onRequstDeleteBankAccount(Event event) throws IOException {
-        Customer customer = customerManager.getLoggedInCustomer();
+        Customer loggedInUser = (Customer)customerManager.getLoggedInUser();
         BankAccount bankAccount = customerManager.getInspectedBankAccount();
         if (bankAccount.isDeletable()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -51,7 +48,7 @@ public class BankAccountController {
             alert.setContentText("Es gibt dann kein zurück mehr.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get().equals(ButtonType.OK)) {
-                customer.deleteBankAccount(bankAccount);
+                loggedInUser.deleteBankAccount(bankAccount);
                 goBack(event);
             }
         } else {

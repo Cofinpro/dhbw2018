@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import models.Customer;
 import models.CustomerManager;
+import models.User;
 import persistance.UserDao;
 import exceptions.UserNotFoundException;
 import helper.OutputHelper;
@@ -59,11 +60,11 @@ public class LoginController {
     public void onLoginRequested(Event Event) {
         String userName = usernameTextField.getText();
         try {
-            Customer customer = customerManager.getCustomerByUserName(userName);
+            User user = customerManager.getCustomerByUserName(userName);
             String enteredPassword = passwordTextField.getText();
-            boolean isLoginSuccessful = customer.tryLogIn(enteredPassword);
+            boolean isLoginSuccessful = user.tryLogIn(enteredPassword);
             if (isLoginSuccessful) {
-                customerManager.logUserIn(customer);
+                customerManager.logUserIn(user);
                 OutputHelper.setNextScene("dashboardWindow.fxml");
             } else {
                 passwordTextField.setText("");

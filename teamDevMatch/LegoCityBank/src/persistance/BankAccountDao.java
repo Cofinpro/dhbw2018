@@ -19,13 +19,17 @@ public class BankAccountDao {
 
     private BankAccountDao() {}
 
-    public void writeBankAccountsToCSV(Set<Customer> customers) {
+    public void writeBankAccountsToCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         ArrayList<String> csvToStringsList = new ArrayList<>(); //ArrayList is used because its unclear how many BankAccounts exist in total
 
-        for (Customer customer : customers) {
-            for (BankAccount bankAccount : customer.getBankAccounts()) {
-                csvToStringsList.add(customer.getUserName()+","+bankAccount.csvString()); //todo
+        Customer customer;
+        for (User user : users) {
+            if (user instanceof Customer) {
+                customer = (Customer)user;
+                for (BankAccount bankAccount : customer.getBankAccounts()) {
+                    csvToStringsList.add(customer.getUserName()+","+bankAccount.csvString());
+                }
             }
         }
         String[] csvToStrings = new String[csvToStringsList.size()];
@@ -34,46 +38,56 @@ public class BankAccountDao {
         helper.writeCSV(csvToStrings);
     }
 
-    public void readBankAccountsFromCSV(Set<Customer> customers) {
+    public void readBankAccountsFromCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
-            String userName = giroAccountRepresentation[0];
-            String accountType = giroAccountRepresentation[1];
-            String accountNumber = giroAccountRepresentation[2];
-            double balance = Double.parseDouble(giroAccountRepresentation[3]);
-            String creationDate = giroAccountRepresentation[4];
-            Customer customer = getCustomerByUserName(customers, userName);
-            if (customer == null) {
-                throw new IllegalArgumentException();
-            }
-            switch (accountType) {
-                case "BankBook":
-                    BankBook bankBook = new BankBook(accountNumber, balance, creationDate);
-                    customer.addBankAccount(bankBook);
+            String userType = giroAccountRepresentation[0];
+
+            switch (userType) {
+                case "Admin":
                     break;
-                case "GiroAccount":
-                    GiroAccount giroAccount = new GiroAccount(accountNumber, balance, creationDate);
-                    customer.addBankAccount(giroAccount);
-                    break;
-                case "PremiumAccount":
-                    PremiumAccount premiumAccount = new PremiumAccount(accountNumber, balance, creationDate);
-                    customer.addBankAccount(premiumAccount);
-                    break;
-                case "MetalAccount":
-                    MetalAccount metalAccount = new MetalAccount(accountNumber, balance, creationDate);
-                    customer.addBankAccount(metalAccount);
-                    break;
-                default:
+                case "Customer":
+                    String userName = giroAccountRepresentation[1];
+                    String accountType = giroAccountRepresentation[2];
+                    String accountNumber = giroAccountRepresentation[3];
+                    double balance = Double.parseDouble(giroAccountRepresentation[4]);
+                    String creationDate = giroAccountRepresentation[5];
+
+                    Customer customer = (Customer)getUserByUserName(users, userName);
+
+                    if (customer == null) {
+                        throw new IllegalArgumentException();
+                    }
+                    switch (accountType) {
+                        case "BankBook":
+                            BankBook bankBook = new BankBook(accountNumber, balance, creationDate);
+                            customer.addBankAccount(bankBook);
+                            break;
+                        case "GiroAccount":
+                            GiroAccount giroAccount = new GiroAccount(accountNumber, balance, creationDate);
+                            customer.addBankAccount(giroAccount);
+                            break;
+                        case "PremiumAccount":
+                            PremiumAccount premiumAccount = new PremiumAccount(accountNumber, balance, creationDate);
+                            customer.addBankAccount(premiumAccount);
+                            break;
+                        case "MetalAccount":
+                            MetalAccount metalAccount = new MetalAccount(accountNumber, balance, creationDate);
+                            customer.addBankAccount(metalAccount);
+                            break;
+                        default:
+                            break;
+                    }
                     break;
             }
         }
     }
 
-    public Customer getCustomerByUserName(Set<Customer> customers, String userName) {
-        for (Customer customer : customers) {
-            if (customer.getUserName().equals(userName)) {
-                return customer;
+    public User getUserByUserName(Set<User> users, String userName) {
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                return user;
             }
         }
         throw new UserNotFoundException(userName);

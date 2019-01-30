@@ -11,7 +11,7 @@ public class UserDaoTest {
     public void getInstance() {
         //todo this down here belongs to customerManagerTest
         CustomerManager customerManager = CustomerManager.getInstance();
-        Customer customer = customerManager.getCustomerByUserName("elias-lammes");
+        Customer customer = (Customer)customerManager.getCustomerByUserName("elias-lammes");
         System.out.println(customer.toString());
     }
 }

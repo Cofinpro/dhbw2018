@@ -1,6 +1,6 @@
 package models;
 
-public class User implements Comparable<User>, csvModel {
+public abstract class User implements Comparable<User>, csvModel {
     private String userName;
     private String password;
     private String firstName;
