@@ -37,7 +37,7 @@ public class RegisterController {
             String firstName = firstNameTextField.getText();
             String lastName = lastNameTextField.getText();
             String userName = userNameTextField.getText();
-            Customer customer = new Customer(userName, password, firstName, lastName, "209u49");
+            Customer customer = new Customer(userName, password, firstName, lastName);
             if(CustomerManager.getInstance().addCustomer(customer)) {
                 goBack(mouseEvent);
             } else {

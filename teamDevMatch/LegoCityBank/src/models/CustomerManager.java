@@ -49,6 +49,28 @@ public class CustomerManager {
         return UserDao.getInstance().getCustomerByUserName(customers, userName);
     }
 
+    public String getNextBankAccountNumber() {
+        long highestBankAccountNumber = 0;
+        for (Customer customer : customers) {
+            for (BankAccount bankAccount : customer.getBankAccounts()) {
+                long banLong = Long.parseLong(bankAccount.getBankAccountNumber());
+                if (banLong > highestBankAccountNumber)
+                    highestBankAccountNumber = banLong;
+            }
+        }
+        return String.valueOf(highestBankAccountNumber+1);
+    }
+
+    public String getNextCustomerNumber() {
+        long highestCustomerNumber = 0;
+        for (Customer customer : customers) {
+            long cnLong = Long.parseLong(customer.getCustomerNumber());
+            if (cnLong > highestCustomerNumber)
+                highestCustomerNumber = cnLong;
+        }
+        return String.valueOf(highestCustomerNumber+1);
+    }
+
     /**
      * Writes Customers AND their Accounts to the corresponding CSV
      */

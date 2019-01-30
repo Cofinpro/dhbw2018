@@ -1,8 +1,8 @@
-a,GiroAccount,placeholder,84.7003,29.1.2019
-a,GiroAccount,097528751890,42.42,1.1.2019
-a,MetalAccount,140982175217,0.0,1.1.2019
-a,PremiumAccount,123498712740921,42.42,1.1.2019
-a,BankBook,689251905423971,0.4200000000000017,1.1.2019
-elias-lammes,GiroAccount,1979854198571,40.0,20.1.2019
-simon-lammes,BankBook,198347147,5765.43,1.1.1970
-simon-lammes,GiroAccount,29851759873,50.0,1.1.2019
+Phape,GiroAccount,1,75.0,30.1.2019
+a,GiroAccount,2,42.42,1.1.2019
+a,MetalAccount,3,0.0,1.1.2019
+a,PremiumAccount,4,42.42,1.1.2019
+a,BankBook,5,42.42,1.1.2019
+elias-lammes,GiroAccount,6,40.0,20.1.2019
+simon-lammes,BankBook,7,5765.43,1.1.1970
+simon-lammes,GiroAccount,8,50.0,1.1.2019
