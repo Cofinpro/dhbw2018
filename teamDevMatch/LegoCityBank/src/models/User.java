@@ -38,4 +38,8 @@ public class User implements Comparable<User>, csvModel {
     public String csvString() {
         return userName+","+password+","+firstName+","+lastName;
     }
+
+    public String toString() {
+        return "user name: "+userName+", password: "+password+", first name: "+firstName+", last name: "+lastName;
+    }
 }

@@ -10,26 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BankAccountTest {
 
-    Customer customer = new Customer("Phape", "12345678", "Philipp",
+    private Customer customer = new Customer("Phape", "12345678", "Philipp",
             "Mayer", "7");
-    GiroAccount account = new GiroAccount();
+    private GiroAccount account = new GiroAccount();
 
     void setUp() {
         customer.addBankAccount(account);
     }
-    @Test
-    void testDeposit() {
-        account.deposit(500.0);
 
-        assertEquals(500.0, account.getBalance());
-    }
-
-    @Test
-    void testDisburse() {
-        account.disburse(250.0);
-
-        assertEquals(-250.0, account.getBalance());
-    }
 
     @Test
     void testProcessMonthlyInterest() {
@@ -46,5 +34,47 @@ class BankAccountTest {
 
     @Test
     void testCompareTo() {
+    }
+
+    @Test
+    void testDeposit() {
+        account.deposit(500.0);
+
+        assertEquals(500.0, account.getBalance());
+    }
+
+    @Test
+    void testDisburse() {
+        account.disburse(250.0);
+
+        assertEquals(-250.0, account.getBalance());
+    }
+
+    @Test
+    void processMonthlyInterest() {
+    }
+
+    @Test
+    void processMonthlyFees() {
+    }
+
+    @Test
+    void getBankAccountNumber() {
+    }
+
+    @Test
+    void getBalance() {
+    }
+
+    @Test
+    void getCreationDate() {
+    }
+
+    @Test
+    void compareTo() {
+    }
+
+    @Test
+    void isDeletable() {
     }
 }
