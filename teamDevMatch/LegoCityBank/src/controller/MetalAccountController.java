@@ -14,6 +14,6 @@ public class MetalAccountController extends BankAccountController {
     public void initialize() {
         super.initialize();
         metalAccount = (MetalAccount) CustomerManager.getInstance().getInspectedBankAccount();
-        goldAmountTextField.setText(String.valueOf(metalAccount.getGoldAmount()));
+        goldAmountTextField.setText(String.valueOf(metalAccount.getGoldAmountInGram()));
     }
 }
