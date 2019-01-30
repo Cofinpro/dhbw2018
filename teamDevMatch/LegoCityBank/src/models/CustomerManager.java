@@ -2,6 +2,8 @@ package models;
 
 import persistance.BankAccountDao;
 import persistance.UserDao;
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class CustomerManager {
@@ -92,5 +94,9 @@ public class CustomerManager {
         if(instance == null)
             instance = new CustomerManager();
         return instance;
+    }
+
+    public Set<BankAccount> getAllBankAccounts() {
+        return new HashSet<>();
     }
 }
