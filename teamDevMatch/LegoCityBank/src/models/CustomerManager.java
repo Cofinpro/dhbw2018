@@ -1,5 +1,6 @@
 package models;
 
+import persistance.BankAccountDao;
 import persistance.UserDao;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class CustomerManager {
 
     private CustomerManager(){
         customers = UserDao.getInstance().readCustomersFromCSV();
-        UserDao.getInstance().readBankAccountsFromCSV(customers);
+        BankAccountDao.getInstance().readBankAccountsFromCSV(customers);
     }
 
     public boolean addCustomer(Customer customer) {
@@ -46,7 +47,7 @@ public class CustomerManager {
     }
 
     public Customer getCustomerByUserName(String userName) {
-        return UserDao.getInstance().getCustomerByUserName(customers, userName);
+        return BankAccountDao.getInstance().getCustomerByUserName(customers, userName);
     }
 
     public String getNextBankAccountNumber() {
@@ -75,10 +76,8 @@ public class CustomerManager {
      * Writes Customers AND their Accounts to the corresponding CSV
      */
     public void saveCustomersToCSV() {
-        UserDao userDao = UserDao.getInstance();
-
-        userDao.writeCustomersToCSV(customers);
-        userDao.writeBankAccountsToCSV(customers);
+        UserDao.getInstance().writeCustomersToCSV(customers);
+        BankAccountDao.getInstance().writeBankAccountsToCSV(customers);
     }
 
     public static CustomerManager getInstance() {
