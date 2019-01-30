@@ -49,7 +49,7 @@ public class CustomerManager {
         return inspectedBankAccount;
     }
 
-    public User getCustomerByUserName(String userName) {
+    public User getUserByUserName(String userName) {
         return BankAccountDao.getInstance().getUserByUserName(users, userName);
     }
 
