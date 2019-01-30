@@ -11,8 +11,8 @@ public class GiroAccount extends BankAccount {
         super();
     }
 
-    public GiroAccount(String bankAccountNumber, double balance, String creationDate) {
-        super (bankAccountNumber, balance, creationDate);
+    public GiroAccount(String owner, String bankAccountNumber, double balance, String creationDate) {
+        super (owner, bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {

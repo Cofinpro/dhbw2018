@@ -11,8 +11,8 @@ public class BankBook extends BankAccount {
         super();
     }
 
-    public BankBook(String bankAccountNumber, double balance, String creationDate) {
-        super (bankAccountNumber, balance, creationDate);
+    public BankBook(String owner, String bankAccountNumber, double balance, String creationDate) {
+        super (owner, bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {

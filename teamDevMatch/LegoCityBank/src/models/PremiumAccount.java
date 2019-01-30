@@ -11,8 +11,8 @@ public class PremiumAccount extends BankAccount {
         super();
     }
 
-    public PremiumAccount(String bankAccountNumber, double balance, String creationDate) {
-        super (bankAccountNumber, balance, creationDate);
+    public PremiumAccount(String owner, String bankAccountNumber, double balance, String creationDate) {
+        super (owner, bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {

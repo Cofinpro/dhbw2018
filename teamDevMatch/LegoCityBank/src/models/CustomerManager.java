@@ -2,6 +2,8 @@ package models;
 
 import persistance.BankAccountDao;
 import persistance.UserDao;
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class CustomerManager {
@@ -50,6 +52,17 @@ public class CustomerManager {
         return BankAccountDao.getInstance().getUserByUserName(users, userName);
     }
 
+    public Set<BankAccount> getAllBankAccounts() {
+        Set<BankAccount> allBankAccounts = null;
+        for (User user : users) {
+            if (user instanceof Customer && ((Customer) user).getBankAccounts() != null) {
+                allBankAccounts.addAll(((Customer)user).getBankAccounts());
+
+            }
+        }
+        return  allBankAccounts;
+    }
+
     public String getNextBankAccountNumber() {
         Customer customer;
         long highestBankAccountNumber = 0;
@@ -92,5 +105,9 @@ public class CustomerManager {
         if(instance == null)
             instance = new CustomerManager();
         return instance;
+    }
+
+    public Set<BankAccount> getAllBankAccounts() {
+        return new HashSet<>();
     }
 }
