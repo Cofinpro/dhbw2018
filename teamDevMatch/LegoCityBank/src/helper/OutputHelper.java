@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class OutputHelper {
     public static DecimalFormat getDecimalFormatForFigures() {
-        return new DecimalFormat("0.00");
+        return new DecimalFormat("###,##0.00#############################");
     }
 
     public static void setNextScene(String name) throws IOException {
