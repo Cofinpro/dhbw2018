@@ -1,6 +1,7 @@
 package controller;
 
 import helper.OutputHelper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -8,10 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import models.BankAccount;
 import models.CustomerManager;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DisburseController {
 
@@ -47,18 +51,30 @@ public class DisburseController {
 
     private void validateInput() {
         String input = disburseValueTextField.getText();
-        String validInput = input.replaceAll("[^0-9]", "");
+        String validInput = input.replaceAll("[^0-9|.|,]", "");
         if (!validInput.equals(input)) {
             disburseValueTextField.setText(validInput);
             errorTextField.setText("Bitte nur Ziffern eintragen.");
             errorTextField.setVisible(true);
         } else {
-            errorTextField.setVisible(false);
+            Pattern pattern = Pattern.compile("[.|,]");
+            Matcher matcher = pattern.matcher(validInput);
+            matcher.find(); //find the first . or ,
+            //if matcher finds a second . or , something is wrong
+            if (matcher.find()) {
+                Platform.runLater(() -> {
+                    disburseValueTextField.setText("");
+                    errorTextField.setText("Es darf maximal ein Komma oder Punkt vorkommen");
+                    errorTextField.setVisible(true);
+                });
+            } else {
+                errorTextField.setVisible(false);
+            }
         }
     }
 
     public void disburse(Event event) {
-        String input = disburseValueTextField.getText();
+        String input = disburseValueTextField.getText().replace(',', '.');
         try {
             double value = Double.parseDouble(input);
             if (value <= 0) {
