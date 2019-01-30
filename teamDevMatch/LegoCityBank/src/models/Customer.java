@@ -7,6 +7,11 @@ public class Customer extends User implements csvModel{
     private String customerNumber;
     private Set<BankAccount> bankAccountSet= new TreeSet<>();
 
+    public Customer(String userName, String password, String firstName, String lastName) {
+        super(userName, password, firstName, lastName);
+        this.customerNumber = CustomerManager.getInstance().getNextCustomerNumber();
+    }
+
     public Customer(String userName, String password, String firstName, String lastName, String customerNumber) {
         super(userName, password, firstName, lastName);
         this.customerNumber = customerNumber;
