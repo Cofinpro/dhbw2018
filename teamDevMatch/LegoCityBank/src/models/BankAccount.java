@@ -111,4 +111,8 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
     public boolean isDeletable() {
         return balance < 0.01;
     }
+
+    public Customer getOwner() {
+        return new Customer("mock", "", "Max", "Mustermann");
+    }
 }
