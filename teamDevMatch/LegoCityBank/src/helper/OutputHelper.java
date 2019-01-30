@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Screen;
+import models.CustomerManager;
+import models.MetalAccount;
 import views.Main;
 
 import javax.xml.soap.Text;
@@ -21,6 +23,9 @@ public class OutputHelper {
     }
 
     public static void setNextScene(String name) throws IOException {
+        if (name.equals("bankAccountView.fxml") && CustomerManager.getInstance().getInspectedBankAccount().getClass() == MetalAccount.class) {
+            name = "metalAccountView.fxml";
+        }
         Parent root = FXMLLoader.load(Main.class.getResource(name));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         Main.PRIMARY_STAGE.setScene(new Scene(root));

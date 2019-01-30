@@ -27,7 +27,7 @@ public class DashboardController {
         customerManager = CustomerManager.getInstance();
         loggedInCustomer = customerManager.getLoggedInCustomer();
         usernameTextField.setText(loggedInCustomer.getUserName());
-        fullNameTextField.setText(loggedInCustomer.getUserName());
+        fullNameTextField.setText(loggedInCustomer.getFirstName() + " " + loggedInCustomer.getLastName());
         Customer loggedInCustomer = (Customer) this.loggedInCustomer;
         if (loggedInCustomer != null) {
             DecimalFormat df = OutputHelper.getDecimalFormatForFigures();

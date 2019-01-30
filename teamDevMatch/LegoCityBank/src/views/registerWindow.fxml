@@ -10,6 +10,8 @@
 
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.RegisterController">
   <children>
+    <PasswordField fx:id="passwordConfirmTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort erneut eingeben" text="" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
     <TextField fx:id="firstNameTextField" alignment="CENTER_LEFT" maxWidth="-Infinity" opacity="1.0" prefHeight="78.0" prefWidth="120.0" promptText="Vorname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
     <TextField fx:id="lastNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="215.0" promptText="Nachname" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
       <GridPane.margin>
@@ -35,8 +37,6 @@
         </ImageView>
       </children>
     </Pane>
-    <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-    <PasswordField fx:id="passwordConfirmTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort erneut eingeben" text="" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="209.0" />
