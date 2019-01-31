@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import models.*;
 import helper.OutputHelper;
@@ -9,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Optional;
 import java.util.Set;
 
 public class DashboardController {
@@ -52,8 +55,16 @@ public class DashboardController {
         OutputHelper.setNextScene("accountCreationView.fxml");
     }
 
-    public void onDeleteAccountRequested(MouseEvent mouseEvent) {
-        deleteAccount();
+    public void onDeleteAccountRequested(MouseEvent mouseEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Löschen bestätigen");
+        alert.setHeaderText(loggedInCustomer + " löschen?");
+        alert.setContentText("Es gibt dann kein zurück mehr.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get().equals(ButtonType.OK)) {
+            deleteAccount();
+            logOut(mouseEvent);
+        }
     }
 
     private void deleteAccount() {
