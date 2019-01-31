@@ -2,13 +2,13 @@ package models;
 
 public class BankBook extends BankAccount {
 
-    private static final String accountType = "BankBook";
+    private static final String accountType = "Sparbuch";
     private static final double monthlyInterest = 0.01; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
-    public BankBook() {
-        super();
+    public BankBook(Customer customer) {
+        super(customer);
     }
 
     public BankBook(Customer owner, String bankAccountNumber, double balance, String creationDate) {

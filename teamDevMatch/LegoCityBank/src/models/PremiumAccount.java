@@ -2,13 +2,13 @@ package models;
 
 public class PremiumAccount extends BankAccount {
 
-    private static final String accountType = "PremiumAccount";
+    private static final String accountType = "Premium Konto";
     private static final double monthlyInterest = 0.0; //in decimal
     private static final double monthlyFeesPercentage = 0.005; //in decimal
     private static final double monthlyFeesAbsolute = 0.0; //in €
 
-    public PremiumAccount() {
-        super();
+    public PremiumAccount(Customer customer) {
+        super(customer);
     }
 
     public PremiumAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {

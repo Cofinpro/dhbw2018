@@ -12,7 +12,8 @@ class BankAccountTest {
 
     private Customer customer = new Customer("Phape", "12345678", "Philipp",
             "Mayer", "7");
-    private GiroAccount account = new GiroAccount();
+
+    private GiroAccount account = new GiroAccount(customer);
 
     void setUp() {
         customer.addBankAccount(account);

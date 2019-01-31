@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BankBookTest {
+    Customer customer = new Customer("blabla","passwort","Philipp","Lammmes");
 
-    BankBook bankBook = new BankBook();
+    BankBook bankBook = new BankBook(customer);
     @Test
     void getAccountType() {
         assertEquals(bankBook.getAccountType(),"BankBook");
