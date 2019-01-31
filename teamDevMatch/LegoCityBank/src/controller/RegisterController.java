@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import models.Customer;
 import models.CustomerManager;
+import models.User;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -19,15 +20,35 @@ public class RegisterController {
     @FXML private TextField passwordTextField;
     @FXML private TextField passwordConfirmTextField;
 
+    @FXML private TextField wrongPasswordTextField;
+    @FXML private TextField wrongUsernameTextField;
+    @FXML private TextField wrongNameTextField;
+
+    @FXML
+    public void initialize() {
+        setupInputValidation();
+    }
+
+    private void setupInputValidation() {
+        firstNameTextField.textProperty().addListener(e -> validateName());
+        lastNameTextField.textProperty().addListener(e -> validateName());
+    }
+
+    private void validateName() {
+        String errorMessage = User.isfirstNameValid(firstNameTextField.getText());
+        if (errorMessage.equals("")) {
+            errorMessage = User.isLastNameValid(lastNameTextField.getText());
+        }
+        if (errorMessage.equals("")) {
+            wrongNameTextField.setVisible(false);
+        } else {
+            wrongNameTextField.setText(errorMessage);
+            wrongNameTextField.setVisible(true);
+        }
+    }
+
     public void goBack(MouseEvent mouseEvent) throws IOException {
         OutputHelper.setNextScene("loginWindow.fxml");
-        passwordConfirmTextField.textProperty().addListener(e -> {
-            if (passwordConfirmTextField.getText().equals(passwordTextField.getText())) {
-                //password should be red
-            } else {
-                //password should be normal
-            }
-        });
     }
 
     public void register(MouseEvent mouseEvent) throws IOException {
