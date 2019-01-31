@@ -30,8 +30,8 @@ public abstract class User implements Comparable<User>, csvModel {
     }
 
     public static String isPasswordValid (String passwordToCheck) {
-        if (passwordToCheck == null || passwordToCheck.length() < 6 || passwordToCheck.length() > 32)
-            return "Passwort sollte zwischen 6 und 32 Zeichen haben";
+        if (passwordToCheck == null || passwordToCheck.length() < 5 || passwordToCheck.length() > 32)
+            return "Passwort sollte zwischen 5 und 32 Zeichen haben";
         return "";
     }
 
