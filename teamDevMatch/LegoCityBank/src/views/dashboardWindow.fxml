@@ -45,9 +45,9 @@
         </ImageView>
       </children>
     </Pane>
-    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+    <Pane id="" fx:id="helper" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
       <children>
-        <ImageView fitHeight="${helpPaneBottomRight.height}" fitWidth="${helpPaneBottomRight.width}" layoutX="64.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helper.height}" fitWidth="${helper.width}" layoutX="53.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/deleteAccountIcon.jpg" />
           </image>
