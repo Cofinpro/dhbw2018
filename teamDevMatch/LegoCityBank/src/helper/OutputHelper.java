@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Screen;
+import models.Admin;
 import models.CustomerManager;
 import models.MetalAccount;
 import views.Main;
@@ -25,6 +26,9 @@ public class OutputHelper {
     public static void setNextScene(String name) throws IOException {
         if (name.equals("bankAccountView.fxml") && CustomerManager.getInstance().getInspectedBankAccount().getClass() == MetalAccount.class) {
             name = "metalAccountView.fxml";
+        }
+        if (name.equals("dashboardWindow.fxml") && CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
+            name = "dashboardWindowAdmin.fxml";
         }
         Parent root = FXMLLoader.load(Main.class.getResource(name));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
