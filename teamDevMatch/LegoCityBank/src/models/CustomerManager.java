@@ -2,8 +2,6 @@ package models;
 
 import persistance.BankAccountDao;
 import persistance.UserDao;
-
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 

@@ -11,7 +11,7 @@ public class GiroAccount extends BankAccount {
         super();
     }
 
-    public GiroAccount(String owner, String bankAccountNumber, double balance, String creationDate) {
+    public GiroAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 
@@ -36,6 +36,6 @@ public class GiroAccount extends BankAccount {
 
     @Override
     public String csvString() {
-        return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
+        return getOwner().getUserName()+","+accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }

@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
 
-    private String owner;
+    private Customer owner;
     private String bankAccountNumber;
     private double balance;
     private String creationDate;
@@ -25,14 +25,14 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
      * @param bankAccountNumber Number of the BankAccount
      * @param creationDate date of initial creation
      */
-    public BankAccount(String owner, String bankAccountNumber, double balance, String creationDate) {
+    public BankAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
         this.owner = owner;
         this.bankAccountNumber = bankAccountNumber;
         this.balance = balance;
         this.creationDate = creationDate;
     }
 
-    public BankAccount(String owner, String bankAccountNumber, String creationDate){
+    public BankAccount(Customer owner, String bankAccountNumber, String creationDate){
         this.owner = owner;
         this.bankAccountNumber = bankAccountNumber;
         this.creationDate = creationDate;
@@ -113,6 +113,6 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
     }
 
     public Customer getOwner() {
-        return (Customer)CustomerManager.getInstance().getUserByUserName(owner);
+        return owner;
     }
 }

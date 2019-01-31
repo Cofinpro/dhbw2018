@@ -11,7 +11,7 @@ public class BankBook extends BankAccount {
         super();
     }
 
-    public BankBook(String owner, String bankAccountNumber, double balance, String creationDate) {
+    public BankBook(Customer owner, String bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 
@@ -36,6 +36,6 @@ public class BankBook extends BankAccount {
 
     @Override
     public String csvString() {
-        return accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
+        return getOwner().getUserName()+","+accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }
