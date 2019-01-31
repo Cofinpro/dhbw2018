@@ -20,7 +20,7 @@ public class BankAccountDao {
     private BankAccountDao() {}
 
     public void writeBankAccountsToCSV(Set<User> users) {
-        CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
+        CSVHelper helper = new CSVHelper("resources\\bankAccounts.csv");
         ArrayList<String> csvToStringsList = new ArrayList<>(); //ArrayList is used because its unclear how many BankAccounts exist in total
 
         Customer customer;
@@ -39,7 +39,7 @@ public class BankAccountDao {
     }
 
     public void readBankAccountsFromCSV(Set<User> users) {
-        CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
+        CSVHelper helper = new CSVHelper("resources\\bankAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
             String userName = giroAccountRepresentation[0];

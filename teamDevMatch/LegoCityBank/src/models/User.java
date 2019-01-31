@@ -13,6 +13,30 @@ public abstract class User implements Comparable<User>, csvModel {
         this.lastName = lastName;
     }
 
+    public String isUserNameValid (String userNameToCheck) {
+        if (userNameToCheck == null || userNameToCheck.length() < 4 || userNameToCheck.length() > 16)
+            return "Benutzername sollte zwischen 4 und 16 Zeichen haben";
+        return "";
+    }
+
+    public String isPasswordValid (String passwordToCheck) {
+        if (passwordToCheck == null || passwordToCheck.length() < 6 || passwordToCheck.length() > 32)
+            return "Passwort sollte zwischen 6 und 32 Zeichen haben";
+        return "";
+    }
+
+    public String isfirstNameValid (String firstNameToCheck) {
+        if (firstNameToCheck == null || firstNameToCheck.length() < 2 || firstNameToCheck.length() > 16)
+            return "Vorname sollte zwischen 2 und 16 Zeichen haben";
+        return "";
+    }
+
+    public String isLastNameValid (String lastNameToCheck) {
+        if (lastNameToCheck == null || lastNameToCheck.length() < 4 || lastNameToCheck.length() > 16)
+            return "Nachname sollte zwischen 2 und 16 Zeichen haben";
+        return "";
+    }
+
     public String getUserName(){
         return userName;
     }
