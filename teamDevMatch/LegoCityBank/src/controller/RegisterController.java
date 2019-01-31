@@ -87,14 +87,21 @@ public class RegisterController {
             String firstName = firstNameTextField.getText();
             String lastName = lastNameTextField.getText();
             String userName = userNameTextField.getText();
-            Customer customer = new Customer(userName, password, firstName, lastName);
-            if(CustomerManager.getInstance().addCustomer(customer)) {
-                goBack(mouseEvent);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Benutzername vergeben");
-                alert.setHeaderText("Ändere den Benutzernamen!");
-                alert.setContentText("Der Benutzername " + userName + " ist schon vergeben.");
+            try {
+                Customer customer = new Customer(userName, password, firstName, lastName);
+                if(CustomerManager.getInstance().addCustomer(customer)) {
+                    goBack(mouseEvent);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Benutzername vergeben");
+                    alert.setHeaderText("Ändere den Benutzernamen!");
+                    alert.setContentText("Der Benutzername " + userName + " ist schon vergeben.");
+                    alert.showAndWait();
+                }
+            } catch (IllegalArgumentException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Fehler");
+                alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
         } else {
