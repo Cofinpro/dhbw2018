@@ -25,7 +25,11 @@ public class OutputHelper {
 
     public static void setNextScene(String name) throws IOException {
         if (name.equals("bankAccountView.fxml") && CustomerManager.getInstance().getInspectedBankAccount().getClass() == MetalAccount.class) {
-            name = "metalAccountView.fxml";
+            if (CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
+                name = "metalAccountAdminView.fxml";
+            } else {
+                name = "metalAccountView.fxml";
+            }
         }
         else if (name.equals("dashboardWindow.fxml") && CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
             name = "dashboardWindowAdmin.fxml";
