@@ -65,7 +65,7 @@ public class RegisterController {
     }
 
     private void validateName() {
-        String errorMessage = User.isfirstNameValid(firstNameTextField.getText());
+        String errorMessage = User.isFirstNameValid(firstNameTextField.getText());
         if (errorMessage.equals("")) {
             errorMessage = User.isLastNameValid(lastNameTextField.getText());
         }

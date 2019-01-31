@@ -7,6 +7,16 @@ public abstract class User implements Comparable<User>, csvModel {
     private String lastName;
 
     public User(String userName, String password, String firstName, String lastName) {
+        String error;
+        if (!(error = isUserNameValid(userName)).equals(""))
+            throw new IllegalArgumentException(error);
+        if (!(error = isPasswordValid(password)).equals(""))
+            throw new IllegalArgumentException(error);
+        if (!(error = isFirstNameValid(firstName)).equals(""))
+            throw new IllegalArgumentException(error);
+        if (!(error = isLastNameValid(lastName)).equals(""))
+            throw new IllegalArgumentException(error);
+
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -25,7 +35,7 @@ public abstract class User implements Comparable<User>, csvModel {
         return "";
     }
 
-    public static String isfirstNameValid (String firstNameToCheck) {
+    public static String isFirstNameValid(String firstNameToCheck) {
         if (firstNameToCheck == null || firstNameToCheck.length() < 2 || firstNameToCheck.length() > 16)
             return "Vorname sollte zwischen 2 und 16 Zeichen haben";
         return "";
