@@ -62,4 +62,12 @@ public class DashboardController {
     public void addBankAccount(MouseEvent mouseEvent) throws IOException {
         OutputHelper.setNextScene("accountCreationView.fxml");
     }
+
+    public void onDeleteAccountRequested(MouseEvent mouseEvent) {
+        deleteAccount();
+    }
+
+    private void deleteAccount() {
+        customerManager.removeCustomer((Customer) loggedInUser);
+    }
 }
