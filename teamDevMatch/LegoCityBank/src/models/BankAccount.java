@@ -12,7 +12,8 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
     /**
      * Use when user creates a new BankAccount
      */
-    public BankAccount() {
+    public BankAccount(Customer customer) {
+        this.owner = customer;
         this.bankAccountNumber = CustomerManager.getInstance().getNextBankAccountNumber();
         Calendar calendar = Calendar.getInstance();
         this.creationDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH)+1) +

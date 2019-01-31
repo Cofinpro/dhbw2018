@@ -19,25 +19,25 @@ public class AccountCreationController {
 
     @FXML
     void createGiroAccount(ActionEvent event) throws IOException {
-        customer.addBankAccount(new GiroAccount());
+        customer.addBankAccount(new GiroAccount(customer));
         goBack(event);
     }
 
     @FXML
     void createBankBookAccount(ActionEvent event) throws IOException {
-        customer.addBankAccount(new BankBook());
+        customer.addBankAccount(new BankBook(customer));
         goBack(event);
     }
 
     @FXML
     void createPremiumAccount(ActionEvent event) throws IOException {
-        customer.addBankAccount(new PremiumAccount());
+        customer.addBankAccount(new PremiumAccount(customer));
         goBack(event);
     }
 
     @FXML
     void createMetalAccount(ActionEvent event) throws IOException {
-        customer.addBankAccount(new MetalAccount());
+        customer.addBankAccount(new MetalAccount(customer));
         goBack(event);
     }
 

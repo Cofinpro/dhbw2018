@@ -16,8 +16,8 @@ public class MetalAccount extends BankAccount{
     private double goldAmountInGram; //in gram
     private double dollarPerGramOfGold;
 
-    public MetalAccount() {
-        super();
+    public MetalAccount(Customer customer) {
+        super(customer);
     }
 
     public MetalAccount(Customer owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
