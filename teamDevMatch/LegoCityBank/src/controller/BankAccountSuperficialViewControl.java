@@ -45,7 +45,6 @@ public class BankAccountSuperficialViewControl extends GridPane {
         updateView();
 
         setOnMouseClicked(e -> {
-            Parent root = null;
             customerManager.setInspectedBankAccount(bankAccount);
             try {
                 OutputHelper.setNextScene("bankAccountView.fxml");

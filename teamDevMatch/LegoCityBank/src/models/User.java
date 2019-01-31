@@ -27,6 +27,8 @@ public abstract class User implements Comparable<User>, csvModel {
         return lastName;
     }
 
+    public String getFullName() { return firstName + " " + lastName; }
+
     public boolean tryLogIn(String inputPassword) {
         return inputPassword.equals(this.password);
     }

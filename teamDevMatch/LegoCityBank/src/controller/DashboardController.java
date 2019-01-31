@@ -19,16 +19,16 @@ public class DashboardController {
     @FXML private VBox bankAccountsVBox;
 
     private CustomerManager customerManager;
-    private User loggedInUser;
+    private Customer loggedInCustomer;
 
     @FXML
     public void initialize() {
         customerManager = CustomerManager.getInstance();
-        loggedInUser = customerManager.getLoggedInUser();
-        usernameTextField.setText(loggedInUser.getUserName());
-        fullNameTextField.setText(loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
-        if (this.loggedInUser.getClass() == Customer.class) {
-            Customer loggedInCustomer = (Customer) this.loggedInUser;
+        loggedInCustomer = (Customer) customerManager.getLoggedInUser();
+        usernameTextField.setText(loggedInCustomer.getUserName());
+        fullNameTextField.setText(loggedInCustomer.getFirstName() + " " + loggedInCustomer.getLastName());
+        if (this.loggedInCustomer.getClass() == Customer.class) {
+            Customer loggedInCustomer = (Customer) this.loggedInCustomer;
             DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
             totalBalanceTextField.setText(df.format(loggedInCustomer.getTotalBalance()));
         }
@@ -36,21 +36,10 @@ public class DashboardController {
     }
 
     private void updateBankAccountViews() {
-        if (loggedInUser.getClass() == Admin.class) {
-            Set<BankAccount> bankAccounts =  CustomerManager.getInstance().getAllBankAccounts();
-            for (BankAccount bankAccount : bankAccounts) {
-                BankAccountSuperficialAdminViewControl control = new BankAccountSuperficialAdminViewControl(bankAccount);
-                bankAccountsVBox.getChildren().add(control);
-            }
-        }
-        else if (loggedInUser.getClass() == Customer.class){
-            Customer loggedInCustomer = (Customer)this.loggedInUser;
-            for (BankAccount bankAccount : loggedInCustomer.getBankAccounts()) {
-                BankAccountSuperficialViewControl control = new BankAccountSuperficialViewControl(bankAccount);
-                bankAccountsVBox.getChildren().addAll(control);
-            }
-        } else {
-            throw new RuntimeException();
+        Customer loggedInCustomer = (Customer)this.loggedInCustomer;
+        for (BankAccount bankAccount : loggedInCustomer.getBankAccounts()) {
+            BankAccountSuperficialViewControl control = new BankAccountSuperficialViewControl(bankAccount);
+            bankAccountsVBox.getChildren().addAll(control);
         }
     }
 
@@ -61,5 +50,13 @@ public class DashboardController {
 
     public void addBankAccount(MouseEvent mouseEvent) throws IOException {
         OutputHelper.setNextScene("accountCreationView.fxml");
+    }
+
+    public void onDeleteAccountRequested(MouseEvent mouseEvent) {
+        deleteAccount();
+    }
+
+    private void deleteAccount() {
+        customerManager.removeCustomer(loggedInCustomer);
     }
 }
