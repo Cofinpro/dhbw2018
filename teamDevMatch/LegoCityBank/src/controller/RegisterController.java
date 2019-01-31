@@ -3,6 +3,7 @@ package controller;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import models.Customer;
@@ -13,24 +14,54 @@ import java.io.IOException;
 
 public class RegisterController {
 
+
     @FXML private TextField firstNameTextField;
     @FXML private TextField lastNameTextField;
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordTextField;
     @FXML private TextField passwordConfirmTextField;
 
-    @FXML private TextField wrongPasswordTextField;
-    @FXML private TextField wrongUsernameTextField;
-    @FXML private TextField wrongNameTextField;
+    @FXML private TextArea wrongPasswordTextArea;
+    @FXML private TextArea wrongUsernameTextArea;
+    @FXML private TextArea wrongNameTextArea;
 
     @FXML
     public void initialize() {
         setupInputValidation();
+        validateEverything();
+    }
+
+    private void validateEverything() {
+        validateName();
+        validateUserName();
+        validatePassword();
     }
 
     private void setupInputValidation() {
         firstNameTextField.textProperty().addListener(e -> validateName());
         lastNameTextField.textProperty().addListener(e -> validateName());
+        userNameTextField.textProperty().addListener(e -> validateUserName());
+        passwordTextField.textProperty().addListener(e-> validatePassword());
+    }
+
+    private void validatePassword() {
+        String errorMessage = User.isPasswordValid(passwordTextField.getText());
+        if (errorMessage.equals("")) {
+            wrongPasswordTextField.setVisible(false);
+        } else {
+            wrongPasswordTextField.setText(errorMessage);
+            wrongPasswordTextField.setVisible(true);
+        }
+    }
+
+    private void validateUserName() {
+        String errorMessage = User.isUserNameValid(userNameTextField.getText());
+        if (errorMessage.equals("")) {
+            wrongUsernameTextField.setVisible(false);
+        } else {
+            wrongUsernameTextField.setText(errorMessage);
+            wrongUsernameTextField.setVisible(true);
+        }
     }
 
     private void validateName() {
@@ -39,10 +70,10 @@ public class RegisterController {
             errorMessage = User.isLastNameValid(lastNameTextField.getText());
         }
         if (errorMessage.equals("")) {
-            wrongNameTextField.setVisible(false);
+            wrongNameTextArea.setVisible(false);
         } else {
-            wrongNameTextField.setText(errorMessage);
-            wrongNameTextField.setVisible(true);
+            wrongNameTextArea.setText(errorMessage);
+            wrongNameTextArea.setVisible(true);
         }
     }
 
