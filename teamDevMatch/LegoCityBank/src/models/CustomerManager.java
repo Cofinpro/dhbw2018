@@ -93,6 +93,13 @@ public class CustomerManager {
         return String.valueOf(highestCustomerNumber+1);
     }
 
+    public boolean isUserNameTaken(String userNameToCheck) {
+        for (User user : users) {
+            if (userNameToCheck == user.getUserName())
+                return true;
+        }
+        return false;
+    }
     /**
      * Writes Customers AND their Accounts to the corresponding CSV
      */
