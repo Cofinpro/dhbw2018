@@ -1,9 +1,7 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import models.Customer;
 import models.CustomerManager;
 import models.User;
 import persistance.UserDao;
@@ -12,7 +10,6 @@ import helper.OutputHelper;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import views.Main;
 
 import java.io.IOException;
 
@@ -60,7 +57,7 @@ public class LoginController {
     public void onLoginRequested(Event Event) {
         String userName = usernameTextField.getText();
         try {
-            User user = customerManager.getCustomerByUserName(userName);
+            User user = customerManager.getUserByUserName(userName);
             String enteredPassword = passwordTextField.getText();
             boolean isLoginSuccessful = user.tryLogIn(enteredPassword);
             if (isLoginSuccessful) {

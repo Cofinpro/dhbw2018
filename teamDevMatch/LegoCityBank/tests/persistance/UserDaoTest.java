@@ -2,7 +2,6 @@ package persistance;
 
 import models.Customer;
 import models.CustomerManager;
-import models.User;
 import org.junit.Test;
 
 public class UserDaoTest {
@@ -11,7 +10,7 @@ public class UserDaoTest {
     public void getInstance() {
         //todo this down here belongs to customerManagerTest
         CustomerManager customerManager = CustomerManager.getInstance();
-        Customer customer = (Customer)customerManager.getCustomerByUserName("elias-lammes");
+        Customer customer = (Customer)customerManager.getUserByUserName("elias-lammes");
         System.out.println(customer.toString());
     }
 }

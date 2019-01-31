@@ -32,7 +32,7 @@ public class BankAccountSuperficialAdminViewControl extends GridPane {
     public BankAccountSuperficialAdminViewControl(BankAccount bankAccount) {
         customerManager = CustomerManager.getInstance();
         this.bankAccount = bankAccount;
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("bankAccountSuperficialView.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("bankAccountSuperficialAdminView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
