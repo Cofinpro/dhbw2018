@@ -47,20 +47,20 @@ public class RegisterController {
     private void validatePassword() {
         String errorMessage = User.isPasswordValid(passwordTextField.getText());
         if (errorMessage.equals("")) {
-            wrongPasswordTextField.setVisible(false);
+            wrongPasswordTextArea.setVisible(false);
         } else {
-            wrongPasswordTextField.setText(errorMessage);
-            wrongPasswordTextField.setVisible(true);
+            wrongPasswordTextArea.setText(errorMessage);
+            wrongPasswordTextArea.setVisible(true);
         }
     }
 
     private void validateUserName() {
         String errorMessage = User.isUserNameValid(userNameTextField.getText());
         if (errorMessage.equals("")) {
-            wrongUsernameTextField.setVisible(false);
+            wrongUsernameTextArea.setVisible(false);
         } else {
-            wrongUsernameTextField.setText(errorMessage);
-            wrongUsernameTextField.setVisible(true);
+            wrongUsernameTextArea.setText(errorMessage);
+            wrongUsernameTextArea.setVisible(true);
         }
     }
 
