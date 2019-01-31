@@ -28,7 +28,7 @@
     </Pane>
     <Pane fx:id="helpPaneBottomLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
       <children>
-        <ImageView fitHeight="${helpPaneBottomLeft.height}" fitWidth="${helpPaneBottomLeft.width}" layoutX="54.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneBottomLeft.height}" fitWidth="${helpPaneBottomLeft.width}" layoutX="7.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/arrowLeftIcon.png" />
           </image>
