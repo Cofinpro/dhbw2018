@@ -38,21 +38,21 @@
     <TextField fx:id="userNameTextField" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="347.0" promptText="Nutzername" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     <PasswordField fx:id="passwordTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
     <PasswordField fx:id="passwordConfirmTextField" maxWidth="-Infinity" prefHeight="87.0" prefWidth="347.0" promptText="Passwort erneut eingeben" text="" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-    <TextField fx:id="wrongNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="260.0" styleClass="warning" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+    <TextArea fx:id="wrongNameTextArea" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="250.0" styleClass="warning" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0">
       <stylesheets>
         <URL value="@../css/style.css" />
       </stylesheets>
-    </TextField>
-    <TextField id="wrongNameTextField" fx:id="wrongUsernameTextField" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="260.0" styleClass="warning" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+    </TextArea>
+    <TextArea fx:id="wrongUsernameTextArea" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="250.0" styleClass="warning" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
       <stylesheets>
         <URL value="@../css/style.css" />
       </stylesheets>
-    </TextField>
-    <TextField id="wrongNameTextField" fx:id="wrongPasswordTextField" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="260.0" styleClass="warning" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+    </TextArea>
+    <TextArea fx:id="wrongPasswordTextArea" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" opacity="1.0" prefHeight="87.0" prefWidth="250.0" styleClass="warning" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
       <stylesheets>
         <URL value="@../css/style.css" />
       </stylesheets>
-    </TextField>
+    </TextArea>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="185.0" />

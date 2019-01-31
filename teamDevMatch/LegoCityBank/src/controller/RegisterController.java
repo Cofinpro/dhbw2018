@@ -3,16 +3,17 @@ package controller;
 import helper.OutputHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import models.Customer;
 import models.CustomerManager;
 import models.User;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class RegisterController {
+
 
     @FXML private TextField firstNameTextField;
     @FXML private TextField lastNameTextField;
@@ -20,9 +21,9 @@ public class RegisterController {
     @FXML private TextField passwordTextField;
     @FXML private TextField passwordConfirmTextField;
 
-    @FXML private TextField wrongPasswordTextField;
-    @FXML private TextField wrongUsernameTextField;
-    @FXML private TextField wrongNameTextField;
+    @FXML private TextArea wrongPasswordTextArea;
+    @FXML private TextArea wrongUsernameTextArea;
+    @FXML private TextArea wrongNameTextArea;
 
     @FXML
     public void initialize() {
@@ -40,10 +41,10 @@ public class RegisterController {
             errorMessage = User.isLastNameValid(lastNameTextField.getText());
         }
         if (errorMessage.equals("")) {
-            wrongNameTextField.setVisible(false);
+            wrongNameTextArea.setVisible(false);
         } else {
-            wrongNameTextField.setText(errorMessage);
-            wrongNameTextField.setVisible(true);
+            wrongNameTextArea.setText(errorMessage);
+            wrongNameTextArea.setVisible(true);
         }
     }
 
