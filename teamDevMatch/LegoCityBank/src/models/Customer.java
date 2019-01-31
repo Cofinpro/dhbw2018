@@ -45,8 +45,4 @@ public class Customer extends User implements csvModel{
     public String csvString() {
         return getClass().getSimpleName()+","+super.csvString()+","+customerNumber;
     }
-
-    public String toString() {
-        return super.toString()+", customer number: "+customerNumber;
-    }
 }
