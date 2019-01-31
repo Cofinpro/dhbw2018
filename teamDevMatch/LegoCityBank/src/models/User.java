@@ -15,7 +15,7 @@ public abstract class User implements Comparable<User>, csvModel {
 
     public static String isUserNameValid (String userNameToCheck) {
         if (userNameToCheck == null || userNameToCheck.length() < 4 || userNameToCheck.length() > 16)
-            return "Benutzername sollte zwischen 4 und 16 Zeichen haben";
+            return "Nutzername sollte zwischen 4 und 16 Zeichen haben";
         return "";
     }
 
