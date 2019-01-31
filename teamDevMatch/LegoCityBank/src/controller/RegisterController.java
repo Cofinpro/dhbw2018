@@ -28,11 +28,40 @@ public class RegisterController {
     @FXML
     public void initialize() {
         setupInputValidation();
+        validateEverything();
+    }
+
+    private void validateEverything() {
+        validateName();
+        validateUserName();
+        validatePassword();
     }
 
     private void setupInputValidation() {
         firstNameTextField.textProperty().addListener(e -> validateName());
         lastNameTextField.textProperty().addListener(e -> validateName());
+        userNameTextField.textProperty().addListener(e -> validateUserName());
+        passwordTextField.textProperty().addListener(e-> validatePassword());
+    }
+
+    private void validatePassword() {
+        String errorMessage = User.isPasswordValid(passwordTextField.getText());
+        if (errorMessage.equals("")) {
+            wrongPasswordTextField.setVisible(false);
+        } else {
+            wrongPasswordTextField.setText(errorMessage);
+            wrongPasswordTextField.setVisible(true);
+        }
+    }
+
+    private void validateUserName() {
+        String errorMessage = User.isUserNameValid(userNameTextField.getText());
+        if (errorMessage.equals("")) {
+            wrongUsernameTextField.setVisible(false);
+        } else {
+            wrongUsernameTextField.setText(errorMessage);
+            wrongUsernameTextField.setVisible(true);
+        }
     }
 
     private void validateName() {
