@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PremiumAccountTest {
 
-    PremiumAccount premiumAccount = new PremiumAccount();
+    Customer customer = new Customer("blabla","passwort","Philipp","Lammmes");
+
+    PremiumAccount premiumAccount = new PremiumAccount(customer);
     @Test
     void getAccountType() {
         assertEquals(premiumAccount.getAccountType(),"PremiumAccount");

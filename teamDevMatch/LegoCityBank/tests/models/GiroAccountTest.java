@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GiroAccountTest {
 
-   GiroAccount giroAccount = new GiroAccount();
+    Customer customer = new Customer("blabla","passwort","Philipp","Lammmes");
+
+   GiroAccount giroAccount = new GiroAccount(customer);
     @Test
     void getAccountType() {
         assertEquals(giroAccount.getAccountType(),"GiroAccount");

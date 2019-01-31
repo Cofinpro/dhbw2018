@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MetalAccountTest {
 
-    MetalAccount metalAccount = new MetalAccount();
+    Customer customer = new Customer("blabla","passwort","Philipp","Lammmes");
+
+    MetalAccount metalAccount = new MetalAccount(customer);
 
     @Test
     void getAccountType() {
