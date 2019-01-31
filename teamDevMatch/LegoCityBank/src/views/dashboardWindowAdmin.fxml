@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane fx:id="helpPaneBottomRight" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
+<GridPane fx:id="helpPaneBottomRight" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.AdminDashboardController">
   <children>
     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="4">
       <content>
