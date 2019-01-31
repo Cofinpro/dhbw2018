@@ -24,6 +24,7 @@ public class RegisterController {
     @FXML private TextArea wrongPasswordTextArea;
     @FXML private TextArea wrongUsernameTextArea;
     @FXML private TextArea wrongNameTextArea;
+    @FXML private TextArea wrongConfirmationPasswordTextArea;
 
     @FXML
     public void initialize() {
@@ -34,17 +35,27 @@ public class RegisterController {
     private void validateEverything() {
         validateName();
         validateUserName();
-        validatePassword();
+        validatePasswordAndConfirmationPassword();
+    }
+
+    private void validateConfirmationPassword() {
+        if (passwordTextField.getText().equals(passwordConfirmTextField.getText())) {
+            wrongConfirmationPasswordTextArea.setVisible(false);
+        } else  {
+            wrongConfirmationPasswordTextArea.setText("Passwörter müssen übereinstimmen.");
+            wrongConfirmationPasswordTextArea.setVisible(true);
+        }
     }
 
     private void setupInputValidation() {
         firstNameTextField.textProperty().addListener(e -> validateName());
         lastNameTextField.textProperty().addListener(e -> validateName());
         userNameTextField.textProperty().addListener(e -> validateUserName());
-        passwordTextField.textProperty().addListener(e-> validatePassword());
+        passwordTextField.textProperty().addListener(e-> validatePasswordAndConfirmationPassword());
+        passwordConfirmTextField.textProperty().addListener(e -> validateConfirmationPassword());
     }
 
-    private void validatePassword() {
+    private void validatePasswordAndConfirmationPassword() {
         String errorMessage = User.isPasswordValid(passwordTextField.getText());
         if (errorMessage.equals("")) {
             wrongPasswordTextArea.setVisible(false);
@@ -52,6 +63,7 @@ public class RegisterController {
             wrongPasswordTextArea.setText(errorMessage);
             wrongPasswordTextArea.setVisible(true);
         }
+        validateConfirmationPassword();
     }
 
     private void validateUserName() {
