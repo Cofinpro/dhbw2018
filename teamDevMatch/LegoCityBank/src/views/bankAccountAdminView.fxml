@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BankAccountController">
+<GridPane prefHeight="553.0" prefWidth="791.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BankAccountAdminController">
     <children>
         <TextField fx:id="" alignment="CENTER" disable="true" opacity="1.0" prefHeight="82.0" prefWidth="311.0" text="Kontonummer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
             <GridPane.margin>

@@ -106,4 +106,8 @@ public class CustomerManager {
             instance = new CustomerManager();
         return instance;
     }
+
+    public void removeBankAccount() {
+        // TODO: 31.01.2019  
+    }
 }
