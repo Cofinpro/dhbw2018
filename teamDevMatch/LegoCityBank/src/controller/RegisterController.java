@@ -9,7 +9,6 @@ import models.Customer;
 import models.CustomerManager;
 import models.User;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class RegisterController {
@@ -35,7 +34,7 @@ public class RegisterController {
     }
 
     private void validateName() {
-        String errorMessage = User.isfirstNameValid(firstNameTextField.getText());
+        String errorMessage = User.isFirstNameValid(firstNameTextField.getText());
         if (errorMessage.equals("")) {
             errorMessage = User.isLastNameValid(lastNameTextField.getText());
         }
