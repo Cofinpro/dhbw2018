@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class MetalAccount extends BankAccount{
 
-    private static final String accountType = "MetalAccount";
+    private static final String accountType = "Metall Konto";
     private static final double monthlyInterest = 0.0; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 100.0; //in €
