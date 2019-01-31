@@ -25,10 +25,17 @@ public class OutputHelper {
 
     public static void setNextScene(String name) throws IOException {
         if (name.equals("bankAccountView.fxml") && CustomerManager.getInstance().getInspectedBankAccount().getClass() == MetalAccount.class) {
-            name = "metalAccountView.fxml";
+            if (CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
+                name = "metalAccountAdminView.fxml";
+            } else {
+                name = "metalAccountView.fxml";
+            }
         }
-        if (name.equals("dashboardWindow.fxml") && CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
+        else if (name.equals("dashboardWindow.fxml") && CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
             name = "dashboardWindowAdmin.fxml";
+        }
+        else if (name.equals("bankAccountView.fxml") && CustomerManager.getInstance().getLoggedInUser().getClass() == Admin.class) {
+            name = "bankAccountAdminView.fxml";
         }
         Parent root = FXMLLoader.load(Main.class.getResource(name));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

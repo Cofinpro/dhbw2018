@@ -61,10 +61,16 @@ public class BankAccountController {
     }
 
     public void deposit(ActionEvent actionEvent) throws IOException {
+        if (CustomerManager.getInstance().getLoggedInUser().getClass() != Customer.class) {
+            throw new RuntimeException("This method should only be called with a customer logged in");
+        }
         OutputHelper.setNextScene("depositWindow.fxml");
     }
 
     public void disburse(ActionEvent actionEvent) throws  IOException {
+        if (CustomerManager.getInstance().getLoggedInUser().getClass() != Customer.class) {
+            throw new RuntimeException("This method should only be called with a customer logged in");
+        }
         if (bankAccount.getBalance() > 0) {
             OutputHelper.setNextScene("disburseWindow.fxml");
         } else {
