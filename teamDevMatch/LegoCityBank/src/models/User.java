@@ -76,6 +76,6 @@ public abstract class User implements Comparable<User>, csvModel {
     }
 
     public String toString() {
-        return "user name: "+userName+", password: "+password+", first name: "+firstName+", last name: "+lastName;
+        return "Account "+userName;
     }
 }

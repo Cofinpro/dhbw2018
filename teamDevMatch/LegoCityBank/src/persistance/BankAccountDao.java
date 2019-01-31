@@ -19,6 +19,11 @@ public class BankAccountDao {
 
     private BankAccountDao() {}
 
+    /**
+     * iterates over all users, checks for their bank accounts and creates a String[] that is given to the csvHelper
+     * @see helper.CSVHelper
+     * @param users set of all existing users
+     */
     public void writeBankAccountsToCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\bankAccounts.csv");
         ArrayList<String> csvToStringsList = new ArrayList<>(); //ArrayList is used because its unclear how many BankAccounts exist in total
