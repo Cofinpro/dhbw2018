@@ -95,7 +95,7 @@ public class CustomerManager {
 
     public boolean isUserNameTaken(String userNameToCheck) {
         for (User user : users) {
-            if (userNameToCheck == user.getUserName())
+            if (userNameToCheck.equals(user.getUserName()))
                 return true;
         }
         return false;
