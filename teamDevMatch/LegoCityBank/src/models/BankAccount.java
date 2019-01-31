@@ -115,4 +115,9 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
     public Customer getOwner() {
         return owner;
     }
+
+    public String toString() {
+        return this.getClass().getSimpleName();
+
+    }
 }
