@@ -2,13 +2,13 @@ package models;
 
 public class GiroAccount extends BankAccount {
 
-    private static final String accountType = "GiroAccount";
+    private static final String accountType = "Giro Konto";
     private static final double monthlyInterest = 0.0; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 5.0; //in €
 
-    public GiroAccount() {
-        super();
+    public GiroAccount(Customer customer) {
+        super(customer);
     }
 
     public GiroAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
