@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
+<GridPane fx:id="helpPaneBottomRight" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
   <children>
     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="3">
       <content>
         <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="375.0" prefWidth="777.0" />
       </content>
     </ScrollPane>
-    <Pane fx:id="helpPaneBottom" prefHeight="160.0" prefWidth="567.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
+    <Pane fx:id="helpPaneBottom" prefHeight="160.0" prefWidth="567.0" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="5">
       <children>
-        <ImageView fitHeight="${helpPaneBottom.height}" fitWidth="${helpPaneBottom.width}" layoutX="199.0" layoutY="5.0" onMouseClicked="#addBankAccount" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="${helpPaneBottom.height}" fitWidth="${helpPaneBottom.width}" layoutX="14.0" layoutY="7.0" onMouseClicked="#addBankAccount" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/plusIcon.jpg" />
           </image>
@@ -41,6 +41,15 @@
         <ImageView fitHeight="${helpPaneTopRight.height}" fitWidth="${helpPaneTopRight.width}" layoutX="0.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@images/euroIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+      <children>
+        <ImageView fitHeight="${helpPaneBottomRight.height}" fitWidth="${helpPaneBottomRight.width}" layoutX="64.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/deleteAccountIcon.jpg" />
           </image>
         </ImageView>
       </children>
