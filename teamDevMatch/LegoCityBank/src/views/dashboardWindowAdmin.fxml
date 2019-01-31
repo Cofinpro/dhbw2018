@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<GridPane fx:id="helpPaneBottomRight" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.DashboardController">
+  <children>
+    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="AS_NEEDED" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="4">
+      <content>
+        <VBox fx:id="bankAccountsVBox" depthTest="INHERIT" fillWidth="true" prefHeight="532.0" prefWidth="998.0" />
+      </content>
+    </ScrollPane>
+    <TextField fx:id="fullNameTextField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+    <TextField fx:id="usernameTextField" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+    <Pane fx:id="helpPaneTopLeft" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
+      <children>
+        <ImageView fitHeight="${helpPaneTopLeft.height}" fitWidth="${helpPaneTopLeft.width}" layoutX="14.0" layoutY="14.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/userIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane fx:id="helpPaneTopRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
+      <children>
+        <ImageView fitHeight="${helpPaneTopRight.height}" fitWidth="${helpPaneTopRight.width}" layoutX="0.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@images/euroIcon.png" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="161.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="225.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="231.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="161.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
