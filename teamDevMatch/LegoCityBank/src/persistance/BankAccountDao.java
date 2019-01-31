@@ -28,7 +28,7 @@ public class BankAccountDao {
             if (user instanceof Customer) {
                 customer = (Customer)user;
                 for (BankAccount bankAccount : customer.getBankAccounts()) {
-                    csvToStringsList.add(customer.getUserName()+","+bankAccount.csvString());
+                    csvToStringsList.add(bankAccount.csvString());
                 }
             }
         }
@@ -42,32 +42,32 @@ public class BankAccountDao {
         CSVHelper helper = new CSVHelper("resources\\giroAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
-            String owner = giroAccountRepresentation[0];
+            String userName = giroAccountRepresentation[0];
             String accountType = giroAccountRepresentation[1];
             String accountNumber = giroAccountRepresentation[2];
             double currencyAmount = Double.parseDouble(giroAccountRepresentation[3]);
             String creationDate = giroAccountRepresentation[4];
 
-            Customer customer = (Customer)getUserByUserName(users, owner);
+            Customer customer = (Customer)getUserByUserName(users, userName);
 
             if (customer == null) {
                 throw new IllegalArgumentException();
             }
             switch (accountType) {
                 case "BankBook":
-                    BankBook bankBook = new BankBook(owner, accountNumber, currencyAmount, creationDate);
+                    BankBook bankBook = new BankBook(customer, accountNumber, currencyAmount, creationDate);
                     customer.addBankAccount(bankBook);
                     break;
                 case "GiroAccount":
-                    GiroAccount giroAccount = new GiroAccount(owner, accountNumber, currencyAmount, creationDate);
+                    GiroAccount giroAccount = new GiroAccount(customer, accountNumber, currencyAmount, creationDate);
                     customer.addBankAccount(giroAccount);
                     break;
                 case "PremiumAccount":
-                    PremiumAccount premiumAccount = new PremiumAccount(owner, accountNumber, currencyAmount, creationDate);
+                    PremiumAccount premiumAccount = new PremiumAccount(customer, accountNumber, currencyAmount, creationDate);
                     customer.addBankAccount(premiumAccount);
                     break;
                 case "MetalAccount":
-                    MetalAccount metalAccount = new MetalAccount(owner, accountNumber, currencyAmount, creationDate);
+                    MetalAccount metalAccount = new MetalAccount(customer, accountNumber, currencyAmount, creationDate);
                     customer.addBankAccount(metalAccount);
                     break;
                 default:

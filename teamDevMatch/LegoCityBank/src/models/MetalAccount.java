@@ -21,7 +21,7 @@ public class MetalAccount extends BankAccount{
         super();
     }
 
-    public MetalAccount(String owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
+    public MetalAccount(Customer owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
         super (owner, bankAccountNumber, creationDate);
         this.goldAmountInGram = goldAmountInGram;
     }
@@ -103,6 +103,6 @@ public class MetalAccount extends BankAccount{
 
     @Override
     public String csvString() {
-        return accountType+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
+        return getOwner().getUserName()+","+accountType+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
     }
 }
