@@ -13,7 +13,6 @@ public class MetalAccount extends BankAccount{
     private static final double monthlyInterest = 0.0; //in decimal
     private static final double monthlyFeesPercentage = 0.0; //in decimal
     private static final double monthlyFeesAbsolute = 100.0; //in €
-    private double balance;
     private double goldAmountInGram; //in gram
     private double dollarPerGramOfGold;
 
@@ -34,13 +33,8 @@ public class MetalAccount extends BankAccount{
         return goldAmountInGram;
     }
 
-    private void calculateWorthOfGold() {
-        try {
-            updateDollarPerGramOfGold();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        balance = Math.round(goldAmountInGram * dollarPerGramOfGold*100)/100.0;
+    public double getDollarPerGramOfGold() {
+        return dollarPerGramOfGold;
     }
 
     private void updateDollarPerGramOfGold() throws MalformedURLException {
@@ -84,16 +78,17 @@ public class MetalAccount extends BankAccount{
 
     @Override
     public double getBalance() {
-        //balance is calculated (depends on goldAmountInGram and gold price)
-        calculateWorthOfGold();
-
-        return this.balance;
+        try {
+            updateDollarPerGramOfGold();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return Math.round(goldAmountInGram * dollarPerGramOfGold*100)/100.0;
     }
 
     @Override
     public void deposit(double depositAmount){
         this.goldAmountInGram += depositAmount/dollarPerGramOfGold;
-        calculateWorthOfGold();
     }
 
     @Override
@@ -103,6 +98,6 @@ public class MetalAccount extends BankAccount{
 
     @Override
     public String csvString() {
-        return getOwner().getUserName()+","+accountType+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
+        return getOwner().getUserName()+","+getClass().getSimpleName()+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
     }
 }

@@ -13,6 +13,8 @@ public abstract class User implements Comparable<User>, csvModel {
         this.lastName = lastName;
     }
 
+
+
     public String getUserName(){
         return userName;
     }

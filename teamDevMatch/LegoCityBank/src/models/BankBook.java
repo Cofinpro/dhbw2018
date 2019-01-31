@@ -36,6 +36,6 @@ public class BankBook extends BankAccount {
 
     @Override
     public String csvString() {
-        return getOwner().getUserName()+","+accountType+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
+        return getOwner().getUserName()+","+getClass().getSimpleName()+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }
