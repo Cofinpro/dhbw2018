@@ -1,4 +1,4 @@
-package sample.sorting;
+package sorting;
 
 public class JonasSort {
 
