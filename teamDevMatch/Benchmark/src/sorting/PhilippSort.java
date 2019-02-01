@@ -1,3 +1,5 @@
+package sorting;
+
 public class PhilippSort<T extends Comparable<T>> {
 
     public static void main(String[] args) {
