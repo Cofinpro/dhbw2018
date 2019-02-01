@@ -1,35 +1,43 @@
 package controller;
 
 import helper.IntegerSortingEvaluater;
+import interfaces.Sorter;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import sorting.BubbleSort;
+import sorting.PhilippSort;
 import sorting.SimonSort;
 
 public class Controller {
 
-    private static final int startArrayLength = 1;
-    private static final int endArrayLength = 200;
-    private static final int increment = 1;
+    private static final int startArrayLength = 1000;
+    private static final int endArrayLength = 4001;
+    private static final int increment = 1000;
 
     @FXML
-    private LineChart<Integer, Integer> lineChart;
+    private LineChart<Number, Number> lineChart;
 
     @FXML
     public void initialize() {
+        XYChart.Series<Number, Number> series = new XYChart.Series();
 
-        XYChart.Series<Integer, Integer> series = new XYChart.Series();
-        addSimonsResults(series);
-        series.setName("SimonSort");
-        lineChart.getData().add(series);
+        lineChart.getData().add(createResults(new SimonSort<>()));
+        lineChart.getData().add(createResults(new PhilippSort<>()));
+        lineChart.getData().add(createResults(new BubbleSort<>()));
+
     }
 
-    private void addSimonsResults(XYChart.Series<Integer, Integer> series) {
+    private XYChart.Series<Number, Number> createResults(Sorter<Integer> sort) {
+        XYChart.Series<Number, Number> series = new XYChart.Series();
+        series.setName(sort.getClass().getSimpleName());
         IntegerSortingEvaluater sortingEvaluater = new IntegerSortingEvaluater();
         for (int i = startArrayLength; i < endArrayLength; i += increment) {
-            long benchmark = sortingEvaluater.getTimeMillis(new SimonSort<Integer>(), i,10);
+            long benchmark = sortingEvaluater.getTimeMillis(sort, i, 50);
             series.getData().add(new XYChart.Data(i, benchmark));
+            System.out.println(i);
         }
+        return series;
     }
 
 }

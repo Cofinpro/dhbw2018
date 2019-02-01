@@ -23,6 +23,7 @@ public class IntegerSortingEvaluater {
         }
         return getTimeMillis(sorter, array);
     }
+
     public long getTimeMillis(Sorter<Integer> sorter, int arrayLength, int iterations){
         long average = 0;
         for (int i = 0; i < iterations; i++){
