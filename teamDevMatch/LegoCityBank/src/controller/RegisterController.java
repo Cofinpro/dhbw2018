@@ -56,7 +56,7 @@ public class RegisterController {
     }
 
     private void validatePasswordAndConfirmationPassword() {
-        String errorMessage = User.isPasswordValid(passwordTextField.getText());
+        String errorMessage = Customer.isPasswordValid(passwordTextField.getText());
         if (errorMessage.equals("")) {
             wrongPasswordTextArea.setVisible(false);
         } else {
@@ -67,7 +67,7 @@ public class RegisterController {
     }
 
     private void validateUserName() {
-        String errorMessage = User.isUserNameValid(userNameTextField.getText());
+        String errorMessage = Customer.isUserNameValid(userNameTextField.getText());
         if (errorMessage.equals("")) {
             wrongUsernameTextArea.setVisible(false);
         } else {
@@ -77,9 +77,9 @@ public class RegisterController {
     }
 
     private void validateName() {
-        String errorMessage = User.isFirstNameValid(firstNameTextField.getText());
+        String errorMessage = Customer.isFirstNameValid(firstNameTextField.getText());
         if (errorMessage.equals("")) {
-            errorMessage = User.isLastNameValid(lastNameTextField.getText());
+            errorMessage = Customer.isLastNameValid(lastNameTextField.getText());
         }
         if (errorMessage.equals("")) {
             wrongNameTextArea.setVisible(false);
