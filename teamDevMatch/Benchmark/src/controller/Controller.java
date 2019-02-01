@@ -5,6 +5,7 @@ import interfaces.Sorter;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import sorting.BubbleSort;
 import sorting.JonasSort;
 import sorting.PhilippSort;
 import sorting.SimonSort;
@@ -12,8 +13,8 @@ import sorting.SimonSort;
 public class Controller {
 
     private static final int startArrayLength = 1;
-    private static final int endArrayLength = 1000;
-    private static final int increment = 100;
+    private static final int endArrayLength = 3000;
+    private static final int increment = 300;
 
     @FXML
     private LineChart<Integer, Integer> lineChart;
@@ -21,8 +22,8 @@ public class Controller {
     @FXML
     public void initialize() {
         lineChart.getData().add(createResults(new SimonSort<>()));
-        //lineChart.getData().add(createResults(new JonasSort<>()));
         lineChart.getData().add(createResults(new PhilippSort<>()));
+        lineChart.getData().add(createResults(new BubbleSort<>()));
     }
 
     private XYChart.Series<Integer, Integer> createResults(Sorter<Integer> sorter) {
