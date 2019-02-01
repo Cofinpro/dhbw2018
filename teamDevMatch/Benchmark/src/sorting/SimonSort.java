@@ -1,4 +1,4 @@
-package sample.sorting;
+package sorting;
 
 public class SimonSort<T extends Comparable<T>> {
     public void quickSort(T[] input) {
