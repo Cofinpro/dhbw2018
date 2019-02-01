@@ -31,6 +31,7 @@ public class Controller {
     private XYChart.Series<Number, Number> createResults(Sorter<Integer> sort) {
         XYChart.Series<Number, Number> series = new XYChart.Series();
         series.setName(sort.getClass().getSimpleName());
+        System.out.println(series.getName());
         IntegerSortingEvaluater sortingEvaluater = new IntegerSortingEvaluater();
         for (int i = startArrayLength; i < endArrayLength; i += increment) {
             long benchmark = sortingEvaluater.getTimeMillis(sort, i, 50);
