@@ -11,9 +11,9 @@ import sorting.SimonSort;
 
 public class Controller {
 
-    private static final int startArrayLength = 1000;
+    private static final int startArrayLength = 1;
     private static final int endArrayLength = 4001;
-    private static final int increment = 1000;
+    private static final int increment = 100;
 
     @FXML
     private LineChart<Number, Number> lineChart;

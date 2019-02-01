@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class IntegerSortingEvaluater {
 
+    public static IntegerArrayHelper integerArrayHelper = new IntegerArrayHelper(10000);
+
     public long getTimeMillis(Sorter<Integer> sorter, Integer[] array) {
         long startTime = System.currentTimeMillis();
         sorter.sortArray(array);
@@ -16,11 +18,7 @@ public class IntegerSortingEvaluater {
     }
 
     public long getTimeMillis(Sorter<Integer> sorter, int arrayLength) {
-        Integer[] array = new Integer[arrayLength];
-        Random random = new Random();
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = random.nextInt(Integer.MAX_VALUE);
-        }
+        Integer[] array = integerArrayHelper.getIntArray(arrayLength);
         return getTimeMillis(sorter, array);
     }
 
