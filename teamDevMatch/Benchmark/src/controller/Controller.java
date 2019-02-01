@@ -1,6 +1,7 @@
 package controller;
 
 import helper.IntegerSortingEvaluater;
+import interfaces.Sorter;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -17,19 +18,21 @@ public class Controller {
 
     @FXML
     public void initialize() {
-
-        XYChart.Series<Integer, Integer> series = new XYChart.Series();
-        addSimonsResults(series);
-        series.setName("SimonSort");
-        lineChart.getData().add(series);
+        lineChart.getData().add(createSimonsResults());
     }
 
-    private void addSimonsResults(XYChart.Series<Integer, Integer> series) {
+    private XYChart.Series<Integer, Integer> createSimonsResults() {
+        return createResults(new SimonSort<>());
+    }
+
+    private XYChart.Series<Integer, Integer> createResults(Sorter<Integer> sorter) {
+        XYChart.Series<Integer, Integer> series = new XYChart.Series();
+        series.setName(sorter.getClass().getSimpleName());
         IntegerSortingEvaluater sortingEvaluater = new IntegerSortingEvaluater();
         for (int i = startArrayLength; i < endArrayLength; i += increment) {
-            long benchmark = sortingEvaluater.getTimeMillis(new SimonSort<Integer>(), i);
+            long benchmark = sortingEvaluater.getTimeMillis(sorter, i);
             series.getData().add(new XYChart.Data(i, benchmark));
         }
+        return series;
     }
-
 }
