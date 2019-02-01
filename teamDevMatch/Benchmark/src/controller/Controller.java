@@ -5,6 +5,7 @@ import interfaces.Sorter;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import models.Results;
 import sorting.BubbleSort;
 import sorting.PhilippSort;
 import sorting.SimonSort;
@@ -21,14 +22,13 @@ public class Controller {
     @FXML
     public void initialize() {
         XYChart.Series<Number, Number> series = new XYChart.Series();
+        Results results = Results.getInstance();
 
-        lineChart.getData().add(createResults(new SimonSort<>()));
-        lineChart.getData().add(createResults(new PhilippSort<>()));
-        lineChart.getData().add(createResults(new BubbleSort<>()));
+        //lineChart.getData().addAll(results.getSeries());
 
     }
 
-    private XYChart.Series<Number, Number> createResults(Sorter<Integer> sort) {
+  /*  private XYChart.Series<Number, Number> createResults(Sorter<Integer> sort) {
         XYChart.Series<Number, Number> series = new XYChart.Series();
         series.setName(sort.getClass().getSimpleName());
         System.out.println(series.getName());
@@ -40,5 +40,5 @@ public class Controller {
         }
         return series;
     }
-
+*/
 }
