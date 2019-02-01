@@ -1,4 +1,4 @@
-package sample;
+package helper;
 
 public class SortingEvaluater {
 
