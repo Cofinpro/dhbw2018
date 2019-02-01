@@ -1,6 +1,8 @@
 package sorting;
 
-public class BubbleSort<T extends Comparable<T>> {
+import interfaces.Sorter;
+
+public class BubbleSort<T extends Comparable<T>> implements Sorter<T> {
 
     public static void main(String[] args) {
         Integer[] intArray = {271, -21, 10, 7, 2, 77, 42, 12};
@@ -22,5 +24,10 @@ public class BubbleSort<T extends Comparable<T>> {
                 }
             }
         }
+    }
+
+    @Override
+    public void sortArray(T[] array) {
+        bubbleSort(array);
     }
 }

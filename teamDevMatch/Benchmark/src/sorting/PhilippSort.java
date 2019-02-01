@@ -1,6 +1,8 @@
 package sorting;
 
-public class PhilippSort<T extends Comparable<T>> {
+import interfaces.Sorter;
+
+public class PhilippSort<T extends Comparable<T>> implements Sorter<T> {
 
     public static void main(String[] args) {
 
@@ -22,5 +24,10 @@ public class PhilippSort<T extends Comparable<T>> {
                 }
             }
         }
+    }
+
+    @Override
+    public void sortArray(T[] array) {
+        selectionSort(array);
     }
 }
