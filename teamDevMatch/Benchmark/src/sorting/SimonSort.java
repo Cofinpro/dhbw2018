@@ -1,6 +1,8 @@
 package sorting;
 
-public class SimonSort<T extends Comparable<T>> {
+import interfaces.Sorter;
+
+public class SimonSort<T extends Comparable<T>> implements Sorter<T> {
     public void quickSort(T[] input) {
         quickSort(input, 0, input.length-1);
     }
@@ -26,5 +28,10 @@ public class SimonSort<T extends Comparable<T>> {
         }
         quickSort(input, startIndex, bigIndex-1);
         quickSort(input, bigIndex+1, endIndex);
+    }
+
+    @Override
+    public void sortArray(T[] array) {
+        quickSort(array);
     }
 }
