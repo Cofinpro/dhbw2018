@@ -1,6 +1,7 @@
 package sample.sorting;
 
 public class JonasSort {
+
     int[] arrayToSort = {10,43,88,52,57,69,94,66,61,6,76,19,72,15,26,30,58,28,87,84};
 
     public int[] sort(){
