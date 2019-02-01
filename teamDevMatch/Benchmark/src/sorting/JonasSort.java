@@ -1,31 +1,24 @@
 package sorting;
 
-public class JonasSort {
+import interfaces.Sorter;
 
-    int[] arrayToSort = {10,43,88,52,57,69,94,66,61,6,76,19,72,15,26,30,58,28,87,84};
+public class JonasSort <T extends Comparable<T>> implements Sorter<T> {
 
-    public int[] sort(){
+    public void sort(T[] input){
 
-        int temp;
-        for (int i = 0; i < arrayToSort.length-1;i++){
-            if (arrayToSort[i] > arrayToSort[i+1]){
-                temp =  arrayToSort[i];
-                arrayToSort[i] = arrayToSort[i+1];
-                arrayToSort[i+1] = temp;
-                sort();
+        T temp;
+        for (int i = 0; i < input.length-1;i++){
+            if (input[i].compareTo(input[i+1]) == 1){
+                temp =  input[i];
+                input[i] = input[i+1];
+                input[i+1] = temp;
+                sort(input);
             }
         }
-        return arrayToSort;
     }
 
-    public static void main(String[] args) {
-
-        JonasSort bubblesort = new JonasSort();
-
-        int[] tempArray = bubblesort.sort();
-
-        for (int i = 0; i < tempArray.length;i++){
-            System.out.println(i+1+" : "+ tempArray[i]);
-        }
+    @Override
+    public void sortArray(T[] array) {
+        sort(array);
     }
 }
