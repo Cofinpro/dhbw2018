@@ -38,7 +38,7 @@ public class OutputHelper {
             name = "bankAccountAdminView.fxml";
         }
         Parent root = FXMLLoader.load(Main.class.getResource(name));
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        //Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         Main.PRIMARY_STAGE.setScene(new Scene(root));
         Main.PRIMARY_STAGE.setX(0);
         Main.PRIMARY_STAGE.setY(0);
