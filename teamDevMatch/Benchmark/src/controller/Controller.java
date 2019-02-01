@@ -9,8 +9,8 @@ import sorting.SimonSort;
 public class Controller {
 
     private static final int startArrayLength = 1;
-    private static final int endArrayLength = 10000;
-    private static final int increment = 1000;
+    private static final int endArrayLength = 200;
+    private static final int increment = 1;
 
     @FXML
     private LineChart<Integer, Integer> lineChart;
@@ -27,7 +27,7 @@ public class Controller {
     private void addSimonsResults(XYChart.Series<Integer, Integer> series) {
         IntegerSortingEvaluater sortingEvaluater = new IntegerSortingEvaluater();
         for (int i = startArrayLength; i < endArrayLength; i += increment) {
-            long benchmark = sortingEvaluater.getTimeMillis(new SimonSort<Integer>(), i);
+            long benchmark = sortingEvaluater.getTimeMillis(new SimonSort<Integer>(), i,10);
             series.getData().add(new XYChart.Data(i, benchmark));
         }
     }
