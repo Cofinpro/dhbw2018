@@ -2,6 +2,8 @@ package models;
 
 import helper.IntegerSortingEvaluater;
 import interfaces.Sorter;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.chart.XYChart;
 import sorting.BubbleSort;
 import sorting.PhilippSort;
@@ -9,14 +11,15 @@ import sorting.SimonSort;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Results {
+public class Results extends Observable {
 
     private static final int startArrayLength = 1;
     private static final int endArrayLength = 4001;
     private static final int increment = 100;
     private XYChart.Series<Number, Number>[] series;
-    private Progress progress;
+    private DoubleProperty progress;
 
     private static Results ourInstance = new Results();
 
@@ -25,23 +28,25 @@ public class Results {
     }
 
     private Results() {
-        progress = new Progress();
-
+        progress = new SimpleDoubleProperty(0);
     }
 
-    public void calculateResults() {
+    public synchronized void calculateResults() {
         series = new XYChart.Series[3];
         series[0] = createResults(new SimonSort<>());
-        progress.setRelativeProgress(1);
+        progress.setValue(0.8);
+        progress.notify();
         series[1] = createResults(new PhilippSort<>());
         series[2] = createResults(new BubbleSort<>());
+        setChanged();
+        notifyObservers();
     }
 
     public XYChart.Series<Number, Number>[] getSeries() {
         return series;
     }
 
-    public Progress getProgress() {
+    public DoubleProperty getProgress() {
         return progress;
     }
 

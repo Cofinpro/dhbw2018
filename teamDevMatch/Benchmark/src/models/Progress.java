@@ -1,5 +1,7 @@
 package models;
 
+import javafx.beans.property.DoubleProperty;
+
 import java.util.Observable;
 
 public class Progress extends Observable {
