@@ -1,6 +1,6 @@
-package sorting;
+package application.sorting;
 
-import interfaces.Sorter;
+import application.interfaces.Sorter;
 
 public class PhilippSort<T extends Comparable<T>> implements Sorter<T> {
 

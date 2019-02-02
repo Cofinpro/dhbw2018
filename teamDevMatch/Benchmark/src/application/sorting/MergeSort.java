@@ -1,6 +1,6 @@
-package sorting;
+package application.sorting;
 
-import interfaces.Sorter;
+import application.interfaces.Sorter;
 
 import java.util.Arrays;
 

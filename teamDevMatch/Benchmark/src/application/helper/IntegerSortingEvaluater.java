@@ -1,13 +1,10 @@
-package helper;
+package application.helper;
 
-import interfaces.Sorter;
-
-import java.util.Dictionary;
-import java.util.Random;
+import application.interfaces.Sorter;
 
 public class IntegerSortingEvaluater {
 
-    public static IntegerArrayHelper integerArrayHelper = new IntegerArrayHelper(1000000);
+    public static IntegerArrayHelper integerArrayHelper = new IntegerArrayHelper();
 
     public long getTimeMillis(Sorter<Integer> sorter, Integer[] array) {
         long startTime = System.currentTimeMillis();

@@ -1,4 +1,6 @@
-package helper;
+package application.helper;
+
+import application.models.BenchmarkSettings;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -7,7 +9,8 @@ public class IntegerArrayHelper {
 
     private Integer[] intArray;
 
-    public IntegerArrayHelper (int maxLength) {
+    public IntegerArrayHelper () {
+        int maxLength = BenchmarkSettings.getInstance().getEndArrayLength();
         intArray = new Integer[maxLength];
         Random random = new Random();
         for (int i = 0; i < maxLength; i++) {

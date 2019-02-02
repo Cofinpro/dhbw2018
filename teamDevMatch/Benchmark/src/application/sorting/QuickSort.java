@@ -1,8 +1,8 @@
-package sorting;
+package application.sorting;
 
-import interfaces.Sorter;
+import application.interfaces.Sorter;
 
-public class SimonSort<T extends Comparable<T>> implements Sorter<T> {
+public class QuickSort<T extends Comparable<T>> implements Sorter<T> {
     public void quickSort(T[] input) {
         quickSort(input, 0, input.length-1);
     }

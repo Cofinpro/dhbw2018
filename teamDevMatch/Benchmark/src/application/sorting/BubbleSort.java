@@ -1,6 +1,6 @@
-package sorting;
+package application.sorting;
 
-import interfaces.Sorter;
+import application.interfaces.Sorter;
 
 public class BubbleSort<T extends Comparable<T>> implements Sorter<T> {
 
