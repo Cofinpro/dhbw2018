@@ -10,12 +10,14 @@ import javafx.scene.chart.XYChart;
 import application.sorting.BubbleSort;
 import application.sorting.MergeSort;
 import application.sorting.QuickSort;
+import javafx.scene.control.ProgressBar;
 
 import java.util.List;
 import java.util.Stack;
 
 public class Controller {
 
+    public ProgressBar progressBar;
     @FXML
     private LineChart<Number, Number> lineChart;
     private Stack<SeriesTask> tasks;
@@ -41,7 +43,10 @@ public class Controller {
 
     private void startNextTaskIfPossible() {
         if (!tasks.isEmpty()) {
-            new Thread(tasks.pop()).start();
+            Task task = tasks.pop();
+            progressBar.progressProperty().unbind();
+            progressBar.progressProperty().bind(task.progressProperty());
+            new Thread(task).start();
         }
     }
 

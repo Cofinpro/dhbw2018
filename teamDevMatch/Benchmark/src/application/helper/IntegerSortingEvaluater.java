@@ -4,7 +4,7 @@ import application.interfaces.Sorter;
 
 public class IntegerSortingEvaluater {
 
-    public static IntegerArrayHelper integerArrayHelper = new IntegerArrayHelper();
+    public static final IntegerArrayHelper integerArrayHelper = new IntegerArrayHelper();
 
     public long getTimeMillis(Sorter<Integer> sorter, Integer[] array) {
         long startTime = System.currentTimeMillis();

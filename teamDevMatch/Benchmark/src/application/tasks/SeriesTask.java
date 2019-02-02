@@ -28,7 +28,9 @@ public class SeriesTask extends Task<XYChart.Series<Number, Number>> {
             long benchmark = sortingEvaluater.getTimeMillis(sorter, i, 100);
             series.getData().add(new XYChart.Data(i, benchmark));
             System.out.println(i);
+            this.updateProgress(i, endArrayLength);
         }
+        this.updateProgress(1,1);
         return series;
     }
 }

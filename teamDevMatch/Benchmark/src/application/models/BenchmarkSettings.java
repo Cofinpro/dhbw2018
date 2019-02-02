@@ -7,9 +7,9 @@ public class BenchmarkSettings {
         return ourInstance;
     }
 
-    private int startArrayLength = 1;
-    private int endArrayLength = 8000;
-    private int increment = 2000;
+    private int startArrayLength = 0;
+    private int endArrayLength = 4000;
+    private int increment = 400;
 
     private BenchmarkSettings() {
     }
