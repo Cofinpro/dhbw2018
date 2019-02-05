@@ -3,6 +3,7 @@ package persistance;
 import helper.CSVHelper;
 import models.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -28,26 +29,35 @@ public class UserDao {
             int passwordIndex = 2;
             int firstNameIndex = 3;
             int lastNameIndex = 4;
+            int customerNumberIndex = 5;
             String userType = customerRepresentation[userTypeIndex];
             String username = customerRepresentation[userNameIndex];
             String password = customerRepresentation[passwordIndex];
             String firstName = customerRepresentation[firstNameIndex];
             String lastName = customerRepresentation[lastNameIndex];
+            BigInteger customerNumber;
+            if (customerRepresentation.length > 5)
+                customerNumber = new BigInteger(customerRepresentation[customerNumberIndex]);
+            else
+                customerNumber = null;
 
-            switch (userType) {
-                case "Admin":
-                    Admin admin = new Admin(username, password, firstName, lastName);
-                    users.add(admin);
-                    break;
-                case "Customer":
-                    int customerNumberIndex = 5;
-                    BigInteger customerNumber = new BigInteger(customerRepresentation[customerNumberIndex]);
-                    Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
-                    users.add(customer);
-                    break;
-            }
+
+            User createdUser = createUser(userType, username, password, firstName, lastName, customerNumber);
+            users.add(createdUser);
         }
         return users;
+    }
+
+    public User createUser(String userType, String username, String password, String firstName,
+                           String lastName, BigInteger customerNumber) {
+        switch (userType) {
+            case "Admin":
+                return new Admin(username, password, firstName, lastName);
+            case "Customer":
+                return new Customer(username, password, firstName, lastName, customerNumber);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     public void writeUsersToCSV(Set<User> users) {

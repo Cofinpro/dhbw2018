@@ -47,6 +47,7 @@ public class BankAccountDao {
     public void readBankAccountsFromCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\bankAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
+        @SuppressWarnings("Duplicates") //similar code in UserDao
         int userNameIndex = 0;
         int accountTypeIndex = 1;
         int accountNumberIndex = 2;
