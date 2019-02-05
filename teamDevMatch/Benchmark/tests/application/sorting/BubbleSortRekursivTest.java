@@ -2,9 +2,9 @@ package application.sorting;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JonasSortTest {
+class BubbleSortRekursivTest {
 
-    JonasSort<Integer> jonasSort = new JonasSort<>();
+    BubbleSortRekursiv<Integer> jonasSort = new BubbleSortRekursiv<>();
     private Integer[] setOne;
     private Integer[] setTwo;
     private Integer[] setOneSorted;
