@@ -14,22 +14,22 @@ class MetalAccountTest {
 
     @Test
     void getAccountType() {
-        assertEquals(metalAccount.getAccountType(),"MetalAccount");
+        assertEquals("Metall Konto",metalAccount.getAccountType());
     }
 
     @Test
     void getMonthlyInterest() {
-        assertEquals(metalAccount.getMonthlyInterest(),0.0);
+        assertEquals(0.0,metalAccount.getMonthlyInterest());
     }
 
     @Test
     void getMonthlyFeesPercentage() {
-        assertEquals(metalAccount.getMonthlyFeesPercentage(),0.0);
+        assertEquals(0.0,metalAccount.getMonthlyFeesPercentage());
     }
 
     @Test
     void getMonthlyFeesAbsolute() {
-        assertEquals(metalAccount.getMonthlyFeesAbsolute(),100.0);
+        assertEquals(100.0,metalAccount.getMonthlyFeesAbsolute());
     }
 
     @Test
@@ -37,7 +37,7 @@ class MetalAccountTest {
         double goldAmountInGramHelper = metalAccount.getGoldAmountInGram();
         double actualBalance = goldPrice.calculateWorth(goldAmountInGramHelper);
 
-        assertEquals(metalAccount.getBalance(),actualBalance);
+        assertEquals(actualBalance,metalAccount.getBalance());
     }
 
     @Test
@@ -50,7 +50,7 @@ class MetalAccountTest {
 
         metalAccount.deposit(20);
         double help = beforeDepositInGram + metalAccount.getGoldAmountInGram();
-        assertEquals(help,afterDepositInGram);
+        assertEquals(afterDepositInGram,help);
     }
     @Test
     void disburse(){
@@ -61,7 +61,7 @@ class MetalAccountTest {
 
         metalAccount.disburse(20);
         double help = beforeDepositInGram + metalAccount.getGoldAmountInGram();
-        assertEquals(help,afterDepositInGram);
+        assertEquals(afterDepositInGram,help);
     }
 
 }

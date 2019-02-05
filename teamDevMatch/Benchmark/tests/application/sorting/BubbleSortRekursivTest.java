@@ -19,7 +19,7 @@ class BubbleSortRekursivTest {
 
         jonasSort.sortArray(setOne);
         jonasSort.sortArray(setTwo);
-        assertArrayEquals(setOne,setOneSorted);
-        assertArrayEquals(setTwo,setTwoSorted);
+        assertArrayEquals(setOneSorted,setOne);
+        assertArrayEquals(setTwoSorted,setTwo);
     }
 }
