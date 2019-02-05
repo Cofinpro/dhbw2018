@@ -55,7 +55,7 @@ public class BankAccountSuperficialAdminViewControl extends GridPane {
     }
 
     private void updateView() {
-        accountNumberTextField.setText(bankAccount.getBankAccountNumber());
+        accountNumberTextField.setText(bankAccount.getBankAccountNumber().toString());
         bankBalanceTextField.setText(String.valueOf(bankAccount.getBalance()));
         fullNameTextField.setText(bankAccount.getOwner().getFirstName() + " " + bankAccount.getOwner().getLastName());
         accountTypeTextField.setText(bankAccount.getAccountType());

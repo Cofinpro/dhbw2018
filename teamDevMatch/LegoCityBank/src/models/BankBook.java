@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigInteger;
+
 public class BankBook extends BankAccount {
 
     private static final String ACCOUNT_TYPE = "Sparbuch";
@@ -11,7 +13,7 @@ public class BankBook extends BankAccount {
         super(customer);
     }
 
-    public BankBook(Customer owner, String bankAccountNumber, double balance, String creationDate) {
+    public BankBook(Customer owner, BigInteger bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 

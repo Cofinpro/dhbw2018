@@ -1,11 +1,12 @@
 package models;
 
+import java.math.BigInteger;
 import java.util.Calendar;
 
 public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
 
     private Customer owner;
-    private String bankAccountNumber;
+    private BigInteger bankAccountNumber;
     private double balance;
     private String creationDate;
 
@@ -26,14 +27,14 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
      * @param bankAccountNumber Number of the BankAccount
      * @param creationDate date of initial creation
      */
-    public BankAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
+    public BankAccount(Customer owner, BigInteger bankAccountNumber, double balance, String creationDate) {
         this.owner = owner;
         this.bankAccountNumber = bankAccountNumber;
         this.balance = balance;
         this.creationDate = creationDate;
     }
 
-    public BankAccount(Customer owner, String bankAccountNumber, String creationDate){
+    public BankAccount(Customer owner, BigInteger bankAccountNumber, String creationDate){
         this.owner = owner;
         this.bankAccountNumber = bankAccountNumber;
         this.creationDate = creationDate;
@@ -60,7 +61,7 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
         }
     }
 
-    public String getBankAccountNumber(){
+    public BigInteger getBankAccountNumber(){
         return this.bankAccountNumber;
     }
 
@@ -92,21 +93,7 @@ public abstract class BankAccount implements Comparable<BankAccount>, csvModel {
 
     @Override
     public int compareTo(BankAccount otherBankAccount) {
-
-        if(this.bankAccountNumber.length() > otherBankAccount.bankAccountNumber.length())
-            return 1;
-        if(this.bankAccountNumber.length() < otherBankAccount.bankAccountNumber.length())
-            return -1;
-        //if the numbers have the same amount of digits:
-        else {
-            for (int i = 0; i < this.bankAccountNumber.length(); i++) {
-                if (this.bankAccountNumber.charAt(i) > otherBankAccount.bankAccountNumber.charAt(i))
-                    return 1;
-                if (this.bankAccountNumber.charAt(i) < otherBankAccount.bankAccountNumber.charAt(i))
-                    return -1;
-            }
-        }
-        return 0;
+        return this.bankAccountNumber.compareTo(otherBankAccount.bankAccountNumber);
     }
 
     public boolean isDeletable() {

@@ -4,6 +4,7 @@ import exceptions.UserNotFoundException;
 import helper.CSVHelper;
 import models.*;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -46,38 +47,48 @@ public class BankAccountDao {
     public void readBankAccountsFromCSV(Set<User> users) {
         CSVHelper helper = new CSVHelper("resources\\bankAccounts.csv");
         Collection<String[]> giroAccountRepresentations = helper.readCSV();
+        int userNameIndex = 0;
+        int accountTypeIndex = 1;
+        int accountNumberIndex = 2;
+        int currencyAmountIndex = 3;
+        int creationDateIndex = 4;
         for (String[] giroAccountRepresentation : giroAccountRepresentations) {
-            String userName = giroAccountRepresentation[0];
-            String accountType = giroAccountRepresentation[1];
-            String accountNumber = giroAccountRepresentation[2];
-            double currencyAmount = Double.parseDouble(giroAccountRepresentation[3]);
-            String creationDate = giroAccountRepresentation[4];
+            String userName = giroAccountRepresentation[userNameIndex];
+            String accountType = giroAccountRepresentation[accountTypeIndex];
+            BigInteger accountNumber = new BigInteger(giroAccountRepresentation[accountNumberIndex]);
+            double currencyAmount = Double.parseDouble(giroAccountRepresentation[currencyAmountIndex]);
+            String creationDate = giroAccountRepresentation[creationDateIndex];
 
             Customer customer = (Customer)getUserByUserName(users, userName);
-
             if (customer == null) {
                 throw new IllegalArgumentException();
             }
-            switch (accountType) {
-                case "BankBook":
-                    BankBook bankBook = new BankBook(customer, accountNumber, currencyAmount, creationDate);
-                    customer.addBankAccount(bankBook);
-                    break;
-                case "GiroAccount":
-                    GiroAccount giroAccount = new GiroAccount(customer, accountNumber, currencyAmount, creationDate);
-                    customer.addBankAccount(giroAccount);
-                    break;
-                case "PremiumAccount":
-                    PremiumAccount premiumAccount = new PremiumAccount(customer, accountNumber, currencyAmount, creationDate);
-                    customer.addBankAccount(premiumAccount);
-                    break;
-                case "MetalAccount":
-                    MetalAccount metalAccount = new MetalAccount(customer, accountNumber, currencyAmount, creationDate);
-                    customer.addBankAccount(metalAccount);
-                    break;
-                default:
-                    break;
-            }
+
+            createBankAccount(accountType, customer, accountNumber, currencyAmount, creationDate);
+        }
+    }
+
+    private void createBankAccount(String accountType, Customer customer, BigInteger accountNumber,
+                                   double currencyAmount, String creationDate) {
+        switch (accountType) {
+            case "BankBook":
+                BankBook bankBook = new BankBook(customer, accountNumber, currencyAmount, creationDate);
+                customer.addBankAccount(bankBook);
+                break;
+            case "GiroAccount":
+                GiroAccount giroAccount = new GiroAccount(customer, accountNumber, currencyAmount, creationDate);
+                customer.addBankAccount(giroAccount);
+                break;
+            case "PremiumAccount":
+                PremiumAccount premiumAccount = new PremiumAccount(customer, accountNumber, currencyAmount, creationDate);
+                customer.addBankAccount(premiumAccount);
+                break;
+            case "MetalAccount":
+                MetalAccount metalAccount = new MetalAccount(customer, accountNumber, currencyAmount, creationDate);
+                customer.addBankAccount(metalAccount);
+                break;
+            default:
+                break;
         }
     }
 

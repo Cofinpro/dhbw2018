@@ -31,7 +31,7 @@ public class BankAccountController {
     public void initialize() {
         customerManager = CustomerManager.getInstance();
         bankAccount = customerManager.getInspectedBankAccount();
-        accountNumberTextField.setText(bankAccount.getBankAccountNumber());
+        accountNumberTextField.setText(bankAccount.getBankAccountNumber().toString());
         creationDateTextField.setText(bankAccount.getCreationDate());
         DecimalFormat df = OutputHelper.getDecimalFormatForFigures();
         balanceTextField.setText(df.format(bankAccount.getBalance()));

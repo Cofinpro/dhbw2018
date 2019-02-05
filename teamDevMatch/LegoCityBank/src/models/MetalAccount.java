@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigInteger;
+
 public class MetalAccount extends BankAccount{
 
     private static final String ACCOUNT_TYPE = "Metall Konto";
@@ -13,7 +15,7 @@ public class MetalAccount extends BankAccount{
         super(customer);
     }
 
-    public MetalAccount(Customer owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
+    public MetalAccount(Customer owner, BigInteger bankAccountNumber, double goldAmountInGram, String creationDate) {
         super (owner, bankAccountNumber, creationDate);
         this.goldAmountInGram = goldAmountInGram;
     }

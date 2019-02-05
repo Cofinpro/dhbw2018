@@ -5,13 +5,15 @@ package models;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BankAccountTest {
 
     private Customer customer = new Customer("Phape", "12345678", "Philipp",
-            "Mayer", "7");
+            "Mayer", new BigInteger("7"));
 
     private GiroAccount account = new GiroAccount(customer);
 

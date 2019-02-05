@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigInteger;
+
 public class GiroAccount extends BankAccount {
 
     private static final String ACCOUNT_TYPE = "Giro Konto";
@@ -11,7 +13,7 @@ public class GiroAccount extends BankAccount {
         super(customer);
     }
 
-    public GiroAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
+    public GiroAccount(Customer owner, BigInteger bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 

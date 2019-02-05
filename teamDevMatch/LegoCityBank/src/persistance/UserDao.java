@@ -3,6 +3,7 @@ package persistance;
 import helper.CSVHelper;
 import models.*;
 
+import java.math.BigInteger;
 import java.util.*;
 
 public class UserDao {
@@ -22,11 +23,16 @@ public class UserDao {
         Collection<String[]> customerRepresentations = helper.readCSV();
 
         for (String[] customerRepresentation : customerRepresentations) {
-            String userType = customerRepresentation[0];
-            String username = customerRepresentation[1];
-            String password = customerRepresentation[2];
-            String firstName = customerRepresentation[3];
-            String lastName = customerRepresentation[4];
+            int userTypeIndex = 0;
+            int userNameIndex = 1;
+            int passwordIndex = 2;
+            int firstNameIndex = 3;
+            int lastNameIndex = 4;
+            String userType = customerRepresentation[userTypeIndex];
+            String username = customerRepresentation[userNameIndex];
+            String password = customerRepresentation[passwordIndex];
+            String firstName = customerRepresentation[firstNameIndex];
+            String lastName = customerRepresentation[lastNameIndex];
 
             switch (userType) {
                 case "Admin":
@@ -34,7 +40,8 @@ public class UserDao {
                     users.add(admin);
                     break;
                 case "Customer":
-                    String customerNumber = customerRepresentation[5];
+                    int customerNumberIndex = 5;
+                    BigInteger customerNumber = new BigInteger(customerRepresentation[customerNumberIndex]);
                     Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
                     users.add(customer);
                     break;

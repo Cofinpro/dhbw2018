@@ -1,5 +1,7 @@
 package models;
 
+import java.math.BigInteger;
+
 public class PremiumAccount extends BankAccount {
 
     private static final String ACCOUNT_TYPE = "Premium Konto";
@@ -11,7 +13,7 @@ public class PremiumAccount extends BankAccount {
         super(customer);
     }
 
-    public PremiumAccount(Customer owner, String bankAccountNumber, double balance, String creationDate) {
+    public PremiumAccount(Customer owner, BigInteger bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 
