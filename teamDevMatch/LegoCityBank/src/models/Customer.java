@@ -79,7 +79,7 @@ public class Customer extends User implements csvModel{
     }
 
     @Override
-    public String csvString() {
-        return getClass().getSimpleName()+","+super.csvString()+","+customerNumber;
+    public String makeCSVString() {
+        return getClass().getSimpleName()+","+super.makeCSVString()+","+customerNumber;
     }
 }

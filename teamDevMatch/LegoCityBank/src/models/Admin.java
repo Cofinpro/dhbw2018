@@ -7,7 +7,7 @@ public class Admin extends User implements csvModel{
     }
 
     @Override
-    public String csvString() {
-        return getClass().getSimpleName()+","+super.csvString();
+    public String makeCSVString() {
+        return getClass().getSimpleName()+","+super.makeCSVString();
     }
 }

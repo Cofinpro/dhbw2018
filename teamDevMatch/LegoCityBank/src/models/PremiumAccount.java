@@ -2,10 +2,10 @@ package models;
 
 public class PremiumAccount extends BankAccount {
 
-    private static final String accountType = "Premium Konto";
-    private static final double monthlyInterest = 0.0; //in decimal
-    private static final double monthlyFeesPercentage = 0.005; //in decimal
-    private static final double monthlyFeesAbsolute = 0.0; //in €
+    private static final String ACCOUNT_TYPE = "Premium Konto";
+    private static final double MONTHLY_INTEREST = 0.0;
+    private static final double MONTHLY_FEES_PERCENTAGE = 0.005;
+    private static final double MONTHLY_FEES_ABSOLUTE = 0.0;
 
     public PremiumAccount(Customer customer) {
         super(customer);
@@ -16,26 +16,26 @@ public class PremiumAccount extends BankAccount {
     }
 
     public String getAccountType() {
-        return accountType;
+        return ACCOUNT_TYPE;
     }
 
     @Override
     public double getMonthlyInterest() {
-        return monthlyInterest;
+        return MONTHLY_INTEREST;
     }
 
     @Override
     public double getMonthlyFeesPercentage() {
-        return monthlyFeesPercentage;
+        return MONTHLY_FEES_PERCENTAGE;
     }
 
     @Override
     public double getMonthlyFeesAbsolute() {
-        return monthlyFeesAbsolute;
+        return MONTHLY_FEES_ABSOLUTE;
     }
 
     @Override
-    public String csvString() {
+    public String makeCSVString() {
         return getOwner().getUserName()+","+getClass().getSimpleName()+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }

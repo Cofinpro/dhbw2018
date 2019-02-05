@@ -33,7 +33,7 @@ public class BankAccountDao {
             if (user instanceof Customer) {
                 customer = (Customer)user;
                 for (BankAccount bankAccount : customer.getBankAccounts()) {
-                    csvToStringsList.add(bankAccount.csvString());
+                    csvToStringsList.add(bankAccount.makeCSVString());
                 }
             }
         }

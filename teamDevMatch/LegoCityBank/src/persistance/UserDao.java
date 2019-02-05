@@ -48,7 +48,7 @@ public class UserDao {
         String[] csvToStrings = new String[users.size()];
         int i = 0;
         for (User user : users) {
-            csvToStrings[i] = user.csvString();
+            csvToStrings[i] = user.makeCSVString();
             i++;
         }
         helper.writeCSV(csvToStrings);
