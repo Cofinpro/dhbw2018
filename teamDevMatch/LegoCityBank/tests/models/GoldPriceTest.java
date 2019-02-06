@@ -9,13 +9,13 @@ class GoldPriceTest {
     private static final double GRAMSPEROUNCE = 31.1034768;
     @Test
     void getInstance() {
-        assertNotEquals(goldPrice,null);
+        assertNotEquals(null,goldPrice);
     }
 
     @Test
     void getDollarPerGramOfGold() {
         double currentDollarPerGramOfGold = 1249.887;
-        assertEquals(goldPrice.getDollarPerGramOfGold(),currentDollarPerGramOfGold/GRAMSPEROUNCE);
+        assertEquals(currentDollarPerGramOfGold/GRAMSPEROUNCE,goldPrice.getDollarPerGramOfGold());
     }
 
     @Test
@@ -24,6 +24,6 @@ class GoldPriceTest {
         double correctCalculatedWorth =  200.92;
 
         double resulOfEquation = goldPrice.calculateWorth(goldAmountInGramHelper);
-        assertEquals(resulOfEquation,correctCalculatedWorth);
+        assertEquals(correctCalculatedWorth,resulOfEquation);
     }
 }
