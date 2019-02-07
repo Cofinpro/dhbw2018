@@ -43,7 +43,9 @@ public class DepositController {
     @FXML
     void deposit(Event event) {
         try {
-            double depositValue = Double.parseDouble(depositValueTextField.getText());
+            String input = depositValueTextField.getText();
+            input = input.replace(',', '.');
+            double depositValue = Double.parseDouble(input);
             CustomerManager customerManager = CustomerManager.getInstance();
             BankAccount bankAccount = customerManager.getInspectedBankAccount();
             bankAccount.deposit(depositValue);

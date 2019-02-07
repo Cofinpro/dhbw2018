@@ -48,9 +48,7 @@ public class OutputHelper {
         String input = textField.getText();
         String validInput = input.replaceAll("[^0-9|.|,]", "");
         if (!validInput.equals(input)) {
-            textField.setText(validInput);
-            errorTextField.setText("Bitte nur Ziffern eintragen.");
-            errorTextField.setVisible(true);
+            showValidationError(textField, errorTextField, validInput, "Bitte nur Ziffern eintragen.");
         } else {
             Pattern pattern = Pattern.compile("[.|,]");
             Matcher matcher = pattern.matcher(validInput);
@@ -58,19 +56,21 @@ public class OutputHelper {
             //if matcher finds a second . or , something is wrong
             if (matcher.find()) {
                 Platform.runLater(() -> {
-                    textField.setText("");
-                    errorTextField.setText("Es darf maximal ein Komma oder Punkt vorkommen");
-                    errorTextField.setVisible(true);
+                    showValidationError(textField, errorTextField, "", "Es darf maximal ein Komma oder Punkt vorkommen");
                 });
             } else if (Pattern.compile("^[0-9]*[.|,][0-9]{3,}$").matcher(input).matches()) {
                 Platform.runLater(() -> {
-                    textField.setText(validInput.substring(0, validInput.length()-1));
-                    errorTextField.setText("Es sind maximal zwei Nachkommastellen erlaubt");
-                    errorTextField.setVisible(true);
+                    showValidationError(textField, errorTextField, validInput.substring(0, validInput.length()-1), "Es sind maximal zwei Nachkommastellen erlaubt");
                 });
             } else {
                 errorTextField.setVisible(false);
             }
         }
+    }
+
+    private static void showValidationError(TextField textField, TextField errorTextField, String validInput, String errorMessage) {
+        textField.setText(validInput);
+        errorTextField.setText(errorMessage);
+        errorTextField.setVisible(true);
     }
 }
