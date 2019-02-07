@@ -37,7 +37,7 @@ public abstract class User implements Comparable<User>, csvModel {
     }
 
     @Override
-    public String csvString() {
+    public String makeCSVString() {
         return userName+","+password+","+firstName+","+lastName;
     }
 

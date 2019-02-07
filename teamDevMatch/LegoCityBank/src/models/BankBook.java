@@ -1,41 +1,43 @@
 package models;
 
+import java.math.BigInteger;
+
 public class BankBook extends BankAccount {
 
-    private static final String accountType = "Sparbuch";
-    private static final double monthlyInterest = 0.01; //in decimal
-    private static final double monthlyFeesPercentage = 0.0; //in decimal
-    private static final double monthlyFeesAbsolute = 0.0; //in €
+    private static final String ACCOUNT_TYPE = "Sparbuch";
+    private static final double MONTHLY_INTEREST = 0.01; //in decimal
+    private static final double MONTHLY_FEES_PERCENTAGE = 0.0; //in decimal
+    private static final double MONTHLY_FEES_ABSOLUTE = 0.0; //in €
 
     public BankBook(Customer customer) {
         super(customer);
     }
 
-    public BankBook(Customer owner, String bankAccountNumber, double balance, String creationDate) {
+    public BankBook(Customer owner, BigInteger bankAccountNumber, double balance, String creationDate) {
         super (owner, bankAccountNumber, balance, creationDate);
     }
 
     public String getAccountType() {
-        return accountType;
+        return ACCOUNT_TYPE;
     }
 
     @Override
     public double getMonthlyInterest() {
-        return monthlyInterest;
+        return MONTHLY_INTEREST;
     }
 
     @Override
     public double getMonthlyFeesPercentage() {
-        return monthlyFeesPercentage;
+        return MONTHLY_FEES_PERCENTAGE;
     }
 
     @Override
     public double getMonthlyFeesAbsolute() {
-        return monthlyFeesAbsolute;
+        return MONTHLY_FEES_ABSOLUTE;
     }
 
     @Override
-    public String csvString() {
+    public String makeCSVString() {
         return getOwner().getUserName()+","+getClass().getSimpleName()+","+getBankAccountNumber()+","+getBalance()+","+getCreationDate();
     }
 }

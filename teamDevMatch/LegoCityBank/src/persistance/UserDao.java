@@ -3,6 +3,8 @@ package persistance;
 import helper.CSVHelper;
 import models.*;
 
+import java.io.IOException;
+import java.math.BigInteger;
 import java.util.*;
 
 public class UserDao {
@@ -22,25 +24,40 @@ public class UserDao {
         Collection<String[]> customerRepresentations = helper.readCSV();
 
         for (String[] customerRepresentation : customerRepresentations) {
-            String userType = customerRepresentation[0];
-            String username = customerRepresentation[1];
-            String password = customerRepresentation[2];
-            String firstName = customerRepresentation[3];
-            String lastName = customerRepresentation[4];
+            int userTypeIndex = 0;
+            int userNameIndex = 1;
+            int passwordIndex = 2;
+            int firstNameIndex = 3;
+            int lastNameIndex = 4;
+            int customerNumberIndex = 5;
+            String userType = customerRepresentation[userTypeIndex];
+            String username = customerRepresentation[userNameIndex];
+            String password = customerRepresentation[passwordIndex];
+            String firstName = customerRepresentation[firstNameIndex];
+            String lastName = customerRepresentation[lastNameIndex];
+            BigInteger customerNumber;
+            if (customerRepresentation.length > 5)
+                customerNumber = new BigInteger(customerRepresentation[customerNumberIndex]);
+            else
+                customerNumber = null;
 
-            switch (userType) {
-                case "Admin":
-                    Admin admin = new Admin(username, password, firstName, lastName);
-                    users.add(admin);
-                    break;
-                case "Customer":
-                    String customerNumber = customerRepresentation[5];
-                    Customer customer = new Customer(username, password, firstName, lastName, customerNumber);
-                    users.add(customer);
-                    break;
-            }
+
+            User createdUser = createUser(userType, username, password, firstName, lastName, customerNumber);
+            users.add(createdUser);
         }
         return users;
+    }
+
+    public User createUser(String userType, String username, String password, String firstName,
+                           String lastName, BigInteger customerNumber) {
+        switch (userType) {
+            case "Admin":
+                return new Admin(username, password, firstName, lastName);
+            case "Customer":
+                return new Customer(username, password, firstName, lastName, customerNumber);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     public void writeUsersToCSV(Set<User> users) {
@@ -48,7 +65,7 @@ public class UserDao {
         String[] csvToStrings = new String[users.size()];
         int i = 0;
         for (User user : users) {
-            csvToStrings[i] = user.csvString();
+            csvToStrings[i] = user.makeCSVString();
             i++;
         }
         helper.writeCSV(csvToStrings);

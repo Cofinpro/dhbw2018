@@ -56,7 +56,7 @@ public class BankAccountSuperficialViewControl extends GridPane {
 
     private void updateView() {
         bankBalanceTextField.setText(OutputHelper.getDecimalFormatForFigures().format(bankAccount.getBalance()));
-        accountNumberTextField.setText(bankAccount.getBankAccountNumber());
+        accountNumberTextField.setText(bankAccount.getBankAccountNumber().toString());
         accountTypeTextField.setText(bankAccount.getAccountType());
     }
 

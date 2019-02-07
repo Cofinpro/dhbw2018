@@ -2,12 +2,12 @@ package application.sorting;
 
 import application.interfaces.Sorter;
 
-public class PhilippSort<T extends Comparable<T>> implements Sorter<T> {
+public class SelectionSort<T extends Comparable<T>> implements Sorter<T> {
 
     public static void main(String[] args) {
 
         Integer[] intArray = {271, -21, 10, 7, 2, 77, 42, 12};
-        PhilippSort<Integer> philippSort = new PhilippSort<>();
+        SelectionSort<Integer> philippSort = new SelectionSort<>();
         philippSort.selectionSort(intArray);
         for (Integer integer : intArray) {
             System.out.println(integer);

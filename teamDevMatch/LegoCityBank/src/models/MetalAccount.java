@@ -1,103 +1,65 @@
 package models;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.math.BigInteger;
 
 public class MetalAccount extends BankAccount{
 
-    private static final String accountType = "Metall Konto";
-    private static final double monthlyInterest = 0.0; //in decimal
-    private static final double monthlyFeesPercentage = 0.0; //in decimal
-    private static final double monthlyFeesAbsolute = 100.0; //in €
-    private double goldAmountInGram; //in gram
-    private double dollarPerGramOfGold;
+    private static final String ACCOUNT_TYPE = "Metall Konto";
+    private static final double MONTHLY_INTEREST = 0.0;
+    private static final double MONTHLY_FEES_PERCENTAGE = 0.0;
+    private static final double MONTHLY_FEES_ABSOLUTE = 100.0;
+    private double goldAmountInGram;
+    private GoldPrice goldPrice = GoldPrice.getInstance();
 
     public MetalAccount(Customer customer) {
         super(customer);
     }
 
-    public MetalAccount(Customer owner, String bankAccountNumber, double goldAmountInGram, String creationDate) {
+    public MetalAccount(Customer owner, BigInteger bankAccountNumber, double goldAmountInGram, String creationDate) {
         super (owner, bankAccountNumber, creationDate);
         this.goldAmountInGram = goldAmountInGram;
     }
 
     public String getAccountType() {
-        return accountType;
+        return ACCOUNT_TYPE;
     }
 
     public double getGoldAmountInGram() {
         return goldAmountInGram;
     }
 
-    public double getDollarPerGramOfGold() {
-        return dollarPerGramOfGold;
-    }
-
-    private void updateDollarPerGramOfGold() throws MalformedURLException {
-        URL url = new URL("https://s3.amazonaws.com/rawstore.datahub.io/51d15364c2414adf86794677d621c14b.csv");
-        InputStream iS = null;
-        try {
-            iS = url.openStream();
-            BufferedReader bR = new BufferedReader(new InputStreamReader(iS)); //inputStreamReader --> bR can read the iS
-
-            String s = null;
-            String lastLine = "";
-
-            while((s = bR.readLine())!= null){
-                lastLine = s;
-            }
-            String[] parts = lastLine.split(",");
-            double dollarPerOunce = Double.parseDouble(parts[1]);
-            dollarPerGramOfGold = dollarPerOunce/31.1034768;
-
-
-            iS.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public double getMonthlyInterest() {
-        return monthlyInterest;
+        return MONTHLY_INTEREST;
     }
 
     @Override
     public double getMonthlyFeesPercentage() {
-        return monthlyFeesPercentage;
+        return MONTHLY_FEES_PERCENTAGE;
     }
 
     @Override
     public double getMonthlyFeesAbsolute() {
-        return monthlyFeesAbsolute;
+        return MONTHLY_FEES_ABSOLUTE;
     }
 
     @Override
     public double getBalance() {
-        try {
-            updateDollarPerGramOfGold();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return Math.round(goldAmountInGram * dollarPerGramOfGold*100)/100.0;
+        return goldPrice.calculateWorth(goldAmountInGram);
     }
 
     @Override
     public void deposit(double depositAmount){
-        this.goldAmountInGram += depositAmount/dollarPerGramOfGold;
+        this.goldAmountInGram += depositAmount/goldPrice.getDollarPerGramOfGold();
     }
 
     @Override
     public void disburse(double disburseAmount) {
-        this.goldAmountInGram -= disburseAmount/dollarPerGramOfGold;
+        this.goldAmountInGram -= disburseAmount/goldPrice.getDollarPerGramOfGold();
     }
 
     @Override
-    public String csvString() {
+    public String makeCSVString() {
         return getOwner().getUserName()+","+getClass().getSimpleName()+","+getBankAccountNumber()+","+goldAmountInGram+","+getCreationDate();
     }
 }

@@ -2,7 +2,7 @@ package application.sorting;
 
 import application.interfaces.Sorter;
 
-public class JonasSort <T extends Comparable<T>> implements Sorter<T> {
+public class BubbleSortRekursiv<T extends Comparable<T>> implements Sorter<T> {
 
     public void sort(T[] input){
 

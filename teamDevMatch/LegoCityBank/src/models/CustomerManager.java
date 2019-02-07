@@ -2,6 +2,8 @@ package models;
 
 import persistance.BankAccountDao;
 import persistance.UserDao;
+
+import java.math.BigInteger;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -63,34 +65,32 @@ public class CustomerManager {
         return  allBankAccounts;
     }
 
-    public String getNextBankAccountNumber() {
+    public BigInteger getNextBankAccountNumber() {
         Customer customer;
-        long highestBankAccountNumber = 0;
+        BigInteger highestBankAccountNumber = new BigInteger("0");
         for (User user : users) {
             if (user instanceof Customer) {
                 customer = (Customer)user;
                 for (BankAccount bankAccount : customer.getBankAccounts()) {
-                    long banLong = Long.parseLong(bankAccount.getBankAccountNumber());
-                    if (banLong > highestBankAccountNumber)
-                        highestBankAccountNumber = banLong;
+                    if (bankAccount.getBankAccountNumber().compareTo(highestBankAccountNumber) > 0)
+                        highestBankAccountNumber = bankAccount.getBankAccountNumber();
                 }
             }
         }
-        return String.valueOf(highestBankAccountNumber+1);
+        return highestBankAccountNumber.add(new BigInteger("1"));
     }
 
-    public String getNextCustomerNumber() {
+    public BigInteger getNextCustomerNumber() {
         Customer customer;
-        long highestCustomerNumber = 0;
+        BigInteger highestCustomerNumber = new BigInteger("0");
         for (User user : users) {
             if (user instanceof Customer) {
                 customer = (Customer)user;
-                long cnLong = Long.parseLong(customer.getCustomerNumber());
-                if (cnLong > highestCustomerNumber)
-                    highestCustomerNumber = cnLong;
+                if (customer.getCustomerNumber().compareTo(highestCustomerNumber) > 0)
+                    highestCustomerNumber = customer.getCustomerNumber();
             }
         }
-        return String.valueOf(highestCustomerNumber+1);
+        return highestCustomerNumber.add(new BigInteger("1"));
     }
 
     public boolean isUserNameTaken(String userNameToCheck) {

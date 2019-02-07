@@ -1,10 +1,11 @@
 package models;
 
+import java.math.BigInteger;
 import java.util.*;
 
 public class Customer extends User implements csvModel{
 
-    private String customerNumber;
+    private BigInteger customerNumber;
     private Set<BankAccount> bankAccountSet= new TreeSet<>();
 
     public Customer(String userName, String password, String firstName, String lastName) {
@@ -23,7 +24,7 @@ public class Customer extends User implements csvModel{
         this.customerNumber = CustomerManager.getInstance().getNextCustomerNumber();
     }
 
-    public Customer(String userName, String password, String firstName, String lastName, String customerNumber) {
+    public Customer(String userName, String password, String firstName, String lastName, BigInteger customerNumber) {
         super(userName, password, firstName, lastName);
         this.customerNumber = customerNumber;
     }
@@ -54,7 +55,7 @@ public class Customer extends User implements csvModel{
         return "";
     }
 
-    public String getCustomerNumber() {
+    public BigInteger getCustomerNumber() {
         return customerNumber;
     }
 
@@ -79,7 +80,7 @@ public class Customer extends User implements csvModel{
     }
 
     @Override
-    public String csvString() {
-        return getClass().getSimpleName()+","+super.csvString()+","+customerNumber;
+    public String makeCSVString() {
+        return getClass().getSimpleName()+","+super.makeCSVString()+","+customerNumber;
     }
 }
