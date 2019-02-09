@@ -1,4 +1,4 @@
 package application.controllers;
 
-public class Controller {
+public class MainController {
 }
