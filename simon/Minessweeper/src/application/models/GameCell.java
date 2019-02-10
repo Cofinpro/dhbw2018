@@ -1,5 +1,6 @@
 package application.models;
 
+import application.enums.GameState;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -28,10 +29,20 @@ public class GameCell {
         isSuspectedValue = new SimpleBooleanProperty(false);
         this.representation = new StringBinding() {
             {
-                super.bind(isRevealedProperty, isSuspectedValue);
+                super.bind(isRevealedProperty, isSuspectedValue, game.getGameStateProperty());
             }
             @Override
             protected String computeValue() {
+                if (game.getGameState() == GameState.LOST) {
+                    if (isBomb) {
+                        if (isRevealed()) {
+                            return "\uD83D\uDCA5";
+                        }
+                        return "\uD83D\uDCA3";
+                    } else if (isSuspected()) {
+                        return "\uD83D\uDEAB";
+                    }
+                }
                 if (isRevealedProperty.get()) {
                     if (isBomb) {
                         return "\uD83D\uDCA3";

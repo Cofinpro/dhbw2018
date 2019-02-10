@@ -2,17 +2,14 @@ package application.models;
 
 import application.enums.GameState;
 import application.helper.RandomHelper;
-import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-
-import java.util.Random;
 
 public class Game {
     private static Game ourInstance = new Game();
     private GameCell[][] gameCells;
     private SimpleObjectProperty<GameState> gameStateProperty;
-    private SimpleIntegerProperty revealedCellCountProperty;
+    private SimpleIntegerProperty revealedHarmlessCellCountProperty;
 
     public static Game getInstance() {
         return ourInstance;
@@ -21,8 +18,8 @@ public class Game {
     private Game() {
         gameCells = new GameCell[1][0]; //one, so that gameCells[0].length works
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
-        revealedCellCountProperty = new SimpleIntegerProperty(0);
-        revealedCellCountProperty.addListener(event -> {
+        revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
+        revealedHarmlessCellCountProperty.addListener(event -> {
             if (getGameState() != GameState.LOST && getRevealedCellCount() == getCellCount() - Settings.getInstance().getDifficulty().getBombCount()) {
                 setGameState(GameState.WON);
             }
@@ -36,11 +33,11 @@ public class Game {
     public void setup() {
         gameCells = RandomHelper.getGameField(this);
         gameStateProperty.set(GameState.PLAYING);
-        revealedCellCountProperty.set(0);
+        revealedHarmlessCellCountProperty.set(0);
     }
 
     public int getRevealedCellCount() {
-        return revealedCellCountProperty.get();
+        return revealedHarmlessCellCountProperty.get();
     }
 
     public int getRowCount() {
@@ -71,7 +68,7 @@ public class Game {
         return gameStateProperty;
     }
 
-    public SimpleIntegerProperty getRevealedCellCountProperty() {
-        return revealedCellCountProperty;
+    public SimpleIntegerProperty getRevealedHarmlessCellCountProperty() {
+        return revealedHarmlessCellCountProperty;
     }
 }

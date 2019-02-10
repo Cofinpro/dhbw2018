@@ -22,8 +22,8 @@ public class RandomHelper {
                     gameCell = new GameCell(true, game, row, column);
                 } else {
                     gameCell = new GameCell(false, game, row, column);
+                    gameCell.isRevealedProperty().addListener((observable, oldValue, newValue) -> game.getRevealedHarmlessCellCountProperty().set(game.getRevealedCellCount() +1));
                 }
-                gameCell.isRevealedProperty().addListener((observable, oldValue, newValue) -> game.getRevealedCellCountProperty().set(game.getRevealedCellCount() +1));
                 gameCells[row][column] = gameCell;
                 i++;
             }

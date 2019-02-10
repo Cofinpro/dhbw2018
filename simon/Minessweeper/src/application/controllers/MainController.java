@@ -2,7 +2,6 @@ package application.controllers;
 
 import application.enums.GameState;
 import application.models.Game;
-import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
@@ -17,7 +16,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        textField.textProperty().bind(Game.getInstance().getRevealedCellCountProperty().asString());
+        textField.textProperty().bind(Game.getInstance().getRevealedHarmlessCellCountProperty().asString());
         Game.getInstance().getGameStateProperty().addListener(event -> {
             if (Game.getInstance().getGameState() == GameState.WON) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
