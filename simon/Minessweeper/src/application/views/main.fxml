@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-
-<?import application.controllers.GameFieldController?>
 <?import application.controllers.DifficultyPickerController?>
+<?import application.controllers.GameFieldController?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
 <VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+      <TextField fx:id="textField"/>
       <DifficultyPickerController/>
-      <GameFieldController/>
+      <ScrollPane fx:id="scrollPane"><GameFieldController/></ScrollPane>
 </VBox>

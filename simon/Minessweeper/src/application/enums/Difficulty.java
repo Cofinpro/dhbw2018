@@ -1,20 +1,33 @@
 package application.enums;
 
+import java.util.Random;
+
 public enum Difficulty {
-    EASY("easy",4),
-    MEDIUM("medium",8),
-    DIFFICULT("difficult", 12);
+    EASY("easy",9, 9 ,5),
+    MEDIUM("medium",16, 16, 40);
 
+    private int bombCount;
     private String representation;
-    private int fieldLength;
+    private int fieldRows;
+    private int fieldColumns;
 
-    Difficulty(String representation, int fieldLength) {
+    Difficulty(String representation, int fieldRows, int fieldColumns, int bombCount) {
         this.representation = representation;
-        this.fieldLength = fieldLength;
+        this.bombCount = bombCount;
+        this.fieldRows = fieldRows;
+        this.fieldColumns = fieldColumns;
     }
 
-    public int getFieldLength() {
-        return fieldLength;
+    public int getBombCount() {
+        return bombCount;
+    }
+
+    public int getFieldRows() {
+        return fieldRows;
+    }
+
+    public int getFieldColumns() {
+        return fieldColumns;
     }
 
     @Override

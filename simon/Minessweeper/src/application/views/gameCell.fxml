@@ -3,7 +3,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 
-<fx:root mnemonicParsing="false" text="Button" type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root focusTraversable="false" mnemonicParsing="false" prefHeight="80" prefWidth="80" text="Button" type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <font>
       <Font name="Monospaced Regular" size="34.0" />
    </font>

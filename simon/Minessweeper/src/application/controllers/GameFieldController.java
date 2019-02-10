@@ -2,7 +2,7 @@ package application.controllers;
 
 import application.Main;
 import application.models.GameCell;
-import application.models.GameField;
+import application.models.Game;
 import application.models.Settings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,11 +26,11 @@ public class GameFieldController extends GridPane {
 
     private void updateGameField() {
         clearGameField();
-        GameField gameField = new GameField();
-        int length = gameField.getLength();
-        for (int row = 0; row < length; row++) {
-            for (int column = 0; column < length; column++) {
-                GameCell gameCell = gameField.getGameCell(row, column);
+        Game game = Game.getInstance();
+        game.setup();
+        for (int row = 0; row < game.getRowCount(); row++) {
+            for (int column = 0; column < game.getColumnCount(); column++) {
+                GameCell gameCell = game.getGameCell(row, column);
                 Button button = new GameCellController(gameCell);
                 this.add(button, row, column);
             }

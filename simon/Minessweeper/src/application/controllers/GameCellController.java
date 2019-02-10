@@ -1,9 +1,11 @@
 package application.controllers;
 
 import application.Main;
+import application.enums.GameState;
 import application.models.GameCell;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -17,7 +19,14 @@ class GameCellController extends Button {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        setOnAction(event -> gameCell.reveal());
         this.textProperty().bind(gameCell.representationProperty());
+        this.disableProperty().bind(gameCell.isRevealedProperty().or(gameCell.getGame().getGameStateProperty().isNotEqualTo(GameState.PLAYING)));
+        setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                gameCell.tryReveal();
+            } else if (event.getButton() == MouseButton.SECONDARY) {
+                gameCell.switchSuspicion();
+            }
+        });
     }
 }

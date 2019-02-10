@@ -10,10 +10,13 @@ public class Settings {
         return ourInstance;
     }
 
-    private SimpleObjectProperty<Difficulty> difficultyProperty;
+    private SimpleObjectProperty<Difficulty> difficultyProperty = new SimpleObjectProperty<>();
 
     private Settings() {
-        difficultyProperty = new SimpleObjectProperty<>();
+    }
+
+    public Difficulty getDifficulty() {
+        return difficultyProperty.get();
     }
 
     public SimpleObjectProperty<Difficulty> getDifficultyProperty() {

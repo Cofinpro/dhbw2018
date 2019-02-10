@@ -24,7 +24,7 @@ public class DifficultyPickerController extends ChoiceBox<Difficulty> {
         }
         setTooltip(new Tooltip("Difficulty"));
         setItems(FXCollections.observableArrayList(
-                Difficulty.EASY, Difficulty.MEDIUM, Difficulty.DIFFICULT)
+                Difficulty.values())
         );
         Settings settings = Settings.getInstance();
         settings.getDifficultyProperty().bind(getSelectionModel().selectedItemProperty());
