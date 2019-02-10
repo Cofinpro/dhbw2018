@@ -10,6 +10,8 @@ public class Game {
     private RepresentableGameCell[][] gameCells;
     private SimpleObjectProperty<GameState> gameStateProperty;
     private SimpleIntegerProperty revealedHarmlessCellCountProperty;
+    private Long startingTimeMillis;
+    private Long finishingTimeMillis;
 
     public static Game getInstance() {
         return ourInstance;
@@ -22,8 +24,22 @@ public class Game {
         revealedHarmlessCellCountProperty.addListener(event -> {
             if (getGameState() != GameState.LOST && getRevealedCellCount() == getCellCount() - Settings.getInstance().getDifficulty().getBombCount()) {
                 setGameState(GameState.WON);
+                finishingTimeMillis = System.currentTimeMillis();
+            }
+            if (startingTimeMillis == null) {
+                startingTimeMillis = System.currentTimeMillis();
             }
         });
+    }
+
+    public long getTimePlayed() {
+        if (startingTimeMillis == null) {
+            return 0L;
+        }
+        if (finishingTimeMillis == null) {
+            return System.currentTimeMillis() - startingTimeMillis;
+        }
+        return finishingTimeMillis - startingTimeMillis;
     }
 
     private void setGameState(GameState gameState) {

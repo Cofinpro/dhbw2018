@@ -2,29 +2,30 @@ package application.controllers;
 
 import application.enums.GameState;
 import application.models.Game;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
+import java.lang.management.PlatformLoggingMXBean;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class MainController {
-    @FXML
-    private ScrollPane scrollPane;
     @FXML
     private TextField textField;
 
     @FXML
     public void initialize() {
-        textField.textProperty().bind(Game.getInstance().getRevealedHarmlessCellCountProperty().asString());
-        Game.getInstance().getGameStateProperty().addListener(event -> {
-            if (Game.getInstance().getGameState() == GameState.WON) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("You won");
-                alert.setContentText("Well done!");
-                alert.showAndWait();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                long secondsPlayed = Game.getInstance().getTimePlayed()/1000;
+                Platform.runLater(() -> textField.setText(String.valueOf(secondsPlayed)));
             }
-        });
+        }, 1000, 1000);
     }
 }
