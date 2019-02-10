@@ -11,7 +11,6 @@ public class GameCell {
     private boolean isBomb;
     private SimpleBooleanProperty isSuspectedValue;
     private SimpleBooleanProperty isRevealedProperty;
-    private StringBinding representation;
     private Game game;
     private int row;
     private int column;
@@ -20,47 +19,13 @@ public class GameCell {
             { 0, -1},          { 0, +1},
             {+1, -1}, {+1, 0}, {+1, +1}};
 
-    public GameCell(boolean isBomb, Game game, int row, int column) {
+    GameCell(boolean isBomb, Game game, int row, int column) {
         this.isBomb = isBomb;
         this.game = game;
         this.row = row;
         this.column = column;
         isRevealedProperty = new SimpleBooleanProperty(false);
         isSuspectedValue = new SimpleBooleanProperty(false);
-        this.representation = new StringBinding() {
-            {
-                super.bind(isRevealedProperty, isSuspectedValue, game.getGameStateProperty());
-            }
-            @Override
-            protected String computeValue() {
-                if (game.getGameState() == GameState.LOST) {
-                    if (isBomb) {
-                        if (isRevealed()) {
-                            return "\uD83D\uDCA5";
-                        }
-                        return "\uD83D\uDCA3";
-                    } else if (isSuspected()) {
-                        return "\uD83D\uDEAB";
-                    }
-                }
-                if (isRevealedProperty.get()) {
-                    if (isBomb) {
-                        return "\uD83D\uDCA3";
-                    } else {
-                        long count = getSurroundingBombCount();
-                        if (count == 0) {
-                            return " ";
-                        }
-                        return "" + getSurroundingBombCount();
-                    }
-                } else {
-                    if (isSuspectedValue.get()) {
-                        return "\uD83C\uDFC1";
-                    }
-                    return " ";
-                }
-            }
-        };
     }
 
     public void tryReveal() {
@@ -77,7 +42,7 @@ public class GameCell {
         }
     }
 
-    private boolean isSuspected() {
+    boolean isSuspected() {
         return isSuspectedValue.get();
     }
 
@@ -85,12 +50,8 @@ public class GameCell {
         getSurroundingGameCells().stream().filter(gameCell -> !gameCell.isBomb).forEach(GameCell::tryReveal);
     }
 
-    private long getSurroundingBombCount() {
+    long getSurroundingBombCount() {
         return getSurroundingGameCells().stream().filter(gameCell -> gameCell.isBomb).count();
-    }
-
-    public StringBinding representationProperty() {
-        return representation;
     }
 
     private Set<GameCell> getSurroundingGameCells() {
@@ -107,7 +68,7 @@ public class GameCell {
         return result;
     }
 
-    public SimpleBooleanProperty isRevealedProperty() {
+    public SimpleBooleanProperty getIsRevealedProperty() {
         return isRevealedProperty;
     }
 
@@ -119,7 +80,11 @@ public class GameCell {
         return game;
     }
 
-    private boolean isRevealed() {
+    boolean isRevealed() {
         return isRevealedProperty.get();
+    }
+
+    SimpleBooleanProperty getIsSuspectedProperty() {
+        return isSuspectedValue;
     }
 }

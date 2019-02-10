@@ -3,6 +3,7 @@ package application.controllers;
 import application.Main;
 import application.models.GameCell;
 import application.models.Game;
+import application.models.RepresentableGameCell;
 import application.models.Settings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -30,7 +31,7 @@ public class GameFieldController extends GridPane {
         game.setup();
         for (int row = 0; row < game.getRowCount(); row++) {
             for (int column = 0; column < game.getColumnCount(); column++) {
-                GameCell gameCell = game.getGameCell(row, column);
+                RepresentableGameCell gameCell = game.getGameCell(row, column);
                 Button button = new GameCellController(gameCell);
                 this.add(button, row, column);
             }

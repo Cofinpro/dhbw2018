@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Game {
     private static Game ourInstance = new Game();
-    private GameCell[][] gameCells;
+    private RepresentableGameCell[][] gameCells;
     private SimpleObjectProperty<GameState> gameStateProperty;
     private SimpleIntegerProperty revealedHarmlessCellCountProperty;
 
@@ -16,7 +16,7 @@ public class Game {
     }
 
     private Game() {
-        gameCells = new GameCell[1][0]; //one, so that gameCells[0].length works
+        gameCells = new RepresentableGameCell[1][0]; //one, so that gameCells[0].length works
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
         revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
         revealedHarmlessCellCountProperty.addListener(event -> {
@@ -52,7 +52,7 @@ public class Game {
         return getRowCount() * getColumnCount();
     }
 
-    public GameCell getGameCell(int row, int column) {
+    public RepresentableGameCell getGameCell(int row, int column) {
         return gameCells[row][column];
     }
 
