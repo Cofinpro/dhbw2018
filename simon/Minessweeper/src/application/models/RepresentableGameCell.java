@@ -1,6 +1,5 @@
 package application.models;
 
-import application.enums.GameState;
 import javafx.beans.binding.StringBinding;
 
 public class RepresentableGameCell extends GameCell {
@@ -14,32 +13,73 @@ public class RepresentableGameCell extends GameCell {
             }
             @Override
             protected String computeValue() {
-                if (game.getGameState() == GameState.LOST) {
-                    if (isBomb) {
-                        if (isRevealed()) {
-                            return "\uD83D\uDCA5";
-                        }
-                        return "\uD83D\uDCA3";
-                    } else if (isSuspected()) {
-                        return "\uD83D\uDEAB";
-                    }
-                }
                 if (isRevealed()) {
-                    if (isBomb) {
-                        return "\uD83D\uDCA3";
-                    } else {
-                        long count = getSurroundingBombCount();
-                        if (count == 0) {
-                            return " ";
-                        }
-                        return "" + getSurroundingBombCount();
-                    }
+                    return getRepresentationForRevealed();
                 } else {
-                    if (isSuspected()) {
-                        return "\uD83C\uDFC1";
-                    }
+                    return getRepresentationForUnrevealed();
+                }
+            }
+
+            private String getRepresentationForUnrevealed() {
+                switch (game.getGameState()) {
+                    case PLAYING:
+                        return getRepresentationForUnrevealedWhenGameIsGoingOn();
+                    case WON:
+                    case LOST:
+                        return getRepresentationForUnrevealedWhenGameIsFinished();
+                    default:
+                        throw new RuntimeException("unexpected case");
+                }
+            }
+
+            private String getRepresentationForUnrevealedWhenGameIsGoingOn() {
+                if (isSuspected()) {
+                    return getRepresentationForSuspected();
+                } else {
                     return " ";
                 }
+            }
+
+            private String getRepresentationForSuspected() {
+                return "\uD83C\uDFC1";
+            }
+
+            private String getRepresentationForUnrevealedWhenGameIsFinished() {
+                if (isBomb) {
+                    return getRepresentationForUnrevealedBombWhenGameIsFinished();
+                } else if (isSuspected()) {
+                    return getRepresentationForUnrevealedSuspectedButHarmlessFieldWhenGameIsFinished();
+                } else {
+                    return " ";
+                }
+            }
+
+            private String getRepresentationForUnrevealedBombWhenGameIsFinished() {
+                return "\uD83D\uDCA3";
+            }
+
+            private String getRepresentationForRevealedBomb() {
+                return "\uD83D\uDCA5";
+            }
+
+            private String getRepresentationForUnrevealedSuspectedButHarmlessFieldWhenGameIsFinished() {
+                return "\uD83D\uDEAB";
+            }
+
+            private String getRepresentationForRevealed() {
+                if (isBomb) {
+                    return getRepresentationForRevealedBomb();
+                } else {
+                    return getRepresentationForRevealedHarmlessField();
+                }
+            }
+
+            private String getRepresentationForRevealedHarmlessField() {
+                long count = getSurroundingBombCount();
+                if (count == 0) {
+                    return " ";
+                }
+                return "" + getSurroundingBombCount();
             }
         };
     }
