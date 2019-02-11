@@ -37,7 +37,7 @@ public class Cell {
     }
 
     public void printAmountNearbyLivingBombs(){
-        // wenn isChecked falsch print getAmountOfBombsNearby auf dem Knopf ausgeben
+        // wenn isChecked falsch print getAmountOfBombsNearby in Zwischenvariable speichert, die dann auf dem Knopf ausgegeben wird
     }
 
 }
