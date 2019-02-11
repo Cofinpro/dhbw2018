@@ -2,6 +2,9 @@ package application;
 
 import application.enums.GameState;
 import application.models.Game;
+import application.models.LeaderboardManager;
+import application.models.Result;
+import application.persistance.LeaderboardDao;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -26,24 +29,33 @@ public class Main extends Application {
         setupLosingAction();
     }
 
+    @Override
+    public void stop() throws Exception {
+        LeaderboardDao.save();
+        super.stop();
+    }
+
     private void setupLosingAction() {
     }
 
     private void setupWinningAction() {
         Game.getInstance().getGameStateProperty().addListener(event -> Platform.runLater(() -> { //first update the ui, THEN do the following
             if (Game.getInstance().getGameState() == GameState.WON) {
+                long secondsPlayed = Game.getInstance().getTimePlayed()/1000;
                 TextInputDialog dialog = new TextInputDialog();
                 dialog.setTitle("Game won");
-                dialog.setHeaderText("Well done! You finished the game within " + Game.getInstance().getTimePlayed()/1000 + " seconds.");
+                dialog.setHeaderText("Well done! You finished the game within " + secondsPlayed + " seconds.");
                 dialog.setContentText("Please enter your name:");
-
-                Optional<String> result = dialog.showAndWait();
-                result.ifPresent(s -> System.out.println("Your name: " + s));
+                Optional<String> input = dialog.showAndWait();
+                input.ifPresent(s -> {
+                    System.out.println("Your name: " + s);
+                    Result result = new Result(s, secondsPlayed);
+                    LeaderboardManager.getInstance().handleNewResult(result);
+                });
             }
         }));
 
     }
-
 
     public static void main(String[] args) {
         launch(args);
