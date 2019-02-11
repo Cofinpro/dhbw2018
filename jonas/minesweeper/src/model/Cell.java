@@ -23,4 +23,21 @@ public class Cell {
         return isCleared;
     }
 
+    public int getAoumtOfBombsNearby(){
+        return 0;
+    }
+
+    public void changeStateToChecked(){
+        // wenn isBomb und isCleared falsch sind isCleared auf true
+        // wenn isBomb falsch ist und isCleared true Fenster ausgeben mit dem Hinweis das dieses Feld schon aufgedeckt ist
+        // wenn isBomb true und isCleared false isCleared auf true und game Verloren
+    }
+    public void changeStateToCheckedBomb(){
+        // wenn isCleared falsch ist isCleared false aber Image auf Button ausgeben
+    }
+
+    public void printAmountNearbyLivingBombs(){
+        // wenn isChecked falsch print getAmountOfBombsNearby auf dem Knopf ausgeben
+    }
+
 }
