@@ -1,6 +1,7 @@
 package application;
 
 import application.enums.GameState;
+import application.helper.SceneTraversalHelper;
 import application.models.Game;
 import application.models.LeaderboardManager;
 import application.models.Result;
@@ -13,26 +14,27 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("views/main.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+    private static Stage primaryStage;
 
+    @Override
+    public void start(Stage primaryStage) {
+        Main.primaryStage = primaryStage;
+        primaryStage.setTitle("Hello World");
+        SceneTraversalHelper.switchScene("main.fxml");
+        primaryStage.show();
         setupWinningAction();
         setupLosingAction();
     }
 
     @Override
     public void stop() throws Exception {
-        LeaderboardDao.save();
         super.stop();
+        LeaderboardDao.save();
     }
 
     private void setupLosingAction() {
@@ -48,13 +50,16 @@ public class Main extends Application {
                 dialog.setContentText("Please enter your name:");
                 Optional<String> input = dialog.showAndWait();
                 input.ifPresent(s -> {
-                    System.out.println("Your name: " + s);
                     Result result = new Result(s, secondsPlayed);
                     LeaderboardManager.getInstance().handleNewResult(result);
+                    SceneTraversalHelper.switchScene("leaderboard.fxml");
                 });
             }
         }));
+    }
 
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static void main(String[] args) {

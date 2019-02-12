@@ -19,12 +19,17 @@ public class LeaderboardManager {
 
     public boolean handleNewResult(Result result) {
         Difficulty difficulty = Settings.getInstance().getDifficulty();
+        Leaderboard leaderboard = getLeaderboard(difficulty);
+        return leaderboard.addResult(result);
+    }
+
+    public Leaderboard getLeaderboard(Difficulty difficulty) {
         Optional<Leaderboard> leaderboardOptional = leaderboards.stream().filter(l -> l.getDifficulty() == difficulty).findFirst();
-        Leaderboard leaderboard = leaderboardOptional.isPresent() ? leaderboardOptional.get() : null;
+        Leaderboard leaderboard = leaderboardOptional.orElse(null);
         if (leaderboard == null) {
             leaderboards.add((leaderboard = new Leaderboard(difficulty)));
         }
-        return leaderboard.addResult(result);
+        return  leaderboard;
     }
 
     public SortedSet<Leaderboard> getLeaderboards() {

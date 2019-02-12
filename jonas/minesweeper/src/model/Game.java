@@ -63,6 +63,9 @@ public class Game {
     public void winGame(GameState state){
         setState(GameState.WON);
     }
+    public Cell getCell(int row, int column){
+        return cells[row][column];
+    }
 
 
 }

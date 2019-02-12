@@ -1,15 +1,20 @@
 package application.models;
 
+import application.enums.Difficulty;
 import application.enums.GameState;
 import application.helper.RandomHelper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class Game {
+import java.util.Observable;
+import java.util.Set;
+
+public class Game extends Observable {
     private static Game ourInstance = new Game();
     private RepresentableGameCell[][] gameCells;
     private SimpleObjectProperty<GameState> gameStateProperty;
     private SimpleIntegerProperty revealedHarmlessCellCountProperty;
+    private SimpleIntegerProperty suspectedCellCountProperty;
     private Long startingTimeMillis;
     private Long finishingTimeMillis;
 
@@ -18,7 +23,7 @@ public class Game {
     }
 
     private Game() {
-        gameCells = new RepresentableGameCell[1][0]; //one, so that gameCells[0].length works
+        gameCells = new RepresentableGameCell[0][0];
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
         revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
         revealedHarmlessCellCountProperty.addListener(event -> {
@@ -30,7 +35,9 @@ public class Game {
                 startingTimeMillis = System.currentTimeMillis();
             }
         });
-    }
+        suspectedCellCountProperty = new SimpleIntegerProperty(0);
+        Settings.getInstance().getDifficultyProperty().addListener((observable, oldValue, newValue) -> setup());
+}
 
     public long getTimePlayed() {
         if (startingTimeMillis == null) {
@@ -50,6 +57,11 @@ public class Game {
         gameCells = RandomHelper.getGameField(this);
         gameStateProperty.set(GameState.PLAYING);
         revealedHarmlessCellCountProperty.set(0);
+        suspectedCellCountProperty.set(0);
+        startingTimeMillis = null;
+        finishingTimeMillis = null;
+        setChanged();
+        notifyObservers();
     }
 
     public int getRevealedCellCount() {
@@ -61,6 +73,9 @@ public class Game {
     }
 
     public int getColumnCount() {
+        if (getRowCount() == 0) {
+            return 0; //when there are no rows, there cannot be any columns
+        }
         return gameCells[0].length;
     }
 
@@ -86,5 +101,17 @@ public class Game {
 
     public SimpleIntegerProperty getRevealedHarmlessCellCountProperty() {
         return revealedHarmlessCellCountProperty;
+    }
+
+    public int getSuspectedCellCount() {
+        return suspectedCellCountProperty.get();
+    }
+
+    public SimpleIntegerProperty getSuspectedCellCountProperty() {
+        return suspectedCellCountProperty;
+    }
+
+    public void incrementSuspectedCellCount(int incrementation) {
+        suspectedCellCountProperty.set(getSuspectedCellCount() + incrementation);
     }
 }

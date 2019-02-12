@@ -1,15 +1,13 @@
 package application.models;
 
-import application.enums.GameState;
-import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class GameCell {
-    private boolean isBomb;
-    private SimpleBooleanProperty isSuspectedValue;
+    private int bombValue;
+    private SimpleBooleanProperty isSuspectedProperty;
     private SimpleBooleanProperty isRevealedProperty;
     private Game game;
     private int row;
@@ -19,13 +17,13 @@ public class GameCell {
             { 0, -1},          { 0, +1},
             {+1, -1}, {+1, 0}, {+1, +1}};
 
-    GameCell(boolean isBomb, Game game, int row, int column) {
-        this.isBomb = isBomb;
+    GameCell(int bombValue, Game game, int row, int column) {
+        this.bombValue = bombValue;
         this.game = game;
         this.row = row;
         this.column = column;
         isRevealedProperty = new SimpleBooleanProperty(false);
-        isSuspectedValue = new SimpleBooleanProperty(false);
+        isSuspectedProperty = new SimpleBooleanProperty(false);
     }
 
     public void tryReveal() {
@@ -33,7 +31,7 @@ public class GameCell {
             return;
         }
         isRevealedProperty.set(true);
-        if (isBomb) {
+        if (isBomb()) {
             game.loseGame();
             return;
         }
@@ -43,15 +41,19 @@ public class GameCell {
     }
 
     boolean isSuspected() {
-        return isSuspectedValue.get();
+        return isSuspectedProperty.get();
     }
 
     private void revealCascade() {
-        getSurroundingGameCells().stream().filter(gameCell -> !gameCell.isBomb).forEach(GameCell::tryReveal);
+        getSurroundingGameCells().stream().filter(gameCell -> !gameCell.isBomb()).forEach(GameCell::tryReveal);
     }
 
     long getSurroundingBombCount() {
-        return getSurroundingGameCells().stream().filter(gameCell -> gameCell.isBomb).count();
+        int count = 0;
+        for (GameCell gameCell : getSurroundingGameCells()) {
+            count += gameCell.bombValue;
+        }
+        return count;
     }
 
     private Set<GameCell> getSurroundingGameCells() {
@@ -73,7 +75,7 @@ public class GameCell {
     }
 
     public void switchSuspicion() {
-        isSuspectedValue.set(!isSuspectedValue.get());
+        isSuspectedProperty.set(!isSuspectedProperty.get());
     }
 
     public Game getGame() {
@@ -84,7 +86,15 @@ public class GameCell {
         return isRevealedProperty.get();
     }
 
-    SimpleBooleanProperty getIsSuspectedProperty() {
-        return isSuspectedValue;
+    public SimpleBooleanProperty getIsSuspectedProperty() {
+        return isSuspectedProperty;
+    }
+
+    boolean isBomb() {
+        return bombValue > 0;
+    }
+
+    boolean isSuperBomb() {
+        return bombValue > 1;
     }
 }

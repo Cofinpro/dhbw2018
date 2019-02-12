@@ -10,9 +10,10 @@ public class Settings {
         return ourInstance;
     }
 
-    private SimpleObjectProperty<Difficulty> difficultyProperty = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Difficulty> difficultyProperty;
 
     private Settings() {
+        difficultyProperty = new SimpleObjectProperty<>();
     }
 
     public Difficulty getDifficulty() {

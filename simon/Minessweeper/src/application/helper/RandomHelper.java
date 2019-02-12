@@ -20,11 +20,18 @@ public class RandomHelper {
             for (int column = 0; column < gameCells[row].length; column++) {
                 RepresentableGameCell gameCell;
                 if (bombIndexes.contains(i)) {
-                    gameCell = new RepresentableGameCell(true, game, row, column);
+                    gameCell = new RepresentableGameCell(2, game, row, column);
                 } else {
-                    gameCell = new RepresentableGameCell(false, game, row, column);
+                    gameCell = new RepresentableGameCell(0, game, row, column);
                     gameCell.getIsRevealedProperty().addListener((observable, oldValue, newValue) -> game.getRevealedHarmlessCellCountProperty().set(game.getRevealedCellCount() +1));
                 }
+                gameCell.getIsSuspectedProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue) {
+                        game.incrementSuspectedCellCount(1);
+                    } else {
+                        game.incrementSuspectedCellCount(-1);
+                    }
+                });
                 gameCells[row][column] = gameCell;
                 i++;
             }

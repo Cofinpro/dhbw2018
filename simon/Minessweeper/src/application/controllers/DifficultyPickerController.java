@@ -27,6 +27,7 @@ public class DifficultyPickerController extends ChoiceBox<Difficulty> {
                 Difficulty.values())
         );
         Settings settings = Settings.getInstance();
+        this.getSelectionModel().select(settings.getDifficulty());
         settings.getDifficultyProperty().bind(getSelectionModel().selectedItemProperty());
     }
 }
