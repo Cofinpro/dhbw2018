@@ -20,6 +20,10 @@ public class Cell {
         return isMarked;
     }
 
+    public void setMarkedState(){
+        this.isMarked = true;
+    }
+
     public boolean getState(){
         return isCleared;
     }
@@ -69,9 +73,6 @@ public class Cell {
         if (isExplosive && !isCleared){
             System.out.println("Game lost");
         }
-    }
-    public void printAmountNearbyLivingBombs(){
-        // wenn isChecked falsch print getAmountOfBombsNearby in Zwischenvariable speichert, die dann auf dem Knopf ausgegeben wird
     }
 
 }
