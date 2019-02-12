@@ -6,14 +6,14 @@ public class Cell {
     private boolean isMarked;
     private boolean isCleared;
     private Game game;
-    private int row;
-    private int column;
+    private int rows;
+    private int columns;
 
-    Cell(boolean getExplosive, Game game, int row, int column){
+    Cell(boolean getExplosive, Game game, int rows , int columns){
         this.isExplosive = isExplosive;
         this.game = game;
-        this.row = row;
-        this.column = column;
+        this.rows = rows;
+        this.columns = columns;
     }
 
     public boolean getMarkedState(){
@@ -25,18 +25,48 @@ public class Cell {
     }
 
     public int getAoumtOfBombsNearby(){
-        return 0;
+        int result = 0;
+        Cell[][] cells = new Cell[rows][columns];
+        if (game.getRows() - 1 >= 0 && game.getColumns() - 1 >= 0 && game.getRows() <= rows && game.getColumns() <= columns) {
+            if (cells[game.getRows() - 1][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() - 1][game.getColumns()].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() - 1][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+
+            if (cells[game.getRows() + 1][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() + 1][game.getColumns()].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() + 1][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+
+            if (cells[game.getRows()][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows()][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+        }
+        return result;
     }
 
     public void tryChangeStateToCleared(){
 
-        if (isExplosive && isCleared == false){
+        if (!isExplosive && !isCleared){
             this.isCleared = true;
         }
-        if (isExplosive == false && isCleared == true){
+        if (!isExplosive && isCleared){
             System.out.println("Already checked");
         }
-        if (isExplosive == true && isCleared == false){
+        if (isExplosive && !isCleared){
             System.out.println("Game lost");
         }
     }
