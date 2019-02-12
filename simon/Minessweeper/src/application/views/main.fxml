@@ -4,9 +4,13 @@
 <?import application.controllers.GameFieldController?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
-      <TextField fx:id="textField"/>
+      <HBox>
+            <TextField fx:id="timerTextField"/>
+            <TextField fx:id="suspectedRemainingBombCountText"/>
+      </HBox>
       <DifficultyPickerController/>
-      <ScrollPane fx:id="scrollPane"><GameFieldController/></ScrollPane>
+      <ScrollPane><GameFieldController/></ScrollPane>
 </VBox>

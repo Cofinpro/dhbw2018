@@ -31,8 +31,8 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        LeaderboardDao.save();
         super.stop();
+        LeaderboardDao.save();
     }
 
     private void setupLosingAction() {

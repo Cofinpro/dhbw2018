@@ -1,7 +1,5 @@
 package application.models;
 
-import application.enums.GameState;
-import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 
 import java.util.HashSet;
@@ -9,7 +7,7 @@ import java.util.Set;
 
 public class GameCell {
     private boolean isBomb;
-    private SimpleBooleanProperty isSuspectedValue;
+    private SimpleBooleanProperty isSuspectedProperty;
     private SimpleBooleanProperty isRevealedProperty;
     private Game game;
     private int row;
@@ -25,7 +23,7 @@ public class GameCell {
         this.row = row;
         this.column = column;
         isRevealedProperty = new SimpleBooleanProperty(false);
-        isSuspectedValue = new SimpleBooleanProperty(false);
+        isSuspectedProperty = new SimpleBooleanProperty(false);
     }
 
     public void tryReveal() {
@@ -43,7 +41,7 @@ public class GameCell {
     }
 
     boolean isSuspected() {
-        return isSuspectedValue.get();
+        return isSuspectedProperty.get();
     }
 
     private void revealCascade() {
@@ -73,7 +71,7 @@ public class GameCell {
     }
 
     public void switchSuspicion() {
-        isSuspectedValue.set(!isSuspectedValue.get());
+        isSuspectedProperty.set(!isSuspectedProperty.get());
     }
 
     public Game getGame() {
@@ -84,7 +82,7 @@ public class GameCell {
         return isRevealedProperty.get();
     }
 
-    SimpleBooleanProperty getIsSuspectedProperty() {
-        return isSuspectedValue;
+    public SimpleBooleanProperty getIsSuspectedProperty() {
+        return isSuspectedProperty;
     }
 }
