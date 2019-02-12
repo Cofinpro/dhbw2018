@@ -2,42 +2,77 @@ package model;
 
 public class Cell {
 
-    private boolean getExplosive;
+    private boolean isExplosive;
     private boolean isMarked;
     private boolean isCleared;
     private Game game;
-    private int row;
-    private int column;
+    private int rows;
+    private int columns;
 
-    Cell(boolean getExplosive, Game game, int row, int column){
-        this.getExplosive = getExplosive;
+    Cell(boolean getExplosive, Game game, int rows , int columns){
+        this.isExplosive = isExplosive;
         this.game = game;
-        this.row = row;
-        this.column = column;
+        this.rows = rows;
+        this.columns = columns;
     }
 
     public boolean getMarkedState(){
         return isMarked;
     }
+
+    public void setMarkedState(){
+        this.isMarked = true;
+    }
+
     public boolean getState(){
         return isCleared;
     }
 
     public int getAoumtOfBombsNearby(){
-        return 0;
+        int result = 0;
+        Cell[][] cells = new Cell[rows][columns];
+        if (game.getRows() - 1 >= 0 && game.getColumns() - 1 >= 0 && game.getRows() <= rows && game.getColumns() <= columns) {
+            if (cells[game.getRows() - 1][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() - 1][game.getColumns()].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() - 1][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+
+            if (cells[game.getRows() + 1][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() + 1][game.getColumns()].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows() + 1][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+
+            if (cells[game.getRows()][game.getColumns() + 1].isExplosive == true) {
+                result++;
+            }
+            if (cells[game.getRows()][game.getColumns() - 1].isExplosive == true) {
+                result++;
+            }
+        }
+        return result;
     }
 
-    public void changeStateToChecked(){
-        // wenn isBomb und isCleared falsch sind isCleared auf true
-        // wenn isBomb falsch ist und isCleared true Fenster ausgeben mit dem Hinweis das dieses Feld schon aufgedeckt ist
-        // wenn isBomb true und isCleared false isCleared auf true und game Verloren
-    }
-    public void changeStateToCheckedBomb(){
-        // wenn isCleared falsch ist isCleared false aber Image auf Button ausgeben
-    }
+    public void tryChangeStateToCleared(){
 
-    public void printAmountNearbyLivingBombs(){
-        // wenn isChecked falsch print getAmountOfBombsNearby in Zwischenvariable speichert, die dann auf dem Knopf ausgegeben wird
+        if (!isExplosive && !isCleared){
+            this.isCleared = true;
+        }
+        if (!isExplosive && isCleared){
+            System.out.println("Already checked");
+        }
+        if (isExplosive && !isCleared){
+            System.out.println("Game lost");
+        }
     }
 
 }
