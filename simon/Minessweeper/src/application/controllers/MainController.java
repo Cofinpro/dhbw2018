@@ -28,7 +28,7 @@ public class MainController {
             @Override
             public void run() {
                 long secondsPlayed = Game.getInstance().getTimePlayed()/1000;
-                Platform.runLater(() -> timerTextField.setText(secondsPlayed +  " seconds"));
+                Platform.runLater(() -> timerTextField.setText(secondsPlayed +  " ⏰"));
             }
         }, 1000, 1000);
         suspectedRemainingBombCountText.textProperty().bind(new IntegerBinding() {
@@ -47,6 +47,6 @@ public class MainController {
                 }
                 return suspectedRemainingBombCount;
             }
-        }.asString());
+        }.asString().concat(" \uD83D\uDCA3"));
     }
 }
