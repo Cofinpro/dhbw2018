@@ -5,6 +5,7 @@ import application.models.Game;
 import application.models.Settings;
 import javafx.application.Platform;
 import javafx.beans.binding.IntegerBinding;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -48,5 +49,9 @@ public class MainController {
                 return suspectedRemainingBombCount;
             }
         }.asString().concat(" \uD83D\uDCA3"));
+    }
+
+    public void onPlayRequested(ActionEvent actionEvent) {
+        Game.getInstance().setup();
     }
 }

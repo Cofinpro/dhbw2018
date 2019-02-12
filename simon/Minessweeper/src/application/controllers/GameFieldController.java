@@ -21,19 +21,17 @@ public class GameFieldController extends GridPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-        Settings settings = Settings.getInstance();
-        settings.getDifficultyProperty().addListener(event -> updateGameField());
+        Game.getInstance().addObserver((o, arg) -> updateGameField());
     }
 
     private void updateGameField() {
         clearGameField();
         Game game = Game.getInstance();
-        game.setup();
         for (int row = 0; row < game.getRowCount(); row++) {
             for (int column = 0; column < game.getColumnCount(); column++) {
                 RepresentableGameCell gameCell = game.getGameCell(row, column);
                 Button button = new GameCellController(gameCell);
-                this.add(button, row, column);
+                this.add(button, column, row);
             }
         }
     }

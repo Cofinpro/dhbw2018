@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameCell {
-    private boolean isBomb;
+    private int bombValue;
     private SimpleBooleanProperty isSuspectedProperty;
     private SimpleBooleanProperty isRevealedProperty;
     private Game game;
@@ -17,8 +17,8 @@ public class GameCell {
             { 0, -1},          { 0, +1},
             {+1, -1}, {+1, 0}, {+1, +1}};
 
-    GameCell(boolean isBomb, Game game, int row, int column) {
-        this.isBomb = isBomb;
+    GameCell(int bombValue, Game game, int row, int column) {
+        this.bombValue = bombValue;
         this.game = game;
         this.row = row;
         this.column = column;
@@ -31,7 +31,7 @@ public class GameCell {
             return;
         }
         isRevealedProperty.set(true);
-        if (isBomb) {
+        if (isBomb()) {
             game.loseGame();
             return;
         }
@@ -45,11 +45,15 @@ public class GameCell {
     }
 
     private void revealCascade() {
-        getSurroundingGameCells().stream().filter(gameCell -> !gameCell.isBomb).forEach(GameCell::tryReveal);
+        getSurroundingGameCells().stream().filter(gameCell -> !gameCell.isBomb()).forEach(GameCell::tryReveal);
     }
 
     long getSurroundingBombCount() {
-        return getSurroundingGameCells().stream().filter(gameCell -> gameCell.isBomb).count();
+        int count = 0;
+        for (GameCell gameCell : getSurroundingGameCells()) {
+            count += gameCell.bombValue;
+        }
+        return count;
     }
 
     private Set<GameCell> getSurroundingGameCells() {
@@ -84,5 +88,13 @@ public class GameCell {
 
     public SimpleBooleanProperty getIsSuspectedProperty() {
         return isSuspectedProperty;
+    }
+
+    boolean isBomb() {
+        return bombValue > 0;
+    }
+
+    boolean isSuperBomb() {
+        return bombValue > 1;
     }
 }

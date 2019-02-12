@@ -6,13 +6,15 @@ import application.helper.RandomHelper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class Game {
+import java.util.Observable;
+import java.util.Set;
+
+public class Game extends Observable {
     private static Game ourInstance = new Game();
     private RepresentableGameCell[][] gameCells;
     private SimpleObjectProperty<GameState> gameStateProperty;
     private SimpleIntegerProperty revealedHarmlessCellCountProperty;
     private SimpleIntegerProperty suspectedCellCountProperty;
-    private SimpleObjectProperty<Difficulty> difficultyProperty;
     private Long startingTimeMillis;
     private Long finishingTimeMillis;
 
@@ -22,7 +24,6 @@ public class Game {
 
     private Game() {
         gameCells = new RepresentableGameCell[0][0];
-        difficultyProperty = new SimpleObjectProperty<>();
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
         revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
         revealedHarmlessCellCountProperty.addListener(event -> {
@@ -35,7 +36,8 @@ public class Game {
             }
         });
         suspectedCellCountProperty = new SimpleIntegerProperty(0);
-    }
+        Settings.getInstance().getDifficultyProperty().addListener((observable, oldValue, newValue) -> setup());
+}
 
     public long getTimePlayed() {
         if (startingTimeMillis == null) {
@@ -58,6 +60,8 @@ public class Game {
         suspectedCellCountProperty.set(0);
         startingTimeMillis = null;
         finishingTimeMillis = null;
+        setChanged();
+        notifyObservers();
     }
 
     public int getRevealedCellCount() {

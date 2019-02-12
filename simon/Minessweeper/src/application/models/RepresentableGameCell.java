@@ -5,8 +5,8 @@ import javafx.beans.binding.StringBinding;
 public class RepresentableGameCell extends GameCell {
     private StringBinding representation;
 
-    public RepresentableGameCell(boolean isBomb, Game game, int row, int column) {
-        super(isBomb, game, row, column);
+    public RepresentableGameCell(int bombValue, Game game, int row, int column) {
+        super(bombValue, game, row, column);
         this.representation = new StringBinding() {
             {
                 super.bind(getIsRevealedProperty(), getIsSuspectedProperty(), game.getGameStateProperty());
@@ -45,7 +45,7 @@ public class RepresentableGameCell extends GameCell {
             }
 
             private String getRepresentationForUnrevealedWhenGameIsFinished() {
-                if (isBomb) {
+                if (isBomb()) {
                     return getRepresentationForUnrevealedBombWhenGameIsFinished();
                 } else if (isSuspected()) {
                     return getRepresentationForUnrevealedSuspectedButHarmlessFieldWhenGameIsFinished();
@@ -55,6 +55,9 @@ public class RepresentableGameCell extends GameCell {
             }
 
             private String getRepresentationForUnrevealedBombWhenGameIsFinished() {
+                if (isSuperBomb()) {
+                    return "☢";
+                }
                 return "\uD83D\uDCA3";
             }
 
@@ -67,7 +70,7 @@ public class RepresentableGameCell extends GameCell {
             }
 
             private String getRepresentationForRevealed() {
-                if (isBomb) {
+                if (isBomb()) {
                     return getRepresentationForRevealedBomb();
                 } else {
                     return getRepresentationForRevealedHarmlessField();
