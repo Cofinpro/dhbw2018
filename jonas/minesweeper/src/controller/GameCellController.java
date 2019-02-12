@@ -4,13 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import model.Cell;
-import sun.applet.Main;
+import views.Main;
 
 import java.io.IOException;
 
 public class GameCellController extends Button {
     GameCellController(Cell cell){
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/gameCells.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gameCells.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
