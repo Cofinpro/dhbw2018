@@ -28,5 +28,4 @@ public class GameCellController extends Button {
             }
         });
     }
-
 }

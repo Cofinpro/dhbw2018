@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-
 <GridPane prefHeight="372.0" prefWidth="572.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <TextField alignment="CENTER" disable="true" maxHeight="50.0" maxWidth="100.0" minHeight="50.0" minWidth="100.0" opacity="1.0" prefHeight="50.0" prefWidth="100.0" text="Height" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

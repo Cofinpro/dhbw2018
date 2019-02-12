@@ -1,13 +1,7 @@
 package controller;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import model.Cell;
 import model.Game;
-import sun.applet.Main;
-
-import java.io.IOException;
 
 public class MainController {
     public GridPane gridPane;
