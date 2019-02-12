@@ -41,7 +41,11 @@ public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
         return difficulty.compareTo(o.difficulty);
     }
 
-    public Difficulty getDifficulty() {
+    Difficulty getDifficulty() {
         return difficulty;
+    }
+
+    public SortedSet<Result> getResults() {
+        return results;
     }
 }

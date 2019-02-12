@@ -33,7 +33,7 @@ public class MainController {
         }, 1000, 1000);
         suspectedRemainingBombCountText.textProperty().bind(new IntegerBinding() {
             {
-                bind(Game.getInstance().getSuspectedCellCountProperty(), Settings.getInstance().getDifficultyProperty());
+                bind(Game.getInstance().getSuspectedCellCountProperty());
             }
             @Override
             protected int computeValue() {

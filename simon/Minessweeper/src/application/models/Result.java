@@ -31,4 +31,12 @@ public class Result implements CSVModel, Comparable<Result> {
         }
         return comparision;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getTimeSeconds() {
+        return timeSeconds;
+    }
 }

@@ -1,5 +1,6 @@
 package application.models;
 
+import application.enums.Difficulty;
 import application.enums.GameState;
 import application.helper.RandomHelper;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,6 +12,7 @@ public class Game {
     private SimpleObjectProperty<GameState> gameStateProperty;
     private SimpleIntegerProperty revealedHarmlessCellCountProperty;
     private SimpleIntegerProperty suspectedCellCountProperty;
+    private SimpleObjectProperty<Difficulty> difficultyProperty;
     private Long startingTimeMillis;
     private Long finishingTimeMillis;
 
@@ -20,6 +22,7 @@ public class Game {
 
     private Game() {
         gameCells = new RepresentableGameCell[0][0];
+        difficultyProperty = new SimpleObjectProperty<>();
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
         revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
         revealedHarmlessCellCountProperty.addListener(event -> {
