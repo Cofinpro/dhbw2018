@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<fx:root alignment="CENTER" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8"
-         xmlns:fx="http://javafx.com/fxml/1">
-   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="rankTextField"/>
-   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="nameTextField"/>
-   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="timeTextField"/>
+<fx:root alignment="CENTER" stylesheets="@../css/style.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <TextField fx:id="rankTextField" alignment="CENTER" editable="false" focusTraversable="false" />
+   <TextField fx:id="nameTextField" alignment="CENTER" editable="false" focusTraversable="false" />
+   <TextField fx:id="timeTextField" alignment="CENTER" editable="false" focusTraversable="false" />
 </fx:root>
