@@ -32,11 +32,24 @@ public class Result implements CSVModel, Comparable<Result> {
         return comparision;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        return compareTo((Result) obj) == 0;
+    }
+
     public String getName() {
         return name;
     }
 
     public Long getTimeSeconds() {
         return timeSeconds;
+    }
+
+    @Override
+    public String toString() {
+        return "name: " + name + "; seconds: " + timeSeconds;
     }
 }

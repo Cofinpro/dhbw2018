@@ -23,7 +23,7 @@ public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
         if (obj.getClass() != this.getClass()) {
             return super.equals(obj);
         }
-        return ((Leaderboard) obj).difficulty == this.difficulty;
+        return this.compareTo((Leaderboard) obj) == 0;
     }
 
     @Override
