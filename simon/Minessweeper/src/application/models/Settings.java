@@ -4,6 +4,7 @@ import application.enums.Difficulty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class Settings {
+    public static final Difficulty DEFAULT_DIFFICULTY = Difficulty.EASY;
     private static Settings ourInstance = new Settings();
 
     public static Settings getInstance() {

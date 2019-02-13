@@ -13,7 +13,7 @@
             <TextField fx:id="suspectedRemainingBombCountText" HBox.hgrow="ALWAYS"/>
       </HBox>
       <HBox alignment="CENTER">
-            <DifficultyPickerController HBox.hgrow="ALWAYS"/>
+            <DifficultyPickerController fx:id="difficultyPickerControl" HBox.hgrow="ALWAYS"/>
             <Button HBox.hgrow="ALWAYS" text="Play" onAction="#onPlayRequested"/>
             <TextField fx:id="difficultyDescription" editable="false" HBox.hgrow="ALWAYS"/>
       </HBox>

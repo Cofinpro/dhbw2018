@@ -17,6 +17,8 @@ import java.util.TimerTask;
 
 public class MainController {
     @FXML
+    private DifficultyPickerController difficultyPickerControl;
+    @FXML
     private TextField difficultyDescription;
     @FXML
     private TextField timerTextField;
@@ -67,6 +69,9 @@ public class MainController {
     }
 
     public void onPlayRequested(ActionEvent actionEvent) {
+        if (Settings.getInstance().getDifficulty() == null) {
+            difficultyPickerControl.chooseDefault();
+        }
         Game.getInstance().setup();
     }
 }
