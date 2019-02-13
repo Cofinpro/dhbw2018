@@ -53,6 +53,7 @@ public class Main extends Application {
                     Result result = new Result(s, secondsPlayed);
                     LeaderboardManager.getInstance().handleNewResult(result);
                     SceneTraversalHelper.switchScene("leaderboard.fxml");
+                    Game.getInstance().resetTimers();
                 });
             }
         }));

@@ -35,7 +35,12 @@ public class Game extends Observable {
         });
         suspectedCellCountProperty = new SimpleIntegerProperty(0);
         Settings.getInstance().getDifficultyProperty().addListener((observable, oldValue, newValue) -> setup());
-}
+    }
+
+    public void resetTimers() {
+        startingTimeMillis = null;
+        finishingTimeMillis = null;
+    }
 
     public long getTimePlayed() {
         if (startingTimeMillis == null) {
