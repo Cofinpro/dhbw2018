@@ -53,4 +53,8 @@ public enum Difficulty {
     public String toString() {
         return representation;
     }
+
+    public String getDescription() {
+        return fieldRows + "x" + fieldColumns + " - " + simpleBombCount + " bombs - " + superBombCount + " super bombs";
+    }
 }
