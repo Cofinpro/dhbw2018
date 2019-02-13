@@ -55,6 +55,9 @@ public class RepresentableGameCell extends GameCell {
             }
 
             private String getRepresentationForUnrevealedBombWhenGameIsFinished() {
+                if (isSuspected()) {
+                    return getRepresentationForSuspected();
+                }
                 if (isSuperBomb()) {
                     return "☢";
                 }

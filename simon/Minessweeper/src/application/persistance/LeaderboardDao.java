@@ -10,7 +10,7 @@ import java.util.*;
 
 public class LeaderboardDao {
 
-    private static final String LEADERBOARD_CSV_PATH = "resources\\users.csv";
+    private static final String LEADERBOARD_CSV_PATH = "resources\\leaderboards.csv";
 
     public static void save() {
         save(LEADERBOARD_CSV_PATH, LeaderboardManager.getInstance().getLeaderboards());
