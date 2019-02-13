@@ -54,6 +54,9 @@ public class Game extends Observable {
     }
 
     public void setup() {
+        if (Settings.getInstance().getDifficulty() == null) {
+            return;
+        }
         gameCells = RandomHelper.getGameField(this);
         gameStateProperty.set(GameState.PLAYING);
         revealedHarmlessCellCountProperty.set(0);

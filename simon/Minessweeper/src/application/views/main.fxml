@@ -14,7 +14,7 @@
       </HBox>
       <HBox alignment="CENTER">
             <DifficultyPickerController/>
-            <Button text="Play" onAction="#onPlayRequested"/>
+            <Button HBox.hgrow="ALWAYS" text="Play" onAction="#onPlayRequested"/>
       </HBox>
       <ScrollPane><GameFieldController/></ScrollPane>
 </VBox>
