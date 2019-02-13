@@ -1,8 +1,10 @@
 package application.enums;
 
 public enum Difficulty {
-    EASY("easy",9, 9 ,5, 0),
-    MEDIUM("medium",16, 16, 7, 1);
+    EASY("easy",9, 9 ,10, 0),
+    MEDIUM("medium",16, 16, 40, 40),
+    DIFFICULT("difficult", 16, 30, 99, 0),
+    INSANE("insane", 16, 30, 89, 10);
 
     private int simpleBombCount;
     private String representation;
@@ -10,9 +12,9 @@ public enum Difficulty {
     private int fieldColumns;
     private int superBombCount;
 
-    Difficulty(String representation, int fieldRows, int fieldColumns, int bombCount, int superBombCount) {
+    Difficulty(String representation, int fieldRows, int fieldColumns, int simpleBombCount, int superBombCount) {
         this.representation = representation;
-        this.simpleBombCount = bombCount;
+        this.simpleBombCount = simpleBombCount;
         this.fieldRows = fieldRows;
         this.fieldColumns = fieldColumns;
         this.superBombCount = superBombCount;
