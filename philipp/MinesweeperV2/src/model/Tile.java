@@ -1,14 +1,15 @@
+package model;
+
 public class Tile {
 
-
     private boolean isFlagged;
-    private boolean isMine;
+    private int mineLevel; //0 for no mineLevel, 1 for normal mineLevel, 2 for super-mineLevel
     private int nearbyMines;
     private boolean isRevealed;
 
     public Tile() {
         this.isFlagged = false;
-        this.isMine = false;
+        this.mineLevel = 0;
         this.isRevealed = false;
     }
 
@@ -16,16 +17,16 @@ public class Tile {
         return isFlagged;
     }
 
-    public boolean isMine() {
-        return isMine;
-    }
-
     public void setFlagged(boolean flagged) {
         this.isFlagged = flagged;
     }
 
-    public void setMine(boolean isMine) {
-        this.isMine = isMine;
+    public int getMineLevel() {
+        return mineLevel;
+    }
+
+    public void setMineLevel(int mineLevel) {
+        this.mineLevel = mineLevel;
     }
 
     public boolean isRevealed() {
@@ -46,7 +47,7 @@ public class Tile {
 
     @Override
     public String toString() {
-        if (isMine && !isFlagged)
+        if (mineLevel > 0 && !isFlagged)
             return "X";
         if (isFlagged)
             return "\u2665";
