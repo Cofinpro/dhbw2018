@@ -1,9 +1,16 @@
+package model;
+
+import view.Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Board implements ActionListener {
+public class Board {
+
+    private static Board instance;
+
     int amountMines;
     int amountMinesLeft;
     int rows;
@@ -15,95 +22,26 @@ public class Board implements ActionListener {
     Tile[][] tiles;
     Container grid = new Container();
     Container top = new Container();
-    Font buttonFont = new Font("Arial", Font.PLAIN, 40);
     Font labelFont = new Font("Arial", Font.PLAIN, 40);
+    GameSettings gameSettings = GameSettings.getInstance();
+    Difficulty difficulty = gameSettings.getDifficulty();
 
 
-    public Board() {
-        askForValues();
-        initializeView();
-    }
-
-    public void askForValues() {
-        Object[] options = {"Easy Cheasy",
-                "Normal",
-                "Hard",
-                "Sicko Mode",
-                "I surrender"};
-        int n = JOptionPane.showOptionDialog(frame,
-                "Please select a difficulty",
-                "Choose Difficulty Level",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[4]);
-
-        switch (n) {
-            case 0:
-                amountMines = 5;
-                rows = 7;
-                cols = 7;
-                break;
-            case 1:
-                amountMines = 15;
-                rows = 10;
-                cols = 10;
-                break;
-            case 2:
-                amountMines = 50;
-                rows = 20;
-                cols = 20;
-                break;
-            case 3:
-                amountMines = 160;
-                rows = 25;
-                cols = 25;
-                break;
-            case 4:
-                System.exit(0);
-        }
-    }
-
-    public void initializeView() {
+    private Board() {
+        amountMines = difficulty.getAmountMines();
         amountMinesLeft = amountMines;
-        frame = new JFrame("Minesweeper");
-        reset = new JButton("Reset");
-        leftMinesTextField = new JTextField();
-        leftMinesTextField.setFont(labelFont);
-        leftMinesTextField.setText(String.valueOf(amountMinesLeft));
-        leftMinesTextField.enableInputMethods(false);
-        top.setLayout(new BorderLayout());
-        top.add(leftMinesTextField, BorderLayout.WEST);
-        top.add(reset, BorderLayout.EAST);
-        buttons = new JButton[rows][cols];
-        tiles = new Tile[rows][cols];
-
-        frame.setSize(1000, 1000);
-        frame.setLayout(new BorderLayout());
-        frame.add(top, BorderLayout.NORTH);
-        reset.addActionListener(this);
-        reset.setFont(buttonFont);
-
-        grid.setLayout(new GridLayout(rows,cols));
-
-        for (int i = 0; i <buttons.length ; i++) {
-            for (int j = 0; j <buttons[i].length ; j++) {
-                buttons[i][j] = new JButton();
-                buttons[i][j].setFont(buttonFont);
-                buttons[i][j].addActionListener(this);
-                grid.add(buttons[i][j]);
-                tiles[i][j] = new Tile();
-            }
-        }
-        frame.add(grid, BorderLayout.CENTER);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        rows = difficulty.getRows();
+        cols = difficulty.getCols();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
+    public static Board getInstance() {
+        if (instance == null) {
+            instance = new Board();
+        }
+        return instance;
+    }
+
+    public void onClickAction(ActionEvent event) {
         if (event.getSource().equals(reset)) {
             resetGame();
         }
@@ -134,6 +72,11 @@ public class Board implements ActionListener {
                 }
             }
         }
+    }
+
+
+    public int getAmountMinesLeft() {
+        return amountMinesLeft;
     }
 
     public void switchFlagged(int x, int y) {
@@ -219,7 +162,7 @@ public class Board implements ActionListener {
         return mineCount;
     }
 
-    private void resetGame() {
+    public void resetGame() {
         amountMinesLeft = amountMines;
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
