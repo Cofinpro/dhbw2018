@@ -66,6 +66,7 @@ public class MainController {
                 return difficulty.getDescription();
             }
         });
+        Game.getInstance().setup();
     }
 
     public void onPlayRequested(ActionEvent actionEvent) {
