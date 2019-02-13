@@ -5,14 +5,17 @@ import java.awt.event.ActionListener;
 
 public class Board implements ActionListener {
     int amountMines;
+    int amountMinesLeft;
     int rows;
     int cols;
     JFrame frame;
     JButton reset;
+    JTextField leftMinesTextField;
     JButton[][] buttons;
     Tile[][] tiles;
     Container grid = new Container();
-    Font buttonFont = new Font("Arial", Font.PLAIN, 24);
+    Container top = new Container();
+    Font buttonFont = new Font("Arial", Font.PLAIN, 40);
     Font labelFont = new Font("Arial", Font.PLAIN, 40);
 
 
@@ -37,41 +40,48 @@ public class Board implements ActionListener {
                 options[4]);
 
         switch (n) {
-            case 0: //10.2% Mines
+            case 0:
                 amountMines = 5;
                 rows = 7;
                 cols = 7;
                 break;
-            case 1: //15% Mines
+            case 1:
                 amountMines = 15;
                 rows = 10;
                 cols = 10;
                 break;
-            case 2: //18.75% Mines
-                amountMines = 75;
+            case 2:
+                amountMines = 50;
                 rows = 20;
                 cols = 20;
                 break;
-            case 3: //32% Mines
-                amountMines = 200;
+            case 3:
+                amountMines = 160;
                 rows = 25;
                 cols = 25;
                 break;
             case 4:
                 System.exit(0);
         }
-        //todo user input for 3 values x, y, mines
     }
 
     public void initializeView() {
+        amountMinesLeft = amountMines;
         frame = new JFrame("Minesweeper");
         reset = new JButton("Reset");
+        leftMinesTextField = new JTextField();
+        leftMinesTextField.setFont(labelFont);
+        leftMinesTextField.setText(String.valueOf(amountMinesLeft));
+        leftMinesTextField.enableInputMethods(false);
+        top.setLayout(new BorderLayout());
+        top.add(leftMinesTextField, BorderLayout.WEST);
+        top.add(reset, BorderLayout.EAST);
         buttons = new JButton[rows][cols];
         tiles = new Tile[rows][cols];
 
         frame.setSize(1000, 1000);
         frame.setLayout(new BorderLayout());
-        frame.add(reset, BorderLayout.NORTH);
+        frame.add(top, BorderLayout.NORTH);
         reset.addActionListener(this);
         reset.setFont(buttonFont);
 
@@ -101,25 +111,44 @@ public class Board implements ActionListener {
             for (int x = 0; x < buttons.length; x++) {
                 for (int y = 0; y < buttons[x].length; y++) {
                     if (event.getSource().equals(buttons[x][y])) {
+                        int modifiers = event.getModifiers();
 
-                        buttons[x][y].setText(tiles[x][y].toString());
-
-                        if (tiles[x][y].isMine()) {
-                            buttons[x][y].setForeground(Color.red); //todo can't see color when button gets enabled by loseGame
-                            loseGame();
+                        if (modifiers == 17) {
+                            switchFlagged(x, y);
                         }
-                        else if (tiles[x][y].getNearbyMines() == 0) {
-                            openZeros(x, y);
+                        else {
+                            buttons[x][y].setText(tiles[x][y].toString());
+
+                            if (tiles[x][y].isMine()) {
+                                loseGame();
+                            } else if (tiles[x][y].getNearbyMines() == 0) {
+                                openZeros(x, y);
+                            }
+
+                            tiles[x][y].setRevealed(true);
+                            buttons[x][y].setEnabled(false);
+                            checkWin();
+
                         }
-
-                        tiles[x][y].setRevealed(true);
-                        buttons[x][y].setEnabled(false);
-                        checkWin();
-
                     }
                 }
             }
         }
+    }
+
+    public void switchFlagged(int x, int y) {
+        if (tiles[x][y].isFlagged()) {
+            tiles[x][y].setFlagged(false);
+            buttons[x][y].setText(null);
+            amountMinesLeft++;
+        }
+        else{
+            tiles[x][y].setFlagged(true);
+            buttons[x][y].setText(tiles[x][y].toString());
+            amountMinesLeft--;
+        }
+        leftMinesTextField.setText(String.valueOf(amountMinesLeft));
+
     }
 
     public void checkWin() {
@@ -191,6 +220,7 @@ public class Board implements ActionListener {
     }
 
     private void resetGame() {
+        amountMinesLeft = amountMines;
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 tiles[i][j] = new Tile();

@@ -20,8 +20,8 @@ public class Tile {
         return isMine;
     }
 
-    public void setFlagged() {
-        this.isFlagged = true;
+    public void setFlagged(boolean flagged) {
+        this.isFlagged = flagged;
     }
 
     public void setMine(boolean isMine) {
@@ -32,8 +32,8 @@ public class Tile {
         return isRevealed;
     }
 
-    public void setRevealed (boolean isRevealed) {
-        this.isRevealed = isRevealed;
+    public void setRevealed (boolean revealed) {
+        this.isRevealed = revealed;
     }
 
     public int getNearbyMines() {
@@ -46,8 +46,12 @@ public class Tile {
 
     @Override
     public String toString() {
-        if (isMine)
+        if (isMine && !isFlagged)
             return "X";
+        if (isFlagged)
+            return "\u2665";
+        if (nearbyMines == 0)
+            return "";
         else
             return "" + nearbyMines;
     }
