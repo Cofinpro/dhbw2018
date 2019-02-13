@@ -4,6 +4,8 @@ import application.enums.Difficulty;
 import application.interfaces.CSVModel;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
     private Difficulty difficulty;
@@ -15,7 +17,14 @@ public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
     }
 
     public boolean addResult(Result result) {
+        removeWorseResultsOfSamePerson(result);
         return results.add(result);
+    }
+
+    private void removeWorseResultsOfSamePerson(Result result) {
+        Set<Result> worseResults = new TreeSet<>();
+        results.stream().filter(r -> r.getName().equals(result.getName()) && r.getTimeSeconds() > result.getTimeSeconds()).forEach(worseResults::add);
+        results.removeAll(worseResults);
     }
 
     @Override
