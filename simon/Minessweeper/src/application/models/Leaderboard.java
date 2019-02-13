@@ -14,13 +14,14 @@ public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
         results = new TreeSet<>();
     }
 
-    public boolean addResult(Result result) {
+    public Result addResult(Result result) {
         removeWorseResultsOfSamePerson(result);
         Optional<Result> betterOrEqualResult = getBetterOrEqualResultBySamePerson(result);
         if (!betterOrEqualResult.isPresent()) {
-            return results.add(result);
+            results.add(result);
+            return result;
         }
-        return false;
+        return betterOrEqualResult.get();
     }
 
     private Optional<Result> getBetterOrEqualResultBySamePerson(Result reference) {

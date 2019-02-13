@@ -1,3 +1,7 @@
 .recent-result {
     -fx-background-color: yellow;
 }
+
+.best-result {
+    -fx-background-color: red;
+}
