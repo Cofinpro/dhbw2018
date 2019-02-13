@@ -2,7 +2,7 @@ package application.enums;
 
 public enum Difficulty {
     EASY("easy",9, 9 ,10, 0),
-    MEDIUM("medium",16, 16, 40, 40),
+    MEDIUM("medium",16, 16, 40, 0),
     DIFFICULT("difficult", 16, 30, 99, 0),
     INSANE("insane", 16, 30, 89, 10);
 
