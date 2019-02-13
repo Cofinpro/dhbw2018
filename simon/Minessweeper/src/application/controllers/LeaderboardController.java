@@ -1,6 +1,6 @@
 package application.controllers;
 
-import application.Main;
+import application.css.CSSMappings;
 import application.enums.Difficulty;
 import application.helper.SceneTraversalHelper;
 import application.models.Leaderboard;
@@ -11,9 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.util.Set;
 
 public class LeaderboardController {
     @FXML
@@ -31,7 +28,8 @@ public class LeaderboardController {
         }
         int i = 1;
         for (Result result : leaderboard.getResults()) {
-            resultVBox.getChildren().add(new ResultController(i, result));
+            ResultController resultController = new ResultController(i, result);
+            resultVBox.getChildren().add(resultController);
             i++;
         }
     }

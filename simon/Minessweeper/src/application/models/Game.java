@@ -1,13 +1,11 @@
 package application.models;
 
-import application.enums.Difficulty;
 import application.enums.GameState;
 import application.helper.RandomHelper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.Observable;
-import java.util.Set;
 
 public class Game extends Observable {
     private static Game ourInstance = new Game();
@@ -27,7 +25,7 @@ public class Game extends Observable {
         gameStateProperty = new SimpleObjectProperty<>(GameState.PLAYING);
         revealedHarmlessCellCountProperty = new SimpleIntegerProperty(0);
         revealedHarmlessCellCountProperty.addListener(event -> {
-            if (getGameState() != GameState.LOST && getRevealedCellCount() == getCellCount() - Settings.getInstance().getDifficulty().getBombCount()) {
+            if (getGameState() != GameState.LOST && getRevealedCellCount() == getCellCount() - Settings.getInstance().getDifficulty().getBombCountOverall()) {
                 setGameState(GameState.WON);
                 finishingTimeMillis = System.currentTimeMillis();
             }
@@ -37,7 +35,12 @@ public class Game extends Observable {
         });
         suspectedCellCountProperty = new SimpleIntegerProperty(0);
         Settings.getInstance().getDifficultyProperty().addListener((observable, oldValue, newValue) -> setup());
-}
+    }
+
+    public void resetTimers() {
+        startingTimeMillis = null;
+        finishingTimeMillis = null;
+    }
 
     public long getTimePlayed() {
         if (startingTimeMillis == null) {

@@ -2,12 +2,14 @@ package application.models;
 
 import application.enums.Difficulty;
 import application.persistance.LeaderboardDao;
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.*;
 
 public class LeaderboardManager {
     private static LeaderboardManager ourInstance = new LeaderboardManager();
     private SortedSet<Leaderboard> leaderboards;
+    private Result recentResult;
 
     public static LeaderboardManager getInstance() {
         return ourInstance;
@@ -20,6 +22,7 @@ public class LeaderboardManager {
     public boolean handleNewResult(Result result) {
         Difficulty difficulty = Settings.getInstance().getDifficulty();
         Leaderboard leaderboard = getLeaderboard(difficulty);
+        recentResult = result;
         return leaderboard.addResult(result);
     }
 
@@ -34,5 +37,9 @@ public class LeaderboardManager {
 
     public SortedSet<Leaderboard> getLeaderboards() {
         return leaderboards;
+    }
+
+    public Result getRecentResult() {
+        return recentResult;
     }
 }

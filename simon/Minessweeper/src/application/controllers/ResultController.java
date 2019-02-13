@@ -1,6 +1,8 @@
 package application.controllers;
 
 import application.Main;
+import application.css.CSSMappings;
+import application.models.LeaderboardManager;
 import application.models.Result;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,5 +32,10 @@ class ResultController extends HBox {
         rankTextField.setText("" + rank);
         nameTextField.setText(result.getName());
         timeTextField.setText("" + result.getTimeSeconds());
+        if (result == LeaderboardManager.getInstance().getRecentResult()) {
+            rankTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
+            nameTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
+            timeTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
+        }
     }
 }

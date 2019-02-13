@@ -7,9 +7,9 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="application.controllers.LeaderboardController">
-   <TextField fx:id="difficultyTextView" editable="false" focusTraversable="false"/>
+   <TextField fx:id="difficultyTextView" alignment="CENTER" editable="false" focusTraversable="false"/>
    <Button mnemonicParsing="false" onAction="#onNextGameRequested" text="Play Again"/>
-   <ScrollPane>
+   <ScrollPane fitToHeight="true" fitToWidth="true">
       <VBox fx:id="resultVBox" alignment="CENTER"/>
    </ScrollPane>
 </VBox>

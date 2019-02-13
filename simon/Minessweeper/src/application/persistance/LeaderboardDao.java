@@ -10,10 +10,17 @@ import java.util.*;
 
 public class LeaderboardDao {
 
-    public static final String LEADERBOARD_CSV_PATH = "resources\\users.csv";
+    private static final String LEADERBOARD_CSV_PATH = "resources\\leaderboards.csv";
 
     public static void save() {
-        Set<Leaderboard> leaderboards = LeaderboardManager.getInstance().getLeaderboards();
+        save(LEADERBOARD_CSV_PATH, LeaderboardManager.getInstance().getLeaderboards());
+    }
+
+    public static SortedSet<Leaderboard> getLeaderboards() {
+        return getLeaderboards(LEADERBOARD_CSV_PATH);
+    }
+
+    static void save(String path, SortedSet<Leaderboard> leaderboards) {
         String[] leaderboardPresentations = new String[leaderboards.size()];
         Iterator<Leaderboard> leaderboardIterator = leaderboards.iterator();
         for (int i = 0; i < leaderboardPresentations.length; i++) {
@@ -27,12 +34,12 @@ public class LeaderboardDao {
             }
             leaderboardPresentations[i] = representation.toString();
         }
-        CSVHelper.writeCSV(LEADERBOARD_CSV_PATH, leaderboardPresentations);
+        CSVHelper.writeCSV(path, leaderboardPresentations);
     }
 
-    public static SortedSet<Leaderboard> getLeaderboards() {
+    static SortedSet<Leaderboard> getLeaderboards(String path) {
         SortedSet<Leaderboard> results = new TreeSet<>();
-        Collection<String[]> leaderboardRepresentations = CSVHelper.readCSV(LEADERBOARD_CSV_PATH);
+        Collection<String[]> leaderboardRepresentations = CSVHelper.readCSV(path);
         for (String[] leaderboardRepresentation : leaderboardRepresentations) {
             Difficulty difficulty = Difficulty.getDifficultyByRepresentation(leaderboardRepresentation[0]);
             Leaderboard leaderboard = new Leaderboard(difficulty);

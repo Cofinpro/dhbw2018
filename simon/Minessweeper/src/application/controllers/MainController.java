@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import javax.xml.soap.Text;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -34,7 +33,7 @@ public class MainController {
         }, 1000, 1000);
         suspectedRemainingBombCountText.textProperty().bind(new IntegerBinding() {
             {
-                bind(Game.getInstance().getSuspectedCellCountProperty());
+                bind(Game.getInstance().getSuspectedCellCountProperty(), Settings.getInstance().getDifficultyProperty());
             }
             @Override
             protected int computeValue() {
@@ -42,7 +41,7 @@ public class MainController {
                 if (difficulty == null) {
                     return 0;
                 }
-                int suspectedRemainingBombCount = difficulty.getBombCount() - Game.getInstance().getSuspectedCellCount();
+                int suspectedRemainingBombCount = difficulty.getBombCountOverall() - Game.getInstance().getSuspectedCellCount();
                 if (suspectedRemainingBombCount < 0) {
                     return 0;
                 }
