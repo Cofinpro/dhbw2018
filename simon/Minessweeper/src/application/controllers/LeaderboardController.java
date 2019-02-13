@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 
 public class LeaderboardController {
     @FXML
+    private TextField messageTextView;
+    @FXML
     private VBox resultVBox;
     @FXML
     private TextField difficultyTextView;
@@ -31,6 +33,11 @@ public class LeaderboardController {
             ResultController resultController = new ResultController(i, result);
             resultVBox.getChildren().add(resultController);
             i++;
+        }
+        if (LeaderboardManager.getInstance().isRecentResultNewRecord()) {
+            messageTextView.setText("You have a new record! It should be marked in yellow!");
+        } else {
+            messageTextView.setText("You failed to overcome an old record! It should be marked in red!");
         }
     }
 

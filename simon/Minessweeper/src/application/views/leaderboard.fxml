@@ -9,6 +9,7 @@
       fx:controller="application.controllers.LeaderboardController">
    <TextField fx:id="difficultyTextView" alignment="CENTER" editable="false" focusTraversable="false"/>
    <Button mnemonicParsing="false" onAction="#onNextGameRequested" text="Play Again"/>
+   <TextField fx:id="messageTextView"/>
    <ScrollPane fitToHeight="true" fitToWidth="true">
       <VBox fx:id="resultVBox" alignment="CENTER"/>
    </ScrollPane>

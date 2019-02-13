@@ -27,6 +27,10 @@ public class LeaderboardManager {
         bestResultOfCurrentPlayer = leaderboard.addResult(result);
     }
 
+    public boolean isRecentResultNewRecord() {
+        return bestResultOfCurrentPlayer == recentResult;
+    }
+
     public Leaderboard getLeaderboard(Difficulty difficulty) {
         Optional<Leaderboard> leaderboardOptional = leaderboards.stream().filter(l -> l.getDifficulty() == difficulty).findFirst();
         Leaderboard leaderboard = leaderboardOptional.orElse(null);
