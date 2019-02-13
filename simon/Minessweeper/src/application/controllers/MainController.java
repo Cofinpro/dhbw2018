@@ -9,8 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import javax.xml.soap.Text;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,7 +40,7 @@ public class MainController {
                 if (difficulty == null) {
                     return 0;
                 }
-                int suspectedRemainingBombCount = difficulty.getBombCount() - Game.getInstance().getSuspectedCellCount();
+                int suspectedRemainingBombCount = difficulty.getSimpleBombCount() - Game.getInstance().getSuspectedCellCount();
                 if (suspectedRemainingBombCount < 0) {
                     return 0;
                 }

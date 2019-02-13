@@ -1,7 +1,6 @@
 package application.helper;
 
 import application.models.Game;
-import application.models.GameCell;
 import application.models.RepresentableGameCell;
 import application.models.Settings;
 
@@ -12,15 +11,22 @@ public class RandomHelper {
         int rowCount = Settings.getInstance().getDifficulty().getFieldRows();
         int columnCount = Settings.getInstance().getDifficulty().getFieldColumns();
         int gameCellCount = rowCount * columnCount;
-        int bombCount = Settings.getInstance().getDifficulty().getBombCount();
+        int bombCount = Settings.getInstance().getDifficulty().getBombCountOverall();
         List<Integer> bombIndexes = createNewBombIndexes(gameCellCount, bombCount);
         RepresentableGameCell[][] gameCells =  new RepresentableGameCell[rowCount][columnCount];
         int i = 0;
+        int superBombsCreated = 0;
+        int superBombsToCreate = Settings.getInstance().getDifficulty().getSuperBombCount();
         for (int row = 0; row < gameCells.length; row++) {
             for (int column = 0; column < gameCells[row].length; column++) {
                 RepresentableGameCell gameCell;
                 if (bombIndexes.contains(i)) {
-                    gameCell = new RepresentableGameCell(2, game, row, column);
+                    if (superBombsCreated < superBombsToCreate) {
+                        gameCell = new RepresentableGameCell(2, game, row, column);
+                        superBombsCreated++;
+                    } else {
+                        gameCell = new RepresentableGameCell(1, game, row, column);
+                    }
                 } else {
                     gameCell = new RepresentableGameCell(0, game, row, column);
                     gameCell.getIsRevealedProperty().addListener((observable, oldValue, newValue) -> game.getRevealedHarmlessCellCountProperty().set(game.getRevealedCellCount() +1));
@@ -46,6 +52,5 @@ public class RandomHelper {
         }
         Collections.shuffle(gameCellIndexes);
         return gameCellIndexes.subList(0, bombCount);
-
     }
 }
