@@ -16,5 +16,5 @@
             <DifficultyPickerController/>
             <Button HBox.hgrow="ALWAYS" text="Play" onAction="#onPlayRequested"/>
       </HBox>
-      <ScrollPane><GameFieldController/></ScrollPane>
+      <ScrollPane fitToWidth="true" fitToHeight="true"><GameFieldController/></ScrollPane>
 </VBox>

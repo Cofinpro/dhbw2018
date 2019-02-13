@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <fx:root alignment="CENTER" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8"
          xmlns:fx="http://javafx.com/fxml/1">
-   <TextField editable="false" focusTraversable="false" fx:id="rankTextField"/>
-   <TextField editable="false" focusTraversable="false" fx:id="nameTextField"/>
-   <TextField editable="false" focusTraversable="false" fx:id="timeTextField"/>
+   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="rankTextField"/>
+   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="nameTextField"/>
+   <TextField alignment="CENTER" editable="false" focusTraversable="false" fx:id="timeTextField"/>
 </fx:root>
