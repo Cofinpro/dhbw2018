@@ -30,6 +30,8 @@ public class GameController extends MouseAdapter {
                         }
                     } else {
                         game.initialize();
+
+
                     }
                     break;
                 case MouseEvent.BUTTON3:

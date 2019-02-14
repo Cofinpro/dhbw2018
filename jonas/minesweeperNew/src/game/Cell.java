@@ -96,10 +96,6 @@ public class Cell extends Observable {
         return yPos;
     }
 
-    public Game getGame() {
-        return this.game;
-    }
-
     public boolean isRevealed() {
         return isRevealed;
     }
