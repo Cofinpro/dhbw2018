@@ -40,7 +40,7 @@ public class GameView {
 
     private void initializeFrameLayout() {
         leftMinesTextField.setFont(myFont);
-        leftMinesTextField.setText(String.valueOf(Board.getInstance().getAmountMinesLeft()));
+        leftMinesTextField.setText("Mines left: " + Board.getInstance().getAmountMinesLeft());
         leftMinesTextField.enableInputMethods(false);
 
         top.setLayout(new BorderLayout());
@@ -69,6 +69,45 @@ public class GameView {
                 int finalY = y;
                 buttons[x][y].addActionListener(e -> GameViewController.handleTileClick(finalX, finalY, e.getModifiers()));
                 grid.add(buttons[x][y]);
+            }
+        }
+    }
+
+    public void setButtonEnabled(int x, int y, boolean enabled) {
+        buttons[x][y].setEnabled(enabled);
+    }
+
+    public void displayWin() {
+        disableAllButtons();
+        JLabel label = new JLabel("you won!");
+        label.setFont(myFont);
+        JOptionPane.showMessageDialog(frame, label);
+    }
+
+    public void displayLose() {
+        disableAllButtons();
+        JLabel label = new JLabel("you lost!");
+        label.setFont(myFont);
+        JOptionPane.showMessageDialog(frame, label);
+    }
+
+    private void disableAllButtons() {
+        Board board = Board.getInstance();
+        for (int x = 0; x < buttons.length; x++) {
+            for (int y = 0; y < buttons[x].length; y++) {
+                board.revealTile(x, y);
+                buttons[x][y].setText(board.getTileLabel(x, y));
+                buttons[x][y].setEnabled(false);
+            }
+        }
+    }
+
+    public void resetGame() {
+        for (int x = 0; x < buttons.length; x++) {
+            for (int y = 0; y < buttons[x].length; y++) {
+                changeButtonText(x, y, null);
+                setButtonEnabled(x, y, true);
+                leftMinesTextField.setText("Mines left: " + (Board.getInstance().getAmountMinesLeft()));
             }
         }
     }

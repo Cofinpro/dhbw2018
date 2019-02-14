@@ -12,10 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         setDifficulty();
-        int rows = gameSettings.getDifficulty().getRows();
-        int cols = gameSettings.getDifficulty().getCols();
-        int amountMines = gameSettings.getDifficulty().getAmountMines();
-        board.initializeBoard(rows, cols, amountMines);
+        board.resetGame();
         GameView.getInstance().initializeGameView();
     }
 

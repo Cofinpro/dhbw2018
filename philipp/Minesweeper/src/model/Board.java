@@ -181,8 +181,7 @@ public class Board {
         }
     }
 
-    private boolean isInside(int r, int c)
-    {
+    private boolean isInside(int r, int c) {
         return r >= 0 && c >= 0 && r < tiles.length && c < tiles[r].length;
     }
 
