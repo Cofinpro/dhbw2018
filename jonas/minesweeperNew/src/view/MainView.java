@@ -13,10 +13,11 @@ public class MainView extends JPanel implements Observer {
     private JPanel view;
     private JLabel bombs, gameState, timer;
     private ButtonView[][] fields;
-    private Game model;
+    private Game game;
+
 
     public MainView(Game model) {
-        this.model = model;
+        this.game = model;
         this.setLayout(new BorderLayout());
         this.view = new JPanel();
         this.bombs = setLabel(this.bombs, "Bombs:  " + Integer.toString(model.getAmountBombsLeft()));
@@ -28,7 +29,7 @@ public class MainView extends JPanel implements Observer {
         this.add(this.timer, BorderLayout.CENTER);
         this.add(restartButton(), BorderLayout.NORTH);
         this.fields = new ButtonView[model.getRows()][model.getColumns()];
-        this.model.addObserver(this);
+        this.game.addObserver(this);
 
         this.view.setLayout(new GridLayout(model.getRows(), model.getColumns()));
         buildbuttons();
@@ -43,9 +44,9 @@ public class MainView extends JPanel implements Observer {
         if (o != null) {
             updateButtons();
         }
-        this.bombs = setLabel(this.bombs, "Bombs:  " + Integer.toString(model.getAmountBombsLeft()));
-        this.gameState = setLabel(this.gameState, "Status:  " + model.getState());
-        this.timer = setLabel(this.timer, "Time:  " + this.model.getTimer());
+        this.bombs = setLabel(this.bombs, "Bombs:  " + Integer.toString(game.getAmountBombsLeft()));
+        this.gameState = setLabel(this.gameState, "Status:  " + game.getState());
+        this.timer = setLabel(this.timer, "Time:  " + this.game.getTimer());
 
     }
 
@@ -65,11 +66,11 @@ public class MainView extends JPanel implements Observer {
     public JButton restartButton() {
         JButton button = new JButton("Restart");
         button.setPreferredSize(new Dimension(20, 40));
-        GameController controller = new GameController(model);
+        GameController controller = new GameController(game);
         button.addMouseListener(controller);
         return button;
-
     }
+
 
     public void updateButtons() {
 
@@ -81,8 +82,8 @@ public class MainView extends JPanel implements Observer {
 
 
     private void removeButtons() {
-        for (int i = 0; i < this.model.getRows(); i++) {
-            for (int j = 0; j < this.model.getColumns(); j++) {
+        for (int i = 0; i < this.game.getRows(); i++) {
+            for (int j = 0; j < this.game.getColumns(); j++) {
 
                 this.view.remove(fields[i][j].getButton());
 
@@ -94,9 +95,9 @@ public class MainView extends JPanel implements Observer {
 
     private void buildbuttons() {
 
-        for (int i = 0; i < this.model.getRows(); i++) {
-            for (int j = 0; j < this.model.getColumns(); j++) {
-                ButtonView button = new ButtonView(this.model.getCell(i, j));
+        for (int i = 0; i < this.game.getRows(); i++) {
+            for (int j = 0; j < this.game.getColumns(); j++) {
+                ButtonView button = new ButtonView(this.game.getCell(i, j));
                 fields[i][j] = button;
                 this.view.add(button.getButton());
 

@@ -76,7 +76,7 @@ public class Game extends Observable {
             for (int j = -1; j < 2; j++) {
                 xAxis = cells.getxPos() + j;
                 yAxis = cells.getyPos() + i;
-                if (xAxis >= 0 &&xAxis < this.rows && yAxis >=0 && yAxis < this.rows){
+                if (xAxis >= 0 &&xAxis < this.columns && yAxis >=0 && yAxis < this.rows){
                     if (this.cells[yAxis][xAxis].getCellID() !=9){
                         this.cells[yAxis][xAxis].addOne();
                     }
@@ -94,7 +94,7 @@ public class Game extends Observable {
                 while (running) {
                     try {
                         addTimer();
-                        sleep(1000); //?
+                        sleep(1000);
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
