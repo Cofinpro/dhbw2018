@@ -9,12 +9,13 @@
 <?import javafx.scene.control.Button?>
 <VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
       <HBox alignment="CENTER">
-            <TextField fx:id="timerTextField"/>
-            <TextField fx:id="suspectedRemainingBombCountText"/>
+            <TextField fx:id="timerTextField" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT"/>
+            <TextField fx:id="suspectedRemainingBombCountText" HBox.hgrow="ALWAYS"/>
       </HBox>
       <HBox alignment="CENTER">
-            <DifficultyPickerController/>
+            <DifficultyPickerController fx:id="difficultyPickerControl" HBox.hgrow="ALWAYS"/>
             <Button HBox.hgrow="ALWAYS" text="Play" onAction="#onPlayRequested"/>
+            <TextField fx:id="difficultyDescription" editable="false" HBox.hgrow="ALWAYS"/>
       </HBox>
       <ScrollPane fitToWidth="true" fitToHeight="true"><GameFieldController/></ScrollPane>
 </VBox>

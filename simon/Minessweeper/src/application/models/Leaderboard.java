@@ -14,8 +14,24 @@ public class Leaderboard implements CSVModel, Comparable<Leaderboard> {
         results = new TreeSet<>();
     }
 
-    public boolean addResult(Result result) {
-        return results.add(result);
+    public Result addResult(Result result) {
+        removeWorseResultsOfSamePerson(result);
+        Optional<Result> betterOrEqualResult = getBetterOrEqualResultBySamePerson(result);
+        if (!betterOrEqualResult.isPresent()) {
+            results.add(result);
+            return result;
+        }
+        return betterOrEqualResult.get();
+    }
+
+    private Optional<Result> getBetterOrEqualResultBySamePerson(Result reference) {
+        return  results.stream().filter(r -> r.getName().equals(reference.getName()) && r.getTimeSeconds() <= reference.getTimeSeconds()).findFirst();
+    }
+
+    private void removeWorseResultsOfSamePerson(Result result) {
+        Set<Result> worseResults = new TreeSet<>();
+        results.stream().filter(r -> r.getName().equals(result.getName()) && r.getTimeSeconds() > result.getTimeSeconds()).forEach(worseResults::add);
+        results.removeAll(worseResults);
     }
 
     @Override

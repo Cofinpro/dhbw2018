@@ -32,10 +32,16 @@ class ResultController extends HBox {
         rankTextField.setText("" + rank);
         nameTextField.setText(result.getName());
         timeTextField.setText("" + result.getTimeSeconds());
-        if (result == LeaderboardManager.getInstance().getRecentResult()) {
+        Result bestResultOfCurrentPlayer = LeaderboardManager.getInstance().getBestResultOfCurrentPlayer();
+        Result currentResult = LeaderboardManager.getInstance().getRecentResult();
+        if (result == currentResult) {
             rankTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
             nameTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
             timeTextField.getStyleClass().add(CSSMappings.RECENT_RESULT);
+        } else if (result == bestResultOfCurrentPlayer){
+            rankTextField.getStyleClass().add(CSSMappings.BEST_RESULT);
+            nameTextField.getStyleClass().add(CSSMappings.BEST_RESULT);
+            timeTextField.getStyleClass().add(CSSMappings.BEST_RESULT);
         }
     }
 }

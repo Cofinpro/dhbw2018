@@ -5,6 +5,7 @@ import application.models.Game;
 import application.models.Settings;
 import javafx.application.Platform;
 import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.StringBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -15,6 +16,10 @@ import java.util.TimerTask;
 
 
 public class MainController {
+    @FXML
+    private DifficultyPickerController difficultyPickerControl;
+    @FXML
+    private TextField difficultyDescription;
     @FXML
     private TextField timerTextField;
     @FXML
@@ -48,9 +53,26 @@ public class MainController {
                 return suspectedRemainingBombCount;
             }
         }.asString().concat(" \uD83D\uDCA3"));
+        difficultyDescription.textProperty().bind(new StringBinding() {
+            {
+                bind(Settings.getInstance().getDifficultyProperty());
+            }
+            @Override
+            protected String computeValue() {
+                Difficulty difficulty = Settings.getInstance().getDifficulty();
+                if (difficulty == null) {
+                    return "";
+                }
+                return difficulty.getDescription();
+            }
+        });
+        Game.getInstance().setup();
     }
 
     public void onPlayRequested(ActionEvent actionEvent) {
+        if (Settings.getInstance().getDifficulty() == null) {
+            difficultyPickerControl.chooseDefault();
+        }
         Game.getInstance().setup();
     }
 }

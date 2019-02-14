@@ -9,6 +9,7 @@ import java.util.*;
 public class LeaderboardManager {
     private static LeaderboardManager ourInstance = new LeaderboardManager();
     private SortedSet<Leaderboard> leaderboards;
+    private Result bestResultOfCurrentPlayer;
     private Result recentResult;
 
     public static LeaderboardManager getInstance() {
@@ -19,11 +20,15 @@ public class LeaderboardManager {
         leaderboards = LeaderboardDao.getLeaderboards();
     }
 
-    public boolean handleNewResult(Result result) {
+    public void handleNewResult(Result result) {
+        recentResult = result;
         Difficulty difficulty = Settings.getInstance().getDifficulty();
         Leaderboard leaderboard = getLeaderboard(difficulty);
-        recentResult = result;
-        return leaderboard.addResult(result);
+        bestResultOfCurrentPlayer = leaderboard.addResult(result);
+    }
+
+    public boolean isRecentResultNewRecord() {
+        return bestResultOfCurrentPlayer == recentResult;
     }
 
     public Leaderboard getLeaderboard(Difficulty difficulty) {
@@ -41,5 +46,9 @@ public class LeaderboardManager {
 
     public Result getRecentResult() {
         return recentResult;
+    }
+
+    public Result getBestResultOfCurrentPlayer() {
+        return bestResultOfCurrentPlayer;
     }
 }
