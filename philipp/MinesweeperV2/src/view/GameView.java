@@ -24,6 +24,7 @@ public class GameView {
     private Container top = new Container();
     private JTextField leftMinesTextField = new JTextField();
     private JButton reset = new JButton("Reset");
+    private JTextField timerTextField = new JTextField();
 
     private Container grid = new Container();
     private JButton[][] buttons = new JButton[rows][cols];
@@ -51,6 +52,9 @@ public class GameView {
         frame.setLayout(new BorderLayout());
         frame.add(top, BorderLayout.NORTH);
         frame.add(grid, BorderLayout.CENTER);
+        frame.add(timerTextField, BorderLayout.SOUTH);
+        timerTextField.setFont(myFont);
+        Board.getInstance().getSeconds().addListener((observable, oldValue, newValue) -> timerTextField.setText(newValue.toString()));
 
         reset.addActionListener(e -> GameViewController.handleResetClick());
         reset.setFont(myFont);

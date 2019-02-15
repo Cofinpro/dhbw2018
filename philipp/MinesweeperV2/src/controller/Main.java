@@ -1,31 +1,26 @@
 package controller;
 
-import model.Board;
 import model.Difficulty;
-import model.GameSettings;
-import view.GameView;
 
 public class Main {
 
-    private static GameSettings gameSettings = GameSettings.getInstance();
-    private static Board board = Board.getInstance();
 
     public static void main(String[] args) {
-        setDifficulty();
-        board.resetGame();
-        GameView.getInstance().initializeGameView();
+        setSettingsFromUserInput();
+
     }
 
-    private static void setDifficulty() {
+    private static void setSettingsFromUserInput() {
         Difficulty[] difficulties = Difficulty.values();
-        String[] difNames = new String[difficulties.length];
-        for (int i = 0; i < difficulties.length; i++) {
-            difNames[i] = difficulties[i].getDifName();
+        String[] difNames = new String[difficulties.length+1];
+        difNames[0] = "Select Difficulty";
+        for (int i = 1; i < difficulties.length+1; i++) {
+            difNames[i] = difficulties[i-1].getDifName();
         }
 
-        int n = UserSelectionController.getUserChoice("Choose Difficulty Level",
-                "Please select a difficulty", difNames);
+        String[] superMineAmounts = {"Select Super-Mine amount", "0", "1", "2", "3"};
 
-        gameSettings.setDifficulty(difficulties[n]);
+        UserSelectionController.getUserInput("Difficulty & Super-Mines", difNames, superMineAmounts);
     }
+
 }
