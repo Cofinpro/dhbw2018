@@ -36,23 +36,6 @@ public class MainController {
                 Platform.runLater(() -> timerTextField.setText(secondsPlayed +  " ⏰"));
             }
         }, 1000, 1000);
-        suspectedRemainingBombCountText.textProperty().bind(new IntegerBinding() {
-            {
-                bind(Game.getInstance().getSuspectedCellCountProperty(), Settings.getInstance().getDifficultyProperty());
-            }
-            @Override
-            protected int computeValue() {
-                Difficulty difficulty = Settings.getInstance().getDifficulty();
-                if (difficulty == null) {
-                    return 0;
-                }
-                int suspectedRemainingBombCount = difficulty.getBombCountOverall() - Game.getInstance().getSuspectedCellCount();
-                if (suspectedRemainingBombCount < 0) {
-                    return 0;
-                }
-                return suspectedRemainingBombCount;
-            }
-        }.asString().concat(" \uD83D\uDCA3"));
         difficultyDescription.textProperty().bind(new StringBinding() {
             {
                 bind(Settings.getInstance().getDifficultyProperty());
@@ -67,6 +50,7 @@ public class MainController {
             }
         });
         Game.getInstance().setup();
+        suspectedRemainingBombCountText.textProperty().bind(Game.getInstance().getSuspectedRemainingBombCountBinding().asString().concat(" \uD83D\uDCA3"));
     }
 
     public void onPlayRequested(ActionEvent actionEvent) {
