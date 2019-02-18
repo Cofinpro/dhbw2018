@@ -1,7 +1,9 @@
 package application.models;
 
+import application.enums.Difficulty;
 import application.enums.GameState;
 import application.helper.RandomHelper;
+import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -15,6 +17,7 @@ public class Game extends Observable {
     private SimpleIntegerProperty suspectedCellCountProperty;
     private Long startingTimeMillis;
     private Long finishingTimeMillis;
+    private IntegerBinding suspectedRemainingBombCountBinding;
 
     public static Game getInstance() {
         return ourInstance;
@@ -35,6 +38,23 @@ public class Game extends Observable {
         });
         suspectedCellCountProperty = new SimpleIntegerProperty(0);
         Settings.getInstance().getDifficultyProperty().addListener((observable, oldValue, newValue) -> setup());
+        suspectedRemainingBombCountBinding = new IntegerBinding() {
+            {
+                bind(suspectedCellCountProperty, Settings.getInstance().getDifficultyProperty());
+            }
+            @Override
+            protected int computeValue() {
+                Difficulty difficulty = Settings.getInstance().getDifficulty();
+                if (difficulty == null) {
+                    return 0;
+                }
+                int suspectedRemainingBombCount = difficulty.getBombCountOverall() - Game.getInstance().getSuspectedCellCount();
+                if (suspectedRemainingBombCount < 0) {
+                    return 0;
+                }
+                return suspectedRemainingBombCount;
+            }
+        };
     }
 
     public void resetTimers() {
@@ -119,5 +139,9 @@ public class Game extends Observable {
 
     public void incrementSuspectedCellCount(int incrementation) {
         suspectedCellCountProperty.set(getSuspectedCellCount() + incrementation);
+    }
+
+    public IntegerBinding getSuspectedRemainingBombCountBinding() {
+        return suspectedRemainingBombCountBinding;
     }
 }

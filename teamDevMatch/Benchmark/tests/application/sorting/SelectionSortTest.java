@@ -1,9 +1,8 @@
 package application.sorting;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SelectionSortTest {
     SelectionSort<Integer> philippSort = new SelectionSort<>();

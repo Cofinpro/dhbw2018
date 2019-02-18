@@ -1,6 +1,9 @@
 package application.sorting;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertArrayEquals;
 
 class BubbleSortRekursivTest {
 
@@ -10,7 +13,7 @@ class BubbleSortRekursivTest {
     private Integer[] setOneSorted;
     private Integer[] setTwoSorted;
 
-    @org.junit.jupiter.api.Test
+    @Test
     void sort() {
         setOne = new Integer[]{15, 44, 26, 94, 50, 27, 36, 40, 80, 13, 74, 60, 29, 52, 83, 86, 57, 96, 75, 2, 67, 72, 100, 43, 55, 71, 28, 63, 58, 30, 4, 56, 61, 3, 6, 49, 18, 77, 88, 69, 70, 53, 35, 33, 20, 87, 45, 17, 23, 59};
         setTwo = new Integer[]{11, 42, 1, 69, 46, 40, 89, 52, 70, 45, 63, 23, 32, 54, 74, 41, 66, 20, 87, 13, 60, 35, 98, 31, 83, 28, 36, 79, 47, 25, 82, 50, 34, 15, 9, 62, 78, 44, 30, 10, 81, 5, 55, 96, 72, 67, 64, 100, 6, 27};
