@@ -1,7 +1,7 @@
 package view;
 
 import controller.GameController;
-import game.Cell;
+import model.Cell;
 
 import javax.swing.*;
 import java.awt.*;
