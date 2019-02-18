@@ -1,6 +1,6 @@
 package view;
 
-import game.Game;
+import model.Game;
 
 import javax.swing.*;
 import java.io.IOException;

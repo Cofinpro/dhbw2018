@@ -1,7 +1,7 @@
 package controller;
 
-import game.Cell;
-import game.Game;
+import model.Cell;
+import model.Game;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,8 +30,6 @@ public class GameController extends MouseAdapter {
                         }
                     } else {
                         game.initialize();
-
-
                     }
                     break;
                 case MouseEvent.BUTTON3:
