@@ -1,10 +1,10 @@
 package model;
 
 public enum Difficulty {
-    EASY_CHEASY (0, "Easy Cheasy", 5, 7, 7),
-    NORMAL (1, "Normal", 15, 10, 10),
-    HARD (2, "Hard", 50, 20, 20),
-    SICKO_MODE (3, "Sicko Mode", 150, 20, 30);
+    EASY_CHEASY (0, "Easy Cheasy", 5, 7, 7), //10.2% Mines
+    NORMAL (1, "Normal", 15, 10, 10), //15% Mines
+    HARD (2, "Hard", 60, 20, 20), //15% Mines
+    SICKO_MODE (3, "Sicko Mode", 100, 20, 30); //16.6% Mines
 
     private int difNumber;
     private String difName;

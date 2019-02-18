@@ -5,7 +5,8 @@ public class GameSettings {
     //eg. the difficulty
 
     private static GameSettings instance;
-    private static Difficulty difficulty;
+    private Difficulty difficulty;
+    private int amountSuperMines;
 
     private GameSettings() {
 
@@ -19,11 +20,19 @@ public class GameSettings {
     }
 
     public void setDifficulty(Difficulty difficulty) {
-        GameSettings.difficulty = difficulty;
+        this.difficulty = difficulty;
     }
 
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+
+    public void setAmountSuperMines(int amountSuperMines) {
+        this.amountSuperMines = amountSuperMines;
+    }
+
+    public int getAmountSuperMines() {
+        return amountSuperMines;
     }
 
 }

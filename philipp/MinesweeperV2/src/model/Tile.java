@@ -11,6 +11,7 @@ public class Tile {
         this.isFlagged = false;
         this.mineLevel = 0;
         this.isRevealed = false;
+        this.nearbyMines = 0;
     }
 
     public boolean isFlagged() {

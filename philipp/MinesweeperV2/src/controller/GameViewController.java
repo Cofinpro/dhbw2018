@@ -6,21 +6,35 @@ import view.GameView;
 public class GameViewController {
 
     private static GameView gameView = GameView.getInstance();
+    private static Board board = Board.getInstance();
 
     public static void handleTileClick(int x, int y, int modifiers) {
-        Board board = Board.getInstance();
+
         if (modifiers == 17) {
-            board.switchTileFlag(x, y);
-            gameView.changeLeftMinesTextField(String.valueOf(board.getAmountMinesLeft()));
+            board.switchTileFlagged(x, y);
+            gameView.changeLeftMinesTextField("Mines left: " + board.getAmountMinesLeft());
 
         }
         else {
-            //open Tile
-        }
+            char status = board.revealTile(x, y);
 
+            gameView.changeButtonText(x, y, board.getTileLabel(x, y));
+            gameView.setButtonEnabled(x, y, false);
+            switch (status) {
+                case 'n':
+                    break;
+                case 'w':
+                    gameView.displayWin();
+                    break;
+                case 'l':
+                    gameView.displayLose();
+                    break;
+            }
+        }
     }
 
     public static void handleResetClick() {
-        //todo
+        board.resetGame();
+        gameView.resetGame();
     }
 }
