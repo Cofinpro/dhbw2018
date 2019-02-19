@@ -1,29 +1,40 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import view.MainFXML;
 
-public class SingleScoreController {
+import java.io.IOException;
+
+public class SingleScoreController extends HBox {
 
     @FXML
     private TextField playerNameTextField;
 
     @FXML
-    private HBox scoreHbox;
-
-    @FXML
     private TextField highScoreTextField;
 
-    public SingleScoreController(String name, String highScore) {
-        this.playerNameTextField.setText(name);
-        this.highScoreTextField.setText(highScore);
-        scoreHbox.getChildren().addAll(playerNameTextField, highScoreTextField);
+    @FXML
+    public void initialize() {
 
     }
 
-    public HBox getScoreHbox() {
-        return scoreHbox;
+    public SingleScoreController() {
+        FXMLLoader loader = new FXMLLoader(MainFXML.class.getResource("singleScoreView.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setTextFields(String name, String highScore) {
+        playerNameTextField.setText(name);
+        highScoreTextField.setText(highScore);
     }
 
 }

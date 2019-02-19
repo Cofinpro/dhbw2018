@@ -4,10 +4,8 @@ import model.Difficulty;
 
 public class Main {
 
-
     public static void main(String[] args) {
         setSettingsFromUserInput();
-
     }
 
     private static void setSettingsFromUserInput() {
@@ -19,8 +17,6 @@ public class Main {
         }
 
         String[] superMineAmounts = {"Select Super-Mine amount", "0", "1", "2", "3"};
-
         UserSelectionController.getUserInput("Difficulty & Super-Mines", difNames, superMineAmounts);
     }
-
 }

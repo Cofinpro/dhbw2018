@@ -4,10 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<HBox fx:id="scoreHbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SingleScoreController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="playerNameTextField" editable="false" prefHeight="100.0" prefWidth="500.0" />
-      <TextField fx:id="highScoreTextField" alignment="CENTER_RIGHT" editable="false" prefHeight="100.0" prefWidth="500.0" />
+      <TextField fx:id="playerNameTextField" editable="false" prefHeight="20.0" prefWidth="250.0" />
+      <TextField fx:id="highScoreTextField" alignment="CENTER_RIGHT" editable="false" prefHeight="20.0" prefWidth="250.0" />
    </children>
-</HBox>
+</fx:root>

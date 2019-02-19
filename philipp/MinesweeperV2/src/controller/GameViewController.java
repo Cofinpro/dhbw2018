@@ -2,6 +2,7 @@ package controller;
 
 import model.Board;
 import view.GameView;
+import view.MainFXML;
 
 public class GameViewController {
 
@@ -24,7 +25,12 @@ public class GameViewController {
                 case 'n':
                     break;
                 case 'w':
-                    gameView.displayWin();
+                    try {
+                        gameView.displayWin();
+                        MainFXML.main(null);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 'l':
                     gameView.displayLose();

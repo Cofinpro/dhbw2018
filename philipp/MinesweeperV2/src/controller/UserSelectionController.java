@@ -54,7 +54,7 @@ public class UserSelectionController {
             GameSettings gameSettings = GameSettings.getInstance();
             gameSettings.setDifficulty(Difficulty.values()[chosenIndex1]);
             gameSettings.setAmountSuperMines(chosenIndex2);
-            frame.setVisible(false);
+            frame.dispose();
             Board.getInstance().resetGame();
             GameView.getInstance().initializeGameView();
         }

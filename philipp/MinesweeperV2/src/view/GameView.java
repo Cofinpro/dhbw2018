@@ -86,6 +86,7 @@ public class GameView {
         JLabel label = new JLabel("you won!");
         label.setFont(myFont);
         JOptionPane.showMessageDialog(frame, label);
+        frame.dispose();
     }
 
     public void displayLose() {
