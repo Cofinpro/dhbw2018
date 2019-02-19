@@ -48,7 +48,7 @@ public class Game extends Observable {
                 if (difficulty == null) {
                     return 0;
                 }
-                int suspectedRemainingBombCount = difficulty.getBombCountOverall() - Game.getInstance().getSuspectedCellCount();
+                int suspectedRemainingBombCount = difficulty.getBombCountOverall() - getSuspectedCellCount();
                 if (suspectedRemainingBombCount < 0) {
                     return 0;
                 }

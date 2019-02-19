@@ -27,7 +27,7 @@ public class MainView extends JPanel implements Observer {
         this.add(this.bombs, BorderLayout.WEST);
         this.add(this.gameState, BorderLayout.EAST);
         this.add(this.timer, BorderLayout.CENTER);
-        this.add(restartButton(), BorderLayout.NORTH);
+        //this.add(restartButton(), BorderLayout.NORTH);
         this.fields = new ButtonView[model.getRows()][model.getColumns()];
         this.game.addObserver(this);
 

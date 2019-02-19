@@ -26,7 +26,7 @@ public enum Difficulty {
                 return difficulty;
             }
         }
-        return null;
+        throw new IllegalArgumentException("There is no difficulty " + representation);
     }
 
     public int getBombCountOverall() {
