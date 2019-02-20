@@ -25,12 +25,8 @@ public class GameViewController {
                 case 'n':
                     break;
                 case 'w':
-                    try {
-                        gameView.displayWin();
-                        MainFXML.main(null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    gameView.displayWin();
+                    MainFXML.main(null);
                     break;
                 case 'l':
                     gameView.displayLose();

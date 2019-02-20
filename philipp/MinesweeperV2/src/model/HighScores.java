@@ -1,5 +1,7 @@
 package model;
 
+import persistance.CsvDao;
+
 import java.util.ArrayList;
 
 public class HighScores {
@@ -13,14 +15,12 @@ public class HighScores {
     }
 
     private HighScores() {
-        String[] testUserWithHighScore = {"Phape", "42"};
-        String[] testUserWithHighScore1 = {"Phape", "42"};
-        String[] testUserWithHighScore2 = {"Phape", "42"};
+        CsvDao csvDao = new CsvDao();
+        usersWithHighscores = (csvDao.readHighScoresFromCsv());
+    }
 
-        usersWithHighscores.add(testUserWithHighScore);
-        usersWithHighscores.add(testUserWithHighScore1);
-        usersWithHighscores.add(testUserWithHighScore2);
-
+    public void addHighScore(String[] userWithHighScore) {
+        usersWithHighscores.add(userWithHighScore);
     }
 
     public ArrayList<String[]> getUsersWithHighscores() {
