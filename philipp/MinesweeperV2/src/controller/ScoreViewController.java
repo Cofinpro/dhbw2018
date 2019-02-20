@@ -15,10 +15,10 @@ public class ScoreViewController {
 
     @FXML
     public void initialize() {
-        ArrayList<String[]> usersWithHighScores = HighScores.getInstance().getUsersWithHighscores();
+        ArrayList<String[]> usersWithHighScores = HighScores.getInstance().getUsersWithHighscoresAtCurrentDifficulty();
         for (String[] userWithHighScore : usersWithHighScores) {
             SingleScoreController sc = new SingleScoreController();
-            sc.setTextFields(userWithHighScore[0], userWithHighScore[1]);
+            sc.setTextFields(userWithHighScore[1], userWithHighScore[2]);
             scoresVbox.getChildren().add(sc);
         }
     }

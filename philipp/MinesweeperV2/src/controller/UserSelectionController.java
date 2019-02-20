@@ -48,9 +48,12 @@ public class UserSelectionController {
         int chosenIndex1 = comboBox1.getSelectedIndex()-1;
         int chosenIndex2 = comboBox2.getSelectedIndex()-1;
 
-        if (comboBox1.getSelectedIndex() == 0 | comboBox2.getSelectedIndex() == 0)
-            throw new IllegalArgumentException("Difficulty & Amount of Super Mines has to be selected");
+        if (comboBox1.getSelectedIndex() == 0)
+            throw new IllegalArgumentException("Difficulty & has to be selected");
         else {
+            //if no superMine amount is defined, it will be 0 (the first choice)
+            if (comboBox2.getSelectedIndex() == 0)
+                chosenIndex2 = comboBox2.getSelectedIndex();
             GameSettings gameSettings = GameSettings.getInstance();
             gameSettings.setDifficulty(Difficulty.values()[chosenIndex1]);
             gameSettings.setAmountSuperMines(chosenIndex2);

@@ -18,6 +18,7 @@ public class CsvDao {
     public void writeHighScoresToCsv () {
 
         CsvReaderWriter readerWriter = new CsvReaderWriter("res\\highScores.csv");
-        readerWriter.writeCSV(HighScores.getInstance().getUsersWithHighscores());
+        ArrayList<String[]> usersWithHighscores = HighScores.getInstance().getUsersWithHighscores();
+        readerWriter.writeCSV(usersWithHighscores);
     }
 }
