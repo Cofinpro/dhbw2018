@@ -49,6 +49,7 @@ public class GameView {
         top.add(reset, BorderLayout.EAST);
 
         frame.setSize(1250, 1250);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
         frame.add(top, BorderLayout.NORTH);
         frame.add(grid, BorderLayout.CENTER);

@@ -40,6 +40,7 @@ public class UserSelectionController {
         frame.add(boxContainer, BorderLayout.NORTH);
         frame.add(okButton, BorderLayout.SOUTH);
 
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
