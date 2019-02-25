@@ -129,6 +129,11 @@ public class Board {
         if(!gameIsRunning)
             gameIsRunning = true;
 
+        if (tiles[x][y].isFlagged()) {
+            tiles[x][y].setFlagged(false);
+            amountMinesLeft++;
+            GameView.getInstance().changeLeftMinesTextField("" + amountMinesLeft);
+        }
         tiles[x][y].setRevealed(true);
         if (tiles[x][y].getNearbyMines() == 0)
             openZeros(x, y);

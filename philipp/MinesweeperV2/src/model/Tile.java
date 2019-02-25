@@ -50,7 +50,7 @@ public class Tile {
     public String toString() {
         if (mineLevel > 0 && !isFlagged)
             return "X";
-        if (isFlagged)
+        if (isFlagged && !isRevealed)
             return "\u2665";
         if (nearbyMines == 0)
             return "";

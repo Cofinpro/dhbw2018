@@ -19,6 +19,7 @@ public class GameViewController {
         else {
             char status = board.revealTile(x, y);
 
+            gameView.changeLeftMinesTextField("Mines left: " + board.getAmountMinesLeft());
             gameView.changeButtonText(x, y, board.getTileLabel(x, y));
             gameView.setButtonEnabled(x, y, false);
             switch (status) {
